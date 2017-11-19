@@ -42,7 +42,8 @@ np.random.rand() * 10**-exp  # random number raised to the power
 
 # Hyper parameter tuning practice
 
-   - Retest hyper parameters to ensure it is not stale
+Periodically, retest hyper parameters to ensure it is not stale
+
 | Panda                                    | Caviar                                   |
 | ---------------------------------------- | ---------------------------------------- |
 | Babysit a model.                         | Train many models in parallel.           |
