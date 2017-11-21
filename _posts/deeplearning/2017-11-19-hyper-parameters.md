@@ -4,9 +4,9 @@ title: Hyper parameters
 mathjax: true
 ---
 
-[TOC]
+{% include toc.html %}
 
-# Hyper parameters
+# Table of hyper parameters
 
 | Parameter           | Detail                                   |
 | ------------------- | ---------------------------------------- |

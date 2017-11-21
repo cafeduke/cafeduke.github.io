@@ -44,7 +44,7 @@
     &:not(:last-child) {
       margin-right: 20px;
     }
-  }
+   }
 
   @include media-query($on-palm) {
     position: absolute;
@@ -256,4 +256,11 @@
     }
   }
 
+}
+
+/**
+ * TOC
+ */ 
+#markdown-toc, #markdown-toc ul {
+    list-style: decimal;
 }
