@@ -33,10 +33,9 @@ $table-th-background: rgb(102,153,0);
 $table-border-color: rgb(107,138,15);
 
 // Width of the content area
-$content-width:    800px !default;
-
-$on-palm:          600px !default;
-$on-laptop:        800px !default;
+$content-width:    1200px !default;
+$on-palm:          800px !default;
+$on-laptop:        1200px !default;
 
 // Use media queries like this:
 // @include media-query($on-palm) {
