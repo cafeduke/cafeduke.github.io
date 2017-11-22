@@ -20,21 +20,22 @@ Mini batch gradient descent performs the following for each iteration (*one epoc
 - Perform forward propagation of neural network
 - Compute cost for the mini batch
 - Perform back propagation of neural network
-- Calculate the *exponentially weighted average* (running average) of `dW` and `db`
+- Calculate the *exponentially weighted average* (running average) of `dW` and `db`.
 
 $$
 v_{dW^{[l]}} = \beta v_{dW^{[l]}} + (1 - \beta) dW^{[l]} \\
 v_{db^{[l]}} = \beta v_{db^{[l]}} + (1 - \beta) db^{[l]}
 $$
 
-- Update the weights
+- Update the weights.
 
 $$
 W^{[l]} = W^{[l]} - \alpha v_{dW^{[l]}} \\
 b^{[l]} = b^{[l]} - \alpha v_{db^{[l]}}
 $$
 
-  # Batch Vs mini Vs stochastic descent
+
+# Batch Vs mini Vs stochastic descent
 
 
 | Batch gradient descent                   | Mini batch gradient descent              |
