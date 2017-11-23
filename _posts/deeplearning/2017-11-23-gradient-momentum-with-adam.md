@@ -25,7 +25,7 @@ Essentially, most momentum added by $$\alpha$$ goes sidewards and less downwards
 
 ## Why do we have oscillations with increased alpha?
 
-![Oscillation](/_media/Oscillation.jpg)
+![Oscillation](/blob/master/_media/Oscillation.jpg)
 
 In the diagram above, W1 and W2 are two weights based on which the cost contour graph is drawn. 
 
