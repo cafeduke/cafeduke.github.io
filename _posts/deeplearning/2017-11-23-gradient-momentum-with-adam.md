@@ -46,10 +46,11 @@ In the diagram above, W1 and W2 are two weights based on which the cost contour 
 Gradient with momentum takes a running average of the derivatives thus reducing the oscillations. For a given mini batch, running average for each layer is calculated as follows:
 $$
 \begin{gathered}
-v_{dW} = \beta v_{dW} + (1 - \beta) dW \\
-v_{db} = \beta v_{db} + (1 - \beta) db
+V_{dW} = \beta V_{dW} + (1 - \beta) dW \\
+V_{db} = \beta V_{db} + (1 - \beta) db
 \end{gathered}
 $$
+
 Thus, calculated running averages  are used to update the weights.
 
 $$
@@ -61,16 +62,78 @@ $$
 
 # Momentum with RMSprop
 
+## Algorithm
+
 $$
 \begin{gathered}
-s_{dW} = \beta s_{dW} + (1 - \beta) dW^{2} \\
-s_{db} = \beta s_{db} + (1 - \beta) db^{2} \\
-W = W - \alpha \frac{dW}{\sqrt{s_{dW}}} \\
-b = b - \alpha \frac{db}{\sqrt{s_{db}}}
+S_{dW} = \beta S_{dW} + (1 - \beta) dW^{2} \\
+S_{db} = \beta S_{db} + (1 - \beta) db^{2} \\
+\\
+W = W - \alpha \frac{dW}{\sqrt{S_{dW}}} \\
+b = b - \alpha \frac{db}{\sqrt{S_{db}}}
 \end{gathered}
 $$
 
-Note: RMS prop calculates
+RMS prop calculates
 
 - The running average of the square of the derivatives
-- Updates the weights by 
+- Updates the weights by dividing derivative by square root of running average
+
+## Working
+
+When curve is steep, the derivative is large $$dW \ and/or \ db$$, so is $$S_{dW} \ and/or \ $_{db}$$. 
+
+- The division of two relatively large numbers results in a moderate number. 
+- This ensures minimal oscillation despite $$\alpha$$ taking higher values.
+
+When curve is gradual, the derivative is small  $$dW \ and/or \ db$$, so is  $$S_{dW} \ and/or \ $_{db}$$. 
+
+- The division of two relatively small numbers results in a moderate number
+- This ensures that better acceleration with $$\alpha$$ taking higher values.
+
+Essentially, increasing $$\alpha$$ to increase acceleration among small derivatives won't worsen the larger ones.
+
+# Momentum with Adam
+
+Adam is one of the algorithm that optimizes really well in many cases in NN. Combines momentum and RMSProp.
+
+## Algorithm
+
+$$
+\begin{gathered}
+V_{dW} = \beta_{1} V_{dW} + (1 - \beta_{1}) dW \\
+V_{db} = \beta_{1} V_{db} + (1 - \beta_{1}) db \\
+\\
+S_{dW} = \beta_{2} S_{dW} + (1 - \beta_{2}) dW^{2} \\
+S_{db} = \beta_{2} S_{db} + (1 - \beta_{2}) db^{2} \\
+\\
+W = W - \alpha \frac{V_{dW}}{\sqrt{S_{dW}}} \\
+b = b - \alpha \frac{V_{db}}{\sqrt{S_{db}}}
+\end{gathered}
+$$
+
+Note 
+
+- $$V_{dW}$$ calculates the running average of the derivative (Like Momentum)
+- $$S_{dW}$$ calculates the running average of the square of the derivative (Like RMSProp)
+- The weights are updated using a ratio of $$V_{dW}$$ and $$S_{dW}$$
+
+
+
+# Bias Correction
+
+Bias correction is not necessary for algorithms that run for many iterations of  `t`. Note that t begins with a value of 1 and keeps incrementing for each mini batch across epochs. 
+
+That is, if there are 2 epochs with 25 mini batches each making a total of 50 mini batches then `t` takes values from 1 to 50. 
+
+However, bias correction can be implemented as follows
+
+$$
+\begin{gathered}
+V_{dW} := \frac{V_{dW}}{(1 - \beta_{1}^{t})} \\
+V_{db} := \frac{V_{db}}{(1 - \beta_{1}^{t})} \\
+\\
+S_{dW} := \frac{S_{dW}}{(1 - \beta_{2}^{t})} \\
+S_{db} := \frac{S_{db}}{(1 - \beta_{2}^{t})} \\
+\end{gathered}
+$$
