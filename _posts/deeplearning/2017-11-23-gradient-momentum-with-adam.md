@@ -3,7 +3,7 @@ title: Gradient momentum with Adam optimization
 categories: dl
 layout: post
 mathjax: true
-typora-copy-images-to: ..\..\_media
+typora-copy-images-to: ..\..\assets
 ---
 
 {% include toc.html %}
@@ -25,7 +25,7 @@ Essentially, most momentum added by $$\alpha$$ goes sidewards and less downwards
 
 ## Why do we have oscillations with increased alpha?
 
-![Oscillation](/blob/master/_media/Oscillation.jpg)
+![Oscillation]({{"/assets/images/Oscillation.jpg" | absolute_url}}) 
 
 In the diagram above, W1 and W2 are two weights based on which the cost contour graph is drawn. 
 
