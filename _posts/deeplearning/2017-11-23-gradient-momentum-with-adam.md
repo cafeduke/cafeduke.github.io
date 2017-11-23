@@ -30,13 +30,13 @@ Essentially, most momentum added by $$\alpha$$ goes sidewards and less downwards
 In the diagram above, W1 and W2 are two weights based on which the cost contour graph is drawn. 
 
 - Initially, lets say the weights are at point A. 
-- To reach the optimal point in green, less distance has to covered vertically and more distance has to be covered horizontally. That is, W2 should reduce by small factor while W1 should reduce by a large factor.
+- To reach the optimal point in green, less distance has to covered vertically and more distance has to be covered horizontally. That is, W2 should reduce by small factor while W1 should increase by a large factor.
 - Consider W1
-  - Lets keep W2 constant resulting in the sliceW1 
+  - Lets keep W2 constant resulting in the sliceW1.
   - The curve that we have due to sliceW1 (front view) is gradual (not steep). 
   - Multiplying with a sizable $$\alpha$$, will move W1 towards the green optima (bottom of the bowl)
 - Consider W2
-  - Lets keep W1 constant resulting in the sliceW2 (top view)
+  - Lets keep W1 constant resulting in the sliceW2.
   - The curve that we have due to sliceW2 (left view) is at the beginning of the bowl and is steep.
   - Multiplying with same sizable $$\alpha$$, will move W2 past the green optima (side of the bowl)
 - Essentially, W1 must increase considerably while W2 should reduce by small amount in each iteration.
