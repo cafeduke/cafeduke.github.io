@@ -36,8 +36,6 @@ For better understanding lets write the formula as $$V_{t} \ =\ ( 1-\beta ) \ \t
 
 $$
 \begin{gathered}
-V_{t} \ =( 1-\beta ) \ \theta _{t} \ +\beta V_{t-1} \ \\
-\\
 V_{1} \ =( 1-\beta ) \ \theta _{1} \ +\beta 0\\
 V_{1} \ =\ ( 1-\beta ) \ \theta _{1}\\
 \\
@@ -83,6 +81,31 @@ In general, for given value of $$\beta$$, the average calculated by the algorith
 $$
 Number \ of \ items \ averaged = \frac{1}{(1-\beta)}
 $$
+
+## Tuning the running average
+
+If $$\beta$$ is `0.9` we are pretty much averaging over latest `10` items and if  $$\beta$$ is `0.98` we are averaging over latest `50` items.  $$\beta$$  affects the number of items averaged as follows
+
+$$
+\uparrow \beta \ \ \Longrightarrow \ \downarrow ( 1-\beta ) \Longrightarrow \ \uparrow \frac{1}{1-\beta }
+$$
+
+Essentially, greater the value of   $$\beta$$  
+
+- We are averaging more items giving a better average
+- We are giving lesser weight $$ ( 1-\beta ) $$ to newly added item making the algorithm slow to adapt to new changes
+
+## Bias correction in running average
+
+In the first iteration $$V_{1} \ = \ ( 1-\beta ) \ \theta _{1} \ $$. If $$\beta$$ is `0.9` this makes it $$0.1\theta_{1}$$. Ideally, the average for the first item should have been close to $$\theta_{1}$$ it is instead $$0.1\theta_{1}$$ i.e one tenth the ideal value! Since  $$V_{2}$$  is calculated using  $$V_{1}$$ the effect continues for a while. This is bias. Bias is not a problem when we are averaging over large number of items , i.e `t` is large. 
+
+*Essentially, when we have more items the bias correction is not necessary.* However, the following formula will ensure bias correction irrespective of the number of items.
+
+$$
+V_{t-corrected} = \frac{V_{t}}{(1-\beta^{t})}
+$$
+
+Note that as `t` increases the value of $$(1-\beta^{t})$$ becomes close to `1` , so $$V_{t-corrected}$$ will become same as $$V_{t}$$.
 
 # Programming Running average 
 
