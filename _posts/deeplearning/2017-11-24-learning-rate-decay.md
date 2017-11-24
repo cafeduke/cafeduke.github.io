@@ -40,7 +40,7 @@ $$
 \alpha \ = \ k^{epoch\_num} \alpha_{0} \ \ \ where \ k < 1
 $$
 
-## Decay as function of mini batch counter `t`
+## Decay as function of mini batch counter (t)
 
 $$
 \alpha \ = \frac{k}{\sqrt{t}} \ \alpha_{0} \ \ \ where \ k < 1
