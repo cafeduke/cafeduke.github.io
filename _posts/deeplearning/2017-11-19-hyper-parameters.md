@@ -10,14 +10,14 @@ mathjax: true
 
 | Parameter           | Detail                                   |
 | ------------------- | ---------------------------------------- |
-| alpha               | The learning rate. The derivative $$dW$$ and $$db$$ are multiplied by alpha to adjust weights. |
-| beta                | Momentum. Used to calculate the exponentially weighted average of the gradient ($$dW$$ and $$db$$). |
+| $$\alpha$$          | The learning rate. The derivative $$dW$$ and $$db$$ are multiplied by alpha to adjust weights. |
+| $$\beta$$           | Momentum. Used to calculate the exponentially weighted average of the gradient ($$dW$$ and $$db$$). |
 | mini match size     | Size of the mini batch                   |
 | L                   | Number of layers                         |
 | learning rate decay | Rate at which learning rate parameter should reduce after each epoch (iteration of one full batch) |
-| beta1               | Used in Adam optimization for momentum of  $$dW$$ and $$db$$  (Typically : 0.9   ) |
-| beta2               | Used in Adam optimization for momentum of $$dW^2$$  and  $$db^2$$  (Typically : 0.999 ) |
-| epsilon             | Used in Adam optimization to avoid divide by zero         (Typically : 10^-8 |
+| $$\beta_{1}$$       | Used in Adam optimization for momentum of  $$dW$$ and $$db$$  (Typically : 0.9   ) |
+| $$\beta_{2}$$       | Used in Adam optimization for momentum of $$dW^2$$  and  $$db^2$$  (Typically : 0.999 ) |
+| $$\epsilon$$        | Used in Adam optimization to avoid divide by zero         (Typically : $$10^{-8}$$) |
 
 # Hyper parameter scale
 

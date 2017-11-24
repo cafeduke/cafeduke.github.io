@@ -69,8 +69,8 @@ $$
 S_{dW} = \beta S_{dW} + (1 - \beta) dW^{2} \\
 S_{db} = \beta S_{db} + (1 - \beta) db^{2} \\
 \\
-W = W - \alpha \frac{dW}{\sqrt{S_{dW}}} \\
-b = b - \alpha \frac{db}{\sqrt{S_{db}}}
+W = W - \alpha \frac{dW}{\sqrt{S_{dW}+\epsilon}} \\
+b = b - \alpha \frac{db}{\sqrt{S_{db}+\epsilon}}
 \end{gathered}
 $$
 
@@ -78,6 +78,7 @@ RMS prop calculates
 
 - The running average of the square of the derivatives
 - Updates the weights by dividing derivative by square root of running average
+- $$\epsilon$$ is a very small value like $$10^{-8}$$ to prevent divide by zero.
 
 ## Working
 
@@ -107,8 +108,8 @@ V_{db} = \beta_{1} V_{db} + (1 - \beta_{1}) db \\
 S_{dW} = \beta_{2} S_{dW} + (1 - \beta_{2}) dW^{2} \\
 S_{db} = \beta_{2} S_{db} + (1 - \beta_{2}) db^{2} \\
 \\
-W = W - \alpha \frac{V_{dW}}{\sqrt{S_{dW}}} \\
-b = b - \alpha \frac{V_{db}}{\sqrt{S_{db}}}
+W = W - \alpha \frac{V_{dW}}{\sqrt{S_{dW}+\epsilon}} \\
+b = b - \alpha \frac{V_{db}}{\sqrt{S_{db}+\epsilon}}
 \end{gathered}
 $$
 
@@ -117,6 +118,7 @@ Note
 - $$V_{dW}$$ calculates the running average of the derivative (Like Momentum)
 - $$S_{dW}$$ calculates the running average of the square of the derivative (Like RMSProp)
 - The weights are updated using a ratio of $$V_{dW}$$ and $$S_{dW}$$
+- $$\epsilon$$ is a very small value like $$10^{-8}$$ to prevent divide by zero.
 
 
 
