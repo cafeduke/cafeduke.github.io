@@ -35,29 +35,28 @@ For better understanding lets write the formula as $$V_{t} \ =\ ( 1-\beta ) \ \t
 
 
 $$
-\begin{gathered}
-V_{1} \ =( 1-\beta ) \ \theta _{1} \ +\beta 0\\
-V_{1} \ =\ ( 1-\beta ) \ \theta _{1}\\
+\begin{aligned}
+V_{1} &= ( 1-\beta ) \ \theta _{1} \ +\beta 0\\
+V_{1} &= ( 1-\beta ) \ \theta _{1}\\
 \\
-V_{2} \ =( 1-\beta ) \ \theta _{2} \ +\beta V_{1}\\
-V_{2} \ =\ ( 1-\beta ) \ \theta _{2} \ +\beta \ ( 1-\beta ) \ \theta _{1}\\
+V_{2} &= ( 1-\beta ) \ \theta _{2} \ +\beta V_{1}\\
+V_{2} &= ( 1-\beta ) \ \theta _{2} \ +\beta \ ( 1-\beta ) \ \theta _{1}\\
 \\
-V_{3} \ =( 1-\beta ) \ \theta _{3} \ +\beta V_{2}\\
-V_{3} \ =\ ( 1-\beta ) \ \theta _{3} \ +\ \beta \ ( 1-\beta ) \ \theta _{2} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{1} \ \ \ \ \ \ \ \\
+V_{3} &= ( 1-\beta ) \ \theta _{3} \ +\beta V_{2}\\
+V_{3} &= ( 1-\beta ) \ \theta _{3} \ +\ \beta \ ( 1-\beta ) \ \theta _{2} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{1} \ \ \ \ \ \ \ \\
 \\
-V_{4} \ =( 1-\beta ) \ \theta _{4} \ +\ \beta V_{3}\\
-V_{4} \ =\ ( 1-\beta ) \ \theta _{4} \ +\ \beta \ ( 1-\beta ) \ \theta _{3} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{2} \ +\ \beta ^{3}( 1-\beta ) \ \theta _{1} \ \ \\
+V_{4} &= ( 1-\beta ) \ \theta _{4} \ +\ \beta V_{3}\\
+V_{4} &= ( 1-\beta ) \ \theta _{4} \ +\ \beta \ ( 1-\beta ) \ \theta _{3} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{2} \ +\ \beta ^{3}( 1-\beta ) \ \theta _{1} \ \ \\
 \\
-V_{5} \ =( 1-\beta ) \ \theta _{5} \ +\ \beta V_{4}\\
-V_{5} \ =\ ( 1-\beta ) \ \theta _{5} \ +\ \beta \ ( 1-\beta ) \ \theta _{4} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{3} \ +\ \beta ^{3}( 1-\beta ) \ \theta _{2} +\ \beta ^{4}( 1-\beta ) \ \theta _{1} \ \ \\
+V_{5} &= ( 1-\beta ) \ \theta _{5} \ +\ \beta V_{4}\\
+V_{5} &= ( 1-\beta ) \ \theta _{5} \ +\ \beta \ ( 1-\beta ) \ \theta _{4} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{3} \ +\ \beta ^{3}( 1-\beta ) \ \theta _{2} +\ \beta ^{4}( 1-\beta ) \ \theta _{1} \ \ \\
 \ ...\\
 \ ...\\
 \ ...\\
-\ V_{t} \ =( 1-\beta ) \ \theta _{t} \ +\ \ \beta V_{t-1} \ \ \ \\
-\ V_{t} \ =\ ( 1-\beta ) \ \theta _{t} \ \ +\ \beta \ ( 1-\beta ) \ \theta _{t-1} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{t-2} \ \ +\ \ \beta ^{3}( 1-\beta ) \ \theta _{t-3} \ +\ ...+\ \beta ^{t-1}( 1-\beta ) \ \theta _{1} \\
-\end{gathered}
+\ V_{t} &= ( 1-\beta ) \ \theta _{t} \ +\ \ \beta V_{t-1} \ \ \ \\
+\ V_{t} &= ( 1-\beta ) \ \theta _{t} \ \ +\ \beta \ ( 1-\beta ) \ \theta _{t-1} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{t-2} \ \ +\ \ \beta ^{3}( 1-\beta ) \ \theta _{t-3} \ +\ ...+\ \beta ^{t-1}( 1-\beta ) \ \theta _{1} \\
+\end{aligned}
 $$
-
 
 
 ## Understanding running average expansion
@@ -65,11 +64,11 @@ $$
 A typical value for $$\beta$$ would be `0.9`, this makes $$1 - \beta$$ to be `0.1`. With these values substituted in the expansion we get
 
 $$
-\begin{gathered}
-V_{t} \ =\ 0.1\theta _{t} \ \ +\ 0.9\ ( 0.1) \ \theta _{t-1} \ +\ 0.9^{2}( 0.1) \ \theta _{t-2} \ \ +\ 0.9^{3}( 0.1) \ \theta _{t-3} \ +\ ...+\ 0.9^{t-1}( 0.1) \ \theta _{1} \\
+\begin{aligned}
+V_{t} &= 0.1\theta _{t} \ \ +\ 0.9\ ( 0.1) \ \theta _{t-1} \ +\ 0.9^{2}( 0.1) \ \theta _{t-2} \ \ +\ 0.9^{3}( 0.1) \ \theta _{t-3} \ +\ ...+\ 0.9^{t-1}( 0.1) \ \theta _{1} \\
 
-V_{t} \ =\ 0.1\theta _{t} \ \ +\ 0.09 \ \theta _{t-1} \ +\ 0.081 \ \theta _{t-2} \ \ +\ 0.072 \ \theta _{t-3} \ +\ ...+\ 0.9^{t-1}( 0.1) \ \theta _{1} \
-\end{gathered}
+V_{t}  &= 0.1\theta _{t} \ \ +\ 0.09 \ \theta _{t-1} \ +\ 0.081 \ \theta _{t-2} \ \ +\ 0.072 \ \theta _{t-3} \ +\ ...+\ 0.9^{t-1}( 0.1) \ \theta _{1} \
+\end{aligned}
 $$
 
 From the expansion we find that a weight attached to the current temperature is `0.1` and the weight decreases **exponentially** as we go along older (earlier) values of $$\theta$$. This is termed is ***exponential weight decay***

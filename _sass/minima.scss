@@ -22,15 +22,17 @@ $grey-color-dark:  darken($grey-color, 25%) !default;
 // Heading attributes
 $heading-font-family: "Segoe UI";
 
-// Code attributes
-$code-font-family: "Consolas";
-
 // Table attributes
 $table-text-align: left !default;
 $table-color-odd: rgb(255,255,255);
 $table-color-even: rgb(244,250,239);
 $table-th-background: rgb(102,153,0);
 $table-border-color: rgb(107,138,15);
+
+// Code attributes
+$code-font-family: "Consolas";
+$code-border-color: $table-border-color;
+$code-background-color: rgb(252,252,240);
 
 // Width of the content area
 $content-width:    1200px !default;

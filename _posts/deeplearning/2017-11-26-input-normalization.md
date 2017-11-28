@@ -13,7 +13,7 @@ Input normalization will seed up learning. When there is huge range among featur
 
 
 
-## Algorithm
+# Algorithm
 
 Each input feature vector $$x$$ with $$m$$ dataset size is normalized as follows
 

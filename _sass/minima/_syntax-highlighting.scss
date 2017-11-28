@@ -2,7 +2,7 @@
  * Syntax highlighting styles
  */
 
-div.highlighter-rouge { background-color:rgb(252,252,240); border: 2px solid rgb(107,138,15); border-radius: 4px; }
+div.highlighter-rouge { background-color:$code-background-color; border: 2px solid $code-border-color; border-radius: 4px; }
 
 .highlight {
 
