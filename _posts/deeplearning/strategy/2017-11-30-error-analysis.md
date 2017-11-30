@@ -72,9 +72,9 @@ Add incorrect label column - This a mistake in labeling (Y).
 
 | Misclassified image     |      Dog       |    Big Cat     |     Blurry     | Incorrect Label | Comments                  |
 | ----------------------- | :------------: | :------------: | :------------: | :-------------: | ------------------------- |
-| Image01                 | :heavy_check_mark:  |                |                |                 | pitbull                   |
-| Image02                 |                | :heavy_check_mark:  | :heavy_check_mark:  |                 | blurry lion image in rain |
-| Image03                 |                |                |                | :heavy_check_mark:   | Missed cat in background  |
+| Image01                 | :white_check_mark:  |                |                |                 | pitbull                   |
+| Image02                 |                | :white_check_mark:  | :white_check_mark:  |                 | blurry lion image in rain |
+| Image03                 |                |                |                | :white_check_mark:   | Missed cat in background  |
 | ...                     |                |                |                |                 |                           |
 | **Criteria Percentage** |       9%       |      48%       |      65%       |       6%        |                           |
 
