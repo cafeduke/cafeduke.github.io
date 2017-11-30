@@ -1,9 +1,14 @@
-name: Duke Notes
+name: Cafe Duke Notes
+title: Cafe Duke Notes
+author: Raghunandan.Seshadri
+email: raghubs81@gmail.com
+github_username: cafeduke
+description: Duke notes. Happy learning!
 markdown: kramdown
 highlighter: rouge
 
 kramdown:
    parse_block_html: true
 
-gems:
+plugins:
    - jemoji
