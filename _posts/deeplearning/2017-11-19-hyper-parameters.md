@@ -1,5 +1,5 @@
 ---
-F_{p}layout: post
+layout: post
 title: Hyper parameters
 mathjax: true
 ---
