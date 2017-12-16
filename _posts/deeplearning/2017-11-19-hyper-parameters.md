@@ -112,10 +112,10 @@ Consider the binary classification problem of cancer detection from tumor. Most 
 #### Prediction
 
 A prediction is defined as follows
+
 $$
 Prediction \ = \ \frac{T_{p}}{T_{p} \ + \ F_{p}}
 $$
-
 
 - A higher prediction means $$\uparrow \ T_{p} \downarrow F_{p}$$ . This means very few false positives.
 - When a tumor is predicted to be cancer - It is most likely cancer. (You can bet on +ve prediction)
@@ -126,6 +126,7 @@ $$
 #### Recall
 
 A recall is defined as follows
+
 $$
 Recall \ = \ \frac{T_{p}}{T_{p} \ + \ F_{n}}
 $$
@@ -138,6 +139,7 @@ $$
 #### F1 score
 
 Both precision and recall have to be used to determine the accuracy of the model. We need a model with high precision and recall - These are two metrics. However, we need a single evaluation metric.
+
 $$
 F1 \ score \ = \ \frac{2}{\frac{1}{P} + \frac{1}{R}} \ = \ \frac{2PR}{P+R}
 $$
