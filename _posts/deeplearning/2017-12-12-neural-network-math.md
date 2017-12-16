@@ -135,7 +135,7 @@ $$
 
 So in order to compute $$dW_{1}$$ we need to start with $$dA_{4}$$ and then move on to $$dZ_{4}$$ and work our way backwards.
 
-## Compute $ dA_{L} $
+## Compute $$ dA_{L} $$
 
 Here, $$ dA_{L} = dA_{4} $$
 
@@ -156,7 +156,7 @@ $$
 > In short,
 > $$  dA_{L} \ =  -\frac{1}{m} \sum \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right]  $$
 
-## Compute $ dZ_{L} $
+## Compute $$ dZ_{L} $$
 
 $$
 \begin{aligned}
@@ -174,7 +174,7 @@ $$
 > Substituting the value of $$dA_{L}$$ we get,
 > $$  dZ_{L} =  -\frac{1}{m} \sum \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right] \ \  g'( Z_{L}) $$
 
-## Compute $ dA_{l} $
+## Compute $$ dA_{l} $$
 
 $$dA_{l}$$ is computing $$dA$$ of any other layer other than the last layer $$L$$. 
 
@@ -196,7 +196,7 @@ $$
 > $$  dA_{l} = (W_{l+1})^T \ * \ dZ_{l+1} $$
 >
 
-## Compute $ dZ_{l} $
+## Compute $$ dZ_{l} $$
 
 $$dZ_{l}$$ is computing $$dZ$$ of any other layer other than the last layer $$L$$. 
 
@@ -223,7 +223,7 @@ $$
 > Vectorization formula,
 > $$  dZ_{l} = (W_{l+1})^{T} \ * \ dZ_{l+1} \ \ g'(Z_{l}) $$
 
-## Compute $ dW_{l} $
+## Compute $$ dW_{l} $$
 
 $$
 \begin{aligned}
@@ -242,7 +242,7 @@ $$
 > Vectorization formula,
 > $$  dW_{l} = dZ_{l} \ * \ ( A_{l-1} )^{T} $$
 
-## Compute $ db_{l} $
+## Compute $$ db_{l} $$
 $$
 \begin{aligned}
 db_{4} &= \frac{\partial J}{\partial b_{4}} \\
