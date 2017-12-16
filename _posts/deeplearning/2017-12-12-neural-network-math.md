@@ -135,7 +135,7 @@ $$
 
 So in order to compute $$dW_{1}$$ we need to start with $$dA_{4}$$ and then move on to $$dZ_{4}$$ and work our way backwards.
 
-## Compute $dA_{L}$
+## Compute $$dA_{L}$$
 
 Here, $$dA_{L} = dA_{4}​$$
 
@@ -152,16 +152,17 @@ $$
 
 >
 > In general, 
->$$
->dA_{L} \ =  -\frac{1}{m} \sum^{m}_{i=1}  \sum^{n_{L}}_{j=1} \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right]
->$$
+> $$
+> dA_{L} \ =  -\frac{1}{m} \sum^{m}_{i=1}  \sum^{n_{L}}_{j=1} \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right]
+> $$
 >
 > In short,
->$$
->dA_{L} \ =  -\frac{1}{m} \sum \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right] \\
->$$
+> $$
+> dA_{L} \ =  -\frac{1}{m} \sum \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right] \\
+> $$
 >
-## Compute $dZ_{L}$
+
+## Compute $$dZ_{L}$$
 
 $$
 \begin{aligned}
@@ -174,17 +175,18 @@ dZ_{4} &=\frac{\partial J}{\partial Z_{4}} \\
 $$
 
 > In general,
-> $$
-> \begin{aligned}
-> dZ_{L} &= dA_{L} \ \ g'(Z_{L}) \\
-> dZ_{L} &=  -\frac{1}{m} \sum \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right] \ \  g'( Z_{L}) \\
-> \end{aligned}
+> $$ 
+> dZ_{L} = dA_{L} \ \ g'(Z_{L}) 
 > $$
 >
+> Substituting the value of $$dA_{L}$$ we get,
+> $$
+> dZ_{L} =  -\frac{1}{m} \sum \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right] \ \  g'( Z_{L}) \\
+> $$
 
 
 
-## Compute $dA_{l}$
+## Compute $$dA_{l}$$
 
 $$dA_{l}$$ is computing $$dA$$ of any other layer other than the last layer $$L$$. 
 
@@ -211,7 +213,7 @@ $$
 >
 
 
-## Compute $dZ_{l}$
+## Compute $$dZ_{l}$$
 
 $$dZ_{l}$$ is computing $$dZ$$ of any other layer other than the last layer $$L$$. 
 
@@ -241,8 +243,9 @@ $$
 > $$
 > dZ_{l} = (W_{l+1})^{T} \ * \ dZ_{l+1} \ \ g'(Z_{l})
 > $$
->
-## Compute $dW_{l}$
+
+
+## Compute $$dW_{l}$$
 
 $$
 \begin{aligned}
@@ -266,7 +269,7 @@ $$
 > $$
 >
 
-## Compute $db_{l}$
+## Compute $$db_{l}$$
 $$
 \begin{aligned}
 db_{4} &= \frac{\partial J}{\partial b_{4}} \\
@@ -286,32 +289,33 @@ $$
 > $$
 >
 
-
-
 # Formula list
 
-> Forward propagation
-> $$
-> \begin{aligned}
-> Z_{l} &= W_{l}*A_{l-1} + b_{l} \\
-> A_{l} &= g(Z_{l})
-> \end{aligned}
-> $$
->
-> Back propagation for last layer
-> $$
-> \begin{aligned}
-> dZ_{L} &=  -\frac{1}{m} \sum \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right] \ \  g'( Z_{L}) \\
-> \end{aligned}
-> $$
-> Back propagation for other layers
-> $$
-> \begin{aligned}
-> dZ_{l} &= (W_{l+1})^{T} \ * \ dZ_{l+1} \ \ g'(Z_{l}) \\
-> dW_{l} &= dZ_{l} \ * \ ( A_{l-1} )^{T} \\
-> db_{l} &= dZ_{l} 
-> > \end{aligned}
-> $$
->
+## Forward propagation 
+
+$$
+\begin{aligned}
+Z_{l} &= W_{l}*A_{l-1} + b_{l} \\
+A_{l} &= g(Z_{l})
+\end{aligned}
+$$
+
+## Back propagation for last layer 
+
+$$
+\begin{aligned}
+dZ_{L} &=  -\frac{1}{m} \sum \left[ \frac{Y}{A_{L}} + \frac{1-Y}{1-A_{L}} \right] \ \  g'( Z_{L}) \\
+\end{aligned}
+$$
+
+## Back propagation for other layers
+
+$$
+\begin{aligned}
+dZ_{l} &= (W_{l+1})^{T} \ * \ dZ_{l+1} \ \ g'(Z_{l}) \\
+dW_{l} &= dZ_{l} \ * \ ( A_{l-1} )^{T} \\
+db_{l} &= dZ_{l} 
+\end{aligned}
+$$
 
 
