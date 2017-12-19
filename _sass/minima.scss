@@ -2,7 +2,7 @@
 
 // Define defaults for each variable.
 
-$base-font-family: "Open Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$base-font-family:  Roboto, 'Open Sans', sans-serif !default;
 $base-font-size:   16px !default;
 $base-font-weight: 400 !default;
 $small-font-size:  $base-font-size * 0.875 !default;
@@ -21,6 +21,10 @@ $grey-color-dark:  darken($grey-color, 25%) !default;
 
 // Heading attributes
 $heading-font-family: "Segoe UI";
+$title-color: rgb(0,64,128);
+$h1-color: rgb(0,100,180);
+$h2-color: rgb(0,64,128);
+$h3-color: rgb(0,50,100);
 
 // Header and footer variables
 $header-background-color: rgb(0,64,128);

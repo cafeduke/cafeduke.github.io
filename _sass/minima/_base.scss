@@ -86,7 +86,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $heading-font-family;
 }
 
-
+h1 { color: $h1-color; border-bottom: 1px groove $h2-color; }
+h2 { color: $h2-color; }
+h3 { color: $h3-color; }
 
 /**
  * Links
@@ -120,8 +122,8 @@ a {
 blockquote {
   border-left: 4px solid $code-border-color;
   padding-left: $spacing-unit / 2;
-  @include relative-font-size(1.125);
-  font-family: "Times New Roman";
+  @include relative-font-size(1.375);
+  font-family: "Garamond";
   font-style: italic;
 
   > :last-child {
