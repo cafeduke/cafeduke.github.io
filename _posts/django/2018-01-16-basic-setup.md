@@ -18,14 +18,14 @@ layout: post
   - `<AnacondaHome>/Scripts`
   - `<AnacondaHome>/Library/bin`
 
-  ```shell
-  # Ensure the right python is in the path
-  > which python
-  C:/ProgramData/Anaconda/python.exe
+```shell
+# Ensure the right python is in the path
+> which python
+C:/ProgramData/Anaconda/python.exe
 
-  > python --version
-  Python 3.6.2 :: Anaconda custom (64-bit)
-  ```
+> python --version
+Python 3.6.2 :: Anaconda custom (64-bit)
+```
 
 ## Install package 'virtualenv'
 
