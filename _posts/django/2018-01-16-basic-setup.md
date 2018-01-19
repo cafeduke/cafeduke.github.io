@@ -10,13 +10,13 @@ layout: post
 
 ## Install Python using Anaconda
 
-- Download and install [Anaconda](https://www.anaconda.com/download/)
+- Download and install [Anaconda](https://www.anaconda.com/download/) 
 
 - Add the following to PATH
 
-  - <AnacondaHome> 
-  - <AnacondaHome>/Scripts
-  - <AnacondaHome>/Library/bin
+  - `<AnacondaHome>` 
+  - `<AnacondaHome>/Scripts`
+  - `<AnacondaHome>/Library/bin`
 
   ```shell
   # Ensure the right python is in the path
