@@ -27,65 +27,96 @@ C:/ProgramData/Anaconda/python.exe
 Python 3.6.2 :: Anaconda custom (64-bit)
 ```
 
-## Install package 'virtualenv'
+## Install virtual environment packages
 
 Use administration console. (Super user)
 
 ```shell
 # Locate pip at <Anaconda Install Home>/Scripts/pip
 > pip install virutalenv
+> pip install virtualenvwrapper
 ```
+
+For Windows check [here](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)
 
 ## Create Virtual Environment
 
 Use user console.
 
 ```shell
-# Create project root
-> mkdir TryDjango
-> cd TryDjango
+# Create project base directory
+> mkdir RJ_Project
+> cd RJ_Project
 
 # Create Virutal environment
-> virutalenv .
+> mkvirtualenv RJ
 
-# Note that virtual environment has Scripts, Lib
-> ls
-Include             Lib                 Scripts             pip-selfcheck.json  tcl
+# Note the prompt automatically using the virutal environment.
+(RJ) D:\RJ_Project\src>
+
 ```
 
-## Activate Virtual Environment
+## Enter and exit virtual environment
 
 ```shell
-# Execute activation binary
-> Scripts\activate
+# Enter virutal environment
+D:\RJ_Project\src> workon RJ
+(RJ) D:\RJ_Project\src> 
 
-# Note the new console
-(TryDjango) D:\TryDjango> 
+# Confirm right pip
+(RJ) D:\RJ_Project\src>  which pip
+D:\RJ_Project\Scripts\pip.exe
 
-# Confirm that the python and pip are picked from virtual env
-(TryDjango) D:\TryDjango>  which pip
-D:\TryDjango\Scripts\pip.exe
+# Exit virtual environment
+(RJ) D:\RJ_Project\src> deactivate
+D:\RJ_Project\src>
 ```
 
 ## Install Django
 
 ```shell
 # pip install django==[version]
-(TryDjango) D:\TryDjango> pip install django==1.11.9
+(RJ) D:\RJ_Project\src> pip install django==2.0.1
 ```
 
-## Create a Django project
-
-The "src" directory shall be the source home.
+## Setup Django configuration
 
 ```shell
-(TryDjango) D:\TryDjango> mkdir src
-(TryDjango) D:\TryDjango> cd src
-(TryDjango) D:\TryDjango\src> django-admin startproject <project-name> .
+# Create src
+(RJ) D:\RJ_Project\src> mkdir src
+(RJ) D:\RJ_Project\src> cd src
 
-# Note the creation of project directory and manage.py
-(TryDjango) D:\TryDjango\src> ls <project-name>
-manage.py         <project-name>
+# Create configuration-root directory 'config'
+(RJ) D:\RJ_Project\src> django-admin startproject config .
+
+# Note the creation of 'config' directory and 'manage.py'
+(RJ) D:\RJ_Project\src> ls 
+manage.py  config
+
+# Create settings under config
+(RJ) D:\RJ_Project\src> cd config
+(RJ) D:\RJ_Project\src\config> mkdir settings
+(RJ) D:\RJ_Project\src\config> mv settings.py settings/base.py
+
+# Correct BASE_DIR in config/settings/base.py as follows. 
+# We moved one level deeper in folder structure.
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Create __init__.py to use the appropriate settings
+# Import appropriate settings. Local overrides production overrides base.
+(RJ) D:\RJ_Project\src\config> cd settings
+(RJ) D:\RJ_Project\src\config\settings> cat > __init__.py
+from .base import *
+
+try:
+   from .production import *
+except:
+   pass
+
+try:
+   from .local import *
+except:
+   pass
 ```
 
 # Setup Django DB and admin
@@ -93,61 +124,31 @@ manage.py         <project-name>
 ## Database
 
 ```
-(TryDjango) D:\TryDjango> python manage.py migrate
+(RJ) D:\RJ_Project\src> python manage.py migrate
 ```
 
 ## Create a super user login
 
 ```
-(TryDjango) D:\TryDjango> python manage.py createsuperuser
+(RJ) D:\RJ_Project\src> python manage.py createsuperuser
 ```
 
 ## Start Server
 
 ```
-(TryDjango) D:\TryDjango> python manage.py runserver
-```
-
-# Setup local and production settings
-
-```shell
-(TryDjango) D:\TryDjango> cd src
-
-# Create settings module inside <app-name>
-(TryDjango) D:\TryDjango\src> mkdir <app-name>/settings
-
-# Import appropriate settings. Local overrides production overrides base.
-(TryDjango) D:\TryDjango\src> cat > <app-name>/settings/__init__.py
-from .base import *
-from .production import *
-
-try:
-   from .local import *
-except:
-   pass
-
-# Move settings.py from <app-name> to <app-name>/settings
-(TryDjango) D:\TryDjango\src> mv settings.py <app-name>/base.py
-
-# Correct BASE_DIR in <app-name>/base.py as follows. 
-# We moved one level deeper in folder structure.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# Replicate base as production and local
-(TryDjango) D:\TryDjango\src> cp <app-name>/base.py <app-name>/local.py
-(TryDjango) D:\TryDjango\src> cp <app-name>/base.py <app-name>/production.py
+(RJ) D:\RJ_Project\src> python manage.py runserver
 ```
 
 # Install utility packages
 
 ```
-(TryDjango) D:\TryDjango\src> pip install psycopg2 gunicorn dj-database-url django-crispy-forms pillow
+(RJ) D:\RJ_Project\src> pip install psycopg2 gunicorn dj-database-url django-crispy-forms pillow
 ```
 
 # Create requirements file
 
 ```
-(TryDjango) D:\TryDjango> pip freeze
+(RJ) D:\RJ_Project\src> pip freeze
 dj-database-url==0.4.2
 Django==1.11.9
 django-crispy-forms==1.7.0
@@ -156,6 +157,6 @@ Pillow==5.0.0
 psycopg2==2.7.3.2
 pytz==2017.3
 
-(TryDjango) D:\TryDjango> pip freeze > requirements.txt
+(RJ) D:\RJ_Project\src> pip freeze > requirements.txt
 ```
 
