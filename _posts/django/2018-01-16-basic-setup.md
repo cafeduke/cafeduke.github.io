@@ -45,14 +45,14 @@ Use user console.
 
 ```shell
 # Create project base directory
-> mkdir RJ_Project
-> cd RJ_Project
+> mkdir RJ
+> cd RJ
 
 # Create Virutal environment
 > mkvirtualenv RJ
 
 # Note the prompt automatically using the virutal environment.
-(RJ) D:\RJ_Project\src>
+(RJ) D:\RJ>
 
 ```
 
@@ -60,43 +60,43 @@ Use user console.
 
 ```shell
 # Enter virutal environment
-D:\RJ_Project\src> workon RJ
-(RJ) D:\RJ_Project\src> 
+D:\RJ> workon RJ
+(RJ) D:\RJ> 
 
 # Confirm right pip
-(RJ) D:\RJ_Project\src>  which pip
-D:\RJ_Project\Scripts\pip.exe
+(RJ) D:\RJ> which pip
+D:\RJ\Scripts\pip.exe
 
 # Exit virtual environment
-(RJ) D:\RJ_Project\src> deactivate
-D:\RJ_Project\src>
+(RJ) D:\RJ> deactivate
+D:\RJ>
 ```
 
 ## Install Django
 
 ```shell
 # pip install django==[version]
-(RJ) D:\RJ_Project\src> pip install django==2.0.1
+(RJ) D:\RJ\src> pip install django==2.0.1
 ```
 
 ## Setup Django configuration
 
 ```shell
 # Create src
-(RJ) D:\RJ_Project\src> mkdir src
-(RJ) D:\RJ_Project\src> cd src
+(RJ) D:\RJ\src> mkdir src
+(RJ) D:\RJ\src> cd src
 
 # Create configuration-root directory 'config'
-(RJ) D:\RJ_Project\src> django-admin startproject config .
+(RJ) D:\RJ\src> django-admin startproject config .
 
 # Note the creation of 'config' directory and 'manage.py'
-(RJ) D:\RJ_Project\src> ls 
+(RJ) D:\RJ\src> ls 
 manage.py  config
 
 # Create settings under config
-(RJ) D:\RJ_Project\src> cd config
-(RJ) D:\RJ_Project\src\config> mkdir settings
-(RJ) D:\RJ_Project\src\config> mv settings.py settings/base.py
+(RJ) D:\RJ\src> cd config
+(RJ) D:\RJ\src\config> mkdir settings
+(RJ) D:\RJ\src\config> mv settings.py settings/base.py
 
 # Correct BASE_DIR in config/settings/base.py as follows. 
 # We moved one level deeper in folder structure.
@@ -104,8 +104,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 # Create __init__.py to use the appropriate settings
 # Import appropriate settings. Local overrides production overrides base.
-(RJ) D:\RJ_Project\src\config> cd settings
-(RJ) D:\RJ_Project\src\config\settings> cat > __init__.py
+(RJ) D:\RJ\src\config> cd settings
+(RJ) D:\RJ\src\config\settings> cat > __init__.py
 from .base import *
 
 try:
@@ -124,31 +124,31 @@ except:
 ## Database
 
 ```
-(RJ) D:\RJ_Project\src> python manage.py migrate
+(RJ) D:\RJ\src> python manage.py migrate
 ```
 
 ## Create a super user login
 
 ```
-(RJ) D:\RJ_Project\src> python manage.py createsuperuser
+(RJ) D:\RJ\src> python manage.py createsuperuser
 ```
 
 ## Start Server
 
 ```
-(RJ) D:\RJ_Project\src> python manage.py runserver
+(RJ) D:\RJ\src> python manage.py runserver
 ```
 
 # Install utility packages
 
 ```
-(RJ) D:\RJ_Project\src> pip install psycopg2 gunicorn dj-database-url django-crispy-forms pillow
+(RJ) D:\RJ\src> pip install psycopg2 gunicorn dj-database-url django-crispy-forms pillow
 ```
 
 # Create requirements file
 
 ```
-(RJ) D:\RJ_Project\src> pip freeze
+(RJ) D:\RJ\src> pip freeze
 dj-database-url==0.4.2
 Django==1.11.9
 django-crispy-forms==1.7.0
@@ -157,6 +157,6 @@ Pillow==5.0.0
 psycopg2==2.7.3.2
 pytz==2017.3
 
-(RJ) D:\RJ_Project\src> pip freeze > requirements.txt
+(RJ) D:\RJ\src> pip freeze > requirements.txt
 ```
 
