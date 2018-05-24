@@ -462,7 +462,7 @@ In GIT, features are added using branch.
 
 ## Branch Basics
 
-### The master - local and remote
+### The master - Local and remote branches
 
 By default, we are already working on branch named `master`. This branch is created on local repository as well as remote repository. By default all commits are added to a branch named `master` in local repository. When commit looks great we push it to remote repository. 
 
@@ -506,7 +506,7 @@ git branch --all
 - The name `remotes/origin/master` is the full name to reference the branch `master` on the remote repository `origin`.  A partial name `origin/master` shall refer to the same branch. The keyword `remotes` indicates we are referring to a remote branch. 
 - Both local and remote repository has a pointer named `HEAD`. The `HEAD` pointer typically points to a branch. This can be inferred from `remotes/origin/HEAD -> origin/master`. The branch typically points to the latest commit. 
 
-## Need for custom branch
+## Need for custom feature branch
 
 Consider the following development life-cycle for a feature development.
 
@@ -527,7 +527,7 @@ Similar to Scenario A, after a milestone is committed locally, push the commit t
 
 This approach ensures that files are stored remotely and are safe. However if multiple developers are merging commits into the master. The master will be interleaved with commits from various feature developers. By the time a developer has completed his next commit, the remote master `origin/master` will be filled with commits from other developers. He may have to resolve conflicts with all these other commits before he could push his commit to `origin/master`.  This will make development chaotic. 
 
-## Persist commits in custom branch
+## Persist commits in feature branch
 
 A branch is independent development line. 
 
@@ -537,7 +537,7 @@ A branch is independent development line.
 
 Now, once the feature development is complete the branch `origin/<branch_name>` shall be merged with `origin/master`
 
-### Create 
+### Create branch 
 
 We now need to choose a point (commit) to create a branch. From this point onwards the branch is on its own -- Will have its own commits.
 
@@ -574,7 +574,7 @@ a504b8d Frutify Version 2
 691f07d Version 1
 ```
 
-#### Persist branch
+### Persist branch
 
 In the previous section we created a branch `frutify` and added a commit to this branch. However, the branch is still local. The branch and the commit have to be pushed to remote in order to ensure commit is safe.
 
@@ -605,7 +605,7 @@ There are several ways of handling merge.
 
 The first approach works if conflict resolution is simple. What if the changes in master has created huge conflicts which make require working on several milestone commits? We may want to abort merge. The second approach though longer ensures we are still working on our branch but with latest changes from master. We can consume changes in master from time to time, ensure our feature is working with the latest commit in the master and then merge.
 
-### Pull commits into custom branch
+### Pull commits into feature branch
 
 ```shell
 # Jump to frutify
@@ -640,7 +640,7 @@ v3
 
 ```
 
-### Resolve and persist commits in custom branch
+### Resolve and persist commits in feature branch
 
 ```shell
 # Branch frutify. Conflicts are resolved in WorkSpace
@@ -724,40 +724,6 @@ bea6802 Version 3
 c62a511 Version 2
 691f07d Version 1
 
-```
-
-
-
-# Python
-
-```python
-class CategoryToOneHotEncoder(BaseEstimator,TransformerMixin):
-    '''
-    Convert the ``column`` to one-hot encoded format. Thus adding more features.
-    
-    Parameters
-    ----------
-    column : list of string (column name), required
-        A list of column names to be one hot encoded
-        
-    drop_first : boolean, optional, default=True
-        If true one of the features (column) after one-hot encoding is dropped.
-        
-    '''
-    
-    def __init__(self, column, drop_first=True):
-        self.x = 5
-        self.str = 'Hello World' + "Hello";
-        self.column = column
-        self.drop_first = drop_first
-        
-    def fit (self, X):
-        seq(self.column).for_each(lambda c: du.assert_column_type_as_category(X, [c]))
-        return self
-    
-    def transform (self, X):
-        X = pd.get_dummies(X, columns=self.column, drop_first=self.drop_first)
-        return X
 ```
 
 

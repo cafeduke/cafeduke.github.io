@@ -1,3 +1,10 @@
+/**/
+:root {
+    --primary     : #1565C0;    /* mdc-text-blue-800   */
+    --dark-parrot : #33691E;    /* mdc-text-light-green-900 */
+    --dark-green  : #1B5E20; 
+}
+
 /**
  * Core
  * ________________________________________________________________________________________________
@@ -17,8 +24,19 @@ body {
 }
 
 .collapsing {
-  transition: none !important;
+    transition: none !important;
 }
+
+/* Anchor */
+a {
+    color: var(--primary); 
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--dark-green);
+}
+
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
@@ -131,9 +149,13 @@ table th, table td {
  * ________________________________________________________________________________________________
  */
 
+#markdown-toc {
+    color: var(--primary);
+}
+
 /* Content Anchor */
 a.post-link {
-    color: #1565C0;
+    color: rgb(20,100,190);
     text-decoration: none;
 }
 
