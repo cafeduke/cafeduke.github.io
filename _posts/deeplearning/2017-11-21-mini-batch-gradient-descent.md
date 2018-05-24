@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Mini batch gradient descent
-mathjax: true
 categories: dl
+mathjax: true
 ---
 
 {% include toc.html %}

@@ -1,7 +1,7 @@
 ---
+layout: post
 title: Vanishing and exploding gradients problem
 categories: dl
-layout: post
 mathjax: true
 ---
 

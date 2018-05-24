@@ -1,7 +1,7 @@
 ---
+layout: post
 title: Gradient momentum with Adam optimization
 categories: dl
-layout: post
 mathjax: true
 typora-copy-images-to: ..\..\assets
 ---

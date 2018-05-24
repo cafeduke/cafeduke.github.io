@@ -1,7 +1,7 @@
 ---
+layout: post
 title: Batch normalization
 categories: dl
-layout: post
 mathjax: true
 ---
 

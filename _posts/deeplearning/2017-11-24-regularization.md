@@ -1,7 +1,7 @@
 ---
+layout: post
 title: Regularization
 categories: dl
-layout: post
 mathjax: true
 ---
 

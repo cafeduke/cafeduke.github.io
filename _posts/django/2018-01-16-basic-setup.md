@@ -1,7 +1,7 @@
 ---
+layout: post
 title: Python and django project setup
 categories: django
-layout: post
 ---
 
 {% include toc.html %}

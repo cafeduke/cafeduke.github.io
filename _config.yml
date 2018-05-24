@@ -5,7 +5,7 @@ email: raghubs81@gmail.com
 github_username: cafeduke
 description: Duke notes. Happy learning!
 markdown: kramdown
-highlighter: rouge
+syntax_highlighter: rouge
 
 kramdown:
    parse_block_html: true

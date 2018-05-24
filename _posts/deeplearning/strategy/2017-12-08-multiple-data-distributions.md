@@ -1,7 +1,7 @@
 ---
-title: Multiple Data Distributions
-categories: dl strategy
 layout: post
+title: Multiple Data Distributions
+categories: dl-strategy
 mathjax: true
 ---
 

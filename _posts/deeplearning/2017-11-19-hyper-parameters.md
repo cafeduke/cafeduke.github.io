@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hyper parameters
+categories: dl
 mathjax: true
 ---
 

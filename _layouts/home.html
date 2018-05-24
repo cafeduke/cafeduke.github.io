@@ -2,25 +2,25 @@
 layout: default
 ---
 
-<div class="home">
+<div class="post-list-wrap d-flex justify-content-center">
 
-  {{ content }}
+    <div class="card w-75 mt-5">
 
-  <h1 class="page-heading">Posts</h1>
-  
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <div class="card-header">
+            <h4 class="card-title">Posts</h4>
+        </div>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+        <ul class="list-group list-group-flush">
+            {% for post in site.posts %}
+            <li class="list-group-item">                
+                <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+                <small class="post-meta">{{ post.date | date: "%A, %-d %B %Y" }}</small>
+            </li>
+            {% endfor %}
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+        </ul>
+    </div>
+
+    {{ content }}
 
 </div>

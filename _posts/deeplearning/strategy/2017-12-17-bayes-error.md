@@ -1,7 +1,7 @@
 ---
-title: Baye's error and human error
-categories: dl
 layout: post
+title: Baye's error and human error
+categories: dl-strategy
 mathjax: true
 ---
 

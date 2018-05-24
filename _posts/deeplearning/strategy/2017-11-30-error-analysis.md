@@ -1,7 +1,7 @@
 ---
-title: Error Analysis
-categories: dl strategy
 layout: post
+title: Error Analysis
+categories: dl-strategy
 mathjax: true
 ---
 

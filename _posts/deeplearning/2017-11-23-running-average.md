@@ -1,7 +1,7 @@
 ---
+layout: post
 title: Exponentially Weighted Average
 categories: dl
-layout: post
 mathjax: true
 ---
 

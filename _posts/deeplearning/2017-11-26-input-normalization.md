@@ -1,7 +1,7 @@
 ---
+layout: post
 title: Input normalization
 categories: dl
-layout: post
 mathjax: true
 ---
 

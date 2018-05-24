@@ -1,7 +1,7 @@
 ---
+layout: post
 title: Neural network math
 categories: dl
-layout: post
 mathjax: true
 ---
 

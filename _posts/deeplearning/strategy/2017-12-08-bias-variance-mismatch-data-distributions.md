@@ -1,7 +1,7 @@
 ---
-title: Bias, Variance & data mismatch during multiple distributions
-categories: dl
 layout: post
+title: Bias, Variance & data mismatch during multiple distributions
+categories: dl-strategy
 mathjax: true
 ---
 

@@ -1,7 +1,7 @@
 ---
+layout: post
 title: Learning rate decay
 categories: dl
-layout: post
 mathjax: true
 ---
 

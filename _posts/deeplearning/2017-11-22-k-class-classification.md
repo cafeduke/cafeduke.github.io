@@ -1,7 +1,7 @@
 ---
+layout: post
 title: K-Class Classification
 categories: dl
-layout: post
 mathjax: true
 ---
 
