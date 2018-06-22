@@ -167,8 +167,8 @@ Each country in the above example could be in its own subdirectory
 
 1. Command
 
-```
-$ hife -f <A .hql file>
+```bash
+hive -f <A .hql file>
 ```
 
 2. Ambari > Hue
@@ -184,23 +184,58 @@ $ hife -f <A .hql file>
 
 - Popular and free relational database
 - Molithic: Resides on a single (typically huge) hard drive.
-- 
+
+## Sqoop to SQL
 
 
 
+## SQL to Sqoop
 
 
 
+# Apache HBase
+
+A non-relational, scalable, columnar, noSQL database built on top of HDFS. 
+
+- HBase can be used to vend a massive scale dataset stored on HDFS .
+- Does not have query language, but has API to perform CRUD operations.
+- HBase is based on Bigtable $$-$$ A paper published by google.
 
 
 
+## Architecture
+
+![HBase]({{"/assets/images/bigdata/HBase.png" | absolute_url}})
 
 
 
+### Region Server
 
+Region here does not refer to geographical regions $$-$$ It is about the ranges of keys (Pretty much like sharding). 
 
+- HBase distributes data across a fleat of Region servers. A region server inturn talks to distributed HDFS.
+- A RegionServer can automatically adapt with growing data by repartitioning
+- It can adpat to addition/removal of RegionServers
 
+### HMaster
 
+Mastermind, knows where everything is
+
+- A web app does not talk to HMaster directly. It talks to RegionServer.
+
+- A master keeps track of the following
+
+  - Schema of the data (metadata)
+
+  - Where data is stored
+  - How data is partitioned.
+
+### Zookeeper
+
+A watcher of the watcher (Zookeeper $$-$$ An answer to who watches the watcher!)
+
+- Keeps track of who the current master is
+- If master goes down, it knows who the next master is and tell everyone about it.
 
 
 
