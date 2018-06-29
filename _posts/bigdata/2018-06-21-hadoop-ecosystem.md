@@ -3,10 +3,14 @@ title: Hadoop Ecosystem
 categories: bigdata
 layout: post
 mathjax: true
-typora-root-url: ../../assets/images
+typora-root-url: ../../
 ---
 
-# Terminologies
+# Hadoop Ecosystem
+
+
+![HadoopEcosystem](/assets/images/bigdata/HadoopEcosystem.png)
+
 
 | Layer | Term                | Detail                                                       |
 | :---: | ------------------- | ------------------------------------------------------------ |
@@ -36,6 +40,8 @@ typora-root-url: ../../assets/images
 | V7.2  | Hue                 | For CloudEra (Another Hadoop stack provider) this takes the role of Ambari. |
 | V7.3  | Apache Phoenix      | Similar but more advaced than Apache Drill.                  |
 
+
+
 # HDFS
 
 Hadoop Distrubuted File System (HDFS) is a fault tolerant, distributed file system. There are competing providers of Hadoop statcks like HortonWorks, CloudEra, MapR.
@@ -48,6 +54,10 @@ Hadoop Distrubuted File System (HDFS) is a fault tolerant, distributed file syst
 ## Architecture
 
 HDFS consists of a single **NameNode** and multiple **DataNode**s
+
+
+
+![HDFS](/assets/images/bigdata/HDFS.png)
 
 ### NameNode
 
@@ -117,7 +127,7 @@ Apache Spark gives flexibility to write Java/Scala/Python code to perform comple
 
 Hive makes Hadoop cluster look like a traditional database by executing SQL.  (Hadoop cluster can also be integrated with an existing MySQL database.)
 
-- ![Hive](/bigdata/Hive.png)
+![alt](/assets/images/bigdata/Hive.png)
 
 ## Advantanges of Hive
 
@@ -243,15 +253,63 @@ hive -f <A .hql file>
 
 
 
+# NoSQL
+
+NoSQL stands for **Not only SQL**, Non relational dabases.
+
+> Large number of accesses to planet size data $$-$$ Answer simple queries at high transactional rate on massive data sets.
+
+Large amount of data (like google searches) keep growing and need to be fit **horizontally scalable** (Fit by adding more hardware)
+
+
+
+## Where RDBMS fits?
+
+- RDBMS gives the power of **rich analytical query language** like SQL (Structured Query Language)
+- RDBMS is best suited for **analytical work**.
+- Scale of the data is not huge and does not keep growing horizontally. Eg: Company employee database $$-$$ even when there are lakhs of employees.
+
+## Where NoSQL fits?
+
+- Scale is huge and shall grow horizontally
+  - Huge data can be scaled only by partitioning the data and storing on multiple nodes.
+- Typically the same query is raised over and over again (at a large scale)
+  - What movies should be recommended for this customer?
+  - What pages has this customer visited?
+  - What has this customer ordered in the past?
+- **KeyValue Datastore**  is enough: A simple get/put API of key-value pairs address the needs (Key = employee Id, value = JSON object with details)
+
+## Best of both worlds?
+
+It is possible!
+
+- Hive on top of HDFS cluster is exposed to answer the more analytical queries.
+- A NoSQL database on top of HDFS shall answer the more high tractional, repetitive, simple queries.
+
+![BestOfBoth](/assets/images/bigdata/BestOfBoth.png)
+
+
+
+Consider a case of providing product recomendation to customer
+
+- A high transactional website (like google) can act as **datasource** feeding customer searches
+- A streaming tech like (Spark Fume) that sits on HDFS can listen to high transactional real time data
+- **Spark** can then transform the data into a format (denormalized $$-$$ join of several tables into a JSON object) that fits the requirement of the view
+- Thus transformed data is pushed by Spark into a **NoSQL database** like MongoDB
+- Front end **webserver**s will now display the recommendations to the Browser. 
+
+
+
 # CAP Theorem
 
 > You can only have *two* out of CAP (Consistency, Availability and Partition tolerance)
 
-![CAP](/home/rbseshad/GitProjects/DukeNotes/_posts/bigdata/%7B%7B%22/assets/images/bigdata/CAP_databases.png%22%20%7C%20absolute_url%7D%7D)
-
 - **Consistency:**  Not everyone sees the change immediately $$-$$ there is a lag. Example: Facebook post may not be visible to few people while few others might be able to see it.
 - **Availability:** Always up and running.
 - **Parition Tolerance:** Easily split and distributed across cluster.
+
+![alt](/assets/images/bigdata/CAP.png)
+
 
 ## The difference is in the choices made
 
@@ -285,9 +343,7 @@ A non-relational, scalable, columnar, noSQL database built on top of HDFS.
 
 ## Architecture
 
-![HBase]({{"/assets/images/bigdata/HBase.png" | absolute_url}})
-
-
+![alt](/assets/images/bigdata/HBase.png)
 
 ### Region Server
 
