@@ -3,6 +3,7 @@ title: Hadoop Ecosystem
 categories: bigdata
 layout: post
 mathjax: true
+typora-root-url: ../../assets/images
 ---
 
 # Terminologies
@@ -39,6 +40,55 @@ mathjax: true
 
 Hadoop Distrubuted File System (HDFS) is a fault tolerant, distributed file system. There are competing providers of Hadoop statcks like HortonWorks, CloudEra, MapR.
 
+- BigData is stored in a distributed and reliable manner. Apps can access the BigData quickly and reliably
+- BigData (large files like logs) can be broken into chunks called  **blocks**  (128MB per block by default) and distributed.
+- **High Availability:** Multiple copies of each block are stored in different commodity (regular) computers.
+- Blocks can be processed in parallel.  Efficiency is improved by trying to keep the computer processing a block, physically closer to the block.
+
+## Architecture
+
+HDFS consists of a single **NameNode** and multiple **DataNode**s
+
+### NameNode
+
+- Keeps track of where each block and its relica recides.
+- Keeps track of what is on all DataNodes.
+- At any given point of time all clients should be talking to the same **NameNode**
+
+### DataNode
+
+- The client app queries the NameNode to figure out which DataNode(s) to contact for data.
+
+### Working: Reading a file
+
+- Client queries NameNode about the file it wishes to read
+- NameNode tells about the (DataNode, blocks) to contact. 
+- The above data is provided by considering which blocks shall be most efficient based on the client. Note that the very same block could be replicated in different physical locations.
+
+### Working: Writing a file
+
+- Client tells its intention to write with the NameNode
+- The NameNode provies a handle using which the client writes data on a single DataNode.
+- The DataNodes talk to each other $$-$$ Divides into blocks. Distributes the data in a replicated manner.
+- Acknowlegement that all data/replication is successfully stored reaches the NameNode 
+- The NameNode now creates a new entry.
+
+## What happens if the NameNode fails?
+
+- **Secondary NameNode:** There is only one NameNode - The data of the NameNode could be consistently backed up.
+- **HDFS NameNode Federation:** Different namenodes for different volumes which are backedup at regular intervals. Reduce the extent of restoration damage upon failure.
+- **HDFS High Availability:** Hot standby NameNode with shared edit log. ZooKeeper knows which NameNode is primary.
+
+## How to interface with HDFS
+
+HDFS is like a giant hard drive.
+
+- Ambari
+- CLI
+- HTTP / HDFS Proxies
+- Java Interface 
+- NFS (Network File System  $$-$$ Mounting a remote file system on a server) Gateway. After mouting HDFS will just look like another directory structure on the current computer.
+
 # Apache Spark 
 
 Apache Spark gives flexibility to write Java/Scala/Python code to perform complex transformation and analysis of data. 
@@ -67,7 +117,7 @@ Apache Spark gives flexibility to write Java/Scala/Python code to perform comple
 
 Hive makes Hadoop cluster look like a traditional database by executing SQL.  (Hadoop cluster can also be integrated with an existing MySQL database.)
 
-- ![Hive](/home/rbseshad/Learn/BigData/Hive.png)
+- ![Hive](/bigdata/Hive.png)
 
 ## Advantanges of Hive
 
@@ -193,6 +243,38 @@ hive -f <A .hql file>
 
 
 
+# CAP Theorem
+
+> You can only have *two* out of CAP (Consistency, Availability and Partition tolerance)
+
+![CAP](/home/rbseshad/GitProjects/DukeNotes/_posts/bigdata/%7B%7B%22/assets/images/bigdata/CAP_databases.png%22%20%7C%20absolute_url%7D%7D)
+
+- **Consistency:**  Not everyone sees the change immediately $$-$$ there is a lag. Example: Facebook post may not be visible to few people while few others might be able to see it.
+- **Availability:** Always up and running.
+- **Parition Tolerance:** Easily split and distributed across cluster.
+
+## The difference is in the choices made
+
+### Traditional Database
+
+- Traditional databases need the at most consistency and availability
+- They compromize on the partition tolerance
+
+### HBase & MongoDB
+
+- HBase and MongoDB rely on master and zookeeper which are central to availability. A failure of these shall affect availability.
+- HBase do avoid *single point of failure* by running mulitple master nodes. However, a failure of all the masters (though less probable) shall bring down the entire DB.
+- Essentially, HBase compromises on availability for consistency and partition tolerance.
+
+### Cassandra
+
+- Parition Tolerance is non negotiable in a Hadoop cluster.
+- Cassandra choses Availability over Consistency!
+  - It takes some time (few seconds) for the change to be propagated throught the cluster and all nodes have the same content.
+  - Cassandra provides **enventual consistency** (as opposed to immediate consistency)
+- **Tunable Consistency:** Consistency requirements are tunable by compromising on availability. 
+
+
 # Apache HBase
 
 A non-relational, scalable, columnar, noSQL database built on top of HDFS. 
@@ -200,8 +282,6 @@ A non-relational, scalable, columnar, noSQL database built on top of HDFS.
 - HBase can be used to vend a massive scale dataset stored on HDFS .
 - Does not have query language, but has API to perform CRUD operations.
 - HBase is based on Bigtable $$-$$ A paper published by google.
-
-
 
 ## Architecture
 
@@ -226,7 +306,6 @@ Mastermind, knows where everything is
 - A master keeps track of the following
 
   - Schema of the data (metadata)
-
   - Where data is stored
   - How data is partitioned.
 
@@ -234,17 +313,130 @@ Mastermind, knows where everything is
 
 A watcher of the watcher (Zookeeper $$-$$ An answer to who watches the watcher!)
 
-- Keeps track of who the current master is
+- Keeps track of who is the current master.
 - If master goes down, it knows who the next master is and tell everyone about it.
 
+## Data Model
 
+- A record (row in RDBMS) is identified by an unique **key** $$-$$ *primary key*
+- A record typically has a small number of feature families (column faimily)
+  - A feature family can have subset of features
+  - A record can have many features or just a few (Thus not storing empy columns/features)
+- A cell is an intersection of record and feature. A cell can have many timestamp versions.
 
-### 
+### Data Model Example: WebLinkDetail 
 
-```java
-import java.io.*
-class A {
+#### Key
 
-}
-```
+Each record here has a key $$-$$ 'website domain'. That is for www.google.com domain the key shall be `com.google.www` (Stored as per hierarchy).
 
+#### Contents Column Family
+
+- A column family storing multiple versions of the content
+
+#### Anchor Column Family
+
+- Format : `<Column family name>: <Column name>`
+- `Anchor:cnsi.com > CNN` 
+  - Column family = `Anchor` 
+  - Column = `cnsi.com`
+  - Cell = `CNN`
+  - This means the website `com.cnsi` has links to `www.google.com` via anchor text `CNN`
+- `Anchor:my.look.ca > click_here`
+  - This means the website `ca.look.my` has links to `www.google.com` via anchor text `click_here`
+
+In this example we find that a column family `Anchor` can have various columns (web site name) with cell being the anchor text.
+
+## Access HBase
+
+- Java APIs and wrappers for Python, Scala
+- Connectors to Spark, Hive, Pig
+- REST service that runs on top of HBase
+- Protocol buffers like Thrift/Avro (More performat than REST)
+
+# Cassandra
+
+Cassandra is a distributed non-relational database. Highlight $$-$$ High availability. No master node. No single point of failure.
+
+- Different Architecture than HBase $$-$$ No master node
+- Similar Model as HBase 
+- Unlike Hbase, Cassandra has a query language $$-$$ CQL (Cassandra Query Language)
+- Gets its name from a greek mythology which means *"Tells the future"
+
+## CAP
+
+Cassandra compromises on Consistency for Availability and Paritiion Tolerance.
+
+## Cassandra achives high availability
+
+### Ring Architecture
+
+- No master nodes that keep track of which nodes serve what data.
+- **Gossip Protocol: ** Every node of the cluster communicates with each other every second to keep track of who is maintaining what data.
+- Every node of the cluster 
+  - Runs the same software
+  - Performs the same operations
+- Client can talk to any node to get the data
+
+### Working
+
+- Consider a ring of 6 nodes. 
+- Each nodes maintains ranges of keys.  The first node takes `1-1million` the second `1million - 2million`  and so on. Essentailly keys are distributed in the round robin fashion.
+- A new data, based on key goes to a primary node  and few backup nodes as well.
+- Nodes talk to each other to figure out 
+  - which nodes are up and which are down
+  - which nodes has what range
+
+### Tuning Consistency
+
+- The value for a given key can be accepted only if the results from `n` nodes match. If not, the operation waits until `n` nodes are consistent.
+
+## Connecting Cassanda Rings
+
+Cassandra can manage replication between racks of Cassandra rings and/or Hadoop cluster.
+
+For example
+
+- We could connect a Cassandra `RingA` to Cassandra `RingB` which inturn distrubutes data on to Hadoop cluster
+- Data from `RingA` is replicated on to `RingB` and from there to Hadoop cluster
+- Clients like WebServer with heavy transactional requests connect to `RingA`
+- Clients like Hive which perform more *batch oriented big analytics* requests connect to `RingB`
+
+## CQL
+
+- CQL is just a fancy API $$-$$ Looks like SQL. Ment for get/put of key/value pairs.
+- Has no JOIN (big limitation)
+- All queries must have a primary key
+
+## Spark + Cassandra
+
+DataStax offers a Spark-Cassandra connector. 
+
+- Allows the read/write of Cassandra tables as Spark Dataframes.
+- Quries on DataFrame get translated into CQL queries in Cassandra
+
+# Mongo DB
+
+Mongo DB gets its name as it can handle hu**mongo**us  data.
+
+- Uses a document based data model
+- Whats different? Any unstructured JSON document can be stored in MongoDB
+- No real schema is enfored. No primary key. 
+- Can create index on any field.
+
+## CAP
+
+MongoDB compromises on Availability for Consistency and Paritiion Tolerance.
+
+## Terminology
+
+- A MongoDB database contains **Collections** which inturn contains **Documents**
+- Documents cannot be moved between Collections belonging to *different* Databases
+
+## Architecture
+
+- Single Master
+- Secondary maintain copies of primary. 
+  - As writes happen to the primary they get replicated to the secondary.
+  - We could have multiple secondary datanodes in different data centers.
+- Secondary elects primary if the primary goes down (in seconds).
