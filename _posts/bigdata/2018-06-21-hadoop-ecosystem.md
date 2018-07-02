@@ -6,7 +6,9 @@ mathjax: true
 typora-root-url: ../../
 ---
 
-# Hadoop Ecosystem
+# Apache Hadoop Ecosystem
+
+Apache **Hadoop** is an open source  software platform for ***distributed storage*** and ***distributed processing*** of  ***very large*** data sets on computer ***clusters*** built from ***commodity hardware***. 
 
 
 ![HadoopEcosystem](/assets/images/bigdata/HadoopEcosystem.png)
@@ -518,6 +520,8 @@ Yet Another Resource Negotiator $$-$$ Manage resources of the cluster.
 
 While HDFS manages the storage resource, YARN manages the compute resource.
 
+![YARN](/assets/images/bigdata/YARN.png)
+
 ### Cluster Storage Layer
 
 HDFS is the cluster storage layer $$-$$ Spread out storage of big data, across nodes in cluster, by breaking up into blocks and replicating it.
@@ -537,8 +541,9 @@ Applications such as MapReduce, Tez and Spark run on top of YARN
 ### Running a job
 
 - Client starts an application
-- YARN will will contact the NodeMaster (with a nodemanager daemon running) to get the requisite DataNodes (with a nodemanager daemon running) to run the app
-- YARN choses nodes that it minimizes data being pulled around in the network.
+- A NodeManager daemon running on each physical node manages the node.
+- YARN will will contact the Master's NodeManager to get the requisite Worker nodes ready to split and assign the tasks
+- YARN choses nodes, so that it minimizes data being pulled around in the network.
 - YARN optimizes both $$-$$ **CPU cycles and data locality** 
 
 ### Scheduling Options
