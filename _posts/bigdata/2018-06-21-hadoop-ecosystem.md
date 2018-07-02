@@ -16,7 +16,7 @@ typora-root-url: ../../
 | :---: | ------------------- | ------------------------------------------------------------ |
 |  H1   | HDFS                | Hadoop Distrubuted File System (HDFS) is a fault tolerant, distributed file system. |
 |  H1   | HDFS Providers      | HDFS is a file system that is implemented by several providers like Apache, HortonWorks, CloudEra |
-|  H2   | YARN                | YARN is a resource negotiator - Yet Another Resource Negotiator (YARN) manages resources (nodes) on computing cluster. Resource Negotiation: What nodes are available? What nodes are not available? What gets to run where? |
+|  H2   | YARN                | YARN is a resource negotiator $$-$$ Yet Another Resource Negotiator (YARN), manages resources (nodes) on the computing cluster. Resource Negotiation $$-$$ What nodes are available? What nodes are not available? What gets to run where? |
 |  H2   | Mesos               | Mesos is also a resource negotiator. Alternative to YARN. Solves save problems in different ways. It can work with YARN as well. |
 |  H3   | MapReduce           | A versative programming model to process data across HDFS cluster. A mapper transforms data. A reducer aggregates data. |
 |  H3   | TEZ                 | More optimal than MapReduce.                                 |
@@ -72,7 +72,7 @@ HDFS consists of a single **NameNode** and multiple **DataNode**s
 ### Working: Reading a file
 
 - Client queries NameNode about the file it wishes to read
-- NameNode tells about the (DataNode, blocks) to contact. 
+- NameNode tells about the (DataNode, blocks) to contact.
 - The above data is provided by considering which blocks shall be most efficient based on the client. Note that the very same block could be replicated in different physical locations.
 
 ### Working: Writing a file
@@ -80,7 +80,7 @@ HDFS consists of a single **NameNode** and multiple **DataNode**s
 - Client tells its intention to write with the NameNode
 - The NameNode provies a handle using which the client writes data on a single DataNode.
 - The DataNodes talk to each other $$-$$ Divides into blocks. Distributes the data in a replicated manner.
-- Acknowlegement that all data/replication is successfully stored reaches the NameNode 
+- Acknowlegement that all data/replication is successfully stored reaches the NameNode
 - The NameNode now creates a new entry.
 
 ## What happens if the NameNode fails?
@@ -96,17 +96,18 @@ HDFS is like a giant hard drive.
 - Ambari
 - CLI
 - HTTP / HDFS Proxies
-- Java Interface 
+- Java Interface
 - NFS (Network File System  $$-$$ Mounting a remote file system on a server) Gateway. After mouting HDFS will just look like another directory structure on the current computer.
 
-# Apache Spark 
+# Apache Spark
 
-Apache Spark gives flexibility to write Java/Scala/Python code to perform complex transformation and analysis of data. 
+Apache Spark gives flexibility to write Java/Scala/Python code to perform complex transformation and analysis of data.
 
 ## What sets Spark apart
 
 - Scalable
 - Fast - A memory based solution (as opposed to disk based). Tries to maintain as much as possible in RAM.
+- Spark/Tez use **directed acyclic graphs** and outperform MapReduce.
 - Libraries that are built on top of Spark that enables the following
   - Machine learning
   - Data mining
@@ -132,7 +133,7 @@ Hive makes Hadoop cluster look like a traditional database by executing SQL.  (H
 ## Advantanges of Hive
 
 - Hive uses HiveQL which is very similar to SQL.
-- Hive converts HiveQL to MapReduce or Tez and executes them across the cluster abstracting the complexity. 
+- Hive converts HiveQL to MapReduce or Tez and executes them across the cluster abstracting the complexity.
 - Easy OLAP (Online Analytics Programming) - Lot easier than MapReduce
 - Hive can be talked to from a service.
 - Hive exposes JDBC/ODBC drivers and looks like any other database.
@@ -178,13 +179,13 @@ WHERE Movie.MovieId = TopMovies.MovieId
 
 ### Traditional Database: Schema on Write
 
-- The schema is defined before loading the data. 
+- The schema is defined before loading the data.
 
 ### Hive: Schema on Read
 
 - Unstructured data is stored in a text file (Delimited by tab/comma)
 - Hive takes unstructured data and applies schema to it as it is being **read**.
-- Hive has a metadata store that has info to interpret the raw data. 
+- Hive has a metadata store that has info to interpret the raw data.
 - HCatalogRead can expose this metadata (SchemaOnRead) to other services as well.
 
 ## Managed Vs External Table
@@ -204,7 +205,7 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 LOCATION '/home/rbseshad/big-data/ml-100k/u.data'
 ```
 
-## Partitioning 
+## Partitioning
 
 A huge data set can be stored in partitioned sub-directories. Hive is more performant if the dataset resides only on certain partitions.
 
@@ -296,7 +297,7 @@ Consider a case of providing product recomendation to customer
 - A streaming tech like (Spark Fume) that sits on HDFS can listen to high transactional real time data
 - **Spark** can then transform the data into a format (denormalized $$-$$ join of several tables into a JSON object) that fits the requirement of the view
 - Thus transformed data is pushed by Spark into a **NoSQL database** like MongoDB
-- Front end **webserver**s will now display the recommendations to the Browser. 
+- Front end **webserver**s will now display the recommendations to the Browser.
 
 
 
@@ -330,12 +331,12 @@ Consider a case of providing product recomendation to customer
 - Cassandra choses Availability over Consistency!
   - It takes some time (few seconds) for the change to be propagated throught the cluster and all nodes have the same content.
   - Cassandra provides **enventual consistency** (as opposed to immediate consistency)
-- **Tunable Consistency:** Consistency requirements are tunable by compromising on availability. 
+- **Tunable Consistency:** Consistency requirements are tunable by compromising on availability.
 
 
 # Apache HBase
 
-A non-relational, scalable, columnar, noSQL database built on top of HDFS. 
+A non-relational, scalable, columnar, noSQL database built on top of HDFS.
 
 - HBase can be used to vend a massive scale dataset stored on HDFS .
 - Does not have query language, but has API to perform CRUD operations.
@@ -347,7 +348,7 @@ A non-relational, scalable, columnar, noSQL database built on top of HDFS.
 
 ### Region Server
 
-Region here does not refer to geographical regions $$-$$ It is about the ranges of keys (Pretty much like sharding). 
+Region here does not refer to geographical regions $$-$$ It is about the ranges of keys (Pretty much like sharding).
 
 - HBase distributes data across a fleat of Region servers. A region server inturn talks to distributed HDFS.
 - A RegionServer can automatically adapt with growing data by repartitioning
@@ -380,7 +381,7 @@ A watcher of the watcher (Zookeeper $$-$$ An answer to who watches the watcher!)
   - A record can have many features or just a few (Thus not storing empy columns/features)
 - A cell is an intersection of record and feature. A cell can have many timestamp versions.
 
-### Data Model Example: WebLinkDetail 
+### Data Model Example: WebLinkDetail
 
 #### Key
 
@@ -393,8 +394,8 @@ Each record here has a key $$-$$ 'website domain'. That is for www.google.com do
 #### Anchor Column Family
 
 - Format : `<Column family name>: <Column name>`
-- `Anchor:cnsi.com > CNN` 
-  - Column family = `Anchor` 
+- `Anchor:cnsi.com > CNN`
+  - Column family = `Anchor`
   - Column = `cnsi.com`
   - Cell = `CNN`
   - This means the website `com.cnsi` has links to `www.google.com` via anchor text `CNN`
@@ -415,7 +416,7 @@ In this example we find that a column family `Anchor` can have various columns (
 Cassandra is a distributed non-relational database. Highlight $$-$$ High availability. No master node. No single point of failure.
 
 - Different Architecture than HBase $$-$$ No master node
-- Similar Model as HBase 
+- Similar Model as HBase
 - Unlike Hbase, Cassandra has a query language $$-$$ CQL (Cassandra Query Language)
 - Gets its name from a greek mythology which means *"Tells the future"
 
@@ -429,17 +430,17 @@ Cassandra compromises on Consistency for Availability and Paritiion Tolerance.
 
 - No master nodes that keep track of which nodes serve what data.
 - **Gossip Protocol: ** Every node of the cluster communicates with each other every second to keep track of who is maintaining what data.
-- Every node of the cluster 
+- Every node of the cluster
   - Runs the same software
   - Performs the same operations
 - Client can talk to any node to get the data
 
 ### Working
 
-- Consider a ring of 6 nodes. 
+- Consider a ring of 6 nodes.
 - Each nodes maintains ranges of keys.  The first node takes `1-1million` the second `1million - 2million`  and so on. Essentailly keys are distributed in the round robin fashion.
 - A new data, based on key goes to a primary node  and few backup nodes as well.
-- Nodes talk to each other to figure out 
+- Nodes talk to each other to figure out
   - which nodes are up and which are down
   - which nodes has what range
 
@@ -466,7 +467,7 @@ For example
 
 ## Spark + Cassandra
 
-DataStax offers a Spark-Cassandra connector. 
+DataStax offers a Spark-Cassandra connector.
 
 - Allows the read/write of Cassandra tables as Spark Dataframes.
 - Quries on DataFrame get translated into CQL queries in Cassandra
@@ -477,7 +478,7 @@ Mongo DB gets its name as it can handle hu**mongo**us  data.
 
 - Uses a document based data model
 - Whats different? Any unstructured JSON document can be stored in MongoDB
-- No real schema is enfored. No primary key. 
+- No real schema is enfored. No primary key.
 - Can create index on any field.
 
 ## CAP
@@ -492,7 +493,116 @@ MongoDB compromises on Availability for Consistency and Paritiion Tolerance.
 ## Architecture
 
 - Single Master
-- Secondary maintain copies of primary. 
+- Secondary maintain copies of primary.
   - As writes happen to the primary they get replicated to the secondary.
   - We could have multiple secondary datanodes in different data centers.
 - Secondary elects primary if the primary goes down (in seconds).
+
+
+# Query NoSQL Data
+
+Drill vs Phoenix Vs Presto
+
+
+# YARN - Resource Negotiation
+
+Yet Another Resource Negotiator $$-$$ Manage resources of the cluster.
+
+- A component exclusively for managing resources on the cluster (Earlier, in Hadoop1.0 this was integrated into MapReduce)
+- YARN enabled development of MapReduce alternatives  $$-$$ Spark/Tez  $$-$$ Built on top of YARN. 
+- Spark/Tez use **DAG $$-$$ Directed Acyclic Graphs** and outperform MapReduce significantly
+
+> Modular functionality Isolation $$-$$ The big performance advantange came as a result of separating resource negotiation from YARN.
+
+## Architecture
+
+While HDFS manages the storage resource, YARN manages the compute resource.
+
+### Cluster Storage Layer
+
+HDFS is the cluster storage layer $$-$$ Spread out storage of big data, across nodes in cluster, by breaking up into blocks and replicating it.
+
+### Cluster Compute Layer
+
+YARN is the cluster compute layer $$-$$ Split and execute computation (jobs/tasks) across cluster.
+
+YARN maintains **data locality** $$-$$ YARN tries to align data blocks on same physical nodes as much as possible to improve performance
+
+### YARN Applications
+
+Applications such as MapReduce, Tez and Spark run on top of YARN
+
+## Working
+
+### Running a job
+
+- Client starts an application
+- YARN will will contact the NodeMaster (with a nodemanager daemon running) to get the requisite DataNodes (with a nodemanager daemon running) to run the app
+- YARN choses nodes that it minimizes data being pulled around in the network.
+- YARN optimizes both $$-$$ **CPU cycles and data locality** 
+
+### Scheduling Options
+
+- FIFO $$-$$ Runs in first in first out. The job in the queue will have to wait from the previous to complete.
+- Capacity $$-$$ Run jobs from queue n parallel if there is capacity
+- Fair Schedulers $$-$$ Smaller jobs might run out of queue when big jobs are hogging. 
+
+
+
+# Mesos - Resource Negotiation
+
+A resource manager like YARN, more general $$-$$ A general container management system.
+
+## How does Mesos differ from YARN?
+
+YARN is restricted to distributing Hadoop tasks (MapReduce/Spark) with underlying HDFS file system.
+
+- YARN is **monolithic**  $$-$$ YARN makes the call. Decides where to run what task.
+- YARN is optimized for long analytical jobs.
+
+Mesos is general and manages resources across data center (not just for big stuff)
+
+- Mesos can allocate resources for webservers
+- Mesos can handle long and short lived processes $$-$$ Even run just small scripts
+- Mesos is not part of Hadoop ecosystem per se.
+- Mesos offers info on available resources back to the framework $$-$$ The framework makes the call.
+
+## Mesos and YARN together
+
+YARN can talk to Mesos for mananging non-Hadoop computing resources.
+
+- **Siloed** A cluster of resources managed by Mesos and another managed by YARN.
+- **Resource Sharing** YARN and Mesos can be tied together using Myriad. This way, the resources managed by YARN can be used by Mesos if free.
+
+# Apache Tez
+
+Accelerate jobs that run on Hadoop cluster $$-$$ A charging elephant.
+
+- Alternative to MapReduce. 
+- Hive/Pig job can use Tez instead of MapReduce $$-$$ Hive uses Tez by default. 
+- Ambari can be used configure what Tez/MapReduce uses underneath.
+- Constucts DAG (Directed Acyclic Graphs), similar to Spark for efficient processing of distributed Jobs/Tasks.
+- DAGs optimization $$-$$ Eleminates unnecessary steps/dependencies, run possible steps in parallel.
+
+# ZooKeeper
+
+Keeps track of info that must be synchronized in a cluster. 
+
+- When consistency is a primary concern (from CAP), synchronized info must be kept track of $$-$$ Enter Zookeper
+- Zookeeper solves the problem of reliable distributed coordination
+- Many deamons (including YARN) use Zookeper to store/access synchronized information
+
+Zookeeper as a service can use used to answer
+
+- Which node is the master?
+
+- What tasks are assigned to which workers?  When a worker fals, where to pick up from to redistribute.  
+- Which workers are currently available?
+
+
+
+
+
+# Resources
+
+https://stackoverflow.com/questions/10732834/why-do-we-need-zookeeper-in-the-hadoop-stack
