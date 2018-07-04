@@ -428,6 +428,8 @@ Cassandra compromises on Consistency for Availability and Paritiion Tolerance.
 
 ## Cassandra achives high availability
 
+![Cassandra](/assets/images/bigdata/Cassandra.png)
+
 ### Ring Architecture
 
 - No master nodes that keep track of which nodes serve what data.
@@ -516,7 +518,7 @@ Yet Another Resource Negotiator $$-$$ Manage resources of the cluster.
 
 > Modular functionality Isolation $$-$$ The big performance advantange came as a result of separating resource negotiation from YARN.
 
-## Architecture
+## Stack
 
 While HDFS manages the storage resource, YARN manages the compute resource.
 
@@ -537,6 +539,8 @@ YARN maintains **data locality** $$-$$ YARN tries to align data blocks on same p
 Applications such as MapReduce, Tez and Spark run on top of YARN
 
 ## Working
+
+![YARN_Working](/assets/images/bigdata/YARN_Working.png)
 
 ### Running a job
 
@@ -597,14 +601,99 @@ Keeps track of info that must be synchronized in a cluster.
 - Zookeeper solves the problem of reliable distributed coordination
 - Many deamons (including YARN) use Zookeper to store/access synchronized information
 
-Zookeeper as a service can use used to answer
+Zookeeper as a service can be used to answer
 
 - Which node is the master?
-
-- What tasks are assigned to which workers?  When a worker fals, where to pick up from to redistribute.  
+- What tasks are assigned to which workers?  
+- When a worker fals, where to pick up from to redistribute.  
 - Which workers are currently available?
 
+## Operations requirement in a distributed system
 
+### Single Master
+
+- One node registers itself as master and holds the lock (throne)
+- Other nodes cannot become the master until the lock is released.
+
+### Crash Detection $-$ Ephemeral data
+
+- **Ephemeral** (read i-fhe-meh-ral) data means data that is short lived
+- Nodes are supposed to declare their availability by providing heart beat (ephmeral data). If a node fails to provide the data, it will be cosidered to have crashed 
+
+### Group Management
+
+- What workers are availabe in the pool
+
+### Metadata
+
+- List of tasks and task assigment $$-$$ Who owns which task)
+- When master goes down or worker goes down the new node knows what to pick up.
+
+## Zookeeper $-$ Generic solutions to operations
+
+### Generic Services
+
+Zookeeper provides features like sychronized service, ephemeral data, notifications etc which can be used by a distributed system to achieve whatever it wants (Eg: Achieve a watcher of a watcher, watching the master OR watch the namenode in HDFS)
+
+### ZNodes
+
+- ZNodes are analogous to files in a hierarchial directory strucutre
+- ZNodes ensure synchronized access $$-$$ Avoid parallel overwrites
+- Zookeper provides Ephemeral and persistent ZNodes
+  - **Ephemeral**  ZNodes $$-$$ Removed if heartbeat not recorded (Can be used to indicate node crash).
+  - Persistent ZNodes $$-$$ Stays until explicitly removed (Can be used to store worker-task assignments)
+
+### ZNode APIs
+
+- APIs such as `create, delete, exists, getData, setData, getChildren` that operate on ZNode are provided
+
+### ZNode Notifications
+
+- Clients can subscribe for notifications on a ZNode
+- This is more efficient compared to client polling the status of ZNode
+
+### Case $-$ Election when master goes down
+
+- A physical node has a ZNode entry and has registered itself as the master
+- Several other nodes have subscribed for notification in case the master goes down.
+- Current master crashes and hence for a timeout period there is no heartbeat recorded on the master ZNode
+- The master ZNode s removed and all the subscribers are notified by Zookeper
+- Only one of the competing nodes become the master and the new master ZNode is created
+
+### Case $-$ Task execution upon master/worker crash
+
+- The work assignment are written to persistant nodes
+- When worker/master goes down the new worker/master knows about the work assigment
+
+
+
+## Architecture
+
+Any node in a distributed environment can make use of ZooKeeper services. Consider a Master-Worker setup of HBase that uses Zookeper to track current master.
+
+### Zookeeper Ensemble
+
+Several ZooKeeper servers together as a cluster, replicating data form a **Zookeeper Ensemble** (Read On-som-bel)
+
+- ZooKeeper itself cannot itself be a single point of failure aswell $$-$$ Hence the ensemble.
+- The client should be aware of all the ZooKeeper servers and/or should configure LB to spread the load across the ensemble.
+- **Consistency Level:** ZooKeeper can be configured to ensure atleast 'n' replica servers  are updated before confirming write commit.
+
+### Zookeeper Quorum Level
+
+The Zookeeper Quorum Level is the number of Zookeeper servers that must agree upon a value in-order for that to be sent to the client.
+
+If our ensemble has to tolerate 2 server failure then 
+
+- Zookeeper Ensemble Count >= 5
+- Zookeeper Quorum Level >= 3
+
+### Zookeeper Brain Split
+
+- Consider Zookeeper Ensemble Count = 5 and Zookeeper Quorum Level = 2
+- Lets say 2 nodes in datacenter-A are unable to talk to 3 nodes in another datacenter-B (Brain Split)
+- Writes to datacenter-A will be replicated in datacenter-A and will succeed
+- Reads to datacenter-A and datacenter-B will also succeed even though the info is different.
 
 
 
