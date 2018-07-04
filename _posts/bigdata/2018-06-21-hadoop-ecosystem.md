@@ -615,7 +615,7 @@ Zookeeper as a service can be used to answer
 - One node registers itself as master and holds the lock (throne)
 - Other nodes cannot become the master until the lock is released.
 
-### Crash Detection $-$ Ephemeral data
+### Crash Detection - Ephemeral data
 
 - **Ephemeral** (read i-fhe-meh-ral) data means data that is short lived
 - Nodes are supposed to declare their availability by providing heart beat (ephmeral data). If a node fails to provide the data, it will be cosidered to have crashed 
@@ -629,7 +629,7 @@ Zookeeper as a service can be used to answer
 - List of tasks and task assigment $$-$$ Who owns which task)
 - When master goes down or worker goes down the new node knows what to pick up.
 
-## Zookeeper $-$ Generic solutions to operations
+## Zookeeper - Generic solutions to operations
 
 ### Generic Services
 
@@ -637,7 +637,9 @@ Zookeeper provides features like sychronized service, ephemeral data, notificati
 
 ### ZNodes
 
-- ZNodes are analogous to files in a hierarchial directory strucutre
+![ZNode](/assets/images/bigdata/ZNode.png)
+
+- ZNodes are analogous to files in a hierarchical directory structure
 - ZNodes ensure synchronized access $$-$$ Avoid parallel overwrites
 - Zookeper provides Ephemeral and persistent ZNodes
   - **Ephemeral**  ZNodes $$-$$ Removed if heartbeat not recorded (Can be used to indicate node crash).
@@ -652,7 +654,7 @@ Zookeeper provides features like sychronized service, ephemeral data, notificati
 - Clients can subscribe for notifications on a ZNode
 - This is more efficient compared to client polling the status of ZNode
 
-### Case $-$ Election when master goes down
+### Case - Election when master goes down
 
 - A physical node has a ZNode entry and has registered itself as the master
 - Several other nodes have subscribed for notification in case the master goes down.
@@ -660,16 +662,18 @@ Zookeeper provides features like sychronized service, ephemeral data, notificati
 - The master ZNode s removed and all the subscribers are notified by Zookeper
 - Only one of the competing nodes become the master and the new master ZNode is created
 
-### Case $-$ Task execution upon master/worker crash
+### Case - Task execution upon master/worker crash
 
 - The work assignment are written to persistant nodes
-- When worker/master goes down the new worker/master knows about the work assigment
+- When worker/master goes down the new worker/master knows about the work assignment
 
 
 
 ## Architecture
 
 Any node in a distributed environment can make use of ZooKeeper services. Consider a Master-Worker setup of HBase that uses Zookeper to track current master.
+
+![Zookeper](/assets/images/bigdata/Zookeper.png)
 
 ### Zookeeper Ensemble
 
@@ -699,7 +703,7 @@ If our ensemble has to tolerate 2 server failure then
 
 Oozie (Burmese name for 'elephant keeper' ) can schedule and execute workflows. 
 
-## Oozie Workflow $-$ Tasks with dependencies
+## Oozie Workflow - Tasks with dependencies
 
 A Oozie Workflow is an XML `workflow.xml` made up of heterogenous actions (Hive tasks, Pig tasks, MapReduce tasks etc)  that have inter-dependencies.
 
@@ -728,14 +732,14 @@ oozie job --oozie <URL to have Oozie console. Eg: http://localhost:11000> -confi
 http://localhost:11000/oozie
 ```
 
-## Oozie Co-ordinators $-$ Schedule Workflow
+## Oozie Co-ordinators - Schedule Workflow
 
 A Oozie co-ordinator is an XML used to schedule workflow execution.
 
 - Schedule Workflow to begin at a *startime* and execute periodically at a given *frequency*
 - Schedule Workflow to run after a data becomes available.
 
-## Oozie Bundle $-$ A bundle of co-ordinators
+## Oozie Bundle - A bundle of co-ordinators
 
 - Oozie bundle is a bundle of co-ordinators that can be managed together
 - **Example:** Many oozie coordinators that perform log processing can be grouped as an Oozie Bundle.
@@ -749,12 +753,12 @@ Zepplin is a broader tool with plugins for various components of Hadoop ecosyste
 
 > Zepplin is like an IPython notebook for BigData 
 
-## Zeppelin Spark Integration $-$ Making Spark feel like data science tool
+## Zeppelin Spark Integration - Making Spark feel like data science tool
 
 - Zeppelin can run Spark code interractively.
 - Zeppelin can SQL queries against SparkQL **+** visualization
 
-## Zeppelin Interpreters $-$ Plugin to integrate with Zeppelin
+## Zeppelin Interpreters - Plugin to integrate with Zeppelin
 
 Zeppelin Interpreter is a way to integrate with Zeppelin $$-$$ Another term for plugin. Interpreters for the following technologies are provided by default in Hadoop!
 
@@ -836,16 +840,12 @@ Kafka temporarily stores messages generated from various *producers* (such as Io
 
 
 
-- Kafka can itself provide scaling with mulitple servers running multple instances of Kafka
+- Kafka can itself provide scaling with multiple servers running multiple instances of Kafka
 - Comsumers can have cluster (Group of nodes) subscribtion as well
   - GroupA and GroupB have subscribtions to Kafka cluster.
   - C1 and C2 within GroupA replicate information amongst each other. Similarly, C3, C4, C5 and C6 within GroupB replicate information.
   - A new message published to the cluster shall be sent to all consumers $$-$$ GroupA and GroupB
   - The message shall be replicated within GroupA and GroupB (This is the consumer logic)
-
-
-
-
 
 # Resources
 
