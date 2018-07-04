@@ -699,12 +699,14 @@ If our ensemble has to tolerate 2 server failure then
 
 Oozie (Burmese name for 'elephant keeper' ) can schedule and execute workflows. 
 
-## Oozie Workflow $$-$$ Tasks with dependencies
+## Oozie Workflow $-$ Tasks with dependencies
 
 A Oozie Workflow is an XML `workflow.xml` made up of heterogenous actions (Hive tasks, Pig tasks, MapReduce tasks etc)  that have inter-dependencies.
 
 - The `workflow.xml` is a DAG (Directed Acyclic Graph) where a graph's XML node/tag is an action
 - Actions that have no dependencies can run in parallel.
+
+![OozieWorkflow](/assets/images/bigdata/OozieWorkflow.png)
 
 ### Setup Workflow
 
@@ -726,14 +728,14 @@ oozie job --oozie <URL to have Oozie console. Eg: http://localhost:11000> -confi
 http://localhost:11000/oozie
 ```
 
-## Oozie Co-ordinators $$-$$ Schedule Workflow
+## Oozie Co-ordinators $-$ Schedule Workflow
 
 A Oozie co-ordinator is an XML used to schedule workflow execution.
 
 - Schedule Workflow to begin at a *startime* and execute periodically at a given *frequency*
 - Schedule Workflow to run after a data becomes available.
 
-## Oozie Bundle $$-$$ A bundle of co-ordinators
+## Oozie Bundle $-$ A bundle of co-ordinators
 
 - Oozie bundle is a bundle of co-ordinators that can be managed together
 - **Example:** Many oozie coordinators that perform log processing can be grouped as an Oozie Bundle.
@@ -747,14 +749,17 @@ Zepplin is a broader tool with plugins for various components of Hadoop ecosyste
 
 > Zepplin is like an IPython notebook for BigData 
 
-## Zeppelin Spark Integration $$-$$ Making Spark feel like data science tool
+## Zeppelin Spark Integration $-$ Making Spark feel like data science tool
 
 - Zeppelin can run Spark code interractively.
 - Zeppelin can SQL queries against SparkQL **+** visualization
 
-## Zeppelin Interpreters $$-$$ Plugin to integrate with Zeppelin
+## Zeppelin Interpreters $-$ Plugin to integrate with Zeppelin
 
-- Interpreter is a way to integrate with Zeppelin $$-$$ Another term for plugin
+Zeppelin Interpreter is a way to integrate with Zeppelin $$-$$ Another term for plugin. Interpreters for the following technologies are provided by default in Hadoop!
+
+![ZeppelinInterpreters](/assets/images/bigdata/ZeppelinInterpreters.png)
+
 - Zeppelin Spark integration was possible using Spark Interpreter
 - Zeppelin ships by default with a whole bunch of interpreters for varous BigData technologies. A custom interpreter can be written as well.
 
@@ -810,7 +815,9 @@ Kafka temporarily stores messages generated from various *producers* (such as Io
 
 
 
-## Architecture
+## Kafka Architecture
+
+![Kafka](/assets/images/bigdata/Kafka.png)
 
 - **Producer** apps produce messages to topics 
 - **Consumer** apps subscribe to topic and receive data
@@ -823,13 +830,18 @@ Kafka temporarily stores messages generated from various *producers* (such as Io
 
 
 
+## Kafka Scaling
+
+![KafkaScaling](/assets/images/bigdata/KafkaScaling.png)
 
 
 
-
-
-
-
+- Kafka can itself provide scaling with mulitple servers running multple instances of Kafka
+- Comsumers can have cluster (Group of nodes) subscribtion as well
+  - GroupA and GroupB have subscribtions to Kafka cluster.
+  - C1 and C2 within GroupA replicate information amongst each other. Similarly, C3, C4, C5 and C6 within GroupB replicate information.
+  - A new message published to the cluster shall be sent to all consumers $$-$$ GroupA and GroupB
+  - The message shall be replicated within GroupA and GroupB (This is the consumer logic)
 
 
 
