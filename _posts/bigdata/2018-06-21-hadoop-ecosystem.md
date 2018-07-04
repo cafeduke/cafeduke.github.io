@@ -695,6 +695,144 @@ If our ensemble has to tolerate 2 server failure then
 - Writes to datacenter-A will be replicated in datacenter-A and will succeed
 - Reads to datacenter-A and datacenter-B will also succeed even though the info is different.
 
+# Oozie
+
+Oozie (Burmese name for 'elephant keeper' ) can schedule and execute workflows. 
+
+## Oozie Workflow $$-$$ Tasks with dependencies
+
+A Oozie Workflow is an XML `workflow.xml` made up of heterogenous actions (Hive tasks, Pig tasks, MapReduce tasks etc)  that have inter-dependencies.
+
+- The `workflow.xml` is a DAG (Directed Acyclic Graph) where a graph's XML node/tag is an action
+- Actions that have no dependencies can run in parallel.
+
+### Setup Workflow
+
+- Make sure each action (XML tag) works on its own.
+- Create directory in HDFS to place `workflow.xml ` . The XML shall have actions and its dependencies configured.
+- Create a local file `job.properties` which shall have properties (key=value) referenced by `workflow.xml`
+
+### Run Workflow In MasterNode
+
+#### Run Oozie to start the Web Console
+
+```bash
+oozie job --oozie <URL to have Oozie console. Eg: http://localhost:11000> -config <Path to job.properties> -run
+```
+
+#### Access Oozie Readonly Web Console
+
+```
+http://localhost:11000/oozie
+```
+
+## Oozie Co-ordinators $$-$$ Schedule Workflow
+
+A Oozie co-ordinator is an XML used to schedule workflow execution.
+
+- Schedule Workflow to begin at a *startime* and execute periodically at a given *frequency*
+- Schedule Workflow to run after a data becomes available.
+
+## Oozie Bundle $$-$$ A bundle of co-ordinators
+
+- Oozie bundle is a bundle of co-ordinators that can be managed together
+- **Example:** Many oozie coordinators that perform log processing can be grouped as an Oozie Bundle.
+- **Bundle Operations are handy** $$-$$ An entire bundle could be suspended if required.
+
+
+
+# Apache Zeppelin
+
+Zepplin is a broader tool with plugins for various components of Hadoop ecosystem but is primarily a **tool for data science** $$-$$ Used to experiment with Apache Spark scripts and visualize big data. 
+
+> Zepplin is like an IPython notebook for BigData 
+
+## Zeppelin Spark Integration $$-$$ Making Spark feel like data science tool
+
+- Zeppelin can run Spark code interractively.
+- Zeppelin can SQL queries against SparkQL **+** visualization
+
+## Zeppelin Interpreters $$-$$ Plugin to integrate with Zeppelin
+
+- Interpreter is a way to integrate with Zeppelin $$-$$ Another term for plugin
+- Zeppelin Spark integration was possible using Spark Interpreter
+- Zeppelin ships by default with a whole bunch of interpreters for varous BigData technologies. A custom interpreter can be written as well.
+
+
+
+# Hue (Hadoop User Experience)
+
+Hue (Hadoop User Experience) is for Cloudera like Ambari is for HortonWorks.
+
+## Top Hadoop Distributions
+
+- HortonWorks
+  - Ambari is used for primary management, execute query, files UI
+  - Zeppelin is used for notebook style analysis.
+  - 100% open source
+- CloudEra
+  - Cloudera Manager is used for primary management
+  - Hue (open sourced by couldera) is used to execute query, files UI
+  - Few proprietery 
+
+## Hue Provides
+
+- Oozie Editor (Not there in HortonWorks)
+- Interfaces to Pig, Hive, HBase, HDFS and Sqoop (Like Ambari)
+- Built in notebook (Like Zeppelin)
+
+
+
+# Kafka - Streaming data into cluster
+
+Kafka is a general prupose *publish/subscribe message system* to *steam data* into the cluster in *real time*. 
+
+Examples of realtime BigData that can be streamed into cluster using Kafka
+
+- Log entries from Web servers
+- Sensor data from IoT devices
+- Stock trading data
+
+> Streaming helps publishing and optionally processing the data into cluster in realtime!  
+
+## The Publish/Subscribe system
+
+Kafka temporarily stores messages generated from various *producers* (such as IoT, webservers etc), for some period of time and makes them available under various streams (*topic*)  to **consumers** . A consumer subscribes to several interested topics.
+
+- Kafka stores data and the position of each customer $$-$$ Consumer can catch from where their left off.
+- Kafka can efficiently manage many consumers for each topic
+
+>  Consider a overhead tank with several input pipes and serverl taps at the bottom. 
+>
+> - Kafka is the tank
+> - Pipes are the publishers
+> - Taps are the topic
+
+
+
+## Architecture
+
+- **Producer** apps produce messages to topics 
+- **Consumer** apps subscribe to topic and receive data
+- **Connector**s are modules that publish data as messages to Kafka OR receive messages from Kafka
+- **Stream Processor** $$-$$ Transform data as it comes 
+  - A producer might publish unstructured data against a topic. 
+  - A stream processor is subscribed to this topic.
+  - The stream processor formats the data and publishes back to Kafka under a different topic
+  - A database might listen this new topic more persistantly
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Resources
