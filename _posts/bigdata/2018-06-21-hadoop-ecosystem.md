@@ -823,14 +823,14 @@ Kafka temporarily stores messages generated from various *producers* (such as Io
 
 ![Kafka](/assets/images/bigdata/Kafka.png)
 
-- **Producer** apps produce messages to topics 
-- **Consumer** apps subscribe to topic and receive data
+- **Producer** apps produce messages to topics.
+- **Consumer** apps subscribe to topic and receive data.
 - **Connector**s are modules that publish data as messages to Kafka OR receive messages from Kafka
 - **Stream Processor** $$-$$ Transform data as it comes 
-  - A producer might publish unstructured data against a topic. 
-  - A stream processor is subscribed to this topic.
-  - The stream processor formats the data and publishes back to Kafka under a different topic
-  - A database might listen this new topic more persistantly
+  - A producer might publish unstructured data against a topic (tA)
+  - A stream processor is subscribed to this topic (tA).
+  - The stream processor formats the data and publishes back to Kafka under a different topic (tB)
+  - A database might listen this new topic (tB) more persistantly
 
 
 
@@ -846,6 +846,63 @@ Kafka temporarily stores messages generated from various *producers* (such as Io
   - C1 and C2 within GroupA replicate information amongst each other. Similarly, C3, C4, C5 and C6 within GroupB replicate information.
   - A new message published to the cluster shall be sent to all consumers $$-$$ GroupA and GroupB
   - The message shall be replicated within GroupA and GroupB (This is the consumer logic)
+
+
+
+# Apache Fume - Streaming data into cluster
+
+Like Kafka, Fume is ment to stream data into the cluster. While Kafka is more generic, Fume is more specific to Hadoop ecosystem
+
+
+
+## Architecture
+
+Fume consists of components called **Fume Agents**.  A Fume Agent is responsible for a particular role in Fume.
+
+### Source 
+
+- A source collects the data that is coming in.
+- A source can optionally have Channel Selectors and/or Interceptors
+- **Source Interceptors:** Modifies the data
+- **Source Channel Selector:** Directs the data into appropriate channel
+
+### Channel
+
+- Channel is how the data gets transferred from the Source to the Sink
+- **Persistent Channel:**  Files  are used as channel. Slow but persistent.
+- **Memory Channel:** In memory transfer. Fast but not persistent. (Most cases memory is good enough)
+
+### Sink
+
+- This where the data is going. 
+- Multiple Sinks can be grouped into a SinkGroup.
+- In Kafka data is temporarily stored for some time and multiple consumers can read when they want from where they left off.In flume the data is deleted once it makes to the sink.
+
+
+## Built-in Sources and Sinks
+
+### Sources
+
+| Source Type | What to get the data?                                        |
+| ----------- | ------------------------------------------------------------ |
+| Spool       | Monitor directory for files dropped into it.                 |
+| Avro        | Communications format specific to Hadoop. Tie different agents together. |
+| Kafka       | If you have subscribed to Kafka then Kafka is the source.    |
+| Exec        | Output of any command line running on Linux like `tail -f my.log` |
+| Thrift      | Like Avro, used to tie different agents together.            |
+| Netcat      | Listen to data streamted into TCP port.                      |
+| HTTP        | Listen to data streamted into HTTP port.                     |
+| Custom      | Custom source in Java                                        |
+
+### Sink
+
+- HDFS,  Hive, HBase
+- Avro, Thrift
+- ElasticSearch
+- Kafka
+- Custom
+
+
 
 # Resources
 
