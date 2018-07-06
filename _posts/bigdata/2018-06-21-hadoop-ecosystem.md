@@ -6,6 +6,8 @@ mathjax: true
 typora-root-url: ../../
 ---
 
+{% include toc.html %}
+
 # Apache Hadoop Ecosystem
 
 Apache **Hadoop** is an open source  software platform for ***distributed storage*** and ***distributed processing*** of  ***very large*** data sets on computer ***clusters*** built from ***commodity hardware***. 
