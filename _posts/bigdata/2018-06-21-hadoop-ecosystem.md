@@ -107,7 +107,7 @@ HDFS is like a giant hard drive.
 
 Apache Spark gives flexibility to write Java/Scala/Python code to perform complex transformation and analysis of data.
 
-## What sets Spark apart
+## What sets Spark apart?
 
 - Scalable
 - Fast - A memory based solution (as opposed to disk based). Tries to maintain as much as possible in RAM.
@@ -284,7 +284,7 @@ Large amount of data (like google searches) keep growing and need to be fit **ho
   - What has this customer ordered in the past?
 - **KeyValue Datastore**  is enough: A simple get/put API of key-value pairs address the needs (Key = employee Id, value = JSON object with details)
 
-## Best of both worlds?
+## Best of both worlds!
 
 It is possible!
 
@@ -298,7 +298,7 @@ It is possible!
 Consider a case of providing product recomendation to customer
 
 - A high transactional website (like google) can act as **datasource** feeding customer searches
-- A streaming tech like (Spark Fume) that sits on HDFS can listen to high transactional real time data
+- A streaming tech like (Spark Flume) that sits on HDFS can listen to high transactional real time data
 - **Spark** can then transform the data into a format (denormalized $$-$$ join of several tables into a JSON object) that fits the requirement of the view
 - Thus transformed data is pushed by Spark into a **NoSQL database** like MongoDB
 - Front end **webserver**s will now display the recommendations to the Browser.
@@ -851,15 +851,19 @@ Kafka temporarily stores messages generated from various *producers* (such as Io
 
 
 
-# Apache Fume - Streaming data into cluster
+# Apache Flume - Streaming data into cluster
 
-Like Kafka, Fume is ment to stream data into the cluster. While Kafka is more generic, Fume is more specific to Hadoop ecosystem
+Like Kafka, Flume is ment to stream data into the cluster. While Kafka is more generic, Flume is more specific to Hadoop ecosystem
 
-
+> Flume acts as a **buffer** between client and cluster.
 
 ## Architecture
 
-Fume consists of components called **Fume Agents**.  A Fume Agent is responsible for a particular role in Fume.
+Flume consists of components called **Flume Agents**.  A Flume Agent is responsible for a particular role in Flume.
+
+
+
+![Flume](/assets/images/bigdata/Flume.png)
 
 ### Source 
 
@@ -898,11 +902,164 @@ Fume consists of components called **Fume Agents**.  A Fume Agent is responsible
 
 ### Sink
 
-- HDFS,  Hive, HBase
-- Avro, Thrift
-- ElasticSearch
-- Kafka
-- Custom
+| Sink               |
+| ------------------ |
+| HDFS,  Hive, HBase |
+| Avro, Thrift       |
+| ElasticSearch      |
+| Kafka              |
+| Custom             |
+
+## Multitier Flume Agents - Avro
+
+![FlumeAgentWiring](/assets/images/bigdata/FlumeAgentWiring.png)
+
+### Tiers
+
+- **First Tier:** Huge traffic can first go to a layer of **Source FlumeAgents** that are physically close to the WebServer.
+- **Second Tier:** This  layer has fewer flume agents that ultimately writes into the HDFS
+
+### FlumeAgent block per tier
+
+A FlumeAgent block will have a 
+
+- FlumeSource (Eg: AppServerSource or AvroSource) at the begining
+
+- FlumeSink (Eg: AvroSink or HDFSSink) at the end
+
+### Multitier Advantanges
+
+- Limits amout of network traffic comming to HDFS at the end
+- Works well with distributed data centers
+- Each tier acts as a buffer to handle data. Only when both the all tiers (second and first in the example) are full will the app server request be dropped.
+
+# Spark Steaming
+
+Streaming $$-$$ Process data as it comes in as against process data in batches
+
+- Non stop flow of data from IoT receivers 
+- Web server logs
+
+## Architecture
+
+![SparkStream](/assets/images/bigdata/SparkStream.png)
+
+### Micro-batching
+
+- **Receivers:**  Spark cluster shall have receivers (spread out across the cluster) to receive data
+- **RDD:** Data at different time interval (like 1sec) goes into different RDDs for processing.
+
+### Distributed Micro-batching
+
+The data received by the RDD (at regular timeinterval) can be processed in parallel in a distributed setting.
+
+### DStream (Discretized Streams)
+
+DStreams is an **abstraction** on top of all the RDD chunks.
+
+For each **batch interval** 
+
+- Generates RDDs 
+- Process and genearete output for each RDD.
+
+#### Spark DStream vs Spark Batch Processing
+
+| Spark Streaming                                              | Batch processing in Spark                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Operation on DStream                                         | Operation on RDD                                             |
+| Every time new data is received in a batch, operation is applied on the batch forever. | The operation is divided into RDDs which are then processed and then its over. |
+| Transform, map and actions are possible, but it is continuous. | Transform, map and actions are applied on each RDD.          |
+| Access to underlying RDD is possible                         | Operations are on RDD                                        |
+
+#### Transformations on DStreams
+
+- Map
+- Flatmap
+- Filter
+- ReduceByKey
+
+### DStream - Stateful data using sliding window transfomations
+
+Longer lived state that persist beyond batch interval can be maintained, For example
+
+- Running totals : Each RDD has data that adds to the total.
+- Aggregate session data : Shopping cart
+
+#### Sliding Window
+
+To understand sliding window, we need to understand the following interval types
+
+| Interval Type | Detail                                                       |
+| ------------- | ------------------------------------------------------------ |
+| Batch         | After batch interval $$-$$ A new batch of data arrives. **Eg:** A batch interval of 1 sec means that a new batch/chunk of data is added every second. |
+| Window        | Process all batches in `t - window_interval` . All blocks visible in the window. |
+| Slide         | After slide interval $$-$$ The Window slides to the end of the queue. |
+
+
+To visualize, 
+
+- Consider a queue of blocks $$-$$ Each block is a batch/chunk of data. 
+- Consider a window frame $$-$$ We see only few blocks in the frame
+- Window sliding $$-$$ After some time you push the slide the window
+
+![SparkStreamSlidingWindow](/assets/images/bigdata/SparkStreamSlidingWindow.png)
+
+
+#### Sliding Window Example
+
+| Interval        | Duration  |
+| --------------- | --------- |
+| Batch Interval  | 1 second  |
+| Window Interval | 3 seconds |
+| Slide Interval  | 2 seconds |
+
+Working is as follows
+
+- A batch of data is produced every second
+- Since `batch_interval=1` sec and `window_interval=3`, we see 3 blocks via the window.
+- After `slide_interval=2` 
+  - Window is pushed to the end of the queue  ( *Ensuring the latest block is visible* )
+  - Only batches visible via the window are used for the computation.
+
+
+#### Sliding Window Code
+
+
+```python
+# Get spark context
+spark_context = util.getSparkContext ()
+
+# Get stream context by specifying 'BatchInterval'
+stream_context = StreamingContext (spark_context, 1)
+
+# Parameters
+# ----------
+# First Lambda : How two blocks can be combined within a window
+# Second Lambda : How two blocks can be separated within a window
+# Window Interval
+# Slide Interval
+count = dstream.reduceByKeyAndWindow (lambda x,y: x+y, lambda x,y: x-y, 300, 1)
+```
+
+## Structured Streaming
+
+Instead of dealing with DStream that uses RDD,  structured streaming uses a DataFrame that is an unbounded table (new rows keep getting appended forever).
+
+![StructuredStreaming](/assets/images/bigdata/StructuredStreaming.png)
+
+
+
+Experimental in Spark 2.0 and Spark 2.1
+
+> Spark uses **DataSet API based on Dataframe** as opposed to using  **RDD** directly as primary API
+> Structured streaming uses **DataSet** instead of **DStream** as primary API
+
+
+
+### Advantages
+
+- Streaming version looks like regular batch version
+- **MLLib** is moving towards **DataSet** API $$-$$ Machine learning as data is received
 
 
 
