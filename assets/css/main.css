@@ -2,14 +2,14 @@
 :root {
     --primary     : #1565C0;    /* mdc-text-blue-800   */
     --dark-parrot : #33691E;    /* mdc-text-light-green-900 */
-    --dark-green  : #1B5E20; 
+    --dark-green  : #1B5E20;
 }
 
 /**
  * Core
  * ________________________________________________________________________________________________
  */
- 
+
 html, body {
     margin: 0px;
     padding: 0px;
@@ -29,7 +29,7 @@ body {
 
 /* Anchor */
 a {
-    color: var(--primary); 
+    color: var(--primary);
 }
 
 a:hover {
@@ -60,12 +60,12 @@ img {
 
 
 /* Code */
-code { 
+code {
     font-family: 'Consolas';
     font-weight: bold;
     font-size: 12px;
 
-    color:rgb(0,128,0); 
+    color:rgb(0,128,0);
 }
 
 /* Table */
@@ -168,7 +168,7 @@ a.post-link {
 
 a.post-link:hover {
    color: #004080;
-   text-decoration: underline; 
+   text-decoration: underline;
 }
 
 .post-meta {
@@ -209,7 +209,7 @@ a.post-link {
 
 hr.post-ruler {
     margin-top: 2px;
-    width: 100%;  
+    width: 100%;
 }
 
 /**
@@ -217,8 +217,7 @@ hr.post-ruler {
  * ________________________________________________________________________________________________
  */
 
-footer {     
-   border-top: 1px solid #d5d5d5;     
-   font-size: .8em; 
+footer {
+   border-top: 1px solid #d5d5d5;
+   font-size: .8em;
 }
-
