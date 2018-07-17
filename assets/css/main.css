@@ -124,6 +124,11 @@ table th, table td {
    border-left: 2px solid Orange;
 }
 
+#sidebar li.nav-item {
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
 #sidebar li.nav-item ul.nav a.nav-link {
    padding-left: 2rem;
 }

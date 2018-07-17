@@ -1,9 +1,11 @@
 ---
+layout: post
 title: Threads - Synchronization is on object  
 category: java
 typora-root-url: ../../
 ---
 
+{% include toc.html %}
 
 # Threads - Sychronization lock is on the object  
 
@@ -12,7 +14,7 @@ There shall always be sections of code that needs to locked on by an object all
 
 ## Method synchronization
 
-In the code below, method fun() is synchronized. Synchronization is always with respect to an object. In the below example, the synchronization is on object this. Object this refers to the invoking object. Suppose mangoA and mangoB are two objects of type Mango. When mangoA.fun() is executing, mangoA is the invoking object and when mangoB.fun() is executing, mangoB is the invoking object.
+In the code below, method `fun()` is synchronized. Synchronization is always with respect to an object. In the below example, the synchronization is on object `this`. Object `this` refers to the invoking object. Suppose `mangoA` and `mangoB` are two objects of type Mango. When `mangoA``.fun()` is executing, `mangoA` is the invoking object and when `mangoB``.fun()` is executing, `mangoB` is the invoking object.
 ```java
 class Mango  
 {  
@@ -25,7 +27,7 @@ class Mango
 
 ## Synchronization - Without mutual exclusion  
 
-Consider two threads - one is executing mangoA.fun() and the other is executing mangoB.fun() as given below.  
+Consider two threads - one is executing `mangoA``.fun()` and the other is executing `mangoB``.fun()` as given below.  
 ```java
 public class SyncIsOnObject  
 {  
@@ -78,22 +80,22 @@ Output:
   
 
 ```
-From the output, we find that threadA and threadB have overlapping timestamps. This means they were both inside the method fun() at the same time. In the above example, the function fun is synchronized. How is this possible?  
+From the output, we find that `threadA` and `threadB` have overlapping timestamps. This means they were both inside the method `fun()` at the same time. In the above example, the function fun is synchronized. How is this possible?  
   
 "The function fun is synchronized" \- What does this mean ?  
 
-*   Two (or more) threads can never execute fun() at the same time - Incorrect.  
+*   Two (or more) threads can never execute `fun()` at the same time - Incorrect.  
     
-*   Two (or more) threads can never execute fun () at the same time using the same object \- Correct
+*   Two (or more) threads can never execute `fun ()` at the same time using the same object \- Correct
 
-In the above code threadA is executing mangoA.fun() and threadB is executing mangoB.fun(). Since they are two different objects there are two different locks. Each thread acquires lock on corresponding object and their is no mutual exclusion. Both threads can execute fun at the same time.  
+In the above code `threadA` is executing `mangoA.fun()` and `threadB` is executing `mangoB.fun()`. Since they are two different objects there are two different locks. Each thread acquires lock on corresponding object and their is no mutual exclusion. Both threads can execute fun at the same time.  
   
 Synchronization - A section of code is locked on an object  
   
 
 ## Synchronization - With mutual exclusion  
 
-Lets make the following change to the main function. Both threads are now using the same object mango.  
+Lets make the following change to the `main` function. Both threads are now using the same object `mango`.  
 ```java
 public class SyncIsOnObject  
 {  
@@ -118,4 +120,4 @@ Output:
 [Mon, 04-Apr-2016 15:08:16.268 IST] [Thread=threadB] Started.  this = Mango  
 [Mon, 04-Apr-2016 15:08:16.768 IST] [Thread=threadB] Finished. this = Mango
 ```
-We now find that there is no overlap in timestamp. Thread threadA is executing mango.fun() and threadB is executing mango.fun() as well. Both threads need a lock on the same object mango. This makes fun() mutually exclusive for the two threads.
+We now find that there is no overlap in timestamp. Thread `threadA` is executing `mango.fun()` and `threadB` is executing `mango.fun()` as well. Both threads need a lock on the same object `mango`. This makes `fun()` mutually exclusive for the two threads.

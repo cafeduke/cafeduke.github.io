@@ -1,13 +1,15 @@
 ---
+layout: post
 title: Brewing Lambda - Basics  
 category: java
 typora-root-url: ../../
 ---
 
+{% include toc.html %}
 
 # Brewing Lambda - Basics
 
-
+  
 Java 8 introduced lambda expressions. In this article, we look into the basics of lambda expression.  
 
 ## Introducing anonymous inner class
@@ -31,7 +33,7 @@ public class LambdaBasic
       MyStylist myStylist = new MyStylist();  
       myStylist.doStyle("Hello World");  
    }  
-
+  
    static class MyStylist implements Stylist  
    {  
       @Override  
@@ -83,19 +85,19 @@ Stylist stylist = (String s) ->
 stylist.doStyle("Hello World");
 ```
 A lambda expression is a concise way of creating an anonymous inner class object. The above example uses the Lambda expression (String s) -> { return "#" + s + "#"; }. Here, we are creating an object of type Sylist. We are eliminating some of the boilerplate code and are providing just the implementation for the only abstract method doStyle.  
-
+  
 A lambda expression has the following parts  
-
+  
 1) Argument List  
 
 *   The signature of the argument list must match the signature of the abstract method in the Functional Interface.  
-
+    
 *   In case of Stylist, the argument list consists of a String argument. So, the first part would be (String s). Here 's' is just an arbitrary variable name just like 'mesg' is an arbitrary variable in the anonymous inner class example.
 *   The signature list can be further concise to just include the argument names and not include the data type. The data type can be inferred from the signature of the Functional Interface.  
-
+    
 *   In case of Stylist, the argument list can be reduced to (s). Since we are writing lambda expression for doStyle method. Java can infer that 's' is of type String
 *   So, the above expression can be reduced to (s) -> { return "#" + s + "#"; }  
-
+    
 
 2) Arrow Operator  
 
@@ -106,11 +108,11 @@ A lambda expression has the following parts
 *   Lambda expressions are only for functional interfaces and functional interfaces have only one abstract method. So, there is no need to mention the name of the abstract method as part of the lambda expression.
 *   The argument names are arbitrary names and are required since they are used in the implementation body.
 *   In case of Stylist, we want to enclose the given string with '#'.  
-
+    
 *   When an implementation body has a single line, we need not include the braces and the 'return' keyword.  
-
+    
 *   So, the above expression can be reduced to (s) -> "#" + s + "#";  
-
+    
 
 Finally, the displayStyle function call can be reduced to the following:  
 ```java
@@ -122,14 +124,14 @@ Note:
 
 *   A lambda expression is a concise way of creating an object of functional interface type.
 *   An interface need not be annotated with @FunctionalInterface to use lambda expressions, however it is advisable.  
+    
 
-
-
+  
 Now, lets see some more examples of lambda expressions.  
 ```java
 Stylist stylistA = (mesg) -> "[" \+ mesg + "]";  
 Stylist stylistB = (s)    -> s.toUpperCase();  
-
+  
 System.out.println(stylistA.doSytle("Bracket"));  
 System.out.println(stylistB.doSytle("Capital"));
 ```
@@ -145,20 +147,20 @@ CAPITAL
 #### Comparator
 
 With Java 8, a Comparator is now annotated with [@FuntionalInterface](https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html). A [Comparator<T>](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html)  has an abstract function [compare](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html#compare-T-T-) that accepts two objects of type T and returns an integer, based on how they compare against each other. The following examples sorts a string array using custom comparators created using lambda expression.  
-
+  
 ```java
 String names[] = new String[] {"apple", "zebra", "cat", "elephant", "dog", "ball"};  
-
+  
 /* Sort in ascending length */  
 Comparator <String\> comparatorLen = (s1, s2) -> s1.length () - s2.length ();  
 Arrays.sort(names, comparatorLen);  
 System.out.println(Arrays.asList(names));  
-
+  
 /* Sort in ascending order */  
 Comparator <String\> comparatorAsc = (s1, s2)  -> s1.compareTo(s2);  
 Arrays.sort(names, comparatorAsc);  
 System.out.println(Arrays.asList(names));  
-
+  
 /* Sort in descending order */  
 Comparator <String\> comparatorDesc = (s1, s2) -> -1 * s1.compareTo(s2);  
 Arrays.sort(names, comparatorDesc);  
@@ -180,10 +182,10 @@ utput:
 /* Simple print worker */  
 Runnable worker = () -> System.out.println("Hello World");   
 new Thread (worker).start();  
-
+  
 /* Simple and concise print worker */  
 new Thread (() -\> System.out.println("Hello World")).start();  
-
+  
 /* Noop worker */  
 new Thread (() -\> {}).start();
 
@@ -192,6 +194,6 @@ new Thread (() -\> {}).start();
 Output:  
 Hello World  
 Hello World  
-
+  
 
 ```

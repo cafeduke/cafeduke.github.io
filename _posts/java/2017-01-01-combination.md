@@ -1,9 +1,11 @@
 ---
+layout: post
 title: Lexicographical Sequence Of Combination  
 category: java
 typora-root-url: ../../
 ---
 
+{% include toc.html %}
 
 # Lexicographical Sequence Of Combination
 

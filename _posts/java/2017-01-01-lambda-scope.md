@@ -1,9 +1,11 @@
 ---
+layout: post
 title: Brewing Lambda - Scope  
 category: java
 typora-root-url: ../../
 ---
 
+{% include toc.html %}
 
 # Brewing Lambda - Scope  
 
@@ -14,14 +16,14 @@ Static variables and instance variables can be accessed and modified in a lambda
 public class L02Scope  
 {  
    private int varInstance = 1;  
-
+     
    private static int varStatic = 1;  
-
+     
    public static void main (String arg[])  
    {        
       new L02Scope ().testlambdaScope();  
    }  
-
+  
    /**  
 * Instance and static variables can be accessed/modified within lambda  
     */  
@@ -42,7 +44,7 @@ lambda: InstanceVariable=2 StaticVariable=2
 ## Local Variable
 
 *   Lambda expression can access a local variable if it is final.  
-
+    
 *   A non final local variable shall be rendered final (effectively final) after being accessed by lambda.
 
 ### Final local Variable  

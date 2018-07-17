@@ -1,9 +1,11 @@
 ---
+layout: post
 title: Brewing Lambda - Table Of Contents  
 category: java
 typora-root-url: ../../
 ---
 
+{% include toc.html %}
 
 # Brewing Concurrency - Table Of Contents  
 

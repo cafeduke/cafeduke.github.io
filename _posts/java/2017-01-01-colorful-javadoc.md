@@ -1,9 +1,11 @@
 ---
+layout: post
 title: Colorful Javadoc  
 category: java
 typora-root-url: ../../
 ---
 
+{% include toc.html %}
 
 # Colorful Javadoc  
 

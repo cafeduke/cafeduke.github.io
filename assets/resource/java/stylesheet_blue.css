@@ -1,0 +1,123 @@
+/* Javadoc style sheet */
+
+/**
+ * --------------------------------------------------
+ * Overall document
+ * --------------------------------------------------
+ */
+
+@import url('resources/fonts/dejavu.css');
+@import url('stylesheet_orig.css');
+
+body 
+{
+    background-color:#ffffff;
+    color:Black;
+    margin:0;
+}
+
+a:link, a:visited { text-decoration:none; color:rgb(0,0,225); }
+a:hover, a:focus  { text-decoration:none; color:rgb(202,101,0); }
+a[name]           { color: Black; }
+a[name]:hover     { text-decoration:none; color: Black; }
+
+div.block { color: Black;}
+
+/**
+ * --------------------------------------------------
+ * Navigation bar styles
+ * --------------------------------------------------
+ */
+
+.subNav 
+{
+   background-color: rgb(235,241,250);
+   border-bottom: 2px groove rgb(45,109,200);
+   float:left;
+   width:100%;
+   overflow:hidden;
+}
+
+/**
+ * --------------------------------------------------
+ * Heading Styles
+ * --------------------------------------------------
+ */
+
+.contentContainer .details dl dt { color: rgb(0, 64, 128); }
+
+div.details ul.blockList ul.blockList ul.blockList li.blockList h4, div.details ul.blockList ul.blockList ul.blockListLast li.blockList h4 
+{
+    background-color:rgb(153, 184, 230);
+    border: 1px outset rgb(45,109,200);
+    margin:0 0 6px -8px;
+    padding:2px 5px;
+}
+
+/**
+ * --------------------------------------------------
+ * List Styles
+ * --------------------------------------------------
+ */
+ul.blockList ul.blockList ul.blockList li.blockList, ul.blockList ul.blockList ul.blockListLast li.blockList
+{
+   border:1px ridge rgb(45,109,200);
+}
+
+/**
+ * --------------------------------------------------
+ * Page header and footer styles
+ * --------------------------------------------------
+ */
+.title 
+{
+    color:rgb(0,64,128);
+    margin:10px 0;
+}
+
+/**
+ * --------------------------------------------------
+ * Table styles
+ * --------------------------------------------------
+ */
+
+/* Background color for tables heading and navigation bars */
+.bar, .topNav, .memberSummary caption span.tableTab span 
+{
+   background-color:rgb(0,120,160);
+}
+
+.contentContainer table, .classUseContainer table, .constantValuesContainer table 
+{    
+   width:100%;
+   border-width: 1px 0px 0px 1px;
+   border-style: ridge;
+   border-color: rgb(45,109,200);
+}
+
+.contentContainer table  th, .contentContainer table td, 
+.classUseContainer table th, .classUseContainer table td,
+.constantValuesContainer table th, .constantValuesContainer table td
+{
+   border-width: 0px 1px 1px 0px;
+	border-style: ridge;
+	border-color: rgb(45,109,200);
+}
+
+.altColor 
+{
+    /* background-color:rgb(234,234,255); */
+	background-color:rgb(235,241,250);
+}
+
+.rowColor 
+{
+    background-color:White;
+}
+
+th.colFirst, th.colLast, th.colOne, .constantValuesContainer th 
+{
+    background:rgb(153,184,230);
+}
+
+

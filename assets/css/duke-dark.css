@@ -5,19 +5,19 @@ Foreground                      | White
 KeyWord                         | Orange     | rgb(253,151,31);
 Function Name                   | LightBlue  | rgb(0,180,255);
 Operator,Number,Attribute       | Yellow     | rgb(230,219,116);
-Pseudo Name                     | Purple     | rgb(174,129,255);     | Eg| True, False, self 
+Pseudo Name                     | Purple     | rgb(174,129,255);     | Eg| True, False, self
 
 */
-.highlight pre { 
-    color:White; 
-    background-color: rgb(0,40,40); 
-    border: 2px groove rgb(128,64,0);
-    padding: 5px 10px;    
-    font: normal 1em 'Consolas';
+.highlight pre {
+    color:White;
+    background-color: rgb(40,40,40);
+    border-left: 4px solid rgb(180,90,0);
+    padding: 5px 10px;
+    font: normal 14px 'Consolas';
 }
 
 .highlight code {
-    font: normal 1em 'Consolas';
+    font: normal 14px 'Consolas';
 }
 
 .highlight .hll { background-color: #333333 }
