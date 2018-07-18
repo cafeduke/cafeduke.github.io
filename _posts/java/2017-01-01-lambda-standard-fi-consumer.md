@@ -5,7 +5,6 @@ category: java
 typora-root-url: ../../
 ---
 
-{% include toc.html %}
 
 # Lambda - Standard Functional Interface - Supplier  
 
