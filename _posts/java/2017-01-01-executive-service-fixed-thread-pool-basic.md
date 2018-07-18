@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Executor Service - On the fly sumbmission  
+title: Executor Service - Fixed Thread Pool Basic  
 category: java
 typora-root-url: ../../
 ---

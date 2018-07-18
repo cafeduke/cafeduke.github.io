@@ -9,260 +9,13 @@ typora-root-url: ../../
 
 # Lexicographical Sequence Of Permutation
 
-  
-  
-
 ## Simple Example  
 
 Lets take a simple example with 5 elements {A, B, C, D, E} and section of 3 elements. So, n=5 and r=3.  
 Total permutations = nPr = 5P3 = 5\*4\*3 = 60 permutations.  
-  
 
-#  
 
-Permutation  
-
-Level one tree size
-
-Permutation  
-
-Level two tree size
-
-1-12  
-
-A B C  
-  
-A B D  
-  
-A B E  
-  
-A C B  
-  
-A C D  
-  
-A C E  
-  
-A D B  
-  
-A D C  
-  
-A D E  
-  
-A E B  
-  
-A E C  
-  
-A E D  
-
-Sub-tree with A  
-  
-A is chosen.  
-4 elements are left  
-2 needs to be chosen.  
-  
-4P2 = 12
-
-B C  
-  
-B D  
-  
-B E
-
-Sub-tree with A,B  
-  
-A,B are chosen  
-3 elements are left  
-1 needs to be chosen  
-  
-3P1 = 3
-
-C B  
-  
-C D  
-  
-C E
-
-Sub-tree with A,C  
-  
-A,C are chosen  
-3 elements are left  
-1 needs to be chosen  
-  
-3P1 = 3
-
-D B  
-  
-D C  
-  
-D E
-
-Sub-tree with A,D  
-  
-A,D are chosen  
-3 elements are left  
-1 needs to be chosen  
-  
-3P1 = 3
-
-E B  
-  
-E C  
-  
-E D
-
-Sub-tree with A,E  
-  
-A,E are chosen  
-3 elements are left  
-1 needs to be chosen  
-  
-3P1 = 3
-
-13-24  
-
-B A C  
-  
-B A D  
-  
-B A E  
-  
-B C A  
-  
-B C D  
-  
-B C E  
-  
-B D A  
-  
-B D C  
-  
-B D E  
-  
-B E A  
-  
-B E C  
-  
- B E D   
-
-Sub-tree with B  
-  
-  B is chosen.  
-4 elements are left  
-2 needs to be chosen.  
-  
-4P2 = 12
-
-A C  
-  
-A D  
-  
-A E
-
-Sub-tree with B,A  
-  
-B,A are chosen  
-3 elements are left  
-1 needs to be chosen  
-  
-3P1 = 3
-
-C A  
-  
-C B  
-  
-C D  
-
-Sub-tree with B,C  
-  
-B,C are chosen  
-3 elements are left  
-1 needs to be chosen  
-  
-3P1 = 3
-
-D A  
-  
-D C  
-  
-D E
-
-Sub-tree with B,D  
-  
-B,D are chosen  
-3 elements are left  
-1 needs to be chosen  
-  
-3P1 = 3
-
-E A  
-  
-E C  
-  
-E D
-
-Sub-tree with B,E  
-  
-B,E are chosen  
-3 elements are left  
-1 needs to be chosen  
-  
-3P1 = 3
-
-25-36  
-
-C A B  
-...  
-C E D  
-
-Sub-tree with C  
-  
-  C is chosen.  
-4 elements are left  
-2 needs to be chosen.  
-  
-4P2 = 12
-
-...  
-
-...  
-
-37-48  
-
-D A B  
-...  
-D E C  
-
-Sub-tree with D  
-  
-  D is chosen.  
-4 elements are left  
-2 needs to be chosen.  
-  
-4P2 = 12
-
-...  
-
-...  
-
-49-60  
-
-E A B  
-..  
-E D C  
-
-Sub-tree with E  
-  
-  E is chosen.  
-4 elements are left  
-2 needs to be chosen.  
-  
-4P2 = 12
-
-...  
-
-...  
-
-  
+![Permutation](/assets/images/java/Permutation.png)
 
 ## Derivations
 
@@ -281,14 +34,13 @@ Consider the above example,
 
 *   Total number of permutations are 5P3 = 60.
 *   With N as 5, (1/n *nPr) = 60/5 = 12. There are 5 subtrees each with subtree size 12.
-*   Each sub tree has a root with with it starts.  
-    
+* Each sub tree has a root with with it starts.  
 
 *   For example, seq 1-12 consists of a subtree with A as root
 *   For example, seq 13-24 consists of a subtree with B as root
 
 *   For next level, with N as 4, (1/n *nPr) = 12/4 = 3. There are 4 subtrees each with a subtree size of 3.  
-    
+  
 
   
 
@@ -391,7 +143,7 @@ public class Permutation
    }  
 }
 ```
-  
+
 ```java
 Output:  
 01) [0, 1, 2]  
@@ -416,6 +168,6 @@ Output:
   
 
 ```
-  
-  
+
+
 afds

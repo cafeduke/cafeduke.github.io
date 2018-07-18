@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Executor Service - On the fly sumbmission  
+title: Executor Service - On The Fly Submission  
 category: java
 typora-root-url: ../../
 ---
@@ -8,8 +8,6 @@ typora-root-url: ../../
 {% include toc.html %}
 
 # Executor service - On the fly submission  
-
-  
 
 In this article, we shall recursively navigate through a given directory using an [ExecutorService](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html). Multiple threads shall involve in navigating directories and analyzing files simultaneously. There are two executor services `serviceDir` and `serviceFile`. The  [ExecutorService](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html) `serviceDir` shall spawn threads to dig into directories in parallel. The [ExecutorService](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html) `serviceFile` shall spawn threads to calculate the size of file in parallel.
 
@@ -70,6 +68,7 @@ private class DirTask implements Callable<Void>
 ## FileTask - A Callable<Long>
 
 Each thread calculates and returns the size of a file.  
+
 ```java
 private class FileTask implements Callable<Long>  
 {  
@@ -100,7 +99,7 @@ The recursive directory size calculation proceeds as follows
 *   The main thread after triggering the recursive navigation shall poll the [BlockingQueue](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html) for [Future](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html) result objects
 *   Polling a queue utilizes the built in mechanism of waiting for objects to appear and removes the first element in the queue when it appears.
 *   The result objects are used to [Future.get](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html#get--) the value returned  by `FileTask`. Thus obtained value is aggregated to calculate the total sum.  
-    
+
 
 ```java
 public class ExecutorService_ProducerConsumer  
@@ -158,7 +157,8 @@ public class ExecutorService_ProducerConsumer
    ...  
 }
 ```
-```java
+
+```bash
 Output | grep 'DirTask':  
 [Mon, 14-Nov-2016 11:49:19.128 IST] [Thread=pool-1-thread-1] Submit DirTask. Dir=Hindi\\D-Day  
 [Mon, 14-Nov-2016 11:49:19.128 IST] [Thread=pool-1-thread-1] Submit DirTask. Dir=Hindi\\Golmaal.Returns  
@@ -168,7 +168,7 @@ Output | grep 'DirTask':
 Output | grep 'FileTask':  
 [Mon, 14-Nov-2016 11:49:19.157 IST] [Thread=pool-1-thread-1] Submit FileTask. File=English\\2011 - Jumping The Broom\\UnKnOwN.nfo  
 [Mon, 14-Nov-2016 11:49:19.158 IST] [Thread=pool-1-thread-2] Submit FileTask. File=English\\2012 - Delhi Safari\\Delhi-Safari.mkv  
-[Mon, 14-Nov-2016 11:49:19.163 IST] [Thread=pool-1-thread-1] Submit FileTask. File=English\\2013 - The Adventurer The Curse of the Midas Box\\The.Adventurer.The.Curse.of.the.Midas.Box.2013.720p.BluRay.x264.YIFY.mp4  
+[Mon, 14-Nov-2016 11:49:19.163 IST] [Thread=pool-1-thread-1] Submit FileTask. File=English\\2013 - TheAdventure\TheAdventure.mp4  
 [Mon, 14-Nov-2016 11:49:19.169 IST] [Thread=pool-1-thread-2] Submit FileTask. File=English\\2013 - The Machine\\The.Machine.2013.720p.BluRay.x264.YIFY.mp4
   
 Final Output:  
