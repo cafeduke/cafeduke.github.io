@@ -7,44 +7,27 @@ typora-root-url: ../../
 
 {% include toc.html %}
 
-# Executor service - Task dependency  
+# Executor service - Task dependency    
 
-  
-  
 In this article, we shall explore executing tasks that directly and/or indirectly depend on other tasks in parallel. The dependency can be expressed as a directed graph as given below.  
-  
+
 
 ## Understanding dependency task execution  
 
 ### Sample Graph
 
-![Task Dependency Graph](images/TaskDependency.jpg)  
-  
+![Task Dependency Graph](/assets/images/java/TaskDependency.jpg)  
 
 ### Terminology
 
-Term  
+| Term                | Details                                                      |
+| ------------------- | ------------------------------------------------------------ |
+| Directed Graph      | A graph having nodes connected using lines with arrow head.  Graph can be traversed only in the direction of the arrow |
+| Indegree of a node  | The number of arrows arriving to the node.                   |
+| Outdegree of a node | The number of arrows leaving from the node.                  |
+| Cyclic graph        | A graph that may have one or more paths that result in a cycle. |
 
-Details  
 
-Directed Graph  
-
-A graph having nodes connected using lines with arrow head.  
-Graph can be traversed only in the direction of the arrow  
-
-Indegree of a node  
-
-The number of arrows arriving to the node.  
-
-Outdegree of a node  
-
-The number of arrows leaving from the node.  
-
-Cyclic graph  
-
-A graph that may have one or more paths that result in a cycle.  
-
-  
 
 ### Task execution flow  
 
@@ -52,11 +35,9 @@ Consider the above graph
 
 *   Tasks are represented as nodes
 *   Dependency between tasks are represented using edges. Consider the examples below.  
-    
 
 *   B1 depends on A1. So, an arrow heads from B1 pointing towards A1.
 *   B2 depends on both A1 and A2. So we have two arrows from B2, one pointing to A1 and other pointing to A2.  
-    
 
 *   A1 and A2 have zero indegree. So, A1 and A2 do not depend on any task and can be executed in parallel.
 *   Lets say task A1 is complete but A2 is still running
@@ -64,7 +45,7 @@ Consider the above graph
 *   B1 depends on only A1. Since A1 is complete B1 can execute.
 *   B2 depends on A1 and A2. Since A2 is still running, B2 will have to wait.
 *   B3 depends on only A2. Since A2 is still running, B2 will have to wait.  
-    
+  
 
 ## Task Dependency data structure  
 
@@ -74,30 +55,16 @@ We need a mechanism to create a directed graph of tasks.
 
 Lets start by examining what a task entails.  
 
-Property  
 
-Details  
 
-Name  
+| Property        | Details                                                      |
+| --------------- | ------------------------------------------------------------ |
+| Name            | Name of the task                                             |
+| Indegree tasks  | Tasks that depend on the current task.  Who depends on this task? |
+| Outdegree tasks | Tasks that the current task depends on.  Who does this task depend on? |
+| Sleep Time      | Time to sleep as part of task execution.  Used to simulate different execution time for various tasks. |
 
-Name of the task  
 
-Indegree tasks  
-
-Tasks that depend on the current task.  
-Who depends on this task?  
-
-Outdegree tasks  
-
-Tasks that the current task depends on.  
-Who does this task depend on?  
-
-Sleep Time  
-
-Time to sleep as part of task execution.  
-Used to simulate different execution time for various tasks.  
-
-  
 Below is the code for the Task class.  
 ```java
 /**  
@@ -218,7 +185,7 @@ public class ExecutorService_TaskDependency
 }
 ```
 A task object is created by providing the name, and array of dependent tasks (if any). We could optionally provide a sleep time to simulate task execution time thus test its impact on other tasks.  
-  
+
 
 ## Parallel task execution modules  
 
@@ -229,7 +196,7 @@ Let us consider several modules that will finally help us add parallelism to dep
 #### Valid tasks  
 
 A valid task is one that is reachable from that task(s) that have to be executed.  
-  
+
 Lets consider the above graph  
 
 *   Lets say we want to execute task C2
@@ -315,50 +282,45 @@ Lets consider the above graph
 
 *   Lets say we want to execute task C2
 *   Now tasks that are reachable from C2 are {C2, B1, B2, A1, A2}. These are valid tasks.
-*   Let us suppose A2 has completed  
-    
-
+*   Let us suppose A2 has completed 
 *   we find indegree of A2 which is {B2, B3}
 *   However, B3 is not a valid task since B3 is not reachable from C2. So, we discard it.
 *   Valid Indegree  =  In degree of A2 -  All valid tasks
 *   Hence, {B2} = {B2, B3} - {C2, B1, B2, A1, A2}
-
 *   We deduce that B2 is the only valid indegree when A2 completes.  
-    
+  
 
 ```java
   
 static class TaskManager   
 {  
-   ...  
-   ...  
-  
+
    /**  
- * Task comparator - Tasks are sorted by ascending order of task names.   
+    * Task comparator - Tasks are sorted by ascending order of task names.   
     */  
    private static Comparator<Task> comparatorTask = (tA, tB) -> tA.name.compareTo(tB.name);     
   
- /**  
-* A map of task to its future result object.  
+   /**  
+    * A map of task to its future result object.  
     */  
    private Map<Task, Future<Void>\> mapExecutingTaskToResult = new TreeMap<> (comparatorTask);  
      
    /**  
-* A set of tasks that have completed execution.  
+    * A set of tasks that have completed execution.  
     */  
    private Set<Task> setCompletedTask = new TreeSet<> (comparatorTask);  
      
   
    /**  
-* Find tasks that depend on completed tasks   
-*    
-* Perform the following  
-*  <ul>  
-*  <li> Go through all currently executing tasks and find tasks that have completed.  
-*  <li> If a task is completed, find tasks that depend on the completed task.   
-* That is find indegree of completed task.  
-*  <li> Add current task indegree to a "set" to eliminate duplicates.  
-*  </ul>    
+    * Find tasks that depend on completed tasks   
+    *    
+    * Perform the following  
+    *    
+    *  	Go through all currently executing tasks and find tasks that have completed.  
+    *  	 If a task is completed, find tasks that depend on the completed task.   
+    * 		 That is find indegree of completed task.  
+    *  	 Add current task indegree to a "set" to eliminate duplicates.  
+    *      
     */  
    private Set<Task> getInDegreeOfCompletedTask ()  
    {  
@@ -372,7 +334,7 @@ static class TaskManager
       for (Iterator<Task> iter = mapExecutingTaskToResult.keySet().iterator(); iter.hasNext();)  
       {  
          Task currTask = iter.next();             
-         Future<Void\> currResult = mapExecutingTaskToResult.get(currTask);  
+         Future<Void> currResult = mapExecutingTaskToResult.get(currTask);  
   
          // Check if the task is done!  
          if (currResult.isDone())  
@@ -390,20 +352,20 @@ static class TaskManager
          }  
       }           
       setCompletedTask.addAll(setCompletionSubset);  
-      Util.threadLog("Status report - ExecutingTask=" \+ mapExecutingTaskToResult.keySet() + " CompletedTask=" \+ setCompletionSubset + " InTaskToCheck=" \+ setTaskToCheck);  
+      Util.threadLog("Status report - ExecutingTask=" + mapExecutingTaskToResult.keySet() 
+                     + " CompletedTask=" + setCompletionSubset 
+                     + " InTaskToCheck=" + setTaskToCheck);  
         
       return setTaskToCheck;  
    }        
 }
 ```
-Note  
 
-*   When a task has completed, it is removed from `mapExecutingTaskToResult`. Since it is no more an executing task.  
-    
-*   All completed tasks are added to `setCompletedTask  
-    `
+Note  
+*   When a task has completed, it is removed from `mapExecutingTaskToResult`. Since it is no more an executing task.    
+*   All completed tasks are added to `setCompletedTask`
 *   The returned set is called `setTaskToCheck`  \- We need to check if these tasks can be executed next or not!  
-    
+  
 
 When this function completes we have a set of valid tasks that were dependent on completed tasks.  
 
@@ -413,7 +375,7 @@ Some of these tasks may depend on other tasks that are yet to execute.
 ### Execute tasks with completed outdegree
 
 An outdegree of a task gives its dependencies. If all the dependencies of a task are part of the "completed task set" then the task is executed.  
-  
+
 ```java
 static class TaskManager   
 {  
@@ -447,7 +409,7 @@ Submission provides a handle to the [Future](https://docs.oracle.com/javase/8/do
 ## Putting the modules together
 
 Here, we execute the leaf nodes and poll until task(s) are complete. When few task(s) are complete, figure out the tasks, that now, has no dependencies and can execute. The exercise is continued until there are no more tasks running.  
-  
+
 ```java
 static class TaskManager   
 {  
@@ -456,9 +418,9 @@ static class TaskManager
    ...  
   
    /**  
-* Execute all the tasks in <b>task</b> array.  
-*    
-*  @param task Tasks to be executed  
+    * Execute all the tasks in <b>task</b> array.  
+    *    
+    *  @param task Tasks to be executed  
     */  
    public void execute (Task... task) throws Exception  
    {  
@@ -550,6 +512,5 @@ State: Task=C2 Path=[C2] ValidTask=[A1, A2, B1, B2, C2] Leaf=[A1, A2]
 [Wed, 07-Dec-2016 13:48:57.731 IST] [Thread=pool-1-thread-2] [C2] Finished task  
 [Wed, 07-Dec-2016 13:48:57.732 IST] [Thread=main] Status report - ExecutingTask=[] CompletedTask=[C2] InTaskToCheck=[]  
 [Wed, 07-Dec-2016 13:48:57.732 IST] [Thread=main] Execution complete  
-  
 
 ```

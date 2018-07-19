@@ -1,30 +1,19 @@
 ---
 layout: post
-title: Brewing Lambda - Table Of Contents  
+title: Brewing Concurrency - Table Of Contents  
 category: java
 typora-root-url: ../../
 ---
 
-{% include toc.html %}
+# Brewing Concurrency - Table Of Contents
 
-# Brewing Concurrency - Table Of Contents  
+* ## Threads
+  * ### [Synchronization - Lock is on the object](/java/2017/06/21/concurrency-sync-is-based-on-object.html)    
+  * ### [Deadlock - Hold and Wait](/java/2017/07/11/deadlock-hold-and-wait.html)
 
-  
-  
+* ## Executor Service
+  * ### [Brewing ExecutorService - Basics](/java/2017/07/21/executive-service-fixed-thread-pool-basic.html)
+  * ### [On the fly submission](/java/2017/08/21/executive-service-on-the-fly-submission.html)
+  * ### [Task Dependency](/java/2017/08/11/executive-service-task-dependency.html)
 
-*   ## Threads
     
-
-*   ### [Synchronization - Lock is on the object](https://blogs.oracle.com/brewing-tests/entry/threads_sychronization_lock_is_on)
-    
-*   ### [Deadlock - Hold and Wait](https://blogs.oracle.com/brewing-tests/entry/threads_sychronization_lock_is_on1)
-    
-
-*   ## Executor Service
-    
-
-*   ### [Brewing ExecutorService - Basics](https://blogs.oracle.com/brewing-tests/entry/executor_service_basics)
-    
-*   ### [On the fly submission](https://blogs.oracle.com/brewing-tests/entry/executor_service_on_the_fly)
-    
-*   ### [Matrix multiplication using fixed thread pool executor service](https://blogs.oracle.com/brewing-tests/entry/matrix_multiplication_using_fixed_thread)
