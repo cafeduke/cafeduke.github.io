@@ -5,28 +5,21 @@ category: java
 typora-root-url: ../../
 ---
 
-{% include toc.html %}
+# Brewing Lambda - Table Of Contents   
 
-# Brewing Lambda - Table Of Contents  
 
-  
-  
+### [Brewing Lambda - Basics](/java/2017/09/11/lambda-basics.html)
 
-*   ## [Brewing Lambda - Basics](https://blogs.oracle.com/brewing-tests/entry/brewing_lambda_basics)
-    
-*   ## [Understanding Method Reference](https://blogs.oracle.com/brewing-tests/entry/lambda_method_reference)
-    
-*   ## [Understanding Functional Interface and Extension Methods](https://blogs.oracle.com/brewing-tests/entry/brewing_lambda_functional_interface_extension)
-    
-*   ## [Variable Scope In Lambda](https://blogs.oracle.com/brewing-tests/entry/brewing_lambda_scope)
-    
-*   ## Standard Functional Interfaces & Using Method Reference
-    
+### [Understanding Method Reference](/java/2017/12/22/lambda-method-reference.html)
 
-*   ### [Comparator](https://blogs.oracle.com/brewing-tests/entry/lambda_standard_functional_interface_comparator)
-    
-*   ### [Consumer](https://blogs.oracle.com/brewing-tests/entry/lambda_standard_functional_interface_consumer)
-    
-*   ### [Predicate](https://blogs.oracle.com/brewing-tests/entry/lambda_standard_functional_interface_predicate)
-    
-*   ### [Function](https://blogs.oracle.com/brewing-tests/entry/lambda_standard_functional_interface_function)
+### [Understanding Functional Interface and Extension Methods](/java/2017/09/21/lambda-extension-method.html)
+
+### [Variable Scope In Lambda](/java/2017/10/21/lambda-scope.html)
+
+### Standard Functional Interfaces
+
+- [Consumer](/java/2017/11/21/lambda-standard-fi-consumer.html)
+- [Supplier](/java/2017/12/11/lambda-standard-fi-supplier.html)
+- [Function](/java/2017/12/21/lambda-standard-fi-function.html)
+
+### [Method Reference](/java/2017/12/22/lambda-method-reference.html)

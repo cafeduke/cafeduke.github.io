@@ -21,7 +21,7 @@ Pseudo Name                     | Purple     | rgb(174,129,255);     | Eg| True,
 }
 
 .highlight .hll { background-color: #333333 }
-.highlight .c { color: rgb(75,150,75); } /* Comment */
+.highlight .c { color: rgb(160,200,160); } /* Comment */
 .highlight .err { color: White } /* Error */
 .highlight .g { color: White } /* Generic */
 .highlight .k { color: rgb(253,151,31); font-weight: bold } /* Keyword */
@@ -30,10 +30,10 @@ Pseudo Name                     | Purple     | rgb(174,129,255);     | Eg| True,
 .highlight .o { color: rgb(230,219,116); } /* Operator */
 .highlight .x { color: White } /* Other */
 .highlight .p { color: White } /* Punctuation */
-.highlight .cm { color: rgb(75,150,75); } /* Comment.Multiline */
-.highlight .cp { color: rgb(75,150,75); } /* Comment.Preproc */
-.highlight .c1 { color: rgb(75,150,75); } /* Comment.Single */
-.highlight .cs { color: rgb(75,150,75); } /* Comment.Special */
+.highlight .cm { color: rgb(160,200,160); } /* Comment.Multiline */
+.highlight .cp { color: rgb(160,200,160); } /* Comment.Preproc */
+.highlight .c1 { color: rgb(160,200,160); } /* Comment.Single */
+.highlight .cs { color: rgb(160,200,160); } /* Comment.Special */
 .highlight .gd { color: White } /* Generic.Deleted */
 .highlight .ge { color: White } /* Generic.Emph */
 .highlight .gr { color: White } /* Generic.Error */

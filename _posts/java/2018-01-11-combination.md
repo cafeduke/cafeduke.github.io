@@ -17,302 +17,13 @@ Lets take a simple example with 5 elements {A, B, C, D, E} and section of 3 elem
 
 ### Sample Combination Tree
 
-Total combinations - nCr = 5C3 = 5C2 = (5\*4)/(2\*1) = 10 combinations  
+![CombinationTable01](/assets/images/java/CombinationTable01.png)
 
-Seq#  
 
-Combination  
-
-Level one tree size  
-
-Level two tree size  
-
-1  
-
-A B C  
-
-Sub-tree with A  
-  
-A is chosen.  
-4 elements are left  
-2 needs to be chosen.  
-  
-4C2 = 6  
-
-Sub-tree with A,B  
-  
-A,B are chosen  
-3 elements are left  
-1 needs to be chosen  
-  
-3C1 = 3  
-
-2  
-
-A B D  
-
-3  
-
-A B E  
-
-4
-
-A C D  
-
-Sub-tree with A,C  
-  
-A,C are chosen  
-  2 elements are left  
-1 needs to be chosen  
-  
-2C1 = 2  
-
-5
-
-A C E  
-
-6
-
-A D E
-
-Sub-tree with A,D  
-  
-A,D are chosen  
-  1 element left  
-1 needs to be chosen  
-  
-1C1 = 1
-
-7  
-
-B C D  
-
-Sub-tree with B  
-  
-B is chosen.  
-3 elements are left  
-2 needs to be chosen  
-  
-3C2 = 3
-
-Sub-tree with B,C  
-  
-B,C are chosen  
-  2 element left  
-1 needs to be chosen  
-  
-2C1 = 1
-
-8  
-
-B C E  
-
-9  
-
-B D E  
-
-Sub-tree with B,D  
-  
-B,D are chosen  
-  1 element left  
-1 needs to be chosen  
-  
-1C1 = 1  
-
-10  
-
-C D E  
-
-Sub-tree with C  
-  
-C is chosen  
-2 elements are left  
-2 needs to be chosen  
-  
-2C2 = 1  
-
-Sub-tree with C,D  
-  
-C,D are chosen  
-  1 element left  
-1 needs to be chosen  
-  
-1C1 = 1  
 
 ## Generic Combination Tree
 
-Seq#  
-
-Chosen Elements  
-
-Size of the sub tree
-
-Latest  
-chosen  
-element  
-
-Unavailable  
-Elements  
-
-1  
-
-A  
-
-n-1Cr-1
-
-A  
-
--  
-
-1.1  
-
-A B  
-
-n-2Cr-2  
-
-B  
-
--  
-
-1.2  
-
-A C  
-
-n-3Cr-2  
-
-C  
-
-B  
-
-1.3
-
-A D  
-
-n-4Cr-2  
-
-D  
-
-B C  
-
-2  
-
-B  
-
-n-2Cr-1  
-
-B  
-
-A  
-
-2.1
-
-B C  
-
-n-3Cr-2  
-
-C  
-
-A  
-
-2.1.1  
-
-B C D  
-
-n-4Cr-3  
-
-D  
-
-A  
-
-2.1.1  
-
-B C E  
-
-n-5Cr-3  
-
-E  
-
-A D  
-
-2.1.2  
-
-B C F  
-
-n-6Cr-3
-
-F  
-
-A D E  
-
-2.2  
-
-B D  
-
-n-4Cr-2  
-
-D  
-
-A C  
-
-2.2.1  
-
-B D E  
-
-n-5Cr-3  
-
-E  
-
-A C  
-
-2.2.2  
-
-B D F  
-
-n-6Cr-3  
-
-F  
-
-A C E  
-
-2.2.3  
-
-B D G  
-
-n-7Cr-3  
-
-G  
-
-A C E F  
-
-3  
-
-C  
-
-n-3Cr-1  
-
-C  
-
-A B  
-
-3.1  
-
-C D  
-
-n-4Cr-2  
-
-D  
-
-A B  
-
-3.2  
-
-C E  
-
-n-5Cr-2  
-
-E  
-
-A B D  
+![CombinationTable02](/assets/images/java/CombinationTable02.png)
 
 ### Terms
 
@@ -322,14 +33,13 @@ Unavailable elements - Elements that are not chosen and are less than the "Large
 
 ### Relations between nodes of tree
 
-The below relations are metioned by considering the current node's sub tree size as nCr.  
+> The below relations are metioned by considering the current node's sub tree size as nCr. 
 
 #### The sub-tree size of immediate sibling is n-1Cr  
 
 *   Immediate sibling will have  to work with one lesser element (Since the element chosen earlier is not available later), hence the value of n reduces by 1.
 *   Siblings will have to choose the same number of elements,  hence the value of r remains.
 *   We can observe this pattern by comparing the following rows  
-    
 
 *   1, 2 and 3  
     
@@ -362,25 +72,25 @@ The below relations are metioned by considering the current node's sub tree size
 
 ### Relation between (n-1)! and n!
 
-![Formula-1](https://blogs.oracle.com/brewing-tests/resource/algorithm/Combination01.jpg)  
+![Combination01](/assets/images/java/Combination01.jpg)
 
 ### Relation between nCr and n-1Cr-1  
 
-![Formula-2](https://blogs.oracle.com/brewing-tests/resource/algorithm/Combination02.jpg)  
-  
+![Combination02](/assets/images/java/Combination02.jpg)
+
 
 ### Relation between nCr and n-1Cr  
 
-![Formula-3](https://blogs.oracle.com/brewing-tests/resource/algorithm/Combination03.jpg)  
-  
+![Combination03](/assets/images/java/Combination01.jpg)
+
 
 ## Application
 
 Repetitive calculation of nCr could be expensive. Given n and r and current value of nCr  
 
-The number of children is found using (n-r+1)  
-The size of the sub tree of first child is obtained from parent using (r/n) * nCr  
-The size of the sub tree of other children are obtained from previous sibling using ((n-r)/n) * nCr
+> The number of children is found using (n-r+1)  
+> The size of the sub tree of first child is obtained from parent using (r/n) * nCr  
+> The size of the sub tree of other children are obtained from previous sibling using ((n-r)/n) * nCr
 
 Lets begin with a class that creates a Combiation object and stores a one-time calculated value of nCr. The value of nCr is also the total tree size.  
 ```java
@@ -402,7 +112,7 @@ public class Combination
    }  
   
    /**  
-*  @return nCr - The value of the combination.  
+    *  @return nCr - The value of the combination.  
     */  
    public int getValue()  
    {  
@@ -419,17 +129,17 @@ public class Combination
 }
 ```
 We need to get the lexicographical sequence for a given sequence number.  
-  
+
 ```java
 public class Combination  
 {  
    ...  
   
    /**  
-* Lexicographical sequence for the sequence number.   
-*    
-*  @param seqNum The sequence number of the combination.  
-*  @return An array of index providing the lexicographical sequence for <b>seqNum</b>.  
+    * Lexicographical sequence for the sequence number.   
+    *    
+    * @param seqNum The sequence number of the combination.  
+    * @return An array of index providing the lexicographical sequence for <b>seqNum</b>.  
     */  
    public int[] getIndicies(int seqNum)  
    {  
@@ -446,13 +156,13 @@ public class Combination
       int index[] = new int[r], currIndex = 0;  
       Arrays.fill(index, -1);  
         
- // r indexes need to filled and stored in an array  
+      // r indexes need to filled and stored in an array  
       while (currIndex < index.length)  
       {  
          // Get the child count for this parent node.   
          int childCount = currN - currR + 1;  
            
- // Iterate over each child //   - Calculate TreeSize using formula    
+         // Iterate over each child //   - Calculate TreeSize using formula    
          //       - First child =  (r/n) * nCr.   
          //       - Other child = ((n-r)/r) * nCr  
          for (int childIndex = 0; childIndex < childCount; ++childIndex)  
@@ -460,7 +170,7 @@ public class Combination
             if (childIndex == 0)  
             {  
                // First child gets its tree size from parent.  
-               currChildTreeSize = (int) (((double) currR / currN) * currChildTreeSize);  
+               currChildTreeSize = (int) (((double) currR / currN) * currChildTreeSize);                
                // The value of r is reduced by 1  
                currR--;  
             }  
@@ -475,7 +185,7 @@ public class Combination
                // Choose the child. Going one level deeper into the tree  
                index[currIndex++] = listIndex.remove(0);  
                  
- // Getting into the sub tree reduces N by 1  
+               // Getting into the sub tree reduces N by 1  
                currN--;  
                break;  
             }  
@@ -484,7 +194,7 @@ public class Combination
             listIndex.remove(0);  
             currN--;  
               
- // Remove the current tree size from the sequence number.   
+            // Remove the current tree size from the sequence number.   
             seqNum -= currChildTreeSize;  
          }  
       }  
@@ -493,7 +203,7 @@ public class Combination
   
 }
 ```
-  
+
 Print all lexicographical sequences.  
 ```java
 public class Combination  
@@ -520,7 +230,5 @@ Output:
 7) [1, 2, 3]  
 8) [1, 2, 4]  
 9) [1, 3, 4]  
-10) [2, 3, 4]  
-  
-
+10) [2, 3, 4]
 ```
