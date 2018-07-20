@@ -25,7 +25,7 @@ public class L02Scope
    }  
   
    /**  
-* Instance and static variables can be accessed/modified within lambda  
+    * Instance and static variables can be accessed/modified within lambda  
     */  
    public void testlambdaScope ()  
    {  
@@ -43,8 +43,7 @@ lambda: InstanceVariable=2 StaticVariable=2
 
 ## Local Variable
 
-*   Lambda expression can access a local variable if it is final.  
-    
+*   Lambda expression can access a local variable if it is final.    
 *   A non final local variable shall be rendered final (effectively final) after being accessed by lambda.
 
 ### Final local Variable  

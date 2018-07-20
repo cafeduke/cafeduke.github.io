@@ -67,28 +67,28 @@ Lets start by examining what a task entails.
 
 Below is the code for the Task class.  
 ```java
-/**  
-* Task to be executed.  
+/**
+ * Task to be executed.  
  */  
 static class Task implements Callable<Void>  
 {  
-   /**  
-* Name of the task  
+   /**
+    * Name of the task  
     */  
    private String name;  
      
-   /**  
-* Tasks that depend on the current task.   
+   /**
+    * Tasks that depend on the current task.   
     */  
    private Set<Task> setInTask = new HashSet<> ();  
      
-   /**  
-* Tasks that the current task depends on.   
+   /**
+    * Tasks that the current task depends on.   
     */  
    private Set<Task> setOutTask = new HashSet<> ();  
      
-   /**  
-* Time to sleep as part of task execution.   
+   /**
+    * Time to sleep as part of task execution.   
     */  
    private int sleepInMilli;  
      
@@ -213,14 +213,14 @@ static class TaskManager
    private static Comparator<Task> comparatorTask = (tA, tB) -> tA.name.compareTo(tB.name);     
   
    /**  
-* A set of all valid reachable tasks.   
-* Essentially all tasks that can be reached from the task(s) that needs to be executed.  
+    * A set of all valid reachable tasks.   
+    * Essentially all tasks that can be reached from the task(s) that needs to be executed.  
     */  
    private Set<Task> setAllValidTask = new TreeSet<> (comparatorTask);  
      
    /**  
-* A set of all leaf tasks - Tasks that have zero outdegree.  
-* A task with zero outdegree is a task that does not depend on any other task.  
+    * A set of all leaf tasks - Tasks that have zero outdegree.  
+    * A task with zero outdegree is a task that does not depend on any other task.  
     */  
    private Set<Task> setLeaf = new TreeSet<> (comparatorTask);  
   
@@ -234,10 +234,10 @@ static class TaskManager
    }  
      
    /**  
-* Find all leaves - Tasks with zero indegree.  
-*    
-*  @param listPath Path to the current task.  
-*  @param task Current task.   
+    * Find all leaves - Tasks with zero indegree.  
+    *    
+    *  @param listPath Path to the current task.  
+    *  @param task Current task.   
     */  
    private void fillLeafLevelTask (List<Task> listPath, Task task)  
    {  
@@ -288,7 +288,7 @@ Lets consider the above graph
 *   Valid Indegree  =  In degree of A2 -  All valid tasks
 *   Hence, {B2} = {B2, B3} - {C2, B1, B2, A1, A2}
 *   We deduce that B2 is the only valid indegree when A2 completes.  
-  
+    
 
 ```java
   
@@ -316,10 +316,10 @@ static class TaskManager
     *    
     * Perform the following  
     *    
-    *  	Go through all currently executing tasks and find tasks that have completed.  
-    *  	 If a task is completed, find tasks that depend on the completed task.   
-    * 		 That is find indegree of completed task.  
-    *  	 Add current task indegree to a "set" to eliminate duplicates.  
+    *  - Go through all currently executing tasks and find tasks that have completed.  
+    *  - If a task is completed, find tasks that depend on the completed task.   
+    *  - That is find indegree of completed task.  
+    *  - Add current task indegree to a "set" to eliminate duplicates.  
     *      
     */  
    private Set<Task> getInDegreeOfCompletedTask ()  
