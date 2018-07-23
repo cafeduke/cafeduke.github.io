@@ -7,10 +7,6 @@ typora-root-url: ../../
 
 {% include toc.html %}
 
-
-
-![test](https://github.com/favicon.ico)
-
 # Introduction
 
 This [article](https://community.oracle.com/docs/DOC-916315) (*published in Oracle Technology Network*)  describes how to build a test framework that  ensures logs from test classes and TestNG listeners that are executing  in parallel reach the appropriate log file and are organized in a format similar to that of Javadocs.
@@ -33,6 +29,8 @@ Please refer to  [article](https://community.oracle.com/docs/DOC-916315) for det
 
 An Html report (similar to one given below)  integreated with customized  [ReportNG](http://reportng.uncommons.org/) can be created using the JReportNG library available in [Maven Central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22jreportng%22)
 
+## Coordinates
+
 ```xml
 <dependency>
     <groupId>com.github.cafeduke</groupId>
@@ -41,7 +39,7 @@ An Html report (similar to one given below)  integreated with customized  [Repor
 </dependency>
 ```
 
-
+## Sample Report
 
 
 [![Report Overview](https://raw.githubusercontent.com/cafeduke/jreportng/master/etc/doc/images/Overview.jpg)](https://github.com/cafeduke/jreportng/wiki)
