@@ -42,7 +42,7 @@ A master is a collection of services (that typically runs on several hosts) that
 
 ## Kube Controller Manager
 
-- Manages node controller, endpoint controller and namespace controller.
+- Manages  several controllers like node controller, endpoint controller and namespace controller.
 - The aim of the controller manager is to ensure **current state** matches the **desired state**
 
 ## Kube Scheduler
@@ -57,10 +57,21 @@ The K8s worker nodes are also called **Minions**.
 ## Kubelet
 
 - The main K8s agent that runs on all the worker nodes. Install a kubelet on a host and register with the K8s cluster. The host is now node of the K8s cluster.
-- Watches for work assigment. Carries out the task. Maintains a reporting channel back to master.
+- Watches for work assignment. Carries out the task. Maintains a reporting channel back to master.
 - If the work can't be run the the report is sent to Master to take action.
 - Exposes port 10255 for inspecting.
 
 ## Container Runtime
 
+- Kubelet needs to work with the container runtime to perform container management
+  - Pulling Images
+  - Start/Stop containers
+- Docker is the typical container runtime. Kubernetes talks to Docker using Docker Remote API.
+- Kubernetes released Container Runtime Interface (CRI). This could abstract any Runtime that implements the CRI to be pluggable.
+
+## Kube Proxy
+
+Ensures that every Pod gets its own unique IP address. Lightweight load balancing node.
+
+# Declarative Model & Desired State
 
