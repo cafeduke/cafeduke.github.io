@@ -3,6 +3,7 @@ title: Kubernetes
 categories: cloud
 layout: post
 mathjax: true
+typora-root-url: ../../
 ---
 
 {% include toc.html %}
@@ -29,6 +30,8 @@ Kubernetes is an orchestrator of containerized apps (*typically microservice app
 
 A master is a collection of services (that typically runs on several hosts) that make up the control panel of the cluster.
 
+![KubeMaster](/assets/images/cloud/KubeMaster.jpg)
+
 ## API Server  $-$ Brain of cluster
 
 - Front end of the K8s control panel
@@ -54,6 +57,8 @@ A master is a collection of services (that typically runs on several hosts) that
 
 The K8s worker nodes are also called **Minions**. 
 
+![KubeNode](/assets/images/cloud/KubeNode.jpg)
+
 ## Kubelet
 
 - The main K8s agent that runs on all the worker nodes. Install a kubelet on a host and register with the K8s cluster. The host is now node of the K8s cluster.
@@ -74,4 +79,70 @@ The K8s worker nodes are also called **Minions**.
 Ensures that every Pod gets its own unique IP address. Lightweight load balancing node.
 
 # Declarative Model & Desired State
+
+- The **desired state** of the app (microservice) is written in a manifest file (YAML).
+  - The desired state has information regarding
+    - The images to be used
+    - Number of replicas
+    - Network to operate on
+    - How to perform the network update
+- The manifest is posted to **API server service** of the K8s Master.
+  - The **kubectl** command is used to post manifest to API server on port 443
+  - The K8s inspects the manifest and decides the controller to send it to. (Eg: Deployments Controller)
+- K8s Master stores the manifest in **ClusterStore** master service 
+- K8s deploys the application on to the cluster.
+  - A **container runtime** (like Docker) pulls images, starts containers, builds network.
+- K8s implements a **reconciliation loop** to make sure cluster does not vary from desired state.
+  - Say, desired state has 10 replicas of a web-front-end Pod and 2 go down
+  - The reconciliation loop picks this and two new pods shall be started on some node.
+
+# Pod
+
+A container cannot directly run in K8s cluster. One or more tightly coupled containers always run inside Pods.
+
+> Pod is the atomic unit of deployment in K8s world acting as a sandbox to run one/more containers within.
+
+Containers within the same pod share environment such as
+
+- IPC namespace
+- Shared memory and storage
+- Network stack $-$ All containers in the Pod will have the same IP $-$ Pod's IP
+
+## Pods are atomic unit
+
+- Minimum unit of scaling in K8s.
+  - Scaling $-$ Add another pod, not another container to an existing pod 
+- Deployment of the  Pod is all (entire Pod) or nothing
+- A Pod is up only if every part of it is up and running.
+- The entire Pod **must**  exist on a single node.
+
+## Lifecycle
+
+- Pod is born, life and they die
+- When a pod dies unexpectedly, a new one is created anywhere in the cluster.
+- The apps must not be hardwired to the pod.
+
+# ReplicaSet
+
+ReplicaSets are higher level K8s objects that 
+
+- Create multiple replicas of a Pod.
+- Initiate the reconciliation loop to ensure the right number of Pods are running.
+- ReplicaSets are typically deployed using much higher level objects called **Deployment**
+
+# Service
+
+Service is a K8s object (like Pod, ReplicaSet and Deployment). Service perform load-balancing of origin-server Pods. 
+
+![Services](/assets/images/cloud/Services.jpg)
+
+Service provides an LB abstraction
+
+- The client Pods need not know about the origin-server Pod IPs
+- The client Pods only interact with the Service Pod.
+- If origin-server Pods scale or if few pods fail and the replacements come-up then they are seamlessly added to the Service and load-balancing keeps working.
+
+## Label $-$ Connecting Pod to Service
+
+![Label](/assets/images/cloud/Label.jpg)
 
