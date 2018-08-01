@@ -11,9 +11,10 @@ Pseudo Name                     | Purple     | rgb(174,129,255);     | Eg| True,
 .highlight pre {
     color:White;
     background-color: rgb(40,40,40);
-    border-left: 4px solid rgb(180,90,0);
+    border-left: 3px solid rgb(120,160,0);
     padding: 5px 10px;
     font: normal 14px 'Consolas';
+    line-height: 20px;
 }
 
 .highlight code {

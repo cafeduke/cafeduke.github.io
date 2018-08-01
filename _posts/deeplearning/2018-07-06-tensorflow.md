@@ -73,6 +73,8 @@ with tf.Session as session:
 - The session object is initialized as the default session.
 - The session created is automatically closed a the end of the block
 
+> `f.eval()` is equivalent to calling `tf.get_default_session().run(f)`
+
 #### Default Session and Global variables initializer
 
 ```python
@@ -146,7 +148,7 @@ with tf.Session() as sess:
     theta_value = theta.eval()
 ```
 
-# Gradient Descent
+# Gradient Descent with Tensorflow
 
 ## Concept
 
@@ -212,7 +214,7 @@ with tf.Session() as sess:
         # Print the cost after every 100 iterations
         if epoch % 100 == 0:
             print("Epoch", epoch, "Cost =", cost_function.eval())
-        sess.run(training_op)
+        training_op.eval()
 
     best_w = w.eval()
 ```
@@ -244,4 +246,93 @@ training_op = optimizer.minimize(cost_function)
 optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=0.9)
 training_op = optimizer.minimize(cost_function)
 ```
+
+# Placeholder Node
+
+Placeholder nodes do not actually perform any computation. 
+
+- The value for a placeholder node is supplied at runtime
+- An exception is thrown if no value is provided for a placeholder node.
+
+
+
+## Creating Placeholder Node
+
+- Use the `tf.placeholder` and provide the output data type and optionally, shape.
+- `None` in the dimension indicates **any size**.
+
+The following code creates a placeholder `A` to store `floats` with any number of rows but 3 columns.
+
+```python
+A = tf.placeholder(tf.float32, shape=(None, 3))
+```
+
+## Dynamic values to Placeholder Node
+
+While evaluating a node that depends on a placeholder node, the placeholder values are fed using **feed_dict**
+
+```python
+A = tf.placeholder(tf.float32, shape=(None, 3))
+B = A + 5
+with tf.Session() as sess:
+    B_val_1 = B.eval(feed_dict={A: [[1, 2, 3]]})
+    B_val_2 = B.eval(feed_dict={A: [[4, 5, 6], [7, 8, 9]]})
+
+print(B_val_1)
+[[ 6.  7.  8.]]
+
+print(B_val_2)
+[[  9.  10.  11.]
+ [ 12.  13.  14.]]
+```
+
+
+
+```python
+n_epochs = 1000
+learning_rate = 0.01
+
+# X is column matrix
+# X.shape == (n, m) y.shape == (1, m) w.shape == (n, 1)
+X = tf.placeholder(tf.float32, shape(n+1, None), name="X")
+y = tf.placeholder(tf.float32, shape(  1, None), name="y")
+w = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0), name="w")
+y_pred = tf.matmul(w.T, X, name="predictions")
+
+# error.shape == (1,m)
+error = y_pred - y
+cost_function = tf.reduce_mean(tf.square(error), name="cost_function")
+
+# Tensorflow optimizer computes the gradients
+optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=0.9)
+training_op = optimizer.minimize(cost_fuction)
+
+# Fix the size of each batch
+batch_size = 100
+batch_count = int(np.ceil(m / batch_size))
+
+init = tf.global_variables_initializer()
+with tf.Session() as sess:
+    sess.run(init)
+    for epoch in range(n_epochs):
+        for batch_index in range(batch_count):
+            X_batch, y_batch = fetch_batch(epoch, batch_index, batch_size)
+            w = w - training_op.eval(feed_dict={X:X_batch, y:y_batch})
+            
+        # Print the cost after every 100 iterations
+        if epoch % 100 == 0:
+            print("Epoch", epoch, "Cost =", cost_function.eval())
+        sess.run(training_op)
+
+    best_w = w.eval()    
+    
+def fetch_batch(epoch, batch_index, batch_size):
+    '''
+	Fetch batch of size `batch_size` starting with `batch_index`
+    '''
+    # load the data from disk
+    return X_batch, y_batch    
+```
+
+
 
