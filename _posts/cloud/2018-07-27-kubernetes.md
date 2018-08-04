@@ -87,7 +87,7 @@ Ensures that every Pod gets its own unique IP address. Lightweight load balancin
     - Network to operate on
     - How to perform the network update
 - The manifest is posted to **API server service** of the K8s Master.
-  - The **kubectl** command is used to post manifest to API server on port 443
+  - The **kubectl** command (Client utility) is used to post manifest to API server on port 443
   - The K8s inspects the manifest and decides the controller to send it to. (Eg: Deployments Controller)
 - K8s Master stores the manifest in **ClusterStore** master service 
 - K8s deploys the application on to the cluster.
@@ -100,27 +100,64 @@ Ensures that every Pod gets its own unique IP address. Lightweight load balancin
 
 A container cannot directly run in K8s cluster. One or more tightly coupled containers always run inside Pods.
 
-> Pod is the atomic unit of deployment in K8s world acting as a sandbox to run one/more containers within.
+> Pod is the atomic unit of deployment in K8s world, providing a shared execution environment to run one/more tightly coupled containers within.
+
+| Technology     | Atomic Unit Of Scheduling |
+| -------------- | ------------------------- |
+| Virtualization | VM                        |
+| Docker         | Container                 |
+| Kubernetes     | Pod                       |
 
 Containers within the same pod share environment such as
 
 - IPC namespace
 - Shared memory and storage
 - Network stack $-$ All containers in the Pod will have the same IP $-$ Pod's IP
+- Range of ports, IPC sockets
 
 ## Pods are atomic unit
 
 - Minimum unit of scaling in K8s.
   - Scaling $-$ Add another pod, not another container to an existing pod 
 - Deployment of the  Pod is all (entire Pod) or nothing
+  - In a multi-container Pod, either all services are accessible or none is.
 - A Pod is up only if every part of it is up and running.
 - The entire Pod **must**  exist on a single node.
 
 ## Lifecycle
 
+![PodLifecycle](/assets/images/cloud/PodLifecycle.jpg)
+
+
+
+A manifest is submitted to the **API server** master service. 
+
+- A Pod is scheduled on a healthy node
+- Pending State $-$ Waiting for all resources to be up and running.
+- Running State $-$ All resources are up and running
+- Succeeded State $-$ Task done
+- Failed State $-$ One or more containers/resources could not start.
+
+Pods are mortals $-$ Failed is discarded, new one is created.
+
 - Pod is born, life and they die
 - When a pod dies unexpectedly, a new one is created anywhere in the cluster.
 - The apps must not be hardwired to the pod.
+
+## Inter and Intra Pod Communication
+
+Every pod has its own IP. 
+
+- Inter Pod communication $-$ Pod IP. 
+- Intra Pod communication $-$ localhost.
+  - Intra Pod communication is by containers within the same Pod 
+  - Containers within the same Pod will have unique port number.
+
+## Container Limits - cgroup - Control group
+
+Containers in a Pod can have its own cgroup limits. Like Linux limits cgroup are the limits on resources like CPU, memory. 
+
+
 
 # ReplicaSet
 
