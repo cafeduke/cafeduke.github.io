@@ -99,6 +99,16 @@ table th, table td {
     padding: 5px 10px;
 }
 
+/* Blockquote */
+
+blockquote {
+    border-left: 3px solid #2196F3;
+    font-family: 'Times New Roman';
+    font-style: italic;
+    padding-left: 15px;
+}
+
+
 
 /**
  * Sidebar
