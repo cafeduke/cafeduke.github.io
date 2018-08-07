@@ -18,12 +18,12 @@ Kubernetes is an orchestrator of containerized apps (*typically microservice app
 
 | Term             | Detail                                                       |
 | ---------------- | ------------------------------------------------------------ |
-| K8s Node         | A Kubernetes Node is any Linux host $-$ VM, bare metal or even private/public cloud instance. |
+| K8s Node         | A Kubernetes Node is any Linux host $$-$$ VM, bare metal or even private/public cloud instance. |
 | K8s Cluster      | Used interchangibly as just Kubernetes, is made up of master and worker nodes. |
 | Microservice App | A microservice app is an application made up several independent parts called **services.**. The services work together to create a meaningful application. |
 | K8s Master Node  | A collection of services that make up the control panel and are incharge of the K8s cluster. Master schedules apps, monitors worker nodes, implements changes and resonds to events. |
 | K8s Worker Node  | The app services run on the K8s worker node or just node.    |
-| Deployment       | A YAML manifest file that answers (A) What the app needs? (B) Scale $-$ How many replica apps? |
+| Deployment       | A YAML manifest file that answers (A) What the app needs? (B) Scale $$-$$ How many replica apps? |
 |                  |                                                              |
 
 # K8s Master Node
@@ -32,16 +32,16 @@ A master is a collection of services (that typically runs on several hosts) that
 
 ![KubeMaster](/assets/images/cloud/KubeMaster.jpg)
 
-## API Server  $-$ Brain of cluster
+## API Server $$-$$ Brain of cluster
 
 - Front end of the K8s control panel
 - Exposes REST endpoint (typically 443) that consumes JSON manifest file. 
 - The JSON manifest file is validated and work defined in the manifest gets deployed.
 
-## Cluster Store $-$ Memory of cluster
+## Cluster Store $$-$$ Memory of cluster
 
 - The configuration and state of the cluster gets persisted in cluster store.
-- The cluster store is an etcd service $-$ Popular distributed, consistent key-value pair store.
+- The cluster store is an etcd service $$-$$ Popular distributed, consistent key-value pair store.
 
 ## Kube Controller Manager
 
@@ -112,13 +112,13 @@ Containers within the same pod share environment such as
 
 - IPC namespace
 - Shared memory and storage
-- Network stack $-$ All containers in the Pod will have the same IP $-$ Pod's IP
+- Network stack $$-$$ All containers in the Pod will have the same IP $$-$$ Pod's IP
 - Range of ports, IPC sockets
 
 ## Pods are atomic unit
 
 - Minimum unit of scaling in K8s.
-  - Scaling $-$ Add another pod, not another container to an existing pod 
+  - Scaling $$-$$ Add another pod, not another container to an existing pod 
 - Deployment of the  Pod is all (entire Pod) or nothing
   - In a multi-container Pod, either all services are accessible or none is.
 - A Pod is up only if every part of it is up and running.
@@ -133,12 +133,12 @@ Containers within the same pod share environment such as
 A manifest is submitted to the **API server** master service. 
 
 - A Pod is scheduled on a healthy node
-- Pending State $-$ Waiting for all resources to be up and running.
-- Running State $-$ All resources are up and running
-- Succeeded State $-$ Task done
-- Failed State $-$ One or more containers/resources could not start.
+- Pending State $$-$$ Waiting for all resources to be up and running.
+- Running State $$-$$ All resources are up and running
+- Succeeded State $$-$$ Task done
+- Failed State $$-$$ One or more containers/resources could not start.
 
-Pods are mortals $-$ Failed is discarded, new one is created.
+Pods are mortals $$-$$ Failed is discarded, new one is created.
 
 - Pod is born, life and they die
 - When a pod dies unexpectedly, a new one is created anywhere in the cluster.
@@ -148,8 +148,8 @@ Pods are mortals $-$ Failed is discarded, new one is created.
 
 Every pod has its own IP. 
 
-- Inter Pod communication $-$ Pod IP. 
-- Intra Pod communication $-$ localhost.
+- Inter Pod communication $$-$$ Pod IP. 
+- Intra Pod communication $$-$$ localhost.
   - Intra Pod communication is by containers within the same Pod 
   - Containers within the same Pod will have unique port number.
 
@@ -179,7 +179,7 @@ Service provides an LB abstraction
 - The client Pods only interact with the Service Pod.
 - If origin-server Pods scale or if few pods fail and the replacements come-up then they are seamlessly added to the Service and load-balancing keeps working.
 
-## Label $-$ Connecting Pod to Service
+## Label $$-$$ Connecting Pod to Service
 
 ![Label](/assets/images/cloud/Label.jpg)
 
