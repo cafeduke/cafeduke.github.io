@@ -64,7 +64,7 @@ session.close()
 #### Session using **with** block
 
 ```python
-with tf.Session as session:
+with tf.Session() as session:
     x.initializer.run()
     y.initializer.run()
     result = f.eval()
@@ -221,7 +221,7 @@ with tf.Session() as sess:
 
 ## Autodiff
 
-Automatically compute the gradients given the **ops** `cost_function` and `weights`
+Automatically compute the gradients given the nodes `cost_function` and `weights`
 
 ```python
 gradients = tf.gradients(cost_function, [w])[0]
@@ -334,5 +334,150 @@ def fetch_batch(epoch, batch_index, batch_size):
     return X_batch, y_batch    
 ```
 
+# Scopes - Namespace for nodes
 
+Neural networks can result in a graph with several thousand ndoes. It is better organized/visualized by grouping the nodes into namespaces called **scopes** $-$ `tf.name_scope(<scope name>)`
+
+```python
+with tf.name_scope('error_scope') as scope:
+    error = y_pred - y
+    mse = tf.reduce_mean(tf.square(error), name="mse")
+```
+
+Note that the nodes in the scope have the scope name attached
+
+```bash
+>>> print(mse.op.name)
+error_scope/mse
+```
+
+# Sharing Variables
+
+## Variable in a Scope
+
+Shared variables are similar to key=value parameters of a function $-$ It's optional. Takes the default value if you don't pass. The only disadvantage with `key=value` parameters is that you could have function call with a lot of parameters passed which may look cluttered at times. Enter shared variables with scope.
+
+```python
+with tf.variable_scope("relu", reuse=True):
+    threshold = tf.get_variable("threshold", shape=(), initializer=tf.constant_initializer(0.0))
+```
+
+- Lookup for a node with fully qualified name `relu/threshold` (scope + name)
+- Since `reuse` is `True`, an existing variable is used otherwise a new one is created with given `shape` and `initalizer`
+- If `reuse` is `False` (by default) then an error is thrown if the variable already exists.
+
+## Example
+
+```python
+# Function using shared variable
+def relu(X):
+    with tf.variable_scope("relu", reuse=True):
+        # Reuse shared variable
+        threshold = tf.get_variable("threshold", shape=(), initializer=tf.constant_initializer(0.0))  
+        [...]
+        return tf.maximum(z, threshold, name="max")
+
+# Main
+X = tf.placeholder(tf.float32, shape=(None, n_features), name="X")
+
+# Create shared variable, throw error if it already exists -- Hard create
+with tf.variable_scope("relu"):
+    threshold = tf.get_variable("threshold", shape=(), initializer=tf.constant_initializer(0.01))
+
+# The relu invocations shall use the threshold 
+from functional import seq
+l = seq.range(5).map(lambda i: relu(X)).to_list()
+output = tf.add_n(l, name="output")
+```
+
+
+
+
+
+# Saving and Restoring Model
+
+Save model at regular save checkpoints so that in case of crash you can continue from where latest checkpoint.
+
+## Saving a model
+
+- Create a saver object using `tf.train.Saver()`
+- Call the `save` method to save the model passing `session` and checkpoint file.
+
+```python
+saver = tf.train.Saver()
+
+with tf.Session as session:
+    ...
+	save_path = saver.save(session, "/tmp/my_model.ckpt")   
+    ...   
+    
+```
+
+### Saving specific variables only
+
+```python
+saver = tf.train.Saver({'weight':w})
+```
+
+## Restoring model
+
+- Create a saver object using `tf.train.Saver()`
+- Call the `restore` method with the `session` and checkpoint file. 
+
+```python
+saver = tf.train.Saver()
+
+with tf.Session() as session:
+    ...
+    saver.restore(session, "/tmp/my_model.ckpt")
+    ...
+```
+
+# Visualize Graph / Training Curves using TensorBoard
+
+To visualize graphs we need to create nodes that generate data specific to TensorBoard. Generate the data and write them to log dirs. These log dirs can be read and visualed by TensorBoard.
+
+## Construction phase
+
+```python
+from datetime import datetime
+
+timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+root_logdir = "tf_logs"
+
+# The logdir is of the format: tf_logs/run-<timestamp>
+logdir = "{}/run-{}/".format(root_logdir, timestamp)
+
+# mse_summary is the summary node for mse
+mse_summary = tf.summary.scalar('MSE', mse)
+
+# Writer object
+file_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())
+```
+
+- Create log node $-$ A dir name that has timestamp in it.
+- Create summy nodes $-$ Tensor flow compatible string node for corresponding nodes to be saved $-$ `tf.summary.scalar`
+- Create `tf.summary.FileWriter` passing the log node and graph.
+
+## Execution phase
+
+```python
+for batch_index in range(batch_count):
+    if batch_index % 10 == 0:
+        # Evaluate summary node to get the TesorBoard summary string
+        summary_str = mse_summary.eval(feed_dict={mse: mse})
+        
+        # Step (acts as the x-axis) at which data is obtained
+        step = epoch * n_batches + batch_index
+        
+        # Write the TensorBoard summary string and step to FileWriter
+        file_writer.add_summary(summary_str, step)
+```
+
+## Visualize log dirs
+
+```bash
+$ tensorboard --logdir tf_logs/
+Starting TensorBoard  on port 6006
+```
 
