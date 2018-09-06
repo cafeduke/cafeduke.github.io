@@ -34,7 +34,7 @@ How **big** are we talking about $$-$$ Millions of features `n` with billions of
 
 ## Computation Graph
 
-### Construction Phase $-$ Create Computation Graph
+### Construction Phase $$-$$ Create Computation Graph
 
 The following code *only* creates a **default computation graph** , but does NOT execute.
 
@@ -46,7 +46,7 @@ y = tf.Variable(4, name='y')
 f = x*x*y + y + 2
 ```
 
-### Execution Phase - Run Computation Graph
+### Execution Phase $$-$$ Run Computation Graph
 
 To evaluate the graph it must be placed in **tensor flow session**.  The tensor flow session holds the variable values.
 
@@ -152,10 +152,10 @@ with tf.Session() as sess:
 
 ## Concept
 
-- We are using $w$ instead of $\theta$ as this shall be the norm in deep learning.
-- $X$ is the input column matrix of shape `n x m` where `n` is the number of features and `m` is the dataset size.
-- $W$ are the weights (parameters) that need to be adjusted after each iteration to increase the accuracy of the prediction.
-- $J$ is the cost function.
+- We are using $$w$$ instead of $\theta$ as this shall be the norm in deep learning.
+- $$X$$ is the input column matrix of shape `n x m` where `n` is the number of features and `m` is the dataset size.
+- $$W$$ are the weights (parameters) that need to be adjusted after each iteration to increase the accuracy of the prediction.
+- $$J$$ is the cost function.
 
 Repeat the following for each `j` from `1 to n`. 
 
