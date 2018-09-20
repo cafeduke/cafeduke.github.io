@@ -1,5 +1,5 @@
 ---
-title: Classic Convolutional Neural Networks
+title: Standard Convolutional Neural Networks
 categories: dl-cnn
 layout: post
 mathjax: true
@@ -10,7 +10,7 @@ typora-root-url: ../../../
 
 # Introduction
 
-This article details several types of classic convolutional  neural networks that have been successfully used. 
+This article details several types of standard convolutional  neural networks that have been successfully used. 
 
 - LeNet-5 
 - AlexNet
@@ -77,7 +77,7 @@ By using a stride of 1 and padding of $$\frac{f-1}{2}$$, the output layer will h
 - The depth or number of channels in the output layer depends on the number of filters used.
 - $$f$$ is typically odd, so $$\frac{f-1}{2}$$ will not be a whole number.
 
-# Classic CNN
+# Standard CNN
 
 ## LeNet - 5
 

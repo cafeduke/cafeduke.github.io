@@ -78,7 +78,7 @@ A network that identifies landmarks can be used for applications such as
 
 In the previous section we have looked at classification and location of a single object. However, an image could have multiple objects. One of the ways of detecting multiple objects is using a sliding windows detection.
 
-## Traditional sliding windows 
+## Sliding windows detection
 
 The sliding window method involves 
 
@@ -88,74 +88,17 @@ The sliding window method involves
    1. Begin cropping from left hand top corner and slide to right and then down to cover the entire image
    2. Feed each crop to the ConvNet to detect objects.
 4. Repeat step 3 with the next crop size
-The huge **disadvantage** of sliding window is the **computational cost** of evaluating a large number of cropped images 
-
-## Transform convolution-NN mix to pure CNN layer
-
-Lets first look at converting a convolution to NN layer connection into a pure convolution layer.
-
-### Convolution - NN layer
-
-Consider an input  convolution layer (3 x 3 x 20) with 180 cells, connected to a single output NN layer with 300 neurons. 
-
-| Input Layer Volume | Output Layer Neuron Count |
-| ------------------ | ------------------------- |
-| 3 x 3 x 20         | 300                       |
-
-- Every cell of the input layer is connected to every neuron of the output layer
-- This results in 180 x 300 that is 54,000 connections.
-
-### Pure CNN layer
-
-| Input Layer Volume | Filter Volume | Filter Count | Output Layer Volume |
-| ------------------ | ------------- | ------------ | ------------------- |
-| 3 x 3 x 20         | 3 x 3 x 20    | 300          | 1 x 300             |
-
-- Every cell in the input layer volume is connected to every cell in the output layer volume
-- Each filter volume gives the weights for each set of connections.
-
-## Convolutional sliding windows 
-
-Now that we know how to create a pure convolutional implementation. Lets see how to optimize the traditional sliding windows using pure convolution.
-
-### Train Pure CNN - Detect single object
-
-First, lets train a pure CNN that can classify and locate a single object.
-
-![SlidingConvolution01](/assets/images/dl/SlidingConvolution01.png)
-
-In this example
-
-- The input image is of 14 x 14 resolution with 3 RGB channels. 
-- The final output is (1 x 1 x 4) identifying one of 4 possible classes (Car, Pedestrian, Bike, None)
-- Once the above CNN network is trained the filters will have the weights
-
-### Use pure CNN to detect objects in a large image
 
 
 
-![SlidingConvolution02](/assets/images/dl/SlidingConvolution02.png)
 
 
 
-Had we used traditional sliding windows method
 
-- We would have to crop 14 x 14 sections out of the 28 x 28 image (shown in orange) and then feed it to the Pure CNN. 
-- Slide by 2 (stride=2), crop and feed to pure CNN again. 
-- We would need 64 crops to cover the entire image 
 
-Instead we now, feed the entire image to the above **trained pure CNN** network with the **same filters and weights** 
 
-- By using the same filters we get a final output volume of dimension (8 x 8 x 4)
-- The first cell corresponds to the first (14 x 14) crop, the second corresponds to the second (14 x 14) crop and the third crop is highlighted in orange.
-- In essence, the output of all 64 (14 x 14) crops, obtained in one shot. 
-- We can now go through each cell of the output layer, to see which class each cell has identified. 
 
-## Limitations
 
-- Requires training multiple networks for various crop sizes and running them which is still elaborate task
-- The bounding box is not accurate
-- @Validate: Will not work for two or more objects that are close to each other and thus (of same or different class) appearing in the same crop.
 
 
 
