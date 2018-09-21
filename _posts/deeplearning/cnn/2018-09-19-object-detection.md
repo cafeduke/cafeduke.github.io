@@ -6,6 +6,9 @@ mathjax: true
 typora-root-url: ../../../
 ---
 
+DRAFT
+____
+
 {% include toc.html %}
 
 # Introduction
@@ -159,6 +162,8 @@ Instead we now, feed the entire image to the above **trained pure CNN** network 
 
 # YOLO (You Look Only Once)
 
+## Overview
+
 Several of the limitations of convolution sliding windows is overcome by the YOLO algorithm. The YOLO algorithm does not require running the image through multiple networks, each trained for different crop size. The YOLO algorithm detect objects, just like a human $$-$$ looks only once.  The YOLO is also more accurate in locating the bounding box. 
 
 ![Yolo_overview](/assets/images/dl/Yolo_overview.png)
@@ -180,3 +185,4 @@ The overview of the algorithm is as follows:
     - $$b_h$$ is the height of the object relative to the height of the grid, which is 1. Range: $$b_h$$ can be greater than 1.
   - If mid-point of the grid has an object, set corresponding class among $$c1, c2, c3$$ to 1 
 
+## Evaluate bounding box - IoU algorithm
