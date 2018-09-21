@@ -180,7 +180,7 @@ The overview of the algorithm is as follows:
   - The total number of values output per image is  $$ 3 \times 3 \times 8 = 72$$.
 - The network is trained to output 72 values ($$y_{pred}$$) and is compared with the 72 expected values of $$y$$ 
 - The labeled data or $$y$$, per grid is determined as follows 
-  - The probability that a class exists $$p_c$$, is here a boolean, set to 1 (object present) or 0 (object absent) as follows
+  - The probability that a class exists $$p_c$$. Since this is  labelled probability, it is either 0 or 1.
     - If mid-point (yellow dot) of an object (Class, Bike or pedestrian) is part of the grid then $$p_c$$ is set to $$1$$
     - Even if parts of object(s) are in the grid, as long as mid-point is not inside the grid, $$p_c$$ shall be $$0$$ and rest of the values are don't cares.
   - Assuming the top left corner of the grid to be (0,0) and bottom right (1,1)
@@ -190,4 +190,59 @@ The overview of the algorithm is as follows:
     - $$b_h$$ is the height of the object relative to the height of the grid, which is 1. Range: $$b_h$$ can be greater than 1.
   - If mid-point of the grid has an object, set corresponding class among $$c1, c2, c3$$ to 1 
 
-## Evaluate bounding box - IoU algorithm
+## Evaluate bounding box prediction - IoU algorithm
+
+The labeled $$y$$ has the ideal bounding box ($$b_x, b_y, b_w, b_h$$) values. How do we evaluate this with the predicted values? We could just use the vector distance. However, a better approach is to use the **Intersection over the union** (IoU) algorithm.
+
+
+$$
+IoU = \frac{Area \ of \ the \ intersection}{Area \ of \ the \ union}
+$$
+
+
+
+
+![Yolo_IoU](/assets/images/dl/Yolo_IoU.png)
+
+
+
+ In the above diagram
+
+- The red square is the labeled (expected) bounding box.
+- The purple square has is the predicted bounding box.
+
+Greater the value of overlap, lesser the area missed and lesser the unnecessary area $$-$$ closer will be the value of IoU to 1 (Ideally, IoU = 1). Typically an IoU threshold value of at least 0.5 is used to accept the prediction. 
+
+## Pick a bounding box - Non max suppression
+
+As per YOLO algorithm, the entire test image is divided into several grids (A typical value is 19). Each grid performs **Single Object Detection**. Each gird produces a vector with 8 values. In essence, when a single test image completes YOLO, we have a $$y\_pred$$ with (19 x 19 x 8) output volume. In this section we look at how we might pick few grids over the other. 
+
+|          Grids and object mid-point           |                Non max suppression                |
+| :-------------------------------------------: | :-----------------------------------------------: |
+| ![Yolo_Grid](/assets/images/dl/Yolo_Grid.png) | ![Yolo_NonMax](/assets/images/dl/Yolo_NonMax.png) |
+
+Note: In this section we are considering the **test image** and hence we do not have any benchmark to compare! 
+
+- Each of the 361 (19 x 19) grids predicts = $$p_c$$ $$-$$ The probability of having detected an object. 
+- As shown in the diagram above, an object can spawn several grids. 
+- The center of the object lies in only one grid. In the labelled data, only this grid would have $$p_c = 1$$. 
+- However, this is image prediction. Instead of immediately evaluating the output of the network, we preform some filtering.
+- It is possible for several grids to identify objects with different probabilities and bounding boxes. 
+- Keeping the best of predictions and filtering out the rest is the **non-max suppression**.
+
+
+
+Working of non-max suppression
+
+- Discard all grids with a probability less than threshold $$ p_c <= 0.6 $$  $$-$$ Too less a probability for an object to exist.
+- Add grids which have exceeded the threshold to a set
+- While the set is not empty
+  - Pick the gird having the highest probability as **chosen grid**
+  - Mark this gird and its **chosen bounding box** as valid prediction (Light blue)
+  - Discard (and remove from the set) all other grids which has IoU >= 0.5  with chosen bounding box. 
+    - If a grid has IoU >= 0.5 with chosen grid then it means there is a huge overlap. So they are detecting the same object.
+    - However, probability of the grid is less compared to chosen grid. So, the chosen grid should be having a better bounding box. 
+    - If a grid has IoU < 0.5 with chosen grid then it means there is less overlap. So they might be detecting different objects.
+  - After this step, all the grids that were detecting the same object as **chosen grid** are discarded/suppressed (Dark blue)
+  - The next chosen grid will be of the next object in the image.
+- Once we are here, each chosen grid should be detecting an object of its own with the best possible bounding box.
