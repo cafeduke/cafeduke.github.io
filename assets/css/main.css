@@ -18,7 +18,7 @@ html, body {
 }
 
 body {
-    font: normal 16px/1.5 'Roboto', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font: normal 16px/1.6 'Roboto', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
     background: WhiteSmoke;
     color: Black;
 }
@@ -76,8 +76,6 @@ table {
     text-align: left;
     color: rgb(0,40,0);
     border-collapse: collapse;
-
-    font-family: 'Consolas', 'monospace';
 }
 
 table th {
@@ -103,8 +101,9 @@ table th, table td {
 
 blockquote {
     border-left: 3px solid #2196F3;
-    font-family: 'Times New Roman';
+    font-family: 'Vollkorn';
     font-style: italic;
+    font-size: 18px;
     padding-left: 15px;
 }
 
