@@ -154,8 +154,29 @@ Instead we now, feed the entire image to the above **trained pure CNN** network 
 ## Limitations
 
 - Requires training multiple networks for various crop sizes and running them which is still elaborate task
-- The bounding box is not accurate
+- The bounding box may not be accurate
 - @Validate: Will not work for two or more objects that are close to each other and thus (of same or different class) appearing in the same crop.
 
+# YOLO (You Look Only Once)
 
+Several of the limitations of convolution sliding windows is overcome by the YOLO algorithm. The YOLO algorithm does not require running the image through multiple networks, each trained for different crop size. The YOLO algorithm detect objects, just like a human $$-$$ looks only once.  The YOLO is also more accurate in locating the bounding box. 
+
+![Yolo_overview](/assets/images/dl/Yolo_overview.png)
+
+The overview of the algorithm is as follows:
+- Divide the image into grids (9 grids, in the above case)
+- Each grid shall take part in image classification and localization.
+  - Each grid shall output the following vectors $$\left[ p_c, b_x, b_y, b_h, b_w, c_1, c_2, c_3 \right]$$ to indicate the presence of the object, mid-point, height and width of object and the class of the object respectively.
+  - The total number of values output per image is  $$ 3 \times 3 \times 8 = 72$$.
+- The network is trained to output 72 values ($$y_{pred}$$) and is compared with the 72 expected values of $$y$$ 
+- The labeled data or $$y$$, per grid is determined as follows 
+  - The probability that a class exists $$p_c$$, is here a boolean, set to 1 (object present) or 0 (object absent) as follows
+    - If mid-point (yellow dot) of an object (Class, Bike or pedestrian) is part of the grid then $$p_c$$ is set to $$1$$
+    - Even if parts of object(s) are in the grid, as long as mid-point is not inside the grid, $$p_c$$ shall be $$0$$ and rest of the values are don't cares.
+  - Assuming the top left corner of the grid to be (0,0) and bottom right (1,1)
+    - $$b_x$$ is the distance of the mid-point along the x-axis. Range: $$ 0 < b_x < 1 $$
+    - $$b_y$$ is the distance of the mid-point along the y-axis. Range: $$ 0 < b_y < 1 $$
+    - $$b_w$$ is the width of the object relative to the width of the grid, which is 1. Range: $$b_w$$ can be greater than 1.
+    - $$b_h$$ is the height of the object relative to the height of the grid, which is 1. Range: $$b_h$$ can be greater than 1.
+  - If mid-point of the grid has an object, set corresponding class among $$c1, c2, c3$$ to 1 
 
