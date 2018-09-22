@@ -246,3 +246,20 @@ Working of non-max suppression
   - After this step, all the grids that were detecting the same object as **chosen grid** are discarded/suppressed (Dark blue)
   - The next chosen grid will be of the next object in the image.
 - Once we are here, each chosen grid should be detecting an object of its own with the best possible bounding box.
+
+## Overlapping objects - Multiple bounding box per grid cell
+
+It is possible for the mid-point of multiple objects to fall under a single grid cell. So, a single gird cell will have to classify multiple objects and also locate (draw bounding boxes) multiple objects.
+
+![Yolo_Overlap](/assets/images/dl/Yolo_Overlap.png)
+
+
+
+In the above image, divided into 9 grids, the mid-point of the car and the pedestrian fall in the same grid cell. To accommodate such cases, we require a $$y$$ that can hold two or more bounding boxes. 
+
+- A $$y$$ that holds 2 bounding box is as follows $$ \left[ p1_c, b1_x, b1_y, b1_w, b1_h, c1_1, c1_2, c1_3, p2_c, b2_x, b2_y, b2_w, b2_h, c2_1, c2_2, c2_3 \right] $$ 
+- The first 8 values give the probability, location and class of object-1 and next 8 values indicate the same of object-2
+
+## Limitations
+
+The number of overlapping objects that can be detected by the algorithm is limited by the capacity of y (8 per object) chosen during training. This is not a huge limitation as it depends on the size of the objects to be detected and the size of each grid cell. Typically the objects are much larger compared to the gird cells. So,git  it is less probable for the mid-point of all these objects to fall under a single grid cell.  
