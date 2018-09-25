@@ -51,6 +51,12 @@ h2 {  font-size: 26px; color:rgb(0, 64,128); }
 h3 {  font-size: 20px; color:rgb(0, 50,100); font-weight: bold;  }
 h4 {  font-size: 18px; color:rgb(0, 40, 80);  font-weight: bold; }
 
+em, i {
+    font-family: 'Vollkorn';
+    font-style: italic;
+    font-size: 18px;
+}
+
 /* Image - Not centered by Typora */
 img {
     margin-left: auto;
