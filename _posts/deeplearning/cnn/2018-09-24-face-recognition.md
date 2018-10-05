@@ -6,27 +6,23 @@ mathjax: true
 typora-root-url: ../../../
 ---
 
-DRAFT
-
-____
-
 {% include toc.html %}
 
 # Introduction
 
-An application of face recognition is authenticating a person using his face rather than ID card. Another application is recommending to tag friends in an image posted on social media (like facebook) $-$ This requires comparing two images and outputting if it belongs to the same person or not.
+An application of face recognition is authenticating a person using his face rather than ID card. Another application is recommending to tag friends in an image posted on social media (like facebook) $$-$$ This requires comparing two images and outputting if it belongs to the same person or not.
 
 Consider the problem of identifying the person from an image. 
 
 - Lets say we are 5 friends. 
-- We could train a network model which outputs a softmax function (with 6 neurons) identifying the person. We could use thousands of images of each friend to train this network. 
+- We could train a network model which outputs a softmax function (with 5 neurons) identifying the person. We could use thousands of images of each friend to train this network. 
 - What happens when a another friend joins the group? We may have to first get 1000s of images of the new member and retrain the entire model for 6 friends. 
 
-The above method is very tedious requiring frequent retraining and also impractical to get 1000s of images every-time there is a new member.  What we need is a **one-shot learning**.  By just having one image of each friend in the database, we should be able to identify a given image.
+The above method is very tedious requiring frequent retraining and also impractical to get 1000s of images every-time there is a new member.  What we need is a **one-shot learning**.  By just having one image of each friend in the database, we should be able to identify if a given image is one of our friend or not.
 
 The solution is to train a model to output a **similarity function** $$-$$ How similar are two images.
 
-- A function d(img1, img2) will output the degree of difference between the images.
+- A function d(img1, img2) will output a number that indicates the degree of difference between the images.
 - A value less than a threshold indicates the images are similar. 
 - A value greater than threshold indicates the images are different.
 
@@ -45,11 +41,11 @@ Consider a CNN that outputs a vector of values (128) per input image.
 ![FaceSiamese](/assets/images/dl/FaceSiamese.png)
 
 $$
-\begin{gathered}
-f(x1) = Output \ vector \ with \ encoding \ of \ image \ x1 \\
-f(x2) = Output \ vector \ with \ encoding \ of \ image \ x2 \\
-Distance \ between \ vectors \ d(x1, x2) \ = \ ( f(x1) - f(x2) )^2
-\end{gathered}
+\begin{aligned}
+f(x1) &= Output \ vector \ with \ encoding \ of \ image \ x1 \\
+f(x2) &= Output \ vector \ with \ encoding \ of \ image \ x2 \\
+Distance \ between \ vectors \ &= \ \ d(x1, x2) \ = \ ( f(x1) - f(x2) )^2
+\end{aligned}
 $$
 
 > Distance between two vectors could be the square root of the sum of squares of elements (SOP) of the vector.
@@ -69,11 +65,12 @@ The Siamese network defined in the previous section will work well if the the ne
 - Let $$\alpha​$$ be the margin (distance separating two entities) between $$ d(A,P) ​$$ and $$ d(A,N) ​$$. Greater the  $$\alpha​$$ , greater distance is enforced between same and different images.
 
 Now, a loss function (cost or error function) is a function that needs to be minimized ( $$ideally, 0$$) in order to improve the working of the algorithm.
+
 $$
-\begin{gathered}
-\Delta = d(A,P) - d(A,N) \\
-Triplet \ Loss \ Function = J(A,P,N) = max(0,\ d(A,P) - d(A,N) + \alpha)
-\end{gathered}
+\begin{aligned}
+\Delta &= d(A,P) - d(A,N) \\
+Triplet \ Loss \ Function &= J(A,P,N) = max(0,\ d(A,P) - d(A,N) + \alpha)
+\end{aligned}
 $$
 
 ## Understanding triplet loss function
@@ -82,7 +79,7 @@ $$
 -	If $$\alpha = 0.9$$  and $$\Delta$$ is $$-0.8$$, the triplet loss function will evaluate $$max(0, -0.8+0.9) = max (0, 0.1) = 0.1$$ 
 -	 If the positive and negative distances are not far enough from each other, then the triplet loss function will be greater than zero.
 
-> Triplet loss function penalizes if  $$d(A,P)$$ and $$d(A,N)$$ are closer than $$\alpha$$
+> Triplet loss function penalizes if  $$d(A,P)$$ and $$d(A,N)$$ are closer than $$\alpha$$. 
 > Training using triplet loss function will require choosing images from training dataset for A, P and N to minimize $$J(A,P,N)$$
 
 ## Choosing images for A, P and N
@@ -101,15 +98,19 @@ A model that uses CNN with binary classification can used as an alternative to t
 
 The CNN network takes two images as input and outputs a binary (1/0) output to indicate same or different images
 
-- The overall network has two convolutions $$-$$ one per image. Let $$f(x_i)$$ and $$f(x_j)$$ be the corresponding output encoding vectors.
-- $$f(x_i)$$ and $$f(x_j)$$ are concatenated to form $$x$$ which acts as input to a logistic regression. (Just like a logistic regression problem taking a bunch of features $$x$$ and outputting (1 | 0) indicating if the tumor is cancerous or not.)
+- The overall network has two convolutions $$-$$ one per image. 
+- Let $$f(x_i)$$ and $$f(x_j)$$ be the corresponding output encoding vectors.
+- $$ f(x_i)$$ and $$f(x_j) $$ are concatenated to form $$x$$ which acts as input to a logistic regression. (Just like a logistic regression problem taking a bunch of features $$x$$ and outputting (1/0) indicating if the tumor is cancerous or not.)
 
 # Face recognition during test time
 
-Once a CNN for face recognition is well trained (using image pairs that are quite challenging even for human) it can be used compare any two faces (Faces that were never seen earlier by the network). 
+Once a CNN for face recognition is well trained (using image pairs that are quite challenging to solve, even for human) it can be used to compare any two faces (Faces that were never seen earlier by the network). 
 
 In a company setting
 
 - A single image of all employees is inputted and only the *output feature encodings* are saved in database.
 - When an employee approaches for authentication, his image from the camera passes though the CNN to obtain feature encoding. 
+- We now have feature encoding of the input image to be compared with feature encodings of all employees. This is done in one of the following ways
+  - Calculate distance between encodings.
+  - Feed each pair of encodings to a Logistic Regression that gives a binary output (same or not)
 

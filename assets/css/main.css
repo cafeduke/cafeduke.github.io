@@ -68,9 +68,9 @@ img {
 
 /* Code */
 code {
-    font-family: 'Consolas';
+    font-family: 'Roboto Mono', 'Consolas';
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
 
     color:rgb(0,128,0);
 }

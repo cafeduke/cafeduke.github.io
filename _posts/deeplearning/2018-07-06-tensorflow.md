@@ -34,7 +34,7 @@ How **big** are we talking about $$-$$ Millions of features `n` with billions of
 
 ## Computation Graph
 
-### Construction Phase $$-$$ Create Computation Graph
+### Construction Phase $-$ Create Computation Graph
 
 The following code *only* creates a **default computation graph** , but does NOT execute.
 
@@ -46,7 +46,7 @@ y = tf.Variable(4, name='y')
 f = x*x*y + y + 2
 ```
 
-### Execution Phase $$-$$ Run Computation Graph
+### Execution Phase $-$ Run Computation Graph
 
 To evaluate the graph it must be placed in **tensor flow session**.  The tensor flow session holds the variable values.
 
@@ -79,7 +79,7 @@ with tf.Session() as session:
 
 ```python
 # Prepare an init node
-init = tf.global_vairables_initializer()
+init = tf.global_variables_initializer()
 
 # Note that a with block is required. No need to close session
 with tf.Session as session:
@@ -87,14 +87,14 @@ with tf.Session as session:
     result = f.eval()
 ```
 
-#### Interractive Session and Global variables initializer
+#### Interactive Session and Global variables initializer
 
 ```python
 # Prepare an init node
-init = tf.global_vairables_initializer()
+init = tf.global_ivariables_initializer()
 
-# Interractive session automatically set itself as default session -- No with block
-session = tf.InterractiveSession()
+# Interactive session automatically set itself as default session -- No with block
+session = tf.InteractiveSession()
 init.run()
 result = f.eval()
 
@@ -336,7 +336,7 @@ def fetch_batch(epoch, batch_index, batch_size):
 
 # Scopes - Namespace for nodes
 
-Neural networks can result in a graph with several thousand ndoes. It is better organized/visualized by grouping the nodes into namespaces called **scopes** $-$ `tf.name_scope(<scope name>)`
+Neural networks can result in a graph with several thousand ndoes. It is better organized/visualized by grouping the nodes into namespaces called **scopes**$$-$$`tf.name_scope(<scope name>)`
 
 ```python
 with tf.name_scope('error_scope') as scope:
@@ -355,7 +355,7 @@ error_scope/mse
 
 ## Variable in a Scope
 
-Shared variables are similar to key=value parameters of a function $-$ It's optional. Takes the default value if you don't pass. The only disadvantage with `key=value` parameters is that you could have function call with a lot of parameters passed which may look cluttered at times. Enter shared variables with scope.
+Shared variables are similar to key=value parameters of a function$$-$$It's optional. Takes the default value if you don't pass. The only disadvantage with `key=value` parameters is that you could have function call with a lot of parameters passed which may look cluttered at times. Enter shared variables with scope.
 
 ```python
 with tf.variable_scope("relu", reuse=True):
@@ -455,8 +455,8 @@ mse_summary = tf.summary.scalar('MSE', mse)
 file_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())
 ```
 
-- Create log node $-$ A dir name that has timestamp in it.
-- Create summy nodes $-$ Tensor flow compatible string node for corresponding nodes to be saved $-$ `tf.summary.scalar`
+- Create log node$$-$$A dir name that has timestamp in it.
+- Create summy nodes$$-$$Tensor flow compatible string node for corresponding nodes to be saved$$-$$`tf.summary.scalar`
 - Create `tf.summary.FileWriter` passing the log node and graph.
 
 ## Execution phase
