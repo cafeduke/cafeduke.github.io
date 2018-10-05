@@ -48,8 +48,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {  font-size: 32px; color:rgb(0,100,180); border-bottom: 1px groove #004080; }
 h2 {  font-size: 26px; color:rgb(0, 64,128); }
-h3 {  font-size: 20px; color:rgb(0, 50,100); font-weight: bold;  }
-h4 {  font-size: 18px; color:rgb(0, 40, 80);  font-weight: bold; }
+h3 {  font-size: 20px; color:rgb(0, 50,100); }
+h4 {  font-size: 18px; color:rgb(0, 40, 80); font-weight: bold; }
 
 em, i {
     font-family: 'Vollkorn';

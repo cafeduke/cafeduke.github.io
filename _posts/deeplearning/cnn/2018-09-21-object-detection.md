@@ -24,7 +24,7 @@ The section deals with classification of an image (This is an image of what?) an
 
 ## Bounding box detection
 
-A typical image classification problem for say 4 classes (Pedestrian, Car, Bike and None) will have a softmax with 4 neurons. In essence, the `y_cap` is just a number ranging from 1-4 indicating the predicted class. 
+A typical image classification problem for say 3 classes (Pedestrian, Car, Bike and None) will have a softmax with 3 neurons. In essence, the `y_cap` is just a number ranging from 0-3 indicating the predicted class (0 stands for None). 
 
 In case of object localization `y` is a vector with following elements $$\left[ p_c, b_x, b_y, b_w, b_h, c_1, c_2, c_3 \right]$$
 
