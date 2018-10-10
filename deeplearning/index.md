@@ -1,5 +1,5 @@
 ---
 layout: category
 category_title: 'Deep Learning'
-category_name: dl
+category_list: dl-cnn, dl-strategy, dl
 ---

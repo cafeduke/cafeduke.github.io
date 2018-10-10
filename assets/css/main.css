@@ -125,6 +125,9 @@ blockquote {
    max-width: 250px;
    min-width: 50px;
    background-color: rgb(1,87,155);
+
+   position: relative;
+   z-index: 999;
 }
 
 #sidebar a.nav-link, #sidebar a.nav-link[class~='disabled']:hover {

@@ -7,18 +7,21 @@ layout: default
     <div class="card w-75 mt-5">
 
         <div class="card-header">
-            <h4 class="card-title">{{ page.category_title }}</h4>
+            <h4 class="card-title">{{ page.category_title}} </h4>
         </div>
 
+        {% assign category_list = page.category_list | split: ", " %}
+        {% for category in category_list %}
         <ul class="list-group list-group-flush">
-            {% for post in site.categories[page.category_name] %}
+            {% for post in site.categories[category] %}
             <li class="list-group-item">                
                 <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
                 <small class="post-meta">{{ post.date | date: "%A, %-d %B %Y" }}</small>
             </li>
             {% endfor %}
-
-        </ul>
+        </ul>        
+        {% endfor %}
+      
     </div>
 
     {{ content }}

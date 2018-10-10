@@ -1,5 +1,5 @@
 ---
 layout: category
 category_title: 'Java'
-category_name: java
+category_list: java
 ---
