@@ -14,9 +14,7 @@ $(document).ready(function() {
 	 */
 	function toggleSideNav() {
 		// Toggle: Width of the column <--> min-width
-		$('#sidebar').toggleClass('col-md-2');
-		$('#sidebar').toggleClass('col-xs-8');
-		$('#sidebar').toggleClass('d-xs-none');
+		$('#sidebar').toggleClass('col-md-2 col-xs-8 d-none d-md-block');
 
 		// Toggle the display of link text element
 		$('#sidebar span.nav-link-text').toggle();
