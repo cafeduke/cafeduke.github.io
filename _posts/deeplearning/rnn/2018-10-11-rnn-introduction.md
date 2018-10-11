@@ -47,7 +47,8 @@ A typical sequence model consists of input broken into individual tokens, where 
 | Notation              | Detail                                                       |
 | --------------------- | ------------------------------------------------------------ |
 | $$x^{\prec i \succ}$$ | $$i^{th}$$ feature input. In a sentence, it would be the $$i^{th}$$ word. |
-| $$y^{\prec i \succ}$$ | $$i^{th}$$ feature output. In a sentence, it would be the output after processing the $$i^{th}$$ word. |
+| $$y\_cap^{\prec i \succ}$$ | $$i^{th}$$ output prediction. In a sentence, it would be the output after processing the $$i^{th}$$ word. |
+| $$y^{\prec i \succ}$$ | $$i^{th}$$ output label. In a sentence, it would be the actual output after processing the $$i^{th}$$ word. |
 | $$ a^{\prec i \succ} $$ | $$i^{th}$$ activation produced after taking $$ x^{\prec i \succ} $$ and $$ a^{\prec i-1 \succ} $$ as inputs |
 | $$x$$                 | A single input consisting of all feature. An entire sentence. |
 | $$y$$                 | A single output consisting of output of all feature.         |
@@ -92,6 +93,8 @@ Consider the calculation of $$y^{\prec 3 \succ}$$ corresponding to input feature
 - In essence, a feature can be analyzed and corresponding output is produced only after **all previous features** are analyzed. So, the analysis of all the features that came earlier influences the current analysis.
 - In terms of time series, if the first feature was analyzed at time interval $$t_1$$ the second feature is analyzed only at time interval $$t_2$$. 
 
+> Each feature analysis happens at different time step.
+
 ## Limitation of RNN
 
 An RNN has analysis from earlier feature to base the current analysis. However, it does not have analysis from features that appear later. Considering the 'Name entity recognition' problem described above, unless the word 'president' (that comes much later) is analyzed the word 'Teddy' (that comes much earlier) cannot be marked as a person.
@@ -113,7 +116,7 @@ Consider all blocks to be identical. Lets say $$a$$ is a 100 dimensional vector.
 
 Consider $$ W_{aa} \ a^{\prec t-1 \succ} $$
 - All the 100 elements in $$a^{\prec t-1 \succ} $$ are multiplied by different weights to produce one resultant element (similar to single neuron of next layer)
-- $$ W_{aa} \ a^{\prec t-1 \succ} $$ should be a vector of 100 elements. This is because LHS is a^{\prec t \succ} which is a 100 element vector.
+- $$ W_{aa} \ a^{\prec t-1 \succ} $$ should be a vector of 100 elements. This is because LHS is $$a^{\prec t \succ}$$ which is a 100 element vector.
 - This means $$W_{aa}$$ is a matrix of dimension $$ (100 \times 100) $$
 
 Consider $$ W_{ax} \ x^{\prec t \succ} ​$$
@@ -132,4 +135,30 @@ Consider $$ W_{ax} \ x^{\prec t \succ} ​$$
 
 Conventions
 - $$ W_{a} $$ be a matrix got by horizontally concatenating $$ W_{aa} $$ and $$ W_{ax} $$
-- $$ \left[ a^{\prec t-1 \succ}, x^{\prec t \succ} \right] $$ be a matrix got by vertically concatenating $$ a^{\prec t-1  \succ} $$ and  $$ x^{\prec t \succ} $$
+- $$ \left[ a^{\prec t-1 \succ}, x^{\prec t \succ} \right] $$ be a matrix got by vertically concatenating $$ a^{\prec t-1  \succ} $$ and  $$ x^{\prec t \succ} ​$$
+
+$$
+\begin{aligned}
+a^{\prec t \succ} &= g(W_{a} \left[ a^{\prec t-1 \succ}, \ x^{\prec t \succ}\right] + b_a ) \\
+y^{\prec t \succ} &= g(W_{y} \ a^{\prec t \succ}   + b_y ) \\
+\end{aligned}
+$$
+
+> The same weight matrix $$W_{a}, \ W_{y}$$ and bias $$ b_a, b_y $$ are used/adjusted for the entire time series.
+
+### Back propagation though time
+
+Most of the library will automatically calculate the back propagation. However, below is the intuition. Back propagation is by differentiating the cost function. The cost function for an RNN is the summation of the cost functions of individual time series.
+$$
+\begin{aligned}
+J(y\_cap^{\prec t \succ}, y^{\prec t \succ}) &= - \left[ y^{\prec t \succ} \ log(y\_cap^{\prec t \succ})   + (1- y^{\prec t \succ} ) \ log(1 - y\_cap^{\prec t \succ})  \right] \\
+J &= \Sigma^{T_y}_{t=1} \left[ J(y\_cap^{\prec t \succ}, y^{\prec t \succ}) \right] \\
+\end{aligned}
+$$
+
+Using gradient descent the weights $$W_{a}, \ W_{y}$$  are adjusted.
+
+## Types of RNN
+
+So far we have seen that that number of input tokens $$T_x$$ are same as the number of output tokens $$T_y$$. However, the input/output lengths could be different $$-$$ A machine translation that translates French to English.
+
