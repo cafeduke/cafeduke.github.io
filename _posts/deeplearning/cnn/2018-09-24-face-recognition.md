@@ -59,9 +59,9 @@ The Siamese network defined in the previous section will work well if the the ne
   - Positive is image of the same person as Anchor
   - Negative is image of a different person
 - Calculate distance between anchor and positive image vectors. $$ d(A,P) = ( f(A) - f(P) )^2 $$
-  -	$$d(A,P)$$ should ideally be a value close to zero 0 
+  -	$$d(A,P)$$ should ideally be a value close to 0 
 - Calculate distance between anchor and negative image vectors. $$ d(A,N) = ( f(A) - f(N) )^2 $$ 
-  -	$$d(A,N)$$ should ideally be a value close to zero 1 
+  -	$$d(A,N)$$ should ideally be a value close to 1 
 - Let $$\alpha​$$ be the margin (distance separating two entities) between $$ d(A,P) ​$$ and $$ d(A,N) ​$$. Greater the  $$\alpha​$$ , greater distance is enforced between same and different images.
 
 Now, a loss function (cost or error function) is a function that needs to be minimized ( $$ideally, 0$$) in order to improve the working of the algorithm.
@@ -76,8 +76,9 @@ $$
 ## Understanding triplet loss function
 
 -	$$ \Delta$$ is a  negative number (ideally, $$ 0 - 1 = -1 $$)
+-	We would want  $$\Delta$$ to be negative enough to reduce  $$\alpha$$ below zero. Essentially, we would like $$ \alpha + \Delta <= 0 $$
 -	If $$\alpha = 0.9$$  and $$\Delta$$ is $$-0.8$$, the triplet loss function will evaluate $$max(0, -0.8+0.9) = max (0, 0.1) = 0.1$$ 
--	 If the positive and negative distances are not far enough from each other, then the triplet loss function will be greater than zero.
+-	If the positive and negative distances are not far enough from each other, then the triplet loss function will be greater than zero.
 
 > Triplet loss function penalizes if  $$d(A,P)$$ and $$d(A,N)$$ are closer than $$\alpha$$. 
 > Training using triplet loss function will require choosing images from training dataset for A, P and N to minimize $$J(A,P,N)$$

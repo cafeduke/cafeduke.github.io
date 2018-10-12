@@ -162,3 +162,145 @@ Using gradient descent the weights $$W_{a}, \ W_{y}$$  are adjusted.
 
 So far we have seen that that number of input tokens $$T_x$$ are same as the number of output tokens $$T_y$$. However, the input/output lengths could be different $$-$$ A machine translation that translates French to English.
 
+![RNNTypes](/assets/images/dl/RNNTypes.png)
+
+| Type               | Application              | Detail                                                       |
+| ------------------ | ------------------------ | ------------------------------------------------------------ |
+| One to One         | Any typical NN           | Present for the sake of completeness, it takes one input and produces one output. |
+| One to Many        | Music Generation         | Using a single input like the genre of the music, the entire music is generated. <br />The output prediction $$y\_cap$$ is fed as input in the next time step. |
+| Many to One        | Sentiment Classification | Classify input text, for example predict rating based on comment made about a movie.<br />Many words acting as input result in a single rating as output. |
+| Many to Many (N-N) | Name Entity Recognition  | Identify and locate names in a text. <br />Words of a sentence act as input, for each word, prediction indicates if the word is a person's name or not. <br />Note that number of inputs matches the number of outputs. |
+| Many to Many (M-N) | Machine translation      | Convert a sentence from language to another.<br />Words in one language result in fewer or more words in another language. |
+
+# Language model using RNN
+
+A language model takes an input sentence and outputs a probability for the sentence (sequence of words to be together). A higher probability may indicate a sentence that is more likely to be accurate. Consider a speech recognition system that needs to output text taking the voice as input.
+
+Consider the following two interpretations of the voice
+
+1. The apple and pair salad
+2. The apple and pear salad
+
+A good speech recognition system should be able to determine that probability of 1st sentence is lesser than second and hence choose the second interpretation.
+
+## Training a language model
+
+Building a language model requires a large corpus of English text.  
+
+### Tokenize sentences in the training set
+
+  - Divide the sentence into words
+  - Add a `<EOS>` token at the end to indicate "End of sentence". This is to enable models to even predict when sentences end. You may ignore punctuations or add 'period' as a token.
+  - Add a `<UNK>` to indicate 'unknown word' for a token not present in the dictionary.
+  - This means `<EOS>` and `<UNK>` are part of the dictionary.
+  - Finally, each word in the input sentence is mapped to an index (one-hot representation) in the dictionary.
+
+### Training the model
+
+Let *'Cats average 15 hours of sleep a day'* be the first training sentence. The sentence has 8 words. After adding `<EOS>` at the end, we have 9 tokens.
+
+Time step $$t_0$$
+
+- The dummy $$ a^{\prec 0 \succ} $$ is zero vector as usual. Here the input $$ x^{\prec 1 \succ} $$ shall also be a zero vector
+- The output $$ y\_cap^{\prec 1 \succ} $$ is a vector having softmax output with 10,002 classes (Assuming 10K words in dictionary + EOS + UNK). A softmax outputs a probability for each class that adds up to 1. The class with the highest probability will be the predicted word.
+- Predicted word probability = `np.max(y_cap[1])`. Predicted word index = `np.argmax (y_cap[1])` 
+- The probability got  from $$ y\_cap^{\prec 1 \succ} $$  is `P(<word>|'')`. This gives the `<word>` that has the highest probability for beginning a sentence. 
+- The time step also produces output activation $$ a^{\prec 1 \succ} $$
+
+Time step $$t_1$$
+
+- The input $$ a^{\prec 1 \succ} $$ is the output produced by the previous time step.
+- The input $$ x^{\prec 2 \succ} $$ given here is the expected first word. In the example it is 'Cats'. At time step $$t_1$$ we are telling the model that we expected 'Cats' to be the first word. We now ask the model to predict the next word. Essentially, during training, the input word given to the **next time step** is the expected word for the previous time step.
+- Predicted word probability = `np.max(y_cap[2])`. Predicted word index = `np.argmax (y_cap[2])` 
+- The probability got  from $$ y\_cap^{\prec 2 \succ} $$  is `P(<word>|'Cats')`. This gives the next `<word>` that has the highest probability given that the first word was 'Cats'
+- The time step also produces output activation $$ a^{\prec 2 \succ} $$
+
+Time step $$t_2$$ 
+-  The probability got  from $$ y\_cap^{\prec 3 \succ} $$  is `P(<word>|'Cats average')`. This gives the next `<word>` that has the highest probability given that the first part of the sentence was 'Cats average'
+-  The time step also produces output activation $$ a^{\prec 3 \succ} $$
+
+> The model trains by giving the input $$ x^{\prec t \succ} $$ which is the expected output in the previous step $$ y^{\prec t-1 \succ} $$. So, $$ x^{\prec t \succ} $$ = $$ y^{\prec t-1 \succ} $$
+
+## Cost Function
+
+The cost function for a time step is similar to the cost function for any softmax.
+
+$$
+\begin{aligned}
+J(y\_cap^{\prec t \succ}, y^{\prec t \succ}) &= - \ \Sigma \left[ y^{\prec t \succ} \ log(y\_cap^{\prec t \succ}) \right] \\
+J &= \Sigma^{T_y}_{t=1} \left[ J(y\_cap^{\prec t \succ}, y^{\prec t \succ}) \right] \\
+\end{aligned}
+$$
+
+## Probability of the sentence
+
+The probability of the sentence is obtained by multiplying all the predicted class's probability.
+
+$$
+P(sentence) = np.max(y\_cap^{\prec 1 \succ}) \ * \ np.max(\ y\_cap^{\prec 2 \succ}) * \ ... * \ np.max(\ y\_cap^{\prec T_y \succ})
+$$
+
+## Sampling a language model
+
+After having trained a language model, we could now use it to make some generate several sentences formed by random sampling.
+
+### What is sampling
+
+Consider a typical survey. We could randomly choose 100 people to provide a movie review. That would not give the best idea about the peoples opinion of the movie. If most of the people we survey are kids or most senior citizens that would be even worse. We need a mix of people, but not a random mix either (completely random is like guessing).
+
+We will have to consider a typical probability distribution, of different ages of people going to the movie and accordingly decide how many people, of each age group, should be included to make the 100, we plan to survey. 
+
+ ```python
+np.random.choice(['The', 'In', 'A', 'Once'], p=[0.4, 0.1, 0.3, 0.2])
+'In'
+
+np.random.choice(['The', 'In', 'A', 'Once'], p=[0.4, 0.1, 0.3, 0.2])
+'The'
+
+np.random.choice(['The', 'In', 'A', 'Once'], p=[0.4, 0.1, 0.3, 0.2])
+'The'
+
+np.random.choice(['The', 'In', 'A', 'Once'], p=[0.4, 0.1, 0.3, 0.2])
+'A'
+
+np.random.choice(['The', 'In', 'A', 'Once'], p=[0.4, 0.1, 0.3, 0.2])
+'In'
+
+np.random.choice(['The', 'In', 'A', 'Once'], size=10, p=[0.4, 0.1, 0.3, 0.2])
+array(['In', 'The', 'The', 'A', 'In', 'The', 'A', 'A', 'The', 'The'], dtype='<U4')
+ ```
+
+In the above example, we have a list of 4 words and corresponding probability of a sentence beginning with the word.  Running the `random.choice` shall every time pick a world from the list but based on the probability distribution. What this means is that there is a 40% chance the word picked is 'The' while there is only '10%' chance it is 'In'. 
+
+## Working of language model sampling
+
+Time step $$t_0$$
+
+- Similar to the training, we begin by providing empty vectors for  $$ x^{\prec 1 \succ} $$  and  $$ a^{\prec 0 \succ} $$ as input.
+- The resultant  $$ y\_cap^{\prec 1 \succ} $$ , is a vector having probability for every word in the dictionary (to be the first word of a sentence). It is very likely that 'The' has the highest probability. 
+- Instead of simply picking the word with highest probability, we pick a random word based on probability distribution in $$ y\_cap^{\prec 1 \succ} $$ . (A word with higher probability has a higher chance to be picked)
+
+Time step $$t_1$$
+
+- Unlike training we don't have an expected sentence. So,  $$ x^{\prec 2 \succ} $$ will be the word picked from random distribution in the previous step.
+- The next word is picked randomly based on the probability distribution in $$ y\_cap^{\prec 2 \succ} $$ 
+
+This way a random sentence gets generated, The nature of the sentence shall depend on the nature of the sentences used during training.  Below is the result of sampling after having trained on two different types of sentences.
+
+![RNN_LangSample](/assets/images/dl/RNN_LangSample.png)
+
+
+
+**When does the time series end?** The time series can end when a `<EOS>` token is encountered or max-length is reached. 
+
+## Training a character language model
+
+Instead of building a model based on words, we could also build them using characters. A model trained on characters would predict the next character based on the characters encountered thus far. 
+
+The disadvantages with character model are
+
+- **Vanishing gradient problem:**  The **length of the network**, a typical sentence will have several words but a whole lot of characters. It is harder for a model to train how a character chosen much earlier in the model would affect what comes much later.
+- **Computational Expense:** A char model would be harder to train and computationally expensive.
+
+# Vanishing gradients with RNN
+

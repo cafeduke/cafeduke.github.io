@@ -29,13 +29,15 @@ Generate fusion image G
 Content cost function is computed by J(G, C). Minimizing this cost will make the result more like the content. 
 
 - Use a pre-trained CNN like like VGG net.
-- Let a(l,C) be the activations $$a$$ at layer $$l$$ after passing image $$C$$ 
-- Let a(l,G) be the activations $$a$$ at layer $$l$$ after passing image $$G$$
+- Let a(l,C) be a vector (volume after being flattened) of activations $$a$$ at layer $$l$$ after passing image $$C$$ 
+- Let a(l,G)be a vector (volume after being flattened) of activations $$a$$ at layer $$l$$ after passing image $$G$$
 
 
 $$
 J(G,C) = (\parallel a(l,C) - a(l,G) \parallel)^2
 $$
 
-> An activation at a given layer will convert the cube (height, width, channels) into an array.
+> A layer in a CNN is the volume (activation) obtained convolving the previous volume (activation) with filter volumes (weights). 
+
+## Style Cost Function
 
