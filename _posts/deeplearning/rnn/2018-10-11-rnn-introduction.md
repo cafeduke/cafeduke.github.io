@@ -6,12 +6,6 @@ mathjax: true
 typora-root-url: ../../../
 ---
 
-DRAFT
-
-------
-
-
-
 {% include toc.html %}
 
 # Introduction
@@ -199,7 +193,7 @@ Building a language model requires a large corpus of English text.
 
 Let *'Cats average 15 hours of sleep a day'* be the first training sentence. The sentence has 8 words. After adding `<EOS>` at the end, we have 9 tokens.
 
-Time step $$t_0$$
+Time step $$t_1$$
 
 - The dummy $$ a^{\prec 0 \succ} $$ is zero vector as usual. Here the input $$ x^{\prec 1 \succ} $$ shall also be a zero vector
 - The output $$ y\_cap^{\prec 1 \succ} $$ is a vector having softmax output with 10,002 classes (Assuming 10K words in dictionary + EOS + UNK). A softmax outputs a probability for each class that adds up to 1. The class with the highest probability will be the predicted word.
@@ -207,7 +201,7 @@ Time step $$t_0$$
 - The probability got  from $$ y\_cap^{\prec 1 \succ} $$  is `P(<word>|'')`. This gives the `<word>` that has the highest probability for beginning a sentence. 
 - The time step also produces output activation $$ a^{\prec 1 \succ} $$
 
-Time step $$t_1$$
+Time step $$t_2$$
 
 - The input $$ a^{\prec 1 \succ} $$ is the output produced by the previous time step.
 - The input $$ x^{\prec 2 \succ} $$ given here is the expected first word. In the example it is 'Cats'. At time step $$t_1$$ we are telling the model that we expected 'Cats' to be the first word. We now ask the model to predict the next word. Essentially, during training, the input word given to the **next time step** is the expected word for the previous time step.
@@ -215,7 +209,7 @@ Time step $$t_1$$
 - The probability got  from $$ y\_cap^{\prec 2 \succ} $$  is `P(<word>|'Cats')`. This gives the next `<word>` that has the highest probability given that the first word was 'Cats'
 - The time step also produces output activation $$ a^{\prec 2 \succ} $$
 
-Time step $$t_2$$ 
+Time step $$t_3$$ 
 -  The probability got  from $$ y\_cap^{\prec 3 \succ} $$  is `P(<word>|'Cats average')`. This gives the next `<word>` that has the highest probability given that the first part of the sentence was 'Cats average'
 -  The time step also produces output activation $$ a^{\prec 3 \succ} $$
 
@@ -250,7 +244,7 @@ Consider a typical survey. We could randomly choose 100 people to provide a movi
 
 We will have to consider a typical probability distribution, of different ages of people going to the movie and accordingly decide how many people, of each age group, should be included to make the 100, we plan to survey. 
 
- ```python
+```python
 np.random.choice(['The', 'In', 'A', 'Once'], p=[0.4, 0.1, 0.3, 0.2])
 'In'
 
@@ -268,19 +262,19 @@ np.random.choice(['The', 'In', 'A', 'Once'], p=[0.4, 0.1, 0.3, 0.2])
 
 np.random.choice(['The', 'In', 'A', 'Once'], size=10, p=[0.4, 0.1, 0.3, 0.2])
 array(['In', 'The', 'The', 'A', 'In', 'The', 'A', 'A', 'The', 'The'], dtype='<U4')
- ```
+```
 
 In the above example, we have a list of 4 words and corresponding probability of a sentence beginning with the word.  Running the `random.choice` shall every time pick a world from the list but based on the probability distribution. What this means is that there is a 40% chance the word picked is 'The' while there is only '10%' chance it is 'In'. 
 
 ## Working of language model sampling
 
-Time step $$t_0$$
+Time step $$t_1$$
 
 - Similar to the training, we begin by providing empty vectors for  $$ x^{\prec 1 \succ} $$  and  $$ a^{\prec 0 \succ} $$ as input.
 - The resultant  $$ y\_cap^{\prec 1 \succ} $$ , is a vector having probability for every word in the dictionary (to be the first word of a sentence). It is very likely that 'The' has the highest probability. 
 - Instead of simply picking the word with highest probability, we pick a random word based on probability distribution in $$ y\_cap^{\prec 1 \succ} $$ . (A word with higher probability has a higher chance to be picked)
 
-Time step $$t_1$$
+Time step $$t_2$$
 
 - Unlike training we don't have an expected sentence. So,  $$ x^{\prec 2 \succ} $$ will be the word picked from random distribution in the previous step.
 - The next word is picked randomly based on the probability distribution in $$ y\_cap^{\prec 2 \succ} $$ 
@@ -324,11 +318,13 @@ GRU is used to prevent the vanishing gradient problem. Lets first look at the eq
 
 A simplified GRU is governed by the following equations:
 $$
-
-$$
-
-$$
-
+\begin{aligned}
+c^{\prec 0 \succ} &= a^{\prec 0 \succ} = 0 \\
+\tilde{c}^{\prec t \succ} &= tanh ( W_c [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_c ) \\
+\Gamma_u &= \sigma (W_u [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) \\
+c^{\prec t \succ} &= \Gamma_u * \tilde{c}^{\prec t \succ} + (1 - \Gamma_u) * c^{\prec t-1 \succ} \\
+a^{\prec t \succ} &= c^{\prec t \succ} \\
+\end{aligned}
 $$
 
 
@@ -354,3 +350,84 @@ $$
   - Note that $$ c^{\prec t \succ} $$ will approximately (not exactly) be equal to $$ c^{\prec t-1 \succ} $$. The difference is negligible though.
 
 > As long as the gate is closed the **candidate value** (that is calculated for every time step), gets discarded and the current memory cell gets a value almost same as previous. In essence, the value once memorized can be retained for long even if the time series is very long. 
+
+### More memory cells, more gates
+
+The above describes storing a single memory in $$c^{\prec t \succ}$$. However  $$c^{\prec t-1 \succ}$$ could be a vector of memory cells. Similarly, $$\Gamma^{\prec t \succ}$$ will also be a vector of gates, for corresponding memory cell.
+
+### Full GRU
+
+A full GRU uses another gate called the relevance gate $$\Gamma_r$$ which shall indicate how relevant the previous memory cell value is for calculating the candidate value.
+
+$$
+\begin{aligned}
+c^{\prec 0 \succ} &= a^{\prec 0 \succ} = 0 \\
+\tilde{c}^{\prec t \succ} &= tanh ( W_c [ \Gamma_r * c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_c ) \\
+\Gamma_r &= \sigma (W_r [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_r ) \\
+\Gamma_u &= \sigma (W_u [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) \\
+c^{\prec t \succ} &= \Gamma_u * \tilde{c}^{\prec t \succ} + (1 - \Gamma_u) * c^{\prec t-1 \succ} \\
+a^{\prec t \succ} &= c^{\prec t \succ} \\
+\end{aligned}
+$$
+GRU is the standard version used by researches. The other commonly used one is LSTM.
+
+## Long Short Term Memory (LSTM)
+
+LSTM is more powerful than GRU, but is more complicated and has more gates. Few equations of LSTM are similar to GRU, however there are lot many changes as given below.
+
+### Equations
+
+$$
+\begin{aligned}
+\tilde{c}^{\prec t \succ} &= tanh ( W_c [  a^{\prec t-1 \succ}, x^{\prec t \succ}] + b_c ) \\
+\Gamma_u &= \sigma (W_u [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) \\
+\Gamma_f &= \sigma (W_f [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_f ) \\
+\Gamma_o &= \sigma (W_o [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_o ) \\
+c^{\prec t \succ} &= \Gamma_u * \tilde{c}^{\prec t \succ} + \Gamma_f * c^{\prec t-1 \succ} \\
+a^{\prec t \succ} &= \Gamma_o * c^{\prec t \succ} \\
+\end{aligned}
+$$
+
+### Understanding LSTM
+
+- Instead of $$c^{\prec t-1 \succ}$$ , we directly use $$a^{\prec t-1 \succ}$$ 
+- The relevance gate $$\Gamma_r$$ is not used 
+- Three gates update gate, forget gate and output gate are used as opposed to just one, update gate, in GRU
+  -	The update gate shall gate the candidate value while the forget gate shall gate the previous memory cell value.
+  -	The update and forget gates together determine the value of the current memory cell. 
+  -	This way the network **could** create a current memory cell which is the sum of candidate value and previous memory cell (No idea why?)
+  -	The output gate shall gate the current memory cell (update above) to determine the value sent to next time step a^{\prec t \succ}
+
+## GRU vs LSTM
+
+GRU came up later in the history compared to LSTM. 	GRU is more simpler than LSTM. LSTM is a proven model. However, GRU which is the latest is catching up.
+
+# Bidirectional Recurrent Neural Networks (BRNN)
+
+As mentioned as one of the limitations of RNN earlier, RNN cannot make a decision based on the analysis of future inputs and analysis, it can only make a decision based on previous inputs and analysis. BRNN address this limitation. 
+
+**Note:** This is **not back propagation**, it is forward propagation that takes a U turn and comes back. The prediction at any given time step is based on current input ( $$x^{\prec t \succ}$$ ), analysis from previous time step ( $$\overrightarrow{a}^{\prec t-1 \succ}$$ ) and analysis from next time step  ($$\overleftarrow{a}^{\prec t-1 \succ}$$) . The last part is missing in RNN
+
+## Equations
+
+$$
+\begin{aligned}
+\overrightarrow{a}^{\prec t \succ} &= g(W_{a} \left[ \overrightarrow{a}^{\prec t-1 \succ}, \ x^{\prec t \succ}\right] + b_a ) \\
+\overleftarrow{a}^{\prec t \succ} &= g(W_{a} \left[ \overleftarrow{a}^{\prec t-1 \succ}, \ x^{\prec t \succ}\right] + b_a ) \\
+y^{\prec t \succ}  &= g(W_{y} \left[ \overleftarrow{a}^{\prec t \succ}, \overrightarrow{a}^{\prec t \succ} \right]   + b_y ) \\
+\end{aligned}
+$$
+
+Just like the forward activation $$\overrightarrow{a}^{\prec t \succ}$$ is the analysis from all previous time steps, back activation $$\overleftarrow{a}^{\prec t \succ}$$ has information from all future time step.
+
+## Disadvantange of BRNN
+
+The disadvantange of BRNN apart from the obvious computational overhead is that it requires the entire input inorder to may prediction and cannot make predictions as the input is being received. For example, in a voice to text speech recognition system, BRNN would wait for the user to stop to make the prediction of the entire sentence. 
+
+# Deep RNN
+
+Multiple version of RNNs like (Regular RNN, GRU, LSTM, BRNN) can be stacked vertically where $$y^{\prec t \succ}$$ from one layer below, is fed as $$x^{\prec t \succ}$$ to a layer on the top. Like any typical RNN, an entire horizontal layer shall use the same weights. In other words there shall be a $$W_a$$ per layer. 
+
+![DeepRNN](/assets/images/dl/DeepRNN.png)
+
+We won't have many layers of RNN stacked vertically (3 itself is pretty complex and computationally expensive). However after stacking RNN on top of each other for say 3 layers, we could have a regular deep network not connected horizontally.
