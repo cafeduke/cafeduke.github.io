@@ -93,7 +93,7 @@ Consider the calculation of $$y^{\prec 3 \succ}$$ corresponding to input feature
 - In essence, a feature can be analyzed and corresponding output is produced only after **all previous features** are analyzed. So, the analysis of all the features that came earlier influences the current analysis.
 - In terms of time series, if the first feature was analyzed at time interval $$t_1$$ the second feature is analyzed only at time interval $$t_2$$. 
 
-> Each feature analysis happens at different time step.
+> Each feature analysis happens at a different time step.
 
 ## Limitation of RNN
 
@@ -304,3 +304,53 @@ The disadvantages with character model are
 
 # Vanishing gradients with RNN
 
+Consider a language modeling problem that is dealing with the following two sentences
+
+- The **boy** had pie on Monday, pizza on Tuesday, ..., burger on Saturday and **was** sick on Sunday.
+- The **boys** had pie on Monday, pizza on Tuesday, ..., burger on Saturday and **were** sick on Sunday.
+
+The singular/plural word used earlier in a sentence, affecting much later in a sentence is an information that needs to be retained for long. Larger the distance, reducing gradient shall be too small to affect what was learnt much earlier.
+
+The vanishing gradient problem of RNN is solved using 
+
+- Gated Recurrent Unit (GRN)
+- Long Short Term Memory (LSTM)
+
+## Gated Recurrent Unit (GRU)
+
+GRU is used to prevent the vanishing gradient problem. Lets first look at the equations of GRU and then understand how it prevents/reduces vanishing gradient problem.
+
+### Simplified GRU
+
+A simplified GRU is governed by the following equations:
+$$
+
+$$
+
+$$
+
+$$
+
+
+### Understanding simplified GRU
+
+- GRU algorithm provides a memory cell $$ c^{\prec t \succ} $$. Every time step has its own memory cell. 
+
+- Every time step calculates a new value $$ \tilde{c}^{\prec t \succ}$$ *(tilde c)* which is the **candidate value**. A candidate value is one that attempts to get stored in the memory cell.
+
+- The memory cell is gated by $$\Gamma^{\prec t \succ}$$ (Capital, Gamma, **the gate**). Value of the gate is 0\|1 indicating gate is close\|open.
+
+- If $$\Gamma^{\prec t \succ} == 1$$
+
+  - Gate is open
+  - The memory cell  $$ c^{\prec t \succ} $$ gets the candidate value. 
+  - This means the old value is overwritten/forgotten.
+
+- Else If $$\Gamma^{\prec t \succ} == 0$$
+
+  - Gate is closed
+  - The memory cell  $$ c^{\prec t \succ} $$ (almost) gets the value  $$ c^{\prec t-1 \succ} $$ (previous memory cell value). 
+  - This means the old value is retained. The candidate value is discarded.
+  - Note that $$ c^{\prec t \succ} $$ will approximately (not exactly) be equal to $$ c^{\prec t-1 \succ} $$. The difference is negligible though.
+
+> As long as the gate is closed the **candidate value** (that is calculated for every time step), gets discarded and the current memory cell gets a value almost same as previous. In essence, the value once memorized can be retained for long even if the time series is very long. 
