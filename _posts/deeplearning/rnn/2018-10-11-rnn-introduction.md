@@ -1,5 +1,5 @@
 ---
-title: Introduction to recurrent neural networks (RNN)
+title: Recurrent neural networks (RNN)
 categories: dl-rnn
 layout: post
 mathjax: true
@@ -317,6 +317,8 @@ GRU is used to prevent the vanishing gradient problem. Lets first look at the eq
 ### Simplified GRU
 
 A simplified GRU is governed by the following equations:
+
+
 $$
 \begin{aligned}
 c^{\prec 0 \succ} &= a^{\prec 0 \succ} = 0 \\
@@ -324,9 +326,9 @@ c^{\prec 0 \succ} &= a^{\prec 0 \succ} = 0 \\
 \Gamma_u &= \sigma (W_u [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) \\
 c^{\prec t \succ} &= \Gamma_u * \tilde{c}^{\prec t \succ} + (1 - \Gamma_u) * c^{\prec t-1 \succ} \\
 a^{\prec t \succ} &= c^{\prec t \succ} \\
+y^{\prec t \succ} &= softmax(W_y \ a^{\prec t \succ} + b_y ) \\
 \end{aligned}
 $$
-
 
 ### Understanding simplified GRU
 
@@ -367,24 +369,34 @@ c^{\prec 0 \succ} &= a^{\prec 0 \succ} = 0 \\
 \Gamma_u &= \sigma (W_u [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) \\
 c^{\prec t \succ} &= \Gamma_u * \tilde{c}^{\prec t \succ} + (1 - \Gamma_u) * c^{\prec t-1 \succ} \\
 a^{\prec t \succ} &= c^{\prec t \succ} \\
+y^{\prec t \succ} &= softmax(W_y \ a^{\prec t \succ} + b_y ) \\
 \end{aligned}
 $$
+
 GRU is the standard version used by researches. The other commonly used one is LSTM.
 
 ## Long Short Term Memory (LSTM)
 
 LSTM is more powerful than GRU, but is more complicated and has more gates. Few equations of LSTM are similar to GRU, however there are lot many changes as given below.
 
+### LSTM Cell
+The diagram below provides a circuit representation of a single LSTM cell.
+
+![RNN_LSTM_cell](/assets/images/dl/RNN_LSTM_cell.png) 
+
 ### Equations
 
 $$
 \begin{aligned}
+a^{\prec 0 \succ} &= random () \\
+c^{\prec 0 \succ} &= 0 \\
 \tilde{c}^{\prec t \succ} &= tanh ( W_c [  a^{\prec t-1 \succ}, x^{\prec t \succ}] + b_c ) \\
-\Gamma_u &= \sigma (W_u [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) \\
-\Gamma_f &= \sigma (W_f [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_f ) \\
-\Gamma_o &= \sigma (W_o [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_o ) \\
+\Gamma_u &= \sigma (W_u [a^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) \\
+\Gamma_f &= \sigma (W_f [a^{\prec t-1 \succ}, x^{\prec t \succ}] + b_f ) \\
+\Gamma_o &= \sigma (W_o [a^{\prec t-1 \succ}, x^{\prec t \succ}] + b_o ) \\
 c^{\prec t \succ} &= \Gamma_u * \tilde{c}^{\prec t \succ} + \Gamma_f * c^{\prec t-1 \succ} \\
-a^{\prec t \succ} &= \Gamma_o * c^{\prec t \succ} \\
+a^{\prec t \succ} &= \Gamma_o * tanh(c^{\prec t \succ}) \\
+y^{\prec t \succ} &= softmax(W_y \ a^{\prec t \succ} + b_y ) \\
 \end{aligned}
 $$
 
@@ -397,6 +409,15 @@ $$
   -	The update and forget gates together determine the value of the current memory cell. 
   -	This way the network **could** create a current memory cell which is the sum of candidate value and previous memory cell (No idea why?)
   -	The output gate shall gate the current memory cell (update above) to determine the value sent to next time step a^{\prec t \succ}
+
+
+
+## Chaining
+LSTM (or GRU) cells can be chained to analyze the sequence of inputs from  $$x^{\prec 1 \succ}$$ to $$x^{\prec T_x \succ}$$ as shown in the diagram below.
+
+![RNN_LSTM_chain](/assets/images/dl/RNN_LSTM_chain.png)
+
+
 
 ## GRU vs LSTM
 
