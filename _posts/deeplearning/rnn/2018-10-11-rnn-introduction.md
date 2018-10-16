@@ -353,9 +353,11 @@ $$
 
 > As long as the gate is closed the **candidate value** (that is calculated for every time step), gets discarded and the current memory cell gets a value almost same as previous. In essence, the value once memorized can be retained for long even if the time series is very long. 
 
-### More memory cells, more gates
+### More memory cells, more gates, more activations
 
-The above describes storing a single memory in $$c^{\prec t \succ}$$. However  $$c^{\prec t-1 \succ}$$ could be a vector of memory cells. Similarly, $$\Gamma^{\prec t \succ}$$ will also be a vector of gates, for corresponding memory cell.
+The above describes storing a single memory in $$c^{\prec t \succ}$$. However  $$c^{\prec t-1 \succ}$$ could be a vector of memory cells. Similarly, $$\Gamma^{\prec t \succ}$$ will also be a vector of gates, for corresponding memory cell. Also, the vector size of gate is the same as vector size of activation layer.
+
+> len($$c^{\prec t \succ}$$) = len($$\tilde{c}^{\prec t \succ}$$) = len($$\Gamma_u^{\prec t \succ}$$)
 
 ### Full GRU
 
@@ -422,6 +424,12 @@ LSTM (or GRU) cells can be chained to analyze the sequence of inputs from  $$x^{
 ## GRU vs LSTM
 
 GRU came up later in the history compared to LSTM. 	GRU is more simpler than LSTM. LSTM is a proven model. However, GRU which is the latest is catching up.
+
+
+
+# Exploding gradients with RNN
+
+Vanishing gradients is a bigger problem with RNN. Exploding gradients though equally harmful to a network can be easily addressed by **Gradient Clipping**. The simplest implementation of gradient clipping shall provide a min and max value. Any value greater than max is set to max. Similarly, any value lesser than min is set to min. All weights and bias terms are clipped.
 
 # Bidirectional Recurrent Neural Networks (BRNN)
 
