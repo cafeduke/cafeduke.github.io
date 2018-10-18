@@ -8,9 +8,15 @@ typora-root-url: ../../../
 
 {% include toc.html %}
 
+DRAFT
+
+____
+
 # Introduction 
 
-Algorithms such as RNN, GRU and LSTM can be applied to Natural Language Processing (NLP) $$-$$ One of the key areas of AI. One of the key ideas is **word embedding** such as *Man:Women :: King:Queen*, essentially learning the relationship between words. However, it is also important to *debias* these learnings  to reduce bias across (say, ethnicity) which the algorithm can pickup.
+Algorithms such as RNN, GRU and LSTM can be applied to Natural Language Processing (NLP).  
+
+One of the key ideas is **word embedding**  which helps learn relationship between words, such as *Man:Women :: King:Queen. However, it is also important to *debias* these learnings, to reduce bias (like say, ethnicity) which the algorithm can pickup.
 
 ## Notation Reference
 
@@ -28,12 +34,12 @@ In RNN, LSTM and GRU algorithms, we used a one-hot representation for dictionary
 
 ### One-Hot representation
 
-A one-hot vector for representing the index of a word in a dictionary, or on-hot in general gives an advantage of not judging by the numeric value of the index. However, it also equates all words and hence distance between any two words (one-hot representation) is the same.
+A one-hot vector for representing the index of a word in a dictionary (any one-hot for that matter, including one-hot for representing category), gives an advantage of not judging by the numeric value of the index. However, it also equates all words. Hence, the distance between one-hot representation of any two words is the same.
 
 1. I want a glass of orange ___
 2. I want a glass of apple ___
 
-Even if the algorithm has learnt that 'juice' is likely to go with word 'orange'. It cannot apply the learning to 'apple'. This is because as long as the algorithm is concerned, 'apple' is as good as any word (say 'sky').
+Even if the algorithm has learnt that 'juice' is likely to go with word 'orange', it cannot apply this learning to 'apple'. This is because, as long as the algorithm is concerned, 'apple' is as good as any other word (say 'sky').
 
 ### Feature representation (Word embedding)
 
@@ -49,24 +55,22 @@ A vector for a word like "orange", will have value closer to 1 for features like
 
 ## Word embedding Vs One-Hot
 
-- One-hot for all words in a dictionary shall be huge. With word embedding, we could have a much small feature set (especially, if we are using transfer learning).
+- One-hot for all words in a dictionary shall be huge. With word embedding, we could have a much small feature set.
 - One-hot is extremely sparse compared to word embedding.
 - One-hot cannot to used to understand similarities between words while a word embedding can.
 
 ## Transfer learning
 
-The performance of the algorithm that uses feature representation (word embedding) depends on the **extensive training**. 
-
-For example, an algorithm that understands the feature similarities between 'orange' and 'apple' may not recognize 'durian'  (and hence apply any learning) as it is unlikely that it came across 'durian' during training.
+The performance of the algorithm that uses feature representation (word embedding) depends on the **extensive training**. For example, an algorithm that understands the feature similarities between 'orange' and 'apple', may not recognize 'durian'  (and hence apply any learning) as it is unlikely, to have come across 'durian', during training.
 
 One of the ways of dealing with a small training dataset is **transfer learning**. 
 
-- An existing model pre-trained on billions of words from various sentences/books can be used.
-- Train the model on the small dataset and continue to adjust the word embeddings (Not typically required unless the dataset is significantly large)
+- An existing model, pre-trained on billions of words, from various sentences/books can be used.
+- Train the model on the small dataset and continue to adjust the word embeddings (Adjustment not recommended unless the dataset is significantly large)
 
 ## Word embedding Vs CNN Face encoding
 
-A CNN Face encoding model was trained to take **any image** as input and generate a vector of encodings. This could then be compared with the encodings for another image, to judge the similarity between these images. As opposed to images that are an ever expanding infinite superset, words are more or less finite. 
+A CNN Face encoding model was trained to take **any image** as input and generate a vector of encodings. This could be compared with the encodings of **any** other image, to judge the similarity between these images. The images that are likely to be encountered in the real word is an ever expanding infinite set while words are more or less finite. We could work on word embeddings for all words in the dictionary, store and reuse in applications.
 
 >  As a terminology, encodings generated for a word are called embeddings
 
@@ -116,7 +120,7 @@ This section solves the language modeling problem using classic NN.  Consider th
 - Since we are using last 4 words as input, the input layer $$x$$ will be a vector $$(4\times300, 1) = (1200,1)$$
 - Lets say the hidden layer $$L1$$ has 100 neurons, the weight matrix $$W1 = (100 \times 1200) $$
 - Lets say the output layer $$L2$$ is a softmax to identify 10K classes (words of dictionary).
-- The matrix $$E$$ which has the word embeddings for all words is also a parameter (weight)
+- The matrix $$E$$ having the word embeddings for all words is also a parameter (weight)
 
 Working
 
@@ -127,28 +131,41 @@ Working
 
 ### Left-4, right-4 model 
 
-Context is 4 words to the left + 4 words to the right of the target. Here, target is a single word.
+The training set is created by
+
+- Picking a target word.
+- Context will be 4 words to the left + 4 words to the right of the target
 
 ### Previous-1 model 
 
-Context is just the word that came before the target.
+The training set is created by
+
+- Picking a target word.
+- Context will be the word before the target.
 
 ### Nearby-1 word (Skip gram model)
 
-A word near by target. Works surprisingly well. 
+The training set is created by
+
+- Picking a target word.
+- Context will be a single word that is nearby, i.e in a range of, say 1-5 words, before/after the target.
 
 ## Word2Vec 
 
-Word2Vec is an algorithm to train a model to perform language modeling and learning word embeddings. However, the primary purpose of this algorithm is to learn word embeddings (not concerned about accuracy of the model in language modeling).
+Word2Vec is an algorithm to train a model to perform language modeling and learning word embeddings. However, the primary purpose of this algorithm is to learn word embeddings (not concerned about accuracy of the model in language modeling). The supervised learning problem that is being solved here is to predict the target given the context.
 
-Working
+### Working
 
 - Choose a random context ($$c = $$  input word)  
 - Choose a random, but nearby (1-5 words before/after context)  as  target ($$t =$$ word to be predicted).
 - Calculate the softmax probability vector (probabilities must add up to 1) as follows.
 
+
+
+### Softmax Classifier
+
 $$
-Probability(t|c) = \frac{ e^{w_t^T \ e_c} }{ \Sigma_{j=1}^{10K} e^{w_j^T \ e_c} }
+Softmax \ Probability(t|c) = \frac{ e^{w_t^T \ e_c} }{ \Sigma_{j=1}^{10K} e^{w_j^T \ e_c} }
 $$
 
 Here,
@@ -157,6 +174,79 @@ Here,
 - $$w_t$$ weights for the target encoding 
 - $$w_j$$ weight of the $$j^{th}$$ word in the dictionary
 
-Negative Sampling
+**Note on the equation**
+
+- Numerator: Multiplies weights associated with the **target** $$w_t$$ with the encodings of the **context** $$e_c$$
+- Denominator: sums weights from all the words multiplied with the encodings of **context** $$e_c$$
+- The model is slow as it requires computing using all words in the dictionary.
+
+### Hierarchical Softmax Classifier
+
+Consider a hierarchy of binary classifiers. The root classifier takes context as input and directs to left/right classifier to find the target word. This continues down the tree until the leaf classifier points to the target word.
+
+## Negative Sampling
+
+Similar to WordVec, Negative sampling also has the objective of learning word embeddings. Unlike WordVec, the supervised learning problem here is different. A sample training set may look as follows
+
+| Context | Target | Label |
+| ------- | ------ | ----- |
+| orange  | juice  | 1     |
+| orange  | king   | 0     |
+| orange  | of     | 0     |
+| orange  | book   | 0     |
+
+#### Training set creation	
+
+- Create a (context, target) word pair from the sentence and label this pair as `1`. 
+- A label of `1` indicates target matches context. A label of `0` indicates mismatch.
+- Create K negative target samples
+  - Pick a random word from the dictionary 
+  - Create the pair (context, random-word) and label this pair as `0`
+  - Since we are picking a random word, it is possible (though less likely) that the random word is actually a match to the context.
+- This way we have chosen one positive example and generated K negative examples.
+
+In essence, a single set will have (K+1) word pairs. We shall have several such sets in the training dataset.
+
+### Supervised learning problem
+
+The supervised learning problem here is to take input $$X$$ consisting of word pairs and predict the corresponding label $$y$$ (`1/0`).
+$$
+P(y=1 | c,t) = sigmoid (w_t^T \ e_c)
+$$
+
+
+### Working
+
+- In general, a binary classifier takes input features $$x$$, has weights $$w$$ to predicts a binary $$y\_cap$$. Based on expected $$y$$, the weights $$w$$ are adjusted. This is how the binary classifier **learns**.
+- Consider 10K binary classifiers, one for each word in the dictionary. 
+- A single binary classifier for a word say 'king', takes input features (encoding of a word $$e_{i}$$), has weights $$w_{king}$$ and shall predict a binary $$y\_cap$$ . `1` if the encodings match with the 'king'. `0` if input encodings do not match with the 'king'. 
+- Lets say we input encodings of 'orange' $$e_{orange}$$ to 'king' and 'juice' classifiers
+  - We go to the 'king' classifier and say, *"I have a word, that is high on fruit and low on royalty. Will you be the target?"*. The 'king' classifier says *"Not a chance, No"*.
+  - We go to the 'juice' classifier and say, *"I have a word, that is high on fruit and low on royalty. Will you be the target?"*. The 'apple' classifier says *"I am already impressed, Yes"*.
+
+>  In essence, for each set of (K+1) examples, the same context encoding is given to (K+1) classifiers. Only one is expected to say 'yes' and others are expected to say 'no'. Since we have a labeled set, the weights of the classifiers are accordingly adjusted , thus training these (K+1) classifiers per set.
+
+### Selecting negative targets
+
+Using empirical frequency of words (Frequency of occurrence in real world) as-is will have more words like 'the', 'of', 'is', etc. So, below formula is used.
+
+Let,
+
+- f(w) be represent the empirical frequency for word 'w'. 
+- $$P(w)​$$ be the probability of choosing word 'w' 
+
+$$
+P(w_i) = \frac{f(w_i)^{3/4}}{\Sigma_1^{10K} \  f(w_j)^{3/4}}
+$$
+
+
+
+
+
+
+
+
+
+
 
 
