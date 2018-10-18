@@ -6,11 +6,11 @@ mathjax: true
 typora-root-url: ../../../
 ---
 
-{% include toc.html %}
-
 DRAFT
 
 ____
+
+{% include toc.html %}
 
 # Introduction 
 
@@ -222,7 +222,7 @@ $$
 - A single binary classifier for a word say 'king', takes input features (encoding of a word $$e_{i}$$), has weights $$w_{king}$$ and shall predict a binary $$y\_cap$$ . `1` if the encodings match with the 'king'. `0` if input encodings do not match with the 'king'. 
 - Lets say we input encodings of 'orange' $$e_{orange}$$ to 'king' and 'juice' classifiers
   - We go to the 'king' classifier and say, *"I have a word, that is high on fruit and low on royalty. Will you be the target?"*. The 'king' classifier says *"Not a chance, No"*.
-  - We go to the 'juice' classifier and say, *"I have a word, that is high on fruit and low on royalty. Will you be the target?"*. The 'apple' classifier says *"I am already impressed, Yes"*.
+  - We go to the 'juice' classifier and say, *"I have a word, that is high on fruit and low on royalty. Will you be the target?"*. The 'juice' classifier says *"I am already impressed, Yes"*.
 
 >  In essence, for each set of (K+1) examples, the same context encoding is given to (K+1) classifiers. Only one is expected to say 'yes' and others are expected to say 'no'. Since we have a labeled set, the weights of the classifiers are accordingly adjusted , thus training these (K+1) classifiers per set.
 
@@ -233,7 +233,7 @@ Using empirical frequency of words (Frequency of occurrence in real world) as-is
 Let,
 
 - f(w) be represent the empirical frequency for word 'w'. 
-- $$P(w)​$$ be the probability of choosing word 'w' 
+- $$P(w)$$ be the probability of choosing word 'w' 
 
 $$
 P(w_i) = \frac{f(w_i)^{3/4}}{\Sigma_1^{10K} \  f(w_j)^{3/4}}
