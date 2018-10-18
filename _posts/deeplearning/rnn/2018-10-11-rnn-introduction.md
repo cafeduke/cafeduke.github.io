@@ -1,5 +1,5 @@
 ---
-title: Introduction to recurrent neural networks (RNN)
+title: Recurrent neural networks (RNN)
 categories: dl-rnn
 layout: post
 mathjax: true
@@ -210,7 +210,7 @@ Time step $$t_2$$
 - The time step also produces output activation $$ a^{\prec 2 \succ} $$
 
 Time step $$t_3$$ 
--  The probability got  from $$ y\_cap^{\prec 3 \succ} $$  is `P(<word>|'Cats average')`. This gives the next `<word>` that has the highest probability given that the first part of the sentence was 'Cats average'
+-  The probability got  from $$ y\_cap^{\prec 3 \succ} ​$$  is `P(<word>|'Cats average')`. This gives the next `<word>` that has the highest probability given that the first part of the sentence was 'Cats average'
 -  The time step also produces output activation $$ a^{\prec 3 \succ} $$
 
 > The model trains by giving the input $$ x^{\prec t \succ} $$ which is the expected output in the previous step $$ y^{\prec t-1 \succ} $$. So, $$ x^{\prec t \succ} $$ = $$ y^{\prec t-1 \succ} $$
