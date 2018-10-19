@@ -152,17 +152,15 @@ The training set is created by
 
 ## Word2Vec 
 
-Word2Vec is an algorithm to train a model to perform language modeling and learning word embeddings. However, the primary purpose of this algorithm is to learn word embeddings (not concerned about accuracy of the model in language modeling). The supervised learning problem that is being solved here is to predict the target given the context.
+Word2Vec is an algorithm to train a model to perform language modeling and learning word embeddings. However, the primary purpose of this algorithm is to learn word embeddings (not concerned about accuracy of the model during language modeling). The supervised learning problem that is being solved here is to predict the target given the context.
 
 ### Working
 
-- Choose a random context ($$c = $$  input word)  
+- Choose a random context ($$c = $$  input word).
 - Choose a random, but nearby (1-5 words before/after context)  as  target ($$t =$$ word to be predicted).
 - Calculate the softmax probability vector (probabilities must add up to 1) as follows.
 
-
-
-### Softmax Classifier
+### Cost function
 
 $$
 Softmax \ Probability(t|c) = \frac{ e^{w_t^T \ e_c} }{ \Sigma_{j=1}^{10K} e^{w_j^T \ e_c} }
@@ -241,12 +239,57 @@ $$
 
 
 
+## GloVe (Global Vectors) Algorithm
+
+GloVe algorithm, short for, Global Vectors for vector representation, is not used as much as Word2Vec, but it is simpler. 
+
+A crucial element of the glove algorithm defines is the matrix $$X_{ij}$$ 
+
+- The number of times the $$i^{th}$$ word (context) appears **in the context of** the $$j^{th}$$ word (target) in the corpus (large number of sentences).
+- It depends on the definition of the **context**
+  - If context is defined as one word being in proximity (1-10 words range) of the other, then $$X_{ij} = X_{ji}$$ . Checking the number of times 'orange' appears in context of 'juice' would be same as checking the number of times 'juice' appears in the context of 'orange'.
+  - If context is defined as $$i^{th}$$ word appearing just before the $$j^{th}$$ word, then $$X_{ij}$$ is not symmetric.
+
+### Cost function
+
+$$
+J = \Sigma_{i=1}^{10K} \  \Sigma_{j=1}^{10K} \left[ \ f(X_{ij})  ( w_i \ e_j + b_i - b_j - log(X_{ij}) ) \ \right]
+$$
+
+Here,
+
+- $$X_{ij}$$ measures how many times the $$i^{th}$$ word appears in context of $$j^{th}$$ word. If this value is closer to the product $$w_i e_j$$ then cost $$J$$ reduces.
+- The equation means how **related** are words $$i$$ and $$j$$ as measured by how **often** they occur with each other.
+- $$f(X_{ij})$$ is the weighting term
+  - $$X_{ij}$$  could be zero and $$ log(0) = -\infin$$ , in this case, $$f(X_{ij})$$ will be zero.
+  - Based on various heuristics the weights of very frequent words like 'it', 'and', 'the' or very rare words like 'durian' are calculated.
+- $$w$$ and $$e$$ play symmetric roles. So, finally the encodings are calculated as $$ e_i := \frac{e_i + w_i}{2}$$ 
+
+# Applications of word embedding
+
+## Sentiment Classification
+
+Sentiment classification is about analyzing a text and rating it. For example, the model could be analyzing the review of a restaurant and outputting a start rating from 1 to 5.
+
+### Simple sentiment classification model
+
+**Working**
+
+- Use a pre-trained word embedding matrix $$E$$ (Trained over billions of words from various books/docs/newspapers)
+- Get the word embeddings, for each word, in the given input review text
+- Average all the word embeddings to create a single vector of word embedding (`np.mean(E_sub, axis=1)`)
+- Feed this to a hidden layer and then to softmax to predict $$y\_pred$$ 5 probabilities.
+
+**Limitation**
+
+This algorithm works well on typical reviews. However, a limitation of the algorithm is that it does not take care of order of the words. For example, *"Completely lacking in good service, good taste or good ambiance"*  is probably a 1-star review. However, multiple occurrences of word *"good"* might mislead the algorithm into considering this as a positive, 4-star review. 
+
+### RNN sentiment classification model
+
+An RNN that passes the learning from previous time steps to the next can be used to learn order of words. In particular, the embeddings of each word is passed as input $$x^{\prec t \succ}$$ . The output from the final activation is then fed to softmax to make the prediction as given below.
+
+![WordEmbedding_Sentiment](/assets/images/dl/RNN_Sentiment.png)
 
 
 
-
-
-
-
-
-
+This is an example of **"Many to One"** RNN model. A model like this takes care of order. Like the previous model, E is taken from a standard pre-trained model (Trained over billions of words from various books/docs/newspapers).  So, a test review that uses another word like "void" instead of "lacking" shall also be classified correctly, even if the word "void" was not a part of training dataset. This works because E is taken from the standard model and has already learnt encodings, than what the current training has to offer. 
