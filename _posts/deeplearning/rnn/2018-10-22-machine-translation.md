@@ -80,16 +80,16 @@ Time step $$ t_2 $$
 
 > At $$t_2$$, we are picking top 3 (beam-width=3) words with highest probability of $$P(y^{\prec 1 \succ}, y^{\prec 2 \succ} |\ x) $$.  In essence, at any given point of time there are only beam width copies of the network.
 
-## Refinements	
+## Refinement - Length Normalization
 
-### Length Normalization
+### Numerical Underflow 
 
 We define beam algorithm to maximize the collective probability of choosing all the words.
 
 $$
 \begin{aligned}
 Maximize &= \ P(y^{\prec 1 \succ},\ y^{\prec 2 \succ},\ y^{\prec 3 \succ} ...\ y^{\prec n \succ} | x) \\
-Maximize &= 
+         &= 
  P(y^{\prec 1 \succ}|x) * 
  P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ}) * 
  P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ}) \ ...
@@ -98,19 +98,58 @@ Maximize &=
 \end{aligned}
 $$
 
- Multiplying a lot of probabilities (a number between 0 and 1) will result in a very small number resulting in **numerical underflow** $$-​$$ The floating point representation of the computer cannot store a very small number accurately. 
+#### 
 
+Multiplying a lot of probabilities (a number between 0 and 1) will result in a very small number resulting in **numerical underflow** $$-$$ The floating point representation of the computer cannot store a very small number accurately. Hence a $$log$$ of the probabilities is taken. By applying the logarithmic principles we see that the log of probabilities get summed instead of being multiplied.
 
 $$
 \begin{aligned}
 Maximize &= \ log \left[ P(y^{\prec 1 \succ},\ y^{\prec 2 \succ},\ y^{\prec 3 \succ} ...\ y^{\prec n \succ} | x) \right] \\
-Maximize &= log \left[
+
+ &= log \left[
  P(y^{\prec 1 \succ}|x) * 
  P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ}) * 
  P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ}) *\ ... *\
  P(y^{\prec n \succ}|x,y^{\prec n-1 \succ}, ... y^{\prec 2 \succ},y^{\prec 1 \succ})
 \right] \\
 
-Maximize &= log (P(y^{\prec 1 \succ}|x))  + log(P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ})) + log(P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ})) + ... + 
+ &= 
+ log \left[P(y^{\prec 1 \succ}|x)\right]  + 
+ log \left[P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ})\right] + 
+ log \left[P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ})\right] + ... + 
+ log \left[P(y^{\prec n \succ}|x,y^{\prec n-1 \succ}, ... y^{\prec 2 \succ},y^{\prec 1 \succ})\right] \\
+
+&= \Sigma_{t=1}^{T_y} log \left[ P(y^{\prec t \succ}|x,y^{\prec 1 \succ},y^{\prec 2 \succ}, ....,y^{\prec t-1 \succ}) \right]
 \end{aligned}
 $$
+
+### Unnatural preference to short sentence
+
+Despite applying log to the probability calculation as in the above section, an issue exists. 
+
+- A longer sentence will have more `log(<probability>)` terms added. A shorter sentence will have fewer terms. 
+- Probability ranges from 0 to 1. A log of probability ranges from $$-\infin$$ to 0. Hence, a longer sentence is more negative. 
+
+In essence, the algorithm shall unnaturally prefer a shorter translation to a larger translation! To normalize the magnitude of the negative number, the following formula is used. This is called **Normalized log probability score**
+$$
+Maximize = \frac{1}{(T_y)^{\alpha}} \Sigma_{t=1}^{T_y} log \left[ P(y^{\prec t \succ}|x,y^{\prec 1 \succ},y^{\prec 2 \succ}, ....,y^{\prec t-1 \succ}) \right]
+$$
+By dividing the equation by $$T_y$$ which is the number of words in the translation, the effect of unnatural preference is normalized. Here, $$\alpha$$ is a hyper parameter that ranges from 0 to 1 based on heuristic. Higher the $$\alpha​$$ greater the normalization effect. 
+
+## Beam Width
+
+A large beam width gives better results but consumes more memory and is computationally expensive. A smaller beam width will be faster but will be closer to greedy search.
+
+Production system uses beam width anywhere from 10 to 100 and even 1000. The gains taking beam width from say 1000 to 3000 may not be much (compared to going from 3 to 10). 
+
+An error analysis (next topic) shall give a better indication of where the algorithm needs fix. Does increasing beam width help OR does the encoder RNN (encoding the source language) needs fix.
+
+## Refined Beam Search
+
+As we run beam search, we may encounter several sentences (translations) of varied lengths ranging from 1 words to say 30 words.  This means the algorithm runs for 30 time steps. In each time step the algorithm keeps track of beam-width number of possibilities. Finally, for all the sentences (of varied lengths) shortlisted, calculate the normalized probability score. The sentence with the maximum score is selected.
+
+```python
+import numpy as np
+np.random.randn()
+
+```
