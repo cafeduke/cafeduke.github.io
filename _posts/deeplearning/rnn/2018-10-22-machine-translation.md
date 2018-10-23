@@ -98,7 +98,7 @@ Maximize &=
 \end{aligned}
 $$
 
- Multiplying a lot of probabilities (a number between 0 and 1) will result in a very small number resulting in **numerical underflow** $$-​$$ The floating point representation of the computer cannot store a very small number accurately. 
+ Multiplying a lot of probabilities (a number between 0 and 1) will result in a very small number resulting in **numerical underflow** $$-$$ The floating point representation of the computer cannot store a very small number accurately. 
 
 
 $$
@@ -111,6 +111,11 @@ Maximize &= log \left[
  P(y^{\prec n \succ}|x,y^{\prec n-1 \succ}, ... y^{\prec 2 \succ},y^{\prec 1 \succ})
 \right] \\
 
-Maximize &= log (P(y^{\prec 1 \succ}|x))  + log(P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ})) + log(P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ})) + ... + 
+Maximize &= log (P(y^{\prec 1 \succ}|x))  + log(P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ})) + log(P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ})) + ... + log(P(y^{\prec n \succ}|x,y^{\prec n-1 \succ}, ... y^{\prec 2 \succ},y^{\prec 1 \succ}))
 \end{aligned}
 $$
+
+
+
+
+
