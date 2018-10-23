@@ -1,5 +1,5 @@
 ---
-title: Machine Translation
+ title: Machine Translation
 categories: dl-rnn
 layout: post
 mathjax: true
@@ -81,7 +81,7 @@ $$
 
 $$
 P(A,B \| x) = P(A \| x) * P(B \| A,x)
-$$ 
+$$
 
 - Applying the probability theorem, we get the following formula.
 
@@ -167,7 +167,29 @@ As we run beam search, we may encounter several sentences (translations) of vari
 
 # Attention Model
 
-In the previous sections, we have seen an encoder-decoder model for machine translation. Consider providing the model with a lengthy sentence. The encoder module of the model is expected to encode the **entire** sentence. The decoder module is then expected to decode/translate the entire sentence. This is against how a human would address a long sentence translation. A human would translate couple of words at a time.
+In the previous sections, we have seen an encoder-decoder model for machine translation. Consider providing the model with a lengthy sentence. The encoder module of the model is expected to encode the **entire** sentence. The decoder module is then expected to decode/translate the entire sentence. This is against how a human would address a long sentence translation. A human would translate couple of words at a time. The efficiency of translation in case of encoder-decoder model, is high for short sentences and reduces for  longer sentences (20-30 words). It is hard for a network to memorize a long sentence as well. The issue is addressed using a attention model.
 
-The efficiency of translation in case of encoder-decoder model, is high for short sentences and reduces for  longer sentences (20-30 words). It is hard for a network to memorize a long sentence as well.
+## Attention model for a single time step
 
+The below diagram details a single time step ($$t$$) of the attention model. 
+
+![RNN_AttensionModel](/assets/images/dl/RNN_AttensionModel.png)
+
+The model consists of two layers stacked on top of each other. 
+
+- Bottom Layer $$-$$ A bidirectional recurrent neural network (BRNN) without the output $$y^{\prec t \succ}$$. The forward activation $$\overrightarrow{a}^{\prec i \succ}$$  and the backward activation $$\overleftarrow{a}^{\prec i \succ}$$ are concatenated into a single vector $$a^{\prec i \succ} = (\overrightarrow{a}^{\prec i \succ}, \overleftarrow{a}^{\prec i \succ})$$
+
+- Top Layer $$-$$ The top layer consists of a forward only RNN (similar to a decoder) that tracks the states. The activations of the top layer are denoted by $$s^{\prec t \succ}$$. The output of the top layer $$y^{\prec t \succ}$$ predicts the translated word.
+
+- Connections $$-​$$ The $$a^{\prec i \succ}​$$ from the bottom layer is multiplied with corresponding $$\alpha^{\prec t, i \succ}​$$ and fed to the aggregation unit (+). The $$\alpha​$$  stands for **attention model weight** and it's value indicates how much **attention** should be paid to corresponding $$a​$$. The aggregation unit $$c^{\prec t \succ}​$$ is calculated as follows
+
+$$
+c^{\prec t \succ} = \Sigma_{i=1}^{T_x} \left[ \alpha^{\prec t, i \succ} a^{\prec i \succ}  \right]
+$$
+
+## Calculating $$\alpha$$
+
+$$\alpha$$ is the attention model weight that indicates how much **attention** needs to be given to the activation $$a^{\prec i \succ} = (\overrightarrow{a}^{\prec i \succ}, \overleftarrow{a}^{\prec i \succ})$$  to eventually calculate$$y^{\prec t \succ}$$. As a property, all the $$\alpha​$$ in a given time step must add up to one. 
+$$
+\Sigma_{i=1}^{T_x} \left[ \alpha^{\prec t,i \succ} \right] = 1
+$$

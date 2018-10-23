@@ -435,6 +435,8 @@ Vanishing gradients is a bigger problem with RNN. Exploding gradients though equ
 
 As mentioned as one of the limitations of RNN earlier, RNN cannot make a decision based on the analysis of future inputs and analysis, it can only make a decision based on previous inputs and analysis. BRNN address this limitation. 
 
+![RNN_BRNN](/assets/images/dl/RNN_BRNN.png)
+
 **Note:** This is **not back propagation**, it is forward propagation that takes a U turn and comes back. The prediction at any given time step is based on current input ( $$x^{\prec t \succ}$$ ), analysis from previous time step ( $$\overrightarrow{a}^{\prec t-1 \succ}$$ ) and analysis from next time step  ($$\overleftarrow{a}^{\prec t-1 \succ}$$) . The last part is missing in RNN
 
 ## Equations
