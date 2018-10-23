@@ -1,5 +1,5 @@
 ---
- title: Machine Translation
+title: Machine Translation
 categories: dl-rnn
 layout: post
 mathjax: true
@@ -189,7 +189,7 @@ $$
 
 ## Calculating $$\alpha$$
 
-$$\alpha$$ is the attention model weight that indicates how much **attention** needs to be given to the activation $$a^{\prec i \succ} = (\overrightarrow{a}^{\prec i \succ}, \overleftarrow{a}^{\prec i \succ})$$  to eventually calculate$$y^{\prec t \succ}$$. As a property, all the $$\alpha​$$ in a given time step must add up to one. 
+$$\alpha$$ is the attention model weight that indicates how much **attention** needs to be given to the activation $$a^{\prec i \succ} = (\overrightarrow{a}^{\prec i \succ}, \overleftarrow{a}^{\prec i \succ})$$  to eventually calculate$$y^{\prec t \succ}$$. As a property, all the $$\alpha$$ in a given time step must add up to one. 
 $$
 \Sigma_{i=1}^{T_x} \left[ \alpha^{\prec t,i \succ} \right] = 1
 $$
