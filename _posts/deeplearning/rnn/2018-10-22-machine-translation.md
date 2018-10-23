@@ -6,10 +6,6 @@ mathjax: true
 typora-root-url: ../../../
 ---
 
-DRAFT
-
-____
-
 {% include toc.html %}
 
 # Introduction
@@ -181,7 +177,7 @@ The model consists of two layers stacked on top of each other.
 
 - Top Layer $$-$$ The top layer consists of a forward only RNN (similar to a decoder) that tracks the states. The activations of the top layer are denoted by $$s^{\prec t \succ}$$. The output of the top layer $$y^{\prec t \succ}$$ predicts the translated word.
 
-- Connections $$-​$$ The $$a^{\prec i \succ}​$$ from the bottom layer is multiplied with corresponding $$\alpha^{\prec t, i \succ}​$$ and fed to the aggregation unit (+). The $$\alpha​$$  stands for **attention model weight** and it's value indicates how much **attention** should be paid to corresponding $$a​$$. The aggregation unit $$c^{\prec t \succ}​$$ is calculated as follows
+- Connections $$-$$ The $$a^{\prec i \succ}$$ from the bottom layer is multiplied with corresponding $$\alpha^{\prec t, i \succ}$$ and fed to the aggregation unit (+). The $$\alpha$$  stands for **attention model weight** and it's value indicates how much **attention** should be paid to corresponding $$a$$. The aggregation is performed by the **context vector** $$c^{\prec t \succ}$$, that is calculated as follows
 
 $$
 c^{\prec t \succ} = \Sigma_{i=1}^{T_x} \left[ \alpha^{\prec t, i \succ} a^{\prec i \succ}  \right]
@@ -189,7 +185,46 @@ $$
 
 ## Calculating $$\alpha$$
 
-$$\alpha$$ is the attention model weight that indicates how much **attention** needs to be given to the activation $$a^{\prec i \succ} = (\overrightarrow{a}^{\prec i \succ}, \overleftarrow{a}^{\prec i \succ})$$  to eventually calculate$$y^{\prec t \succ}$$. As a property, all the $$\alpha$$ in a given time step must add up to one. 
+$$\alpha^{\prec t, i \succ}$$ is the **attention model weight** that indicates how much **attention** needs to be given to the activation $$a^{\prec i \succ} = (\overrightarrow{a}^{\prec i \succ}, \overleftarrow{a}^{\prec i \succ})$$  to eventually calculate $$y^{\prec t \succ}$$.
+
+### Property of $$\alpha$$
+
+ As a property, all the $$\alpha$$ in a given time step must add up to one. 
 $$
 \Sigma_{i=1}^{T_x} \left[ \alpha^{\prec t,i \succ} \right] = 1
 $$
+
+
+
+$$\alpha^{\prec t, i \succ}$$ is calculated as follows. This is essentially the softmax calculation to ensure the values add up to 1.
+$$
+\alpha^{\prec t, i \succ} = \frac{exp(\beta^{\prec t, i \succ})} {\Sigma_{i=1}^{T_x} exp(\beta^{\prec t, i \succ})}
+$$
+
+### What is $$\beta^{\prec t, i \succ}$$ ? 
+
+Before answering that, lets reiterate that $$\alpha^{\prec t,i \succ}$$ is a value (weight) that is used to multiply with $$a^{\prec i \succ}$$. Higher the value greater the **attention** given to $$a^{\prec i \succ}$$. In essence, we are calculating the worth of $$a^{\prec i \succ}$$. This can be determined only by examining $$a^{\prec i \succ}$$ itself as well as $$s^{\prec t-1 \succ}$$ which is the previous state.
+
+Now, $$\beta^{\prec t, i \succ}$$ is the value determined after examining $$a^{\prec i \succ}$$ and $$s^{\prec t-1 \succ}$$. Basically, $$\alpha$$ is a function of $$\beta$$ which in turn is a function of $$s$$ and $$a$$.
+
+### Calculating $$\beta^{\prec t, i \succ}$$
+
+A simple NN perhaps with a single hidden layer is used to determine the value of $$\beta^{\prec t, i \succ}$$. That is, the input layer shall consists of concatenated vectors  $$a^{\prec i \succ}$$ and $$s^{\prec t-1 \succ}$$. The input layer is multiplied by weights to finally output $$\beta^{\prec t, i \succ}$$. The weights are adjusted by back propagation and gradient descent. 
+
+> $$\alpha^{\prec t, 1 \succ}, \alpha^{\prec t, 2 \succ}, ..., \alpha^{\prec t, T_x \succ} $$ are required for a single time step. Another set of all of them is required for the next time step.
+
+## Computational Cost
+
+Below is the total number of attention weight parameter $$\alpha$$ required for each time step.
+
+$$
+t_1 : \alpha^{\prec 1, 1 \succ}, \alpha^{\prec 1, 2 \succ}, ..., \alpha^{\prec 1, T_x \succ} \\
+t_2 : \alpha^{\prec 2, 1 \succ}, \alpha^{\prec 2, 2 \succ}, ..., \alpha^{\prec 2, T_x \succ} \\
+... \\
+... \\
+... \\
+t_{T_y} : \alpha^{\prec T_y, 1 \succ}, \alpha^{\prec T_y, 2 \succ}, ..., \alpha^{\prec T_y, T_x \succ} \\
+... \\
+$$
+
+With a input sentence having $$T_x$$ words and a translation having $$T_y$$ words we need $$T_x \times T_y$$ attention weight parameters. It runs in **quadratic cost**. 
