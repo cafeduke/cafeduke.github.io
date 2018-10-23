@@ -45,15 +45,14 @@ Consider a greedy search for machine translation, of a sentence in French to Eng
 Consider the following two translations
 
 1. Jane is visiting Africa in September.
-2. Jane is going to be visiting Africa in September.
 
-The first translation is better than the second. Let $$x$$ be the encodings of the French sentence.  Probability $$ P( "visiting" | "Jane \ is", x)  < P( "going" | "Jane \ is", x)$$, hence the greedy search picked "going" over "visiting". 
+2. Jane is going to be visiting Africa in September. 
 
-However, when we consider the entire sentence or a much larger sentence the probability shall reverse. Probability $$ P( "Jane \ is \ visiting \ Africa" |  x)  > P( "Jane \ is \ going \ to \ be \ visiting \ Africa" | x)$$.
+The first translation is better than the second. Let $$x$$ be the encodings of the French sentence.  Probability $$P( "visiting" \| "Jane \ is", x)  < P( "going" \| "Jane \  is", x)$$, hence the greedy search picked "going" over "visiting".  However, when we consider the entire sentence or a much larger sentence the probability shall reverse. Probability $$ P( "Jane \ is \ visiting \ Africa" \|  x)  > P( "Jane \ is \ going \ to \ be \ visiting \ Africa" \| x)$$.
 
 In essence the best solution is the one that maximizes the following probability
 $$
-Maximize: \ P(y^{\prec 1 \succ},\ y^{\prec 2 \succ},\ y^{\prec 3 \succ} ...\ y^{\prec n \succ} | x)
+Maximize: \ P(y^{\prec 1 \succ},\ y^{\prec 2 \succ},\ y^{\prec 3 \succ} ...\ y^{\prec n \succ} \| x)
 $$
 
 
@@ -70,26 +69,46 @@ Time step $$t_1$$
 
 Time step $$ t_2 $$
 
-- The objective of the greedy algorithm for the time step would be to just find $$ P(y^{\prec 2 \succ} | \ y^{\prec 1 \succ}, x)$$. Pick the word with the top probability.
-- The objective of the beam algorithm for the time step is to maximize $$P(y^{\prec 1 \succ}, y^{\prec 2 \succ} |\ x) $$ 
-- From the probability theorem we know that $$P(A,B | x) = P(A\ |x) * P(B\ |A,x)$$. Applying the theorem, we get $$ P(y^{\prec 1 \succ}, y^{\prec 2 \succ} |\ x) = P(y^{\prec 1 \succ} | x) * P(y^{\prec 2 \succ} | x,y^{\prec 1 \succ}) $$ 
-- The $$ t_2 $$ of the decoder outputs $$P(y^{\prec 2 \succ} | x,y^{\prec 1 \succ}) $$. That is probability for all the words in the dictionary (`p2 = <vector of 10K probabilities>`).
-- The $$ t_1 $$ has given us $$P(y^{\prec 1 \succ} | x)$$. We just need to multiply the two. However $$ t_1 $$, in case of beam (with beam-width = 3) has given us top 3 probabilities (`p1`).
+- The objective of the greedy algorithm for the time step would be to just find $$ P(y^{\prec 2 \succ} \| \ y^{\prec 1 \succ}, x)$$. Pick the word with the top probability.
+
+- The objective of the beam algorithm for the time step is to maximize the following equation
+
+$$
+P(y^{\prec 1 \succ}, y^{\prec 2 \succ} \| x)
+$$
+
+-  Probability theorem states the following
+
+$$
+P(A,B \| x) = P(A \| x) * P(B \| A,x)
+$$ 
+
+- Applying the probability theorem, we get the following formula.
+
+$$
+  P(y^{\prec 1 \succ}, y^{\prec 2 \succ} \| x) = P(y^{\prec 1 \succ} \| x) * P(y^{\prec 2 \succ} \| x, y^{\prec 1 \succ})
+$$
+
+- The $$ t_2 $$ of the decoder outputs $$P(y^{\prec 2 \succ} \| x,y^{\prec 1 \succ}) $$. That is probability for all the words in the dictionary (`p2 = <vector of 10K probabilities>`).
+
+- The $$ t_1 $$ has given us $$P(y^{\prec 1 \succ} \| x)$$. We just need to multiply the two. However $$ t_1 $$, in case of beam (with beam-width = 3) has given us top 3 probabilities (`p1`).
+
 - To get all combinations, we create a vector of (3 * 10K = 30K) probabilities. `p1.dot(p2.T).reshape(-1, 1)`. In this huge vector the first 10K correspond to the top word in $$ t_1 $$, the next 10K correspond to the second topper from $$ t_1 $$ and so on.
+
 - We now sort entire 30K and pick only top 3 words and their probabilities for the next time step.
 
-> At $$t_2$$, we are picking top 3 (beam-width=3) words with highest probability of $$P(y^{\prec 1 \succ}, y^{\prec 2 \succ} |\ x) $$.  In essence, at any given point of time there are only beam width copies of the network.
+> At $$t_2$$, we are picking top 3 (beam-width=3) words with highest probability of $$P(y^{\prec 1 \succ}, y^{\prec 2 \succ} \| x) $$.  In essence, at any given point of time there are only beam width copies of the network.
 
-## Refinements	
+## Refinement - Length Normalization
 
-### Length Normalization
+### Numerical Underflow 
 
 We define beam algorithm to maximize the collective probability of choosing all the words.
 
 $$
 \begin{aligned}
-Maximize &= \ P(y^{\prec 1 \succ},\ y^{\prec 2 \succ},\ y^{\prec 3 \succ} ...\ y^{\prec n \succ} | x) \\
-Maximize &= 
+Maximize &= \ P(y^{\prec 1 \succ},\ y^{\prec 2 \succ},\ y^{\prec 3 \succ} ...\ y^{\prec n \succ} \| x) \\
+         &= 
  P(y^{\prec 1 \succ}|x) * 
  P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ}) * 
  P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ}) \ ...
@@ -98,24 +117,57 @@ Maximize &=
 \end{aligned}
 $$
 
- Multiplying a lot of probabilities (a number between 0 and 1) will result in a very small number resulting in **numerical underflow** $$-$$ The floating point representation of the computer cannot store a very small number accurately. 
-
+Multiplying a lot of probabilities (a number between 0 and 1) will result in a very small number resulting in **numerical underflow** $$-$$ The floating point representation of the computer cannot store a very small number accurately. Hence a $$log$$ of the probabilities is taken. By applying the logarithmic principles we see that the log of probabilities get summed instead of being multiplied.
 
 $$
 \begin{aligned}
-Maximize &= \ log \left[ P(y^{\prec 1 \succ},\ y^{\prec 2 \succ},\ y^{\prec 3 \succ} ...\ y^{\prec n \succ} | x) \right] \\
-Maximize &= log \left[
+Maximize &= \ log \left[ P(y^{\prec 1 \succ},\ y^{\prec 2 \succ},\ y^{\prec 3 \succ} ...\ y^{\prec n \succ} \| x) \right] \\
+
+ &= log \left[
  P(y^{\prec 1 \succ}|x) * 
  P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ}) * 
  P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ}) *\ ... *\
  P(y^{\prec n \succ}|x,y^{\prec n-1 \succ}, ... y^{\prec 2 \succ},y^{\prec 1 \succ})
 \right] \\
 
-Maximize &= log (P(y^{\prec 1 \succ}|x))  + log(P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ})) + log(P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ})) + ... + log(P(y^{\prec n \succ}|x,y^{\prec n-1 \succ}, ... y^{\prec 2 \succ},y^{\prec 1 \succ}))
+ &= 
+ log \left[P(y^{\prec 1 \succ}|x)\right]  + 
+ log \left[P(y^{\prec 2 \succ}|x,y^{\prec 1 \succ})\right] + 
+ log \left[P(y^{\prec 3 \succ}|x,y^{\prec 2 \succ},y^{\prec 1 \succ})\right] + ... + 
+ log \left[P(y^{\prec n \succ}|x,y^{\prec n-1 \succ}, ... y^{\prec 2 \succ},y^{\prec 1 \succ})\right] \\
+
+&= \Sigma_{t=1}^{T_y} log \left[ P(y^{\prec t \succ}|x,y^{\prec 1 \succ},y^{\prec 2 \succ}, ....,y^{\prec t-1 \succ}) \right]
 \end{aligned}
 $$
 
+### Unnatural preference to short sentence
 
+Despite applying log to the probability calculation as in the above section, an issue exists. 
 
+- A longer sentence will have more `log(<probability>)` terms added. A shorter sentence will have fewer terms. 
+- Probability ranges from 0 to 1. A log of probability ranges from $$-\infty$$ to 0. Hence, a longer sentence is more negative. 
 
+In essence, the algorithm shall unnaturally prefer a shorter translation to a larger translation! To normalize the magnitude of the negative number, the following formula is used. This is called **Normalized log probability score**
+$$
+Maximize = \frac{1}{(T_y)^{\alpha}} \Sigma_{t=1}^{T_y} log \left[ P(y^{\prec t \succ}|x,y^{\prec 1 \succ},y^{\prec 2 \succ}, ....,y^{\prec t-1 \succ}) \right]
+$$
+By dividing the equation by $$T_y$$ which is the number of words in the translation, the effect of unnatural preference is normalized. Here, $$\alpha$$ is a hyper parameter that ranges from 0 to 1 based on heuristic. Higher the $$\alpha​$$ greater the normalization effect. 
+
+## Beam Width
+
+A large beam width gives better results but consumes more memory and is computationally expensive. A smaller beam width will be faster but will be closer to greedy search.
+
+Production system uses beam width anywhere from 10 to 100 and even 1000. The gains taking beam width from say 1000 to 3000 may not be much (compared to going from 3 to 10). 
+
+An error analysis (next topic) shall give a better indication of where the algorithm needs fix. Does increasing beam width help OR does the encoder RNN (encoding the source language) needs fix.
+
+## Refined Beam Search
+
+As we run beam search, we may encounter several sentences (translations) of varied lengths ranging from 1 words to say 30 words.  This means the algorithm runs for 30 time steps. In each time step the algorithm keeps track of beam-width number of possibilities. Finally, for all the sentences (of varied lengths) shortlisted, calculate the normalized probability score. The sentence with the maximum score is selected.
+
+# Attention Model
+
+In the previous sections, we have seen an encoder-decoder model for machine translation. Consider providing the model with a lengthy sentence. The encoder module of the model is expected to encode the **entire** sentence. The decoder module is then expected to decode/translate the entire sentence. This is against how a human would address a long sentence translation. A human would translate couple of words at a time.
+
+The efficiency of translation in case of encoder-decoder model, is high for short sentences and reduces for  longer sentences (20-30 words). It is hard for a network to memorize a long sentence as well.
 
