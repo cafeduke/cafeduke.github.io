@@ -1331,10 +1331,8 @@ a9a329f  Version 4
 
 # References
 
-https://www.zdnet.com/article/github-to-replace-master-with-main-starting-next-month/
-
-https://github.com/zyedidia/micro/pull/1547
-
+- [How to contribute to open source](https://github.com/firstcontributions/first-contributions)
+- [Pull request workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962)
 
 
 
