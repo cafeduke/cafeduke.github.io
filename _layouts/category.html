@@ -14,14 +14,14 @@ layout: default
         {% for category in category_list %}
         <ul class="list-group list-group-flush">
             {% for post in site.categories[category] %}
-            <li class="list-group-item">                
+            <li class="list-group-item">
                 <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
                 <small class="post-meta">{{ post.date | date: "%A, %-d %B %Y" }}</small>
             </li>
             {% endfor %}
-        </ul>        
+        </ul>
         {% endfor %}
-      
+
     </div>
 
     {{ content }}

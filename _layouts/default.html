@@ -7,20 +7,20 @@
     <!-- Window title -->
     <title>{{ page.title }}</title>
 
-    <!-- CSS --> 
+    <!-- CSS -->
     {% include css.html %}
 
 </head>
 <body>
 
-    <!-- Navigation bar --> 
+    <!-- Navigation bar -->
     {% include navbar.html %}
-    
+
     <!-- Row: Content -->
     <div class="container-fluid m-0 p-0 h-100">
 
         <div class="row h-100 no-gutters">
-        
+
             <!-- Column: Sidebar -->
             {% include sidebar.html %}
 
@@ -28,7 +28,7 @@
             <div class="col">
                 <div id="content" class="w-100">{{ content }}</div>
                 <!-- <div id="footer" class="w-100">{% include footer.html %}</div> -->
-            </div>       
+            </div>
         </div>
     </div>
 
