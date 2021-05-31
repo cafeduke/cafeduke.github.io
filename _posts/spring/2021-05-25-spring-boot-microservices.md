@@ -189,7 +189,7 @@ public class LimitsConfigBean
 
   }
 
-	/* Getters and Setters*/
+  /* Getters and Setters*/
   ...
   ...
 }
@@ -198,7 +198,7 @@ public class LimitsConfigBean
 
 # Talking Microservices
 
-Create two mircroservies `CurrenceExchangeService` and `CurrencyCalculationService`.
+Create two mircroservies `CurrencyExchangeService` and `CurrencyCalculationService`.
 
 - The `CurrencyExchangeService` provides the conversion rate from one currency to another.
   - The REST URI shall be `http://<host:port>/currency-exchange-service/from/<currency>/to/<currency>`
@@ -252,8 +252,6 @@ spring.h2.console.enabled=true
 ![H2DBLogin](/assets/images/spring/H2DBLogin.jpg)
 - Access the console and verify DB table with data
 ![H2DBConsole](/assets/images/spring/H2DBConsole.jpg)
-
-
 
 ### Controller
 
@@ -367,9 +365,6 @@ Transfer-Encoding: chunked
   "env": "ServerPort=8000"
 }
 ```
-
-
-
 ## Currency Calculation Service
 
 ### Dependencies
@@ -391,7 +386,6 @@ server.port=8100
 # The config server URI
 spring.config.import=optional:configserver:http://localhost:8888
 ```
-
 ### Controller
 
 ```java
@@ -480,9 +474,6 @@ Transfer-Encoding: chunked
   "env": "ServerPort=8000"
 }
 ```
-
-
-
 # Talking Microservices via Feign
 
 In the previous section, we had to hard-code the URL of the target mircoservice and also write a lot of code to make micro services talk to each other. Spring cloud provides Feign (pronounced fay-in)
@@ -497,8 +488,6 @@ In the previous section, we had to hard-code the URL of the target mircoservice 
   <artifactId>spring-cloud-starter-openfeign</artifactId>
 </dependency>
 ```
-
-
 
 ```java
 /**
@@ -566,7 +555,7 @@ public class CurrencyCalculationServiceController
   {
     // A map of URI parameter to its value
     Map<String, String> mapParamValue = Map.ofEntries(Map.entry("from", from), Map.entry("to", to));
-		...
+    ...
   }
 }
 ```
@@ -605,8 +594,6 @@ Transfer-Encoding: chunked
 }
 ```
 
-
-
 # Naming service
 
 Instead of hardcoding URLs the microservices will be registered with the naming server (service registry).
@@ -616,12 +603,10 @@ Instead of hardcoding URLs the microservices will be registered with the naming 
 In the above example:
 
 - All services are registered with the naming server.
-- Multiple instances of CurrencyExchangeService are being load-balanced using an LB.
-- The CurrencyCalculationService shall query the naming server for the URL of the CurrencyExchangeService.
+- Multiple instances of `CurrencyExchangeService` are being load-balanced using an LB.
+- The `CurrencyCalculationService` shall query the naming server for the URL of the `CurrencyExchangeService`.
 - The naming server shall return the URL to the load-balancer.
-- The CurrencyCalculationServer shall request the corresponding LB URL which shall reach one of the CurrencyExchangeService instance.
-
-
+- The CurrencyCalculationServer shall request the corresponding LB URL which shall reach one of the `CurrencyExchangeService` instance.
 
 ## Naming service server
 
@@ -664,8 +649,6 @@ eureka.client.fetch-registry=false
 We can launch the appliation to see that no instances are currently registered with Eureka naming server.
 
 ![H2DBLogin](/assets/images/spring/EurekaNamingServerDash.jpg)
-
-
 
 ## Registering with naming server
 
@@ -739,7 +722,7 @@ Restart naming server followed by mircroservices (CurrencyExchange and CurrencyC
 
 ## Start multiple instances of services
 
-Lets start multiple instances of CurrencyExchangeService (Say, CurrencyExchangeServiceApplicationA and CurrencyExchangeServiceApplicationB)
+Lets start multiple instances of `CurrencyExchangeService` (Say, CurrencyExchangeServiceApplicationA and CurrencyExchangeServiceApplicationB)
 
 This can be done using eclipse as follows
 
@@ -750,7 +733,7 @@ This can be done using eclipse as follows
 
 ## Verify registration with naming server
 
-Open the eureka dashboard at http://localhost:8761/  and verify registration of both instances of CurrencyExchangeService and CurrencyCalculationService
+Open the eureka dashboard at http://localhost:8761/  and verify registration of both instances of `CurrencyExchangeService` and CurrencyCalculationService
 
 | Application                      | AMIs        | Availability Zones | Status                                                       |
 | -------------------------------- | ----------- | ------------------ | ------------------------------------------------------------ |
@@ -842,7 +825,9 @@ A production deployment shall consist of thousands of micro-services. These micr
 - Logging
 - Rate Limiting
 
-Where do we implement all these features? The typical solution is an **API Gateway** -- In spring cloud the gateway used is "Spring Cloud Gateway"
+Where do we implement all these features? The typical solution is an **API Gateway** -- In spring cloud the gateway used is `Spring Cloud Gateway`
+
+> Spring Cloud Gateway aims to provide a simple, yet effective way to  route to APIs and provide cross cutting concerns to them such as:  security, monitoring/metrics, and resiliency.
 
 ## Gateway Service
 
@@ -1036,8 +1021,6 @@ content-length=0
 # -----------------------------------------------
 name=Raghu
 ```
-
-
 
 ### Simplify URI to services
 
@@ -1243,8 +1226,6 @@ Lets say we send multiple requests to  `/test-circuit-breaker`  using the comman
 > A circuit breaker prevents a microservice from getting bombarded with more requests when it is already loaded.
 > However, it is also smart enough to switch back when the service is back on track.
 
-
-
 ![H2DBLogin](/assets/images/spring/CircuitBreaker.jpg)
 
 | State     | Detail                                                       |
@@ -1261,8 +1242,6 @@ Lets say we send multiple requests to  `/test-circuit-breaker`  using the comman
   - If threshold requests sent to target service succeed, the circuit shall switch to CLOSED state
   - If threshold requests sent to target service fail, the circuit shall switch to OPEN state
 
-
-
 ## Rate Limiter
 
 Limit the number of requests a service can be loaded within a given time interval (Eg: 10 requests per second, 3 requests in 10 seconds). Requests exceeding the limit shall be rejected.
@@ -1277,7 +1256,7 @@ public class CircuitBreakerController
 {
   private Logger logger = Logger.getLogger(getClass().getName());
 
-	...
+  ...
   ...
 
   @GetMapping("/test-rate-limiter")
@@ -1340,4 +1319,436 @@ public class CircuitBreakerController
 # ----------------------
 # Only allow a maximum of 10 concurrent calls
 resilience4j.bulkhead.instances.test-bulk-head.max-concurrent-calls=10
+```
+
+# Microservices with Docker
+
+## Distributed tracing service
+
+[Zipkin](https://zipkin.io) provides distributed tracing service. It helps gather timing data needed to troubleshoot latency problems in service architectures. Features include both the collection and lookup of this data. The zipkin docker image is available [here](https://hub.docker.com/r/openzipkin/zipkin)
+
+```bash
+> docker run --detach --name zipkin --publish 9411:9411 --detach openzipkin/zipkin:2.23
+```
+
+The services (`APIGateway`, `CurrencyCalculationService`, `CurrencyExchangeService`) shall be sending out information (using HTTP) to a queue (RabbitMQ) which shall in-turn be sent to distributed tracing server (`Zipkin`).
+
+- The `Zipkin` provides a UI to query and trace the information. In this case (http://localhost:9411/zipkin/)
+- The tracing information includes requests that are routed to multiple microservices.
+- `RabbitMQ` can queue (store) messages even when `Zipkin` is temporarily down, thus avoiding information loss.
+- Tracing every request will be a huge performance overload, hence we need to configure sampling -- Trace only a percentage of requests.
+- Unique tracing id metadata shall be added to messages logged by the services (using java.util.Logger). The tracing-id can be used to gather logs related across microservices.
+
+![ZipkinRabbit](/assets/images/spring/ZipkinRabbit.jpg)
+
+### Dependencies
+
+Following dependencies are added to `APIGateway`, `CurrencyExchangeService` and `CurrencyCalculationService`
+
+```xml
+<dependencies>
+  ...
+  <!-- Distributed Tracing Server -->
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+  </dependency>
+
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+  </dependency>
+
+  <dependency>
+    <groupId>org.springframework.amqp</groupId>
+    <artifactId>spring-rabbit</artifactId>
+  </dependency>
+</dependencies>
+```
+
+### Application Properties
+
+```properties
+# DistributedTracingServer: Zipkin
+# -----------------------------------------------
+# SamplingConfiguration: This will sample 50% of the requests
+spring.sleuth.sampler.probability=0.5
+
+# Location of Zipkin
+spring.zipkin.base-url=http://localhost:9411
+
+```
+
+## Build Docker image using Maven
+
+### Update plugin configuration
+
+> The `spring-boot-maven-plugin` can be configured to build Docker images for spring boot
+
+```xml
+<project>
+  <dependencies>
+    ...
+    ...
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <!-- Build Docker image -->
+        <configuration>
+          <image>
+            <name>raghubs81/learn-${project.artifactId}:${project.version}</name>
+          </image>
+          <pullPolicy>IF_NOT_PRESENT</pullPolicy>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+
+### Make `mvn` accessible as root
+
+In this section, we build image for `CurrencyExchangeService` using `maven` . Add `mvn` to `PATH` for `root` user
+
+```bash
+# Check mvn is on PATH for root user. Here, it is not
+> sudo which mvn
+>
+
+# If mvn is not known for root because Maven was installed on custom folder then do this
+> sudo ln -s <path to mvn> /usr/local/bin
+
+# Now mvn is accessible as root
+> sudo which mvn
+/usr/local/bin/mvn
+
+> ls -l /usr/local/bin/mvn
+lrwxrwxrwx 1 root root 34 May 28 21:01 /usr/local/bin/mvn -> /home/raghu/Programs/Maven/bin/mvn
+```
+
+### Execute the `build-image` goal of `spring-boot` plugin
+
+```bash
+> cd Learn/JavaEE/Spring/WebService/L02_Mircoservice/currency-exchange-service
+> export DOCKER_HOST="unix:///var/run/docker.sock"
+> sudo mvn spring-boot:build-image -DskipTests
+```
+
+### Start docker container for `CurrencyExchangeService`
+
+```bash
+> docker run --detach --publish 8000:8000 raghubs81/learn-currency-exchange-service
+> docker run --detach --publish 8001:8000 raghubs81/learn-currency-exchange-service
+
+> json-get http://localhost:8000/currency-exchange/from/USD/to/INR
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{
+  "id": 101,
+  "from": "USD",
+  "to": "INR",
+  "conversionMultiple": 65,
+  "env": "ServerPort=8000"
+}
+
+> json-get http://localhost:8001/currency-exchange/from/USD/to/INR
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{
+  "id": 101,
+  "from": "USD",
+  "to": "INR",
+  "conversionMultiple": 65,
+  "env": "ServerPort=8000"
+}
+```
+
+## Manage services using docker-compose
+
+Install [docker-compose](https://docs.docker.com/compose/install/) -- A development tool to build and manage containers easily. A docker compose is an easy alternative to running multiple docker commands. The default input file for docker-compose is `docker-compose.yaml` file in current directory.
+
+### YAML file
+
+```yaml
+version: '3.7'
+services:
+
+  currency-exchange:
+    image: raghubs81/learn-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+      - zipkin-server
+    # Properties configured for currency-exchange-servcie in application.properties are overridden using the following env variable.
+    # The name of the property is in upper-case.
+    # Note that the value uses the service-name (naming-server) as hostname.
+    environment:
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
+      - SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411
+
+  currency-calculation:
+    image: raghubs81/learn-currency-calculation-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+      - zipkin-server
+    # Properties configured for currency-calculation-servcie in application.properties are overridden using the following env variable.
+    # The name of the property is in upper-case.
+    # Note that the value uses the service-name (naming-server) as hostname.
+    environment:
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
+      - SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411
+
+  naming-server:
+    image: raghubs81/learn-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-network
+
+  api-gateway:
+    image: raghubs81/learn-api-gateway:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8765:8765"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+      - zipkin-server
+    # Properties configured for currency-calculation-servcie in application.properties are overridden using the following env variable.
+    # The name of the property is in upper-case.
+    # Note that the value uses the service-name (naming-server) as hostname.
+    environment:
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
+      - SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411
+
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-network
+    #Restart if there is a problem starting up
+    restart: always
+
+networks:
+  currency-network:
+```
+
+### Start all containers
+
+```bash
+> docker-compose up --detach
+Building with native build. Learn about native build in Compose here: https://docs.docker.com/go/compose-native-build/
+Starting l02_mircoservice_naming-server_1 ... done
+Starting l02_mircoservice_currency-exchange_1    ... done
+Creating l02_mircoservice_currency-calculation_1 ... done
+```
+
+### Verify requests
+
+```bash
+json-get http://localhost:8100/currency-calculator/from/USD/to/INR/quantity/3
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{
+  "id": 101,
+  "from": "USD",
+  "to": "INR",
+  "conversionMultiple": 65,
+  "quantity": 3,
+  "totalCalculatedAmount": 195,
+  "env": "ServerPort=8000"
+}
+```
+
+### Verify registration in Eureka
+
+| Application                      | AMIs        | Availability Zones | Status                                                       |
+| -------------------------------- | ----------- | ------------------ | ------------------------------------------------------------ |
+| **CURRENCY-CALCULATION-SERVICE** | **n/a** (1) | (1)                | [a696d46a1ff5:currency-calculation-service:8100](http://a696d46a1ff5:8100/actuator/info) |
+| **CURRENCY-EXCHANGE-SERVICE**    | **n/a** (1) | (1)                | [d025265c4b6b:currency-exchange-service:8000](http://d025265c4b6b:8000/actuator/info) |
+
+## RabbitMQ Service
+
+All microservices will communicate with `Distributed Tracing Server -- Zipkin` over `RabbitMQ` (Message Queue)
+
+### Dependency
+
+```xml
+<dependency>
+  <groupId>org.springframework.amqp</groupId>
+  <artifactId>spring-rabbit</artifactId>
+</dependency>
+```
+
+### Application Properties
+
+The property needs to be configured in all microservices using `Zipkin` that is `CurrencyExchangeService`, `CurrencyCalculationService` and `APIGateway`
+
+```properties
+# Make miroservices contact Zipkin over RabbitMQ
+spring.zipkin.sender.type=rabbit
+```
+
+### Docker Compose
+
+```yaml
+version: '3.7'
+services:
+
+  currency-exchange:
+    image: raghubs81/learn-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+      - zipkin-server
+    # Properties configured for currency-exchange-servcie in application.properties are overridden using the following env variable.
+    # The name of the property is in upper-case.
+    # Note that the value uses the service-name (naming-server) as hostname.
+    environment:
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
+      - SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411
+      - SPRING_ZIPKIN_SENDER_TYPE=rabbit
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      # The format is amqp://<user>:<password>@<host>:<port>
+      - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+
+  currency-calculation:
+    image: raghubs81/learn-currency-calculation-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+      - zipkin-server
+    # Properties configured for currency-calculation-servcie in application.properties are overridden using the following env variable.
+    # The name of the property is in upper-case.
+    # Note that the value uses the service-name (naming-server) as hostname.
+    environment:
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
+      - SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411
+      - SPRING_ZIPKIN_SENDER_TYPE=rabbit
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      # The format is amqp://<user>:<password>@<host>:<port>
+      - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+
+  naming-server:
+    image: raghubs81/learn-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-network
+
+  api-gateway:
+    image: raghubs81/learn-api-gateway:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8765:8765"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+      - zipkin-server
+    # Properties configured for currency-calculation-servcie in application.properties are overridden using the following env variable.
+    # The name of the property is in upper-case.
+    # Note that the value uses the service-name (naming-server) as hostname.
+    environment:
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
+      - SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411
+      - SPRING_ZIPKIN_SENDER_TYPE=rabbit
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      # The format is amqp://<user>:<password>@<host>:<port>
+      - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-network
+    depends_on:
+      - rabbitmq
+    environment:
+      # The format is amqp://<user>:<password>@<host>:<port>
+      - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+
+    #Restart if there is a problem starting up
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:3.8.12-management
+    mem_limit: 300m
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - currency-network
+    restart: always
+
+networks:
+  currency-network:
+```
+
+### Verify requests
+
+```bash
+# Requst via API Gateway
+> json-get http://localhost:8765/currency-calculator/from/USD/to/INR/quantity/10
+Status: HTTP/1.1 200 OK
+Content-Type: application/json
+transfer-encoding: chunked
+
+{
+  "id": 101,
+  "from": "USD",
+  "to": "INR",
+  "conversionMultiple": 65,
+  "quantity": 10,
+  "totalCalculatedAmount": 650,
+  "env": "ServerPort=8000"
+}
+
+# Requst via API Gateway
+> json-get http://localhost:8765/currency-exchange/from/USD/to/INR
+Status: HTTP/1.1 200 OK
+Content-Type: application/json
+transfer-encoding: chunked
+
+{
+  "id": 101,
+  "from": "USD",
+  "to": "INR",
+  "conversionMultiple": 65,
+  "env": "ServerPort=8000"
+}
 ```
