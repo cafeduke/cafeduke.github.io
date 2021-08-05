@@ -19,12 +19,11 @@ Kubernetes is an orchestrator of containerized apps (*typically microservice app
 | Term             | Detail                                                       |
 | ---------------- | ------------------------------------------------------------ |
 | K8s Node         | A Kubernetes Node is any Linux host $$-$$ VM, bare metal or even private/public cloud instance. |
-| K8s Cluster      | Used interchangibly as just Kubernetes, is made up of master and worker nodes. |
+| K8s Cluster      | Used interchangeably as just Kubernetes, is made up of master and worker nodes. |
 | Microservice App | A microservice app is an application made up several independent parts called **services.**. The services work together to create a meaningful application. |
-| K8s Master Node  | A collection of services that make up the control panel and are incharge of the K8s cluster. Master schedules apps, monitors worker nodes, implements changes and resonds to events. |
+| K8s Master Node  | A collection of services that make up the control panel and are in-charge of the K8s cluster. Master schedules apps, monitors worker nodes, implements changes and responds to events. |
 | K8s Worker Node  | The app services run on the K8s worker node or just node.    |
 | Deployment       | A YAML manifest file that answers (A) What the app needs? (B) Scale $$-$$ How many replica apps? |
-|                  |                                                              |
 
 # K8s Master Node
 
@@ -61,7 +60,7 @@ The K8s worker nodes are also called **Minions**.
 
 ## Kubelet
 
-- The main K8s agent that runs on all the worker nodes. Install a kubelet on a host and register with the K8s cluster. The host is now node of the K8s cluster.
+- The main K8s agent that runs on all the worker nodes. Install a Kubelet on a host and register with the K8s cluster. The host is now node of the K8s cluster.
 - Watches for work assignment. Carries out the task. Maintains a reporting channel back to master.
 - If the work can't be run the the report is sent to Master to take action.
 - Exposes port 10255 for inspecting.
@@ -144,7 +143,7 @@ Pods are mortals $$-$$ Failed is discarded, new one is created.
 - When a pod dies unexpectedly, a new one is created anywhere in the cluster.
 - The apps must not be hardwired to the pod.
 
-## Inter and Intra Pod Communication
+## Inter-pod and Intra-pod Communication
 
 Every pod has its own IP. 
 
@@ -182,4 +181,87 @@ Service provides an LB abstraction
 ## Label $$-$$ Connecting Pod to Service
 
 ![Label](/assets/images/cloud/Label.jpg)
+
+
+
+# K8s using kind
+
+## Create Cluster
+
+```yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: my-cluster
+nodes:
+  - role: control-plane
+  - role: worker
+  - role: worker
+```
+
+```bash
+# Create cluster
+# --------------------------------------------------------------------------------
+> sudo kind create cluster --config kind-config.yaml
+
+# View current kubectl config
+> kubectl config view
+
+# Point kubectl to required cluster
+# --------------------------------------------------------------------------------
+
+# List clusters
+> kubectl config get-clusters
+NAME
+minikube
+kind-my-cluster
+
+# Point kubectl to the required cluster
+> kubectl config set-cluster kind-my-cluster
+Cluster "kind-my-cluster" set.
+
+# Cluster Information
+# --------------------------------------------------------------------------------
+
+# Print info of the current cluster
+> kubectl cluster-info     
+Kubernetes master is running at https://127.0.0.1:43101
+CoreDNS is running at https://127.0.0.1:43101/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+# Get info on nodes of the cluster
+kubectl get nodes
+NAME                       STATUS   ROLES                  AGE   VERSION
+my-cluster-control-plane   Ready    control-plane,master   3d    v1.21.1
+my-cluster-worker          Ready    <none>                 3d    v1.21.1
+my-cluster-worker2         Ready    <none>                 3d    v1.21.1
+```
+
+
+
+```bash
+> kubectl create deployment currency-exchange --image=in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
+deployment.apps/currency-exhange created
+
+> kubectl expose deployment currency-exchange --name=currency-exchange-node-port --type=NodePort --target-port=8000 --port=18000
+
+> kubectl describe services currency-exchange-node-port
+Name:                     currency-exchange-node-port
+Namespace:                default
+Labels:                   app=currency-exchange
+Annotations:              <none>
+Selector:                 app=currency-exchange
+Type:                     NodePort
+IP:                       10.96.197.201
+Port:                     <unset>  18000/TCP
+TargetPort:               8000/TCP
+NodePort:                 <unset>  31741/TCP
+Endpoints:                10.244.2.2:8000
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+
+kubectl get pods --output=wide
+NAME                                 READY   STATUS    RESTARTS   AGE    IP           NODE                NOMINATED NODE   READINESS GATES
+currency-exchange-765b4cdf46-dq826   1/1     Running   4          3d2h   10.244.2.2   my-cluster-worker   <none>           <none>
+
+```
 
