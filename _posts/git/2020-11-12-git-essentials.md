@@ -33,12 +33,14 @@ git version 2.25.1
 ```
 ## Install duke-git
 
+DukeGit is an open source projects having executable shell scripts that act as wrappers for git commands. DukeGit aims to be easy, intuitive, add-on to git commands.
+
 https://github.com/cafeduke/duke-git
 
 ```bash
 # Ensure duke-git is part of path
 > which git-history
-https://github.com/raghubs81/LearnGit
+/home/raghu/bin/duke-git/git-history
 ```
 
 ## Create your own git project
