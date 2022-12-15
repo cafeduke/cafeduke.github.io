@@ -13,12 +13,14 @@ Pseudo Name                     | Purple     | rgb(174,129,255);     | Eg| True,
     background-color: rgb(40,40,40);
     border-left: 3px solid rgb(120,160,0);
     padding: 5px 10px;
-    font: normal 14px 'Consolas';
+    font-size: 14px;
+    font-family: Consolas, Roboto Mono, Menlo, Monaco, Liberation Mono, Courier New, monospace;
     line-height: 20px;
 }
 
 .highlight code {
-    font: normal 14px 'Consolas';
+    font-size: 14px;
+    font-family: Consolas, Roboto Mono, Menlo, Monaco, Liberation Mono, Courier New, monospace;
 }
 
 .highlight .hll { background-color: #333333 }
