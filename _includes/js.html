@@ -17,12 +17,14 @@
       asciimath2jax: {
          delimiters: [['`','`'], ['$$','$$'], ['$','$']]
       },
-      "HTML-CSS": { 
-         preferredFont:"TeX", availableFonts:["STIX","TeX"] 
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
       }
    });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="{{ '/assets/js/mermaid.min.js' | relative_url }}"></script>
 
 <!-- Google analytics -->
 {% if jekyll.environment == 'production' and site.google_analytics %}
@@ -31,3 +33,4 @@
 
 <!-- Sidebar -->
 <script src="{{ '/assets/js/sidebar.js' | relative_url }}"></script>
+

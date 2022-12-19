@@ -8,7 +8,8 @@ markdown: kramdown
 syntax_highlighter: rouge
 
 kramdown:
-   parse_block_html: true
+  parse_block_html: true
 
 plugins:
-   - jemoji
+  - jemoji
+  - jekyll-spaceship

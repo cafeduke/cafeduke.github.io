@@ -1,8 +1,9 @@
 ---
-title: Kubernetes Overview
+title: Kubernetes Essentials
 categories: cloud
 layout: post
 mathjax: true
+use_mermaid: true
 typora-root-url: ../../
 ---
 
@@ -10,15 +11,15 @@ typora-root-url: ../../
 
 # Introduction
 
-Kubernetes is an open source, **container orchestration** tool that operates in a **distributed** environment at **scale**. Kubernetes comes from the Greek word that means *"The person who steers the ship"*. Hence the logo. 
+Kubernetes is an open source, **container orchestration** tool that operates in a **distributed** environment at **scale**. Kubernetes comes from the Greek word that means *"The person who steers the ship"*. Hence the logo.
 
 > K8s is short for Kubernetes
 
 ## What is Container Orchestration?
 
-The rise of micro-services required an environment where each service/application could run in its own virtual environment with its bare minimum system libraries -- This resulted in container architecture  -- Docker being the most popular. A container orchestration framework like K8s provides 
+The rise of micro-services required an environment where each service/application could run in its own virtual environment with its bare minimum system libraries -- This resulted in container architecture  -- Docker being the most popular. A container orchestration framework like K8s provides
 
-- High Availability -- Zero downtime. 
+- High Availability -- Zero downtime.
 - Scalability -- Ability to take more load or less load on need basis.
 - Self healing -- Ability to recover from failures.
 
@@ -38,7 +39,7 @@ The rise of micro-services required an environment where each service/applicatio
 
 ## Node
 
-A node is a physical machine or a virtual machine (VM). 
+A node is a physical machine or a virtual machine (VM).
 
 ## Container
 
@@ -48,7 +49,7 @@ A container is like a womb for an application (app). It contains only those syst
 
 A pod is a K8s component that provides an abstraction layer over the container. The user interacts with the pod and not directly with the container. This way, the container provider can be replaced with any other container provider that follows the spec. Docker is the most popular container provider.
 
-- Pod should usually contain one application (app). 
+- Pod should usually contain one application (app).
 - Pod could have other small helper apps that work coherently with each other.
 - Pod (not container) gets its own internal IP.
 - Pods can communicate with each other using **internal** IP address
@@ -58,7 +59,7 @@ A pod is a K8s component that provides an abstraction layer over the container. 
 
 ## Service
 
-A service is a K8s component that can be attached to each Pod. 
+A service is a K8s component that can be attached to each Pod.
 
 - The service provides a permanent IP address.
 - Pods communicate with each other via their services.
@@ -75,7 +76,7 @@ A ingress is the end-point for external browser requests to route traffic into t
 
 ## ConfigMap
 
-Let's say we need to change a container configuration (Like Apache log verbosity). One way of achieving this is to modify the container files, push a new version of container (say to docker-hub), ask K8s to upgrade to the new version of the container. This is very tedious for every small config change to be done. 
+Let's say we need to change a container configuration (Like Apache log verbosity). One way of achieving this is to modify the container files, push a new version of container (say to docker-hub), ask K8s to upgrade to the new version of the container. This is very tedious for every small config change to be done.
 
 K8s provides a more elegant solution via ConfigMap
 
@@ -88,7 +89,7 @@ K8s provides a more elegant solution via ConfigMap
 
 ## Secret
 
-A container configuration can also be something like login credentials. Creating a ConfigMap for this case will be insecure as ConfigMap is plain text. This is handled using K8s component **Secret**. 
+A container configuration can also be something like login credentials. Creating a ConfigMap for this case will be insecure as ConfigMap is plain text. This is handled using K8s component **Secret**.
 
 - Secret is Base64 encoded.
 - Secret is attached to a Pod just like ConfigMap.
@@ -109,16 +110,16 @@ This storage could be on the same Node, a remote storage on some other node, a c
 This means a user and/or administrator is responsible for the following storage management
 
 - Data distribution -- Spread chunks of data across physical nodes
-- Data redundancy -- Maintain multiple copies of data 
+- Data redundancy -- Maintain multiple copies of data
 - Ensure data is kept on reliable hardware (with parity check) from which it can be restored.
 
 ## Replicas
 
-With the setup the service is accessible via a external browser. If a pod dies, it gets recreated. However, there is a window of time between crash and recreation where the service is unavailable. In order to provide high availability, that is zero down time of a service, we need multiple replicas of the pod running (preferably distributed on different nodes). 
+With the setup the service is accessible via a external browser. If a pod dies, it gets recreated. However, there is a window of time between crash and recreation where the service is unavailable. In order to provide high availability, that is zero down time of a service, we need multiple replicas of the pod running (preferably distributed on different nodes).
 
 - Multiple replicas of the pod shall be connected to the **same** service object.
 - The service provides a persistent static IP address with DNS name, that remains even if pod dies and gets recreated.
-- The service also provides a built-in load balancer that distributes load among pods. 
+- The service also provides a built-in load balancer that distributes load among pods.
 
 > A service provides persistent static IP as well as built-in load balancing.
 
@@ -132,14 +133,14 @@ A deployment is a K8s component that provides another layer of abstraction on to
 
 ## StatefulSet
 
-A deployment cannot be used in case of stateful applications such as database. 
+A deployment cannot be used in case of stateful applications such as database.
 
 A stateful application has the following complications in case of multiple pods (say database pods)
 
 - To maintain consistency they could be accessing the same database storage. In this case multiple pods will try read and write that needs be syncronized.
 - If we have a database storage per pod, then these storages must be in sync.
 
-A mechanism that governs which pod shall write to the storage, which shall read is required in addition to replicating feature. This is offered by K8s component called **StatefulSet**. As the name indicates a StatefulSet is meant specifically for applications like databases (like MySQL, MongoDB, ElasticSearch). 
+A mechanism that governs which pod shall write to the storage, which shall read is required in addition to replicating feature. This is offered by K8s component called **StatefulSet**. As the name indicates a StatefulSet is meant specifically for applications like databases (like MySQL, MongoDB, ElasticSearch).
 
 > Pods that need to maintain state should be created using **StatefulSet**.
 
@@ -194,7 +195,7 @@ Every master node has the following **four** process running
     - How Controller Manager know that the cluster state changed -- pod died or Kubelet restarted a pod etc?
     - How does API Server know about the health/status of a deployment?
 
-A K8s cluster is typically made up of multiple master nodes each running all these processes. 
+A K8s cluster is typically made up of multiple master nodes each running all these processes.
 
 - The API server is load balanced across master nodes
 - etcd forms a distributed storage across all the master nodes
@@ -219,7 +220,7 @@ Minikube creates a single node K8s cluster with master and worker processes for 
 
 ## Kubectl
 
-We have seen that **API Server** component of of K8s Master is the entry point for interacting with K8s to perform any operation. We can interact with the API Server using 
+We have seen that **API Server** component of of K8s Master is the entry point for interacting with K8s to perform any operation. We can interact with the API Server using
 
 - Kubernetes UI dashboard
 - Kubernetes API
@@ -239,11 +240,11 @@ The Kubectl CLI is the most popular and powerful way of interaction with K8s clu
 > docker --version
 Docker version 20.10.21, build baeda1f
 
-> minikube version                 
+> minikube version
 minikube version: v1.28.0
 commit: 986b1ebd987211ed16f8cc10aed7d2c42fc8392f
 
-> kubectl version --output=yaml                  
+> kubectl version --output=yaml
 clientVersion:
   buildDate: "2022-10-12T10:57:26Z"
   compiler: gc
@@ -276,7 +277,7 @@ Done! kubectl is now configured to use "minikube" cluster and "default" namespac
 NAME       STATUS   ROLES           AGE   VERSION
 minikube   Ready    control-plane   10h   v1.25.3
 
-> minikube status  
+> minikube status
 minikube
 type: Control Plane
 host: Running
@@ -349,7 +350,7 @@ httpd-574c8fb7c5-k9nh6   1/1     Running   0          90s
 AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.5. Set the 'ServerName' directive globally to suppress this message
 [Wed Dec 07 04:34:40.810356 2022] [mpm_event:notice] [pid 1:tid 140054806654272] AH00489: Apache/2.4.54 (Unix) configured -- resuming normal operations
 
-# Debug: Get interactive terminal 
+# Debug: Get interactive terminal
 # -------------------------------
 > kubectl exec -it httpd-574c8fb7c5-k9nh6 -- bash
 
@@ -369,12 +370,11 @@ deployment.apps "httpd" deleted
 flowchart TB
   a1[httpd]---a2(Service):::service
   a1(httpd)---a3(ConfigMap):::config
-  
+
   classDef node    fill:#b4dcff,color:black,stroke:#2864dc;
   classDef service fill:#2864dc,color:white,stroke:#64a0ff;
   classDef config  fill:#00a078,color:white,stroke:#00c8a0;
 ```
-
 
 
 The [K8s/01-basic](K8s/01-basic) project details the following concepts
@@ -385,7 +385,7 @@ The [K8s/01-basic](K8s/01-basic) project details the following concepts
 - Assert Service IP and ConfigMap persistance
 - Test out-of-box Zero downtime when pod is deleted during load
 
-# MongoDB & MongoExpress deployment	
+# MongoDB & MongoExpress deployment
 
 ```mermaid
 flowchart TB
@@ -394,20 +394,20 @@ flowchart TB
   d1---g2(DB Secret):::secret
 
   d2(MongoExpress):::node---g2
-  d2---g3(LB Service):::service  
+  d2---g3(LB Service):::service
   d2---g4(DB Config Map):::config
-  
+
   classDef node    fill:#b4dcff,color:black,stroke:#2864dc;
   classDef service fill:#2864dc,color:white,stroke:#64a0ff;
   classDef config  fill:#00a078,color:white,stroke:#00c8a0;
   classDef secret  fill:#b47800,color:white,stroke:#c88c00;
-  
+
 ```
 
 The [K8s/02-mongo](https://github.com/cafeduke/learn/tree/master/K8s/02-mongo) project details the following concepts
 
 - Secret and ConfigMap
-- Deployments sharing Secret component 
+- Deployments sharing Secret component
 - Request flow through pods and services when user accesses MongoExpress UI
 
 # Namespace
@@ -428,7 +428,7 @@ By default K8s provides the following namespaces
 
 ## Custom namespace
 
-Various K8s components (Deployments, ConfigMap, Secret) can be grouped under a custom namespace by specifying the name of the namespace in `metadata.namespace`				
+Various K8s components (Deployments, ConfigMap, Secret) can be grouped under a custom namespace by specifying the name of the namespace in `metadata.namespace`
 
 ```yaml
 apiVersion: v1
@@ -457,16 +457,16 @@ flowchart TB
 
   subgraph db-namespace
     direction TB
-    db1(mysql)    
-    db2(mysql-service):::service    
+    db1(mysql)
+    db2(mysql-service):::service
   end
-  
+
   subgraph a2-namespace
     direction TB
     a2c1(A2)
     a2c2(my-configmap):::config
     a2c3(my-secret):::secret
-  end       
+  end
 
   subgraph a1-namespace
     direction TB
@@ -474,14 +474,14 @@ flowchart TB
     a1c2(my-configmap):::config
     a1c3(my-secret):::secret
   end
-  
+
   a1c2---db2
   a2c2---db2
-  
+
   classDef node    fill:#b4dcff,color:black,stroke:#2864dc;
   classDef service fill:#2864dc,color:white,stroke:#64a0ff;
   classDef config  fill:#00a078,color:white,stroke:#00c8a0;
-  classDef secret  fill:#a07800,color:white,stroke:#a0c800;  
+  classDef secret  fill:#a07800,color:white,stroke:#a0c800;
 
 ```
 
@@ -497,7 +497,7 @@ flowchart TB
 ##
 # my-configmap
 # ------------
-# data.db_url	
+# data.db_url
 #   - Note that fully qualified name is used to reference the service
 #   - The fully qualified service name is of the format <service-name>.<namespace>
 ##
@@ -509,7 +509,7 @@ data:
   db_url: mysql-service.db-namespace
 ```
 
-## Global Components	
+## Global Components
 
 Global components cannot be confined to a namespace. Example of such components are as follows
 
@@ -550,7 +550,7 @@ Ingress provides routing rules and is the entry point into the K8s cluster.
 
 ```yaml
 ##
-# spec.rules 
+# spec.rules
 #   - When request comes to host route the request to "backend" service
 #   - In this case the backend service is myapp-internal-service
 #   - Since it's internal service we use internal service port
@@ -572,7 +572,7 @@ spec:
 
 ## Ingress Controller
 
-An Ingress Component is not enough for the Ingress routing rules to work. We also need an **Ingress Controller**. 
+An Ingress Component is not enough for the Ingress routing rules to work. We also need an **Ingress Controller**.
 
 - An Ingress Controller is the actual implementation of Ingress.
 - An Ingress Controller is a pod (or set of pods) within K8s cluster that evaluate and process routing rules
@@ -584,7 +584,7 @@ An Ingress Component is not enough for the Ingress routing rules to work. We als
 
 ## External Cloud LB deployment
 
-This is the typical deployment of a K8s cluster. 
+This is the typical deployment of a K8s cluster.
 
 - An external cloud loadbalancer (LB) shall front-end all customer requests and shall forward the request to `IngressController`
 - The LB shall have a public IP registered with domain `my-app.com`
@@ -594,10 +594,10 @@ flowchart RL
 
   subgraph CloudLB
     direction LR
-    lb1(N1)    
+    lb1(N1)
     lb2(N2)
     lb3(N3)
-    
+
     lb1---lb2---lb3
   end
 
@@ -607,16 +607,16 @@ flowchart RL
     c2(my-service):::service
     c3(my-ingress):::ingress
     c4(IngressController):::ctl
-    
+
     c4-->c3-->c2-->c1
   end
 
    CloudLB-->c4
-  
+
   classDef node    fill:#b4dcff,color:black,stroke:#2864dc;
   classDef service fill:#2864dc,color:white,stroke:#64a0ff;
   classDef ingress fill:#b47800,color:white,stroke:#c88c00;
-  classDef ctl     fill:#8c6400,color:white,stroke:#b47800;  
+  classDef ctl     fill:#8c6400,color:white,stroke:#b47800;
 ```
 
 
@@ -625,7 +625,7 @@ flowchart RL
 
 The deployment uses an external proxy server
 
-- An external proxy server could be a hardware or software solution. 
+- An external proxy server could be a hardware or software solution.
 - The proxy shall be the only entry point to customer requests and shall forward the request to `IngressController`
 - The proxy shall have a public IP registered with domain `my-app.com`
 
@@ -643,19 +643,19 @@ flowchart RL
     c2(my-service):::service
     c3(my-ingress):::ingress
     c4(IngressController):::ctl
-    
+
     c4-->c3-->c2-->c1
   end
 
    ProxyServer-->c4
-  
+
   classDef node    fill:#b4dcff,color:black,stroke:#2864dc;
   classDef service fill:#2864dc,color:white,stroke:#64a0ff;
   classDef ingress fill:#b47800,color:white,stroke:#c88c00;
-  classDef ctl     fill:#8c6400,color:white,stroke:#b47800;  
+  classDef ctl     fill:#8c6400,color:white,stroke:#b47800;
 ```
 
-## MiniKube deployment		
+## MiniKube deployment
 
 ### Enable Ingress Controller
 
@@ -740,7 +740,7 @@ spec:
 ### Apply Ingress Component
 
 ```bash
-> kubectl apply -f myapp-ingress.yml 
+> kubectl apply -f myapp-ingress.yml
 
 # Wait for kubernetes to assign a Public IP for ingres
 > kubectl get ingress -n kubernetes-dashboard --watch
@@ -758,7 +758,7 @@ Ingress has an attribute called `Default backend` that maps to a service named `
 
 ```yaml
 ##
-#  metadata.name : 
+#  metadata.name :
 #    - The name should be 'default-http-backend' as Ingress looks for a servcie by the name
 #    - We need to have pods listening at 8080 that provide custom error page
 ##
@@ -766,13 +766,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: default-http-backend
-spec: 
+spec:
   selector:
-  	app: my-error-app
+    app: my-error-app
   ports:
-  	- protocol: TCP
-  	  port: 80
-  	  targetPort: 8080
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 ```
 
 ## Ingress routing use-cases
@@ -800,7 +800,7 @@ spec:
             backend:
               serviceName: prefix2-service
               servicePort: 9090
-                           
+
 ```
 
 ### Sub-domain based routing
@@ -826,7 +826,7 @@ spec:
           - backend:
               serviceName: prefix2-service
               servicePort: 9090
-                           
+
 ```
 
 ## Ingress TLS Certificates
@@ -837,7 +837,7 @@ spec:
 ##
 # spec.tls.hosts
 #   - The domain hosted by the K8s cluster
-# 
+#
 #  spec.tls.secretName
 #    - A reference to the secret component
 ##
@@ -883,7 +883,7 @@ metadata:
 data:
   tls.crt: <base64 encoded cert>
   tls.key: <base64 encoded cert private key>
-type: kubernetes.io/tls  
+type: kubernetes.io/tls
 ```
 
 # Helm
@@ -904,13 +904,13 @@ Helm is a package manager for K8s cluster
 - A reusable bundle of YAML files, shared at a centralised repository, that configures `ElasticStack` is useful for many.
 - This bundle of YAML files is called **Helm Chart**.
 - The repository is called **Helm Repository**.
-- Helm charts exists for database Apps like MongoDB, ElasticSearch, MySQL 
+- Helm charts exists for database Apps like MongoDB, ElasticSearch, MySQL
 - Helm charts exists for monitoring Apps like Promotheus
 - Look out for helm charts in https://artifacthub.io/
 
 ## Helm as templating engine
 
-Consider a K8s cluster running several microservices. 
+Consider a K8s cluster running several microservices.
 
 - The YAML config of majority of the services are identical expect for the the values for few parameters like name of the deployment, container name, container image, port numbers etc.
 - We could have a **template** YAML file with **placeholders**. The actual YAML can be dynamically generated from a file having values (Data Factory design pattern)
@@ -922,7 +922,7 @@ Consider a K8s cluster running several microservices.
 apiVersion: v1
 kind: Pod
 metadata:
-  name: {{ .Values.name }} 
+  name: {{ .Values.name }}
 spec:
   containers:
     - name: {{ .Values.container.name }}
@@ -938,13 +938,13 @@ spec:
 # ----------
 ##
 name: my-app
-container: 
+container:
   name: my-app-container
   image: my-app-image
   port: 9001
 ```
 
-> Values is an object created based on the values.yml file. 
+> Values is an object created based on the values.yml file.
 > Template YAML is especially useful in CI-CD where the build pipeline will only have the template file and values can be replaced on the fly.
 
 ## Same App deployed across different environment
@@ -977,7 +977,7 @@ flowchart TB
     c1d3(MicoService-C)
     c1d4(MicoService-D)
   end
-  
+
   classDef node    fill:#b4dcff,color:black,stroke:#2864dc;
 ```
 
@@ -990,11 +990,11 @@ flowchart TB
 ## Helm Chart Structure
 
 ```bash
-mychart/             # Name of the chart	
-	Chart.yml        # Meta data about the chart, name version etc
-	values.yml		 # Default values for place holders
-	charts/          # The dependencies for the current chart. May depend on other charts.
-	templates/       # Template files
+mychart/             # Name of the chart
+  Chart.yml        # Meta data about the chart, name version etc
+  values.yml     # Default values for place holders
+  charts/          # The dependencies for the current chart. May depend on other charts.
+  templates/       # Template files
 ```
 
 ## Install helm chart
@@ -1005,7 +1005,7 @@ mychart/             # Name of the chart
 helm install <chartname>
 ```
 
-**Working** 
+**Working**
 
 - The template files from `/templates` shall be replaced with values in `values.yml`
 - This is produce valid K8s YAML ready to be deployed
