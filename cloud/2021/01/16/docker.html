@@ -1,0 +1,2185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Docker</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Docker</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Saturday, 16 January 2021
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li><a href="#install" id="markdown-toc-install">Install</a></li>
+  <li>
+<a href="#terminologies" id="markdown-toc-terminologies">Terminologies</a>    <ol>
+      <li><a href="#understanding-using-a-workflow" id="markdown-toc-understanding-using-a-workflow">Understanding using a workflow</a></li>
+      <li><a href="#docker-container" id="markdown-toc-docker-container">Docker container</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#docker-core-commands" id="markdown-toc-docker-core-commands">Docker core commands</a>    <ol>
+      <li><a href="#core-workflow" id="markdown-toc-core-workflow">Core workflow</a></li>
+      <li>
+<a href="#core-container-operations" id="markdown-toc-core-container-operations">Core container operations</a>        <ol>
+          <li><a href="#running-a-container" id="markdown-toc-running-a-container">Running a container</a></li>
+          <li><a href="#start-stop-and-check-container-logs" id="markdown-toc-start-stop-and-check-container-logs">Start, stop and check container logs</a></li>
+          <li><a href="#login-into-a-running-container" id="markdown-toc-login-into-a-running-container">Login into a running container</a></li>
+          <li><a href="#cleanup" id="markdown-toc-cleanup">Cleanup</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#playing-with-docker-run" id="markdown-toc-playing-with-docker-run">Playing with docker run</a>    <ol>
+      <li><a href="#remove-container-after-exit" id="markdown-toc-remove-container-after-exit">Remove container after exit</a></li>
+      <li><a href="#interactive-shell" id="markdown-toc-interactive-shell">Interactive shell</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#docker-image" id="markdown-toc-docker-image">Docker Image</a>    <ol>
+      <li>
+<a href="#dockerfile-v1" id="markdown-toc-dockerfile-v1">Dockerfile v1</a>        <ol>
+          <li><a href="#build-a-fresh-image" id="markdown-toc-build-a-fresh-image">Build a fresh image</a></li>
+          <li><a href="#rebuilding-the-image" id="markdown-toc-rebuilding-the-image">Rebuilding the image</a></li>
+        </ol>
+      </li>
+      <li><a href="#dockerfile-v2" id="markdown-toc-dockerfile-v2">Dockerfile v2</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#data-persistence" id="markdown-toc-data-persistence">Data persistence</a>    <ol>
+      <li><a href="#why-persist" id="markdown-toc-why-persist">Why persist?</a></li>
+      <li>
+<a href="#docker-volumes" id="markdown-toc-docker-volumes">Docker volumes</a>        <ol>
+          <li><a href="#unnamed-volumes" id="markdown-toc-unnamed-volumes">Unnamed volumes</a></li>
+          <li><a href="#named-volumes" id="markdown-toc-named-volumes">Named volumes</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#bind-mount" id="markdown-toc-bind-mount">Bind mount</a>        <ol>
+          <li><a href="#bind-mount-tomcat-app" id="markdown-toc-bind-mount-tomcat-app">Bind mount tomcat app</a></li>
+          <li><a href="#bind-mount-github-website" id="markdown-toc-bind-mount-github-website">Bind mount GitHub website</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#docker-network" id="markdown-toc-docker-network">Docker Network</a>    <ol>
+      <li>
+<a href="#bridge-network" id="markdown-toc-bridge-network">Bridge network</a>        <ol>
+          <li><a href="#default" id="markdown-toc-default">Default</a></li>
+          <li><a href="#custom" id="markdown-toc-custom">Custom</a></li>
+        </ol>
+      </li>
+      <li><a href="#overlay-network" id="markdown-toc-overlay-network">Overlay network</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#swarm-single-node" id="markdown-toc-swarm-single-node">Swarm single node</a>    <ol>
+      <li>
+<a href="#managing-swarm" id="markdown-toc-managing-swarm">Managing swarm</a>        <ol>
+          <li><a href="#initialise-a-swarm" id="markdown-toc-initialise-a-swarm">Initialise a swarm</a></li>
+          <li><a href="#join-a-swarm" id="markdown-toc-join-a-swarm">Join a swarm</a></li>
+          <li><a href="#leave-a-swarm" id="markdown-toc-leave-a-swarm">Leave a swarm</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#managing-nodes" id="markdown-toc-managing-nodes">Managing nodes</a>        <ol>
+          <li><a href="#list-nodes" id="markdown-toc-list-nodes">List nodes</a></li>
+          <li><a href="#promotedemote-nodes" id="markdown-toc-promotedemote-nodes">Promote/demote nodes</a></li>
+          <li><a href="#list-tasks-running-a-node" id="markdown-toc-list-tasks-running-a-node">List tasks running a node</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#swarm-service" id="markdown-toc-swarm-service">Swarm service</a>    <ol>
+      <li>
+<a href="#core-service-operations" id="markdown-toc-core-service-operations">Core service operations</a>        <ol>
+          <li><a href="#create-service" id="markdown-toc-create-service">Create service</a></li>
+          <li><a href="#list-services" id="markdown-toc-list-services">List services</a></li>
+          <li><a href="#scale-up" id="markdown-toc-scale-up">Scale up</a></li>
+          <li><a href="#scale-down" id="markdown-toc-scale-down">Scale down</a></li>
+          <li><a href="#task-resilience" id="markdown-toc-task-resilience">Task resilience</a></li>
+          <li><a href="#remove-a-service" id="markdown-toc-remove-a-service">Remove a service</a></li>
+        </ol>
+      </li>
+      <li><a href="#docker-service-across-overlay-network" id="markdown-toc-docker-service-across-overlay-network">Docker service across overlay network</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#swarm-stack-single-node" id="markdown-toc-swarm-stack-single-node">Swarm stack single node</a>    <ol>
+      <li><a href="#create-a-stack-yaml" id="markdown-toc-create-a-stack-yaml">Create a stack YAML</a></li>
+      <li><a href="#deploy-list-services-tasks-and-containers" id="markdown-toc-deploy-list-services-tasks-and-containers">Deploy, list services, tasks and containers</a></li>
+      <li><a href="#verify-tasks-communicate-using-service-name" id="markdown-toc-verify-tasks-communicate-using-service-name">Verify tasks communicate using service name</a></li>
+      <li>
+<a href="#verify-routing-mesh" id="markdown-toc-verify-routing-mesh">Verify routing mesh</a>        <ol>
+          <li><a href="#ips-from-networks" id="markdown-toc-ips-from-networks">IPs from networks</a></li>
+          <li><a href="#verify-load-balancing" id="markdown-toc-verify-load-balancing">Verify load balancing</a></li>
+          <li><a href="#verify-vip" id="markdown-toc-verify-vip">Verify VIP</a></li>
+        </ol>
+      </li>
+      <li><a href="#cleanup-stack" id="markdown-toc-cleanup-stack">Cleanup Stack</a></li>
+      <li>
+<a href="#stack-lb-apache-tomcat" id="markdown-toc-stack-lb-apache-tomcat">Stack lb-apache-tomcat</a>        <ol>
+          <li><a href="#stack-directory-structure" id="markdown-toc-stack-directory-structure">Stack directory structure</a></li>
+          <li><a href="#stack-compose-file" id="markdown-toc-stack-compose-file">Stack compose file</a></li>
+          <li><a href="#build-images-of-the-stack" id="markdown-toc-build-images-of-the-stack">Build images of the stack</a></li>
+          <li><a href="#deploy-using-docker-stack-deploy" id="markdown-toc-deploy-using-docker-stack-deploy">Deploy using docker stack deploy</a></li>
+          <li><a href="#update-stack-using-docker-stack-deploy" id="markdown-toc-update-stack-using-docker-stack-deploy">Update stack using docker stack deploy</a></li>
+          <li><a href="#access-pages-and-verify-working" id="markdown-toc-access-pages-and-verify-working">Access pages and verify working</a></li>
+          <li><a href="#verify-service-is-running-with-the-expected-latest-version" id="markdown-toc-verify-service-is-running-with-the-expected-latest-version">Verify service is running with the expected <strong>latest</strong> version</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#swarm-multi-node" id="markdown-toc-swarm-multi-node">Swarm multi node</a>    <ol>
+      <li>
+<a href="#installation" id="markdown-toc-installation">Installation</a>        <ol>
+          <li><a href="#docker-machine" id="markdown-toc-docker-machine">Docker machine</a></li>
+          <li><a href="#install-oracle-virtualbox" id="markdown-toc-install-oracle-virtualbox">Install Oracle VirtualBox</a></li>
+        </ol>
+      </li>
+      <li><a href="#create-and-manage-nodes" id="markdown-toc-create-and-manage-nodes">Create and manage nodes</a></li>
+      <li><a href="#update-docker-client-to-point-to-node" id="markdown-toc-update-docker-client-to-point-to-node">Update docker client to point to node</a></li>
+      <li>
+<a href="#manage-nodes" id="markdown-toc-manage-nodes">Manage nodes</a>        <ol>
+          <li><a href="#make-node1-the-lonely-leader" id="markdown-toc-make-node1-the-lonely-leader">Make node1 the lonely Leader</a></li>
+          <li>
+<a href="#make-node2-join-the-swarm-as-worker" id="markdown-toc-make-node2-join-the-swarm-as-worker">Make node2 join the swarm as worker</a>            <ol>
+              <li><a href="#verify-that-worker-cannot-viewmodify-swarm-cluster" id="markdown-toc-verify-that-worker-cannot-viewmodify-swarm-cluster">Verify that worker cannot view/modify swarm cluster</a></li>
+              <li><a href="#verify-that-we-now-have-two-nodes-in-the-swarm" id="markdown-toc-verify-that-we-now-have-two-nodes-in-the-swarm">Verify that we now have two nodes in the swarm</a></li>
+            </ol>
+          </li>
+          <li><a href="#promote-node2" id="markdown-toc-promote-node2">Promote node2</a></li>
+          <li><a href="#make-node3-join-the-swarm-directly-as-manager" id="markdown-toc-make-node3-join-the-swarm-directly-as-manager">Make node3 join the swarm directly as manager</a></li>
+          <li><a href="#verify-node1-is-no-more-lonely" id="markdown-toc-verify-node1-is-no-more-lonely">Verify node1 is no more lonely</a></li>
+          <li><a href="#demote-node1" id="markdown-toc-demote-node1">Demote node1</a></li>
+          <li><a href="#restore-status" id="markdown-toc-restore-status">Restore status</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#swarm-stack-on-multi-node" id="markdown-toc-swarm-stack-on-multi-node">Swarm stack on multi-node</a>    <ol>
+      <li>
+<a href="#stack-lb-apache-tomcat-1" id="markdown-toc-stack-lb-apache-tomcat-1">Stack lb-apache-tomcat</a>        <ol>
+          <li><a href="#access-pages-and-verify-working-1" id="markdown-toc-access-pages-and-verify-working-1">Access pages and verify working</a></li>
+          <li><a href="#verify-routing-mesh-1" id="markdown-toc-verify-routing-mesh-1">Verify routing mesh</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+</nav>
+
+<h1 id="install">Install</h1>
+
+<p>Follow the instructions in <a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu</a></p>
+
+<p>Verify Install</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Short version</span>
+<span class="o">&gt;</span> docker <span class="nt">--version</span>
+Docker version 20.10.1, build 831ebea
+
+<span class="c"># Detailed version</span>
+<span class="o">&gt;</span> docker version                                                                                                                                                                          ✔
+Client: Docker Engine - Community
+ Version:           19.03.13
+ API version:       1.40
+ ...
+ ...
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.13
+  API version:      1.40 <span class="o">(</span>minimum version 1.12<span class="o">)</span>
+ ...
+ ...
+
+ <span class="c"># Help -- Note commads are grouped into 'Management Commands' and 'Commands'</span>
+ <span class="o">&gt;</span> docker <span class="nb">help</span>
+ ...
+
+ Management Commands:
+ ...
+ ...
+
+ Commands:
+</code></pre></div></div>
+
+<h1 id="terminologies">Terminologies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Term</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Docker Container</td>
+      <td>A container is a standard unit of software that packages up code and all its dependencies, so the application (app) runs quickly and reliably from one  computing environment to another.</td>
+    </tr>
+    <tr>
+      <td>Docker Image</td>
+      <td>A Docker image is a lightweight, standalone, executable  package of software that includes everything needed to run an  application: code, runtime, system tools, system libraries and settings.</td>
+    </tr>
+    <tr>
+      <td>Docker Hub</td>
+      <td>A Docker hub (https://hub.docker.com) is repository of docker images.</td>
+    </tr>
+    <tr>
+      <td>Docker Engine</td>
+      <td>A Docker engine is a service (daemon process) that runs on a host. <br>A Docker service is started using <code class="language-plaintext highlighter-rouge">sudo systemctl start docker</code>
+</td>
+    </tr>
+    <tr>
+      <td>Docker Client</td>
+      <td>The docker commands are executed using <code class="language-plaintext highlighter-rouge">/usr/bin/docker</code> binary. This is the docker client. <br>The docker client connects with a docker engine (that could be running on local or remote host) to perform operations specified.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="understanding-using-a-workflow">Understanding using a workflow</h2>
+
+<p><strong>Steps for running a software</strong></p>
+
+<ul>
+  <li>We check to see if we have an existing setup binary for the desired version we want to install.
+    <ul>
+      <li>If found we use the existing setup binary</li>
+      <li>If not, we shall download the setup from the internet.</li>
+    </ul>
+  </li>
+  <li>We install the software which shall extract the runtime, libraries, dependencies etc into a location on the disk.</li>
+  <li>We start the software which shall launch it.</li>
+</ul>
+
+<p><strong>An analogous docker workflow</strong></p>
+
+<ul>
+  <li>We check to see if we have an existing docker image for the desired version we want to install. ( <code class="language-plaintext highlighter-rouge">docker image ls</code>)
+    <ul>
+      <li>If found, we shall use the existing image</li>
+      <li>If not, we shall download the setup from the <a href="https://hub.docker.com">docker-hub</a> (<code class="language-plaintext highlighter-rouge">docker image pull [&lt;userid&gt;/]&lt;image-name&gt;[:&lt;version-tag&gt;]</code>)</li>
+      <li>Note that a docker image is of the format <code class="language-plaintext highlighter-rouge">[&lt;userid&gt;/]&lt;image-name&gt;[:&lt;version-tag&gt;]</code>
+        <ul>
+          <li>
+<code class="language-plaintext highlighter-rouge">userid</code>: The docker login ID of the user who created the image. This is empty for official docker images.</li>
+          <li>
+<code class="language-plaintext highlighter-rouge">image-name</code>: The name of the docker image</li>
+          <li>
+<code class="language-plaintext highlighter-rouge">tag</code>: A tag differentiates two images and is typically a version string.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>We install the image to create a container (<code class="language-plaintext highlighter-rouge">docker container create --name &lt;container-name&gt; &lt;image&gt; </code>)</li>
+  <li>We list containers. (<code class="language-plaintext highlighter-rouge">docker container ls -a</code>)</li>
+  <li>We start container. (<code class="language-plaintext highlighter-rouge">docker container start &lt;contianer-name&gt; </code>)</li>
+</ul>
+
+<p>From the above analogy we see that</p>
+
+<ul>
+  <li>A docker image is analogous to setup binary</li>
+  <li>A docker-hub is analogous to website hosting setup binary</li>
+  <li>A docker container is analogous to a software installed on disk.</li>
+</ul>
+
+<h2 id="docker-container">Docker container</h2>
+
+<p>A container is a standard unit of software that packages up code and all its dependencies, so the application (app) runs quickly and reliably from one  computing environment to another.</p>
+
+<blockquote>
+  <p>An app feels like it running inside a machine of its own with its own resources (RAM, harddisk, CPU and network). A container is analogous to a womb for an app.</p>
+</blockquote>
+
+<h1 id="docker-core-commands">Docker core commands</h1>
+
+<h2 id="core-workflow">Core workflow</h2>
+
+<p>The following commands demo a typical docker workflow using which we are introduced to docker image, container</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Download an image hello-world</span>
+<span class="o">&gt;</span> docker image pull hello-world
+
+<span class="c"># List download image</span>
+<span class="o">&gt;</span> docker image <span class="nb">ls
+</span>hello-world           latest    bf756fb1ae65   12 months ago   13.3kB
+
+<span class="c"># Create a container</span>
+<span class="o">&gt;</span> docker container create <span class="nt">--name</span> my_hello hello-world
+
+<span class="c"># List all containers</span>
+<span class="o">&gt;</span> docker container <span class="nb">ls</span> <span class="nt">-a</span>
+CONTAINER ID   IMAGE     COMMAND             CREATED        STATUS          PORTS                     NAMES
+d4a7ed8470f9   hello-world  <span class="s2">"/hello"</span>         3 weeks ago    Exited <span class="o">(</span>0<span class="o">)</span>                                my_hello
+
+<span class="c"># Start a container</span>
+<span class="o">&gt;</span> docker container start my_hello <span class="nt">-i</span>
+Hello from Docker!
+...
+</code></pre></div></div>
+
+<h2 id="core-container-operations">Core container operations</h2>
+
+<h3 id="running-a-container">Running a container</h3>
+
+<p>A <code class="language-plaintext highlighter-rouge">docker run</code> command  does all the operations described in the docker workflow.</p>
+
+<ul>
+  <li>If we execute the <code class="language-plaintext highlighter-rouge">docker run</code> command multiple times we would land up creating multiple copies of the same container with random names (assigned by docker).</li>
+  <li>This is similar to installing the same software multiple times in random directories. By providing a name (using <code class="language-plaintext highlighter-rouge">--name</code>) trying to create another container with same name fails – This way, we rather re-use an existing container.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">--rm</code> option removes a container after it’s stopped. This way we have the flexibility of using <code class="language-plaintext highlighter-rouge">docker run</code> all the time without piling up replicas of containers.</li>
+</ul>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The command has an empty output since the container was started, did its job of saying hello and then shutdown.</span>
+<span class="c"># If it were a server like tomcat then the container would be running until it is stopped.</span>
+&gt; docker container ls
+CONTAINER ID   IMAGE                       COMMAND                  CREATED         STATUS         PORTS     NAMES
+
+<span class="c"># Lets run a tomcat with a volume mapping (we will see later, for now we are mapping a dir in local with that in container)</span>
+<span class="c"># We see that we are able get a response to our app</span>
+&gt; cp duke.war ~/work/web-app
+&gt; cd ~/work/web-app
+&gt; docker run --rm --name my_tommy --detach --publish 18801:8080 --volume ~/work/web-app:/usr/local/tomcat/webapps tomcat:9
+&gt; curl -s -I http://localhost:18801/duke/Snoop.jsp | head -1
+HTTP/1.1 200
+
+<span class="c"># List running containers</span>
+&gt; docker container ls
+CONTAINER ID   IMAGE      COMMAND             CREATED              STATUS              PORTS                     NAMES
+64326d1e2f4d   tomcat:9   "catalina.sh run"   About a minute ago   Up About a minute   0.0.0.0:18801-&gt;8080/tcp   my_tommy
+
+</code></pre></div></div>
+
+<h3 id="start-stop-and-check-container-logs">Start, stop and check container logs</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Stop container</span>
+<span class="o">&gt;</span> docker container stop my_tommy
+my_tommy
+
+<span class="c"># Start container</span>
+<span class="o">&gt;</span> docker container start my_tommy
+
+<span class="c"># Show the last 3 lines from logs</span>
+<span class="o">&gt;</span> docker container logs <span class="nt">-n</span> 3 my_tommy
+21-Jan-2021 06:20:48.369 INFO <span class="o">[</span>main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory <span class="o">[</span>/usr/local/tomcat/webapps/duke] has finished <span class="k">in</span> <span class="o">[</span>718] ms
+21-Jan-2021 06:20:48.376 INFO <span class="o">[</span>main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler <span class="o">[</span><span class="s2">"http-nio-8080"</span><span class="o">]</span>
+21-Jan-2021 06:20:48.414 INFO <span class="o">[</span>main] org.apache.catalina.startup.Catalina.start Server startup <span class="k">in</span> <span class="o">[</span>865] milliseconds
+
+</code></pre></div></div>
+
+<h3 id="login-into-a-running-container">Login into a running container</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker container <span class="nb">exec</span> <span class="nt">-it</span> my_tommy sh
+<span class="c"># hostname</span>
+4286b5cec5b8
+<span class="c"># cd /usr/local/tomcat</span>
+</code></pre></div></div>
+
+<h3 id="cleanup">Cleanup</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Remove containers</span>
+docker container <span class="nb">rm</span> &lt;container name ...&gt;
+
+<span class="c"># Remove images</span>
+docker image <span class="nb">rm</span> &lt;image <span class="nb">id</span> ...&gt;
+
+<span class="c"># Remove dangling images (no container is referencing them)</span>
+docker image prune
+</code></pre></div></div>
+
+<h1 id="playing-with-docker-run">Playing with docker run</h1>
+
+<h2 id="remove-container-after-exit">Remove container after exit</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Run a command on the container. Remove container when done.</span>
+<span class="o">&gt;</span> docker container run <span class="nt">--rm</span> cafeduke/busybox <span class="nb">cat</span> /etc/hosts
+127.0.0.1	localhost
+::1	localhost ip6-localhost ip6-loopback
+fe00::0	ip6-localnet
+ff00::0	ip6-mcastprefix
+ff02::1	ip6-allnodes
+ff02::2	ip6-allrouters
+172.17.0.2	a37c77eb628d
+</code></pre></div></div>
+
+<h2 id="interactive-shell">Interactive shell</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get an interactive shell to a container</span>
+docker container run <span class="nt">--rm</span> <span class="nt">-it</span> cafeduke/busybox sh <span class="nt">-l</span>
+Sourcing /root/.profile
+172.17.0.2 /&gt; <span class="nb">hostname
+</span>0be6321def2b
+172.17.0.2 /&gt;
+</code></pre></div></div>
+
+<h1 id="docker-image">Docker Image</h1>
+
+<p>A custom docker image can be built in one of the following ways. The default name of the file having build instructions is <code class="language-plaintext highlighter-rouge">Dockerfile</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># File &lt;path-to-build-dir&gt;/Dockerfile is the file having build instructions</span>
+docker build &lt;path-to-build-dir&gt; <span class="nt">--tag</span> &lt;tag-name&gt;
+
+<span class="c"># File &lt;path-to-file&gt; is the file having build instructions</span>
+docker build <span class="nt">--file</span> &lt;path-to-file&gt; <span class="nt">--tag</span> &lt;tag-name&gt;
+</code></pre></div></div>
+
+<h2 id="dockerfile-v1">Dockerfile v1</h2>
+
+<p>A Dockerfile consists of a <strong>directive</strong> like <code class="language-plaintext highlighter-rouge">FROM, RUN, WORKDIR</code> etc and corresponding arguments as documented in <a href="https://docs.docker.com/engine/reference/builder/#parser-directives">docs.docker.com</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">cd </span>Learn/Docker/01-image/image-hello
+<span class="o">&gt;</span> <span class="nb">cat </span>Dockerfile
+
+<span class="c"># 1. Use alpine as the base</span>
+FROM alpine:latest
+
+<span class="c"># 2. Run update and install bash</span>
+RUN /bin/sh <span class="nt">-c</span> <span class="s1">'apk update; \
+apk add bash'</span>
+
+<span class="c"># 3. Change pwd to /home</span>
+WORKDIR /home
+
+<span class="c"># 4. Copy arg.sh to WORKDIR</span>
+COPY arg.sh <span class="nb">.</span>
+
+<span class="c"># 5. Set entry point as shell script</span>
+ENTRYPOINT <span class="o">[</span><span class="s2">"/home/arg.sh"</span><span class="o">]</span>
+
+<span class="c"># 6. Supply HelloWorld as the argument</span>
+CMD <span class="o">[</span><span class="s2">"HelloWorld!"</span><span class="o">]</span>
+</code></pre></div></div>
+
+<h3 id="build-a-fresh-image">Build a fresh image</h3>
+
+<ul>
+  <li>Docker builds an image incrementally. Each <strong>step</strong> corresponds to the directive and its arguments. For example, the above <code class="language-plaintext highlighter-rouge">Dockerfile</code> has 6 directives that corresponds to 6 steps.</li>
+  <li>After completing <code class="language-plaintext highlighter-rouge">Step1</code> the resultant <strong>layer</strong> (partial image) is cached.</li>
+  <li>After completing <code class="language-plaintext highlighter-rouge">Step2</code> the resultant layer which is an aggregate of performing directives in step 1 and 2 is also cached.</li>
+  <li>After completing <code class="language-plaintext highlighter-rouge">Step3</code> the resultant layer which is an aggregate of performing directives in step 1, 2 and 3 is also cached and so on.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Build a fresh image and note the steps</span>
+<span class="c"># --------------------------------------</span>
+<span class="o">&gt;</span> docker image build <span class="nb">.</span> <span class="nt">--tag</span> raghubs81/test-entrypoint
+Sending build context to Docker daemon  16.38kB
+
+Step 1/6 : FROM alpine:latest
+latest: Pulling from library/alpine
+Digest: sha256:08d6ca16c60fe7490c03d10dc339d9fd8ea67c6466dea8d558526b1330a85930
+Status: Downloaded newer image <span class="k">for </span>alpine:latest
+ <span class="nt">---</span><span class="o">&gt;</span> e50c909a8df2
+
+Step 2/6 : RUN /bin/sh <span class="nt">-c</span> <span class="s1">'apk update; apk add bash'</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>535d373026c8
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
+v3.13.1-78-gb575f39b62 <span class="o">[</span>https://dl-cdn.alpinelinux.org/alpine/v3.13/main]
+v3.13.1-79-g25eb590247 <span class="o">[</span>https://dl-cdn.alpinelinux.org/alpine/v3.13/community]
+OK: 13878 distinct packages available
+<span class="o">(</span>1/4<span class="o">)</span> Installing ncurses-terminfo-base <span class="o">(</span>6.2_p20210109-r0<span class="o">)</span>
+<span class="o">(</span>2/4<span class="o">)</span> Installing ncurses-libs <span class="o">(</span>6.2_p20210109-r0<span class="o">)</span>
+<span class="o">(</span>3/4<span class="o">)</span> Installing readline <span class="o">(</span>8.1.0-r0<span class="o">)</span>
+<span class="o">(</span>4/4<span class="o">)</span> Installing bash <span class="o">(</span>5.1.0-r0<span class="o">)</span>
+Executing bash-5.1.0-r0.post-install
+Executing busybox-1.32.1-r2.trigger
+OK: 8 MiB <span class="k">in </span>18 packages
+Removing intermediate container 535d373026c8
+ <span class="nt">---</span><span class="o">&gt;</span> 6b57a2f9e0b7
+
+Step 3/6 : WORKDIR /home
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>0a2c88268315
+Removing intermediate container 0a2c88268315
+ <span class="nt">---</span><span class="o">&gt;</span> 566d0edc5325
+
+Step 4/6 : COPY arg.sh <span class="nb">.</span>
+ <span class="nt">---</span><span class="o">&gt;</span> 641ce9651e38
+
+Step 5/6 : ENTRYPOINT <span class="o">[</span><span class="s2">"/home/arg.sh"</span><span class="o">]</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>02868bd4468a
+Removing intermediate container 02868bd4468a
+ <span class="nt">---</span><span class="o">&gt;</span> 6a811329a8b2
+
+Step 6/6 : CMD <span class="o">[</span><span class="s2">"HelloWorld!"</span><span class="o">]</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>54137bb598bc
+Removing intermediate container 54137bb598bc
+ <span class="nt">---</span><span class="o">&gt;</span> 91572d7dbec3
+
+Successfully built 91572d7dbec3
+Successfully tagged raghubs81/test-entrypoint:latest
+
+<span class="o">&gt;</span> docker image <span class="nb">ls
+</span>REPOSITORY                  TAG       IMAGE ID       CREATED         SIZE
+raghubs81/test-entrypoint   latest    91572d7dbec3   3 minutes ago   9.74MB
+</code></pre></div></div>
+
+<h3 id="rebuilding-the-image">Rebuilding the image</h3>
+
+<p>When image is rebuilt relevant layer (if available)  is picked from cache.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Rebuild image and note the steps</span>
+<span class="c"># --------------------------------------</span>
+<span class="o">&gt;</span> docker image build <span class="nb">.</span> <span class="nt">--tag</span> raghubs81/test-entrypoint
+Sending build context to Docker daemon  16.38kB
+Step 1/6 : FROM alpine:latest
+ <span class="nt">---</span><span class="o">&gt;</span> e50c909a8df2
+
+Step 2/6 : RUN /bin/sh <span class="nt">-c</span> <span class="s1">'apk update; apk add bash'</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 6b57a2f9e0b7
+
+Step 3/6 : WORKDIR /home
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 566d0edc5325
+
+Step 4/6 : COPY arg.sh <span class="nb">.</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 641ce9651e38
+
+Step 5/6 : ENTRYPOINT <span class="o">[</span><span class="s2">"/home/arg.sh"</span><span class="o">]</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 6a811329a8b2
+
+Step 6/6 : CMD <span class="o">[</span><span class="s2">"HelloWorld!"</span><span class="o">]</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 91572d7dbec3
+
+Successfully built 91572d7dbec3
+Successfully tagged raghubs81/test-entrypoint:latest
+</code></pre></div></div>
+
+<h2 id="dockerfile-v2">Dockerfile v2</h2>
+
+<p>The version 2 of the <code class="language-plaintext highlighter-rouge">Dockerfile</code> adds a new line as <code class="language-plaintext highlighter-rouge">Step5</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. Use alpine as the base</span>
+FROM alpine:latest
+
+<span class="c"># 2. Run update and install bash</span>
+RUN /bin/sh <span class="nt">-c</span> <span class="s1">'apk update; \
+apk add bash'</span>
+
+<span class="c"># 3. Change pwd to /home</span>
+WORKDIR /home
+
+<span class="c"># 4. Copy arg.sh to WORKDIR</span>
+COPY arg.sh <span class="nb">.</span>
+
+<span class="c"># 5. Set environment variable</span>
+ENV <span class="nv">MY_FRUIT</span><span class="o">=</span>Mango
+
+<span class="c"># 6. Set entry point as shell script</span>
+ENTRYPOINT <span class="o">[</span><span class="s2">"/home/arg.sh"</span><span class="o">]</span>
+
+<span class="c"># 7. Supply HelloWorld as the argument</span>
+CMD <span class="o">[</span><span class="s2">"HelloWorld!"</span><span class="o">]</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Note that step #1-4 is taken from cache</span>
+<span class="c"># ---------------------------------------</span>
+
+Sending build context to Docker daemon  19.46kB
+Step 1/7 : FROM alpine:latest
+ <span class="nt">---</span><span class="o">&gt;</span> e50c909a8df2
+
+Step 2/7 : RUN /bin/sh <span class="nt">-c</span> <span class="s1">'apk update; apk add bash'</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 6b57a2f9e0b7
+
+Step 3/7 : WORKDIR /home
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 566d0edc5325
+
+Step 4/7 : COPY arg.sh <span class="nb">.</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 641ce9651e38
+
+<span class="c"># Note that step #5 onwards cannot be picked from cache</span>
+<span class="c"># -----------------------------------------------------</span>
+Step 5/7 : ENV <span class="nv">MY_FRUIT</span><span class="o">=</span>Mango
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>ea8ce6432a5d
+Removing intermediate container ea8ce6432a5d
+ <span class="nt">---</span><span class="o">&gt;</span> df5c8d46ba8d
+
+Step 6/7 : ENTRYPOINT <span class="o">[</span><span class="s2">"/home/arg.sh"</span><span class="o">]</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>ed8fb46999b1
+Removing intermediate container ed8fb46999b1
+ <span class="nt">---</span><span class="o">&gt;</span> a59793774e20
+
+Step 7/7 : CMD <span class="o">[</span><span class="s2">"HelloWorld!"</span><span class="o">]</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>7638301279db
+Removing intermediate container 7638301279db
+ <span class="nt">---</span><span class="o">&gt;</span> d19781e107ce
+
+Successfully built d19781e107ce
+Successfully tagged raghubs81/test-entrypoint:latest
+</code></pre></div></div>
+
+<blockquote>
+  <p>If the <strong>n</strong>th directive in a docker file  is modified then only n-1 layers can be picked from cache.</p>
+</blockquote>
+
+<h1 id="data-persistence">Data persistence</h1>
+
+<p>Persistence of data is achieved by either using volumes or bind mount. However, bind mount is used only during development. Docker volumes is the persistence mechanism in production.</p>
+
+<h2 id="why-persist">Why persist?</h2>
+
+<p>The data generated by the container is lost when the container is removed. However, in several cases (like database, configuration of server, blogs hosted by server) we would want to retain the data. This can be achieved using persistence.</p>
+
+<h2 id="docker-volumes">Docker volumes</h2>
+
+<h3 id="unnamed-volumes">Unnamed volumes</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Build a custom image (We will see more details later)</span>
+<span class="nb">cd </span>Learn/Docker/02-volume/volume-tomcat
+<span class="o">&gt;</span> docker build <span class="nb">.</span> <span class="nt">--tag</span> cafeduke/tomcat:latest
+
+<span class="c"># Run the tomcat with custom app (Do NOT use --rm)</span>
+<span class="o">&gt;</span> docker run <span class="nt">--name</span> duke_tommy <span class="nt">--detach</span> <span class="nt">--publish</span> 18801:8080 cafeduke/tomcat:latest
+<span class="o">&gt;</span> curl <span class="nt">-s</span> <span class="s2">"http://localhost:18801/duke/"</span>
+             ___________
+            /           |
+      __   <span class="o">(</span>   Welcome! |
+  ___<span class="o">(</span> o<span class="o">)&gt;</span>  <span class="se">\_</span>__________|
+  <span class="se">\ </span>&lt;_. <span class="o">)</span>
+   <span class="sb">`</span><span class="nt">---</span><span class="s1">'
+# Inspect container
+#   - The webapps at '</span>/usr/local/tomcat/webapps<span class="s1">' reffered by container are actually mounted at /var/lib/docker/volumes/14a5...440f/_data
+# 	- The mount type is '</span>volume<span class="s1">'
+&gt; docker inspect duke_tommy | grep -A 10 Mounts
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "14a5c567cde9318ad0cd5fe8787abcb093bf97483841494937979872af7d440f",
+                "Source": "/var/lib/docker/volumes/14a5c567cde9318ad0cd5fe8787abcb093bf97483841494937979872af7d440f/_data",
+                "Destination": "/usr/local/tomcat/webapps",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            }
+
+# Note that the volume exists
+&gt; docker volume ls
+DRIVER    VOLUME NAME
+local     5b251e51b2c59c86ca6e4045d234c9061fced260fda769e40a47769143080450
+local     10a6711080b655fb3d062c11e4bf3d5af9c9b63722caa65a3c6446ecb3125bca
+local     14a5c567cde9318ad0cd5fe8787abcb093bf97483841494937979872af7d440f
+
+# Stop  and remove the container
+&gt; docker stop duke_tommy; docker rm duke_tommy
+
+# Ensure volume exists after container is removed
+docker volume ls | grep 14a5c567cde9318ad0cd5fe8787abcb093bf97483841494937979872af7d440f
+local     14a5c567cde9318ad0cd5fe8787abcb093bf97483841494937979872af7d440f
+</span></code></pre></div></div>
+
+<h3 id="named-volumes">Named volumes</h3>
+
+<p>Named volumes cannot be created by the container itself (As part of Dockerfile) and needs to be explicitly specified by the user using  <code class="language-plaintext highlighter-rouge">docker container run --volume &lt;name&gt;:&lt;path in container&gt;</code>. This is because for a given host, the name of the volume is unique. So, it is up to the user to ensure providing a unique volume name.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Build image</span>
+<span class="nb">cd </span>Learn/Docker/02-volume/volume-tomcat
+<span class="o">&gt;</span> docker build <span class="nb">.</span> <span class="nt">--tag</span> cafeduke/tomcat:latest
+
+<span class="c"># Start container with named volume</span>
+<span class="o">&gt;</span> docker run <span class="nt">--name</span> duke_tommy <span class="nt">--detach</span> <span class="nt">--publish</span> 18801:8080 <span class="nt">--volume</span> duke_tommy_volume:/usr/local/tomcat/webapps cafeduke/tomcat:latest
+
+<span class="c"># Note that volume exists</span>
+docker volume <span class="nb">ls</span> | <span class="nb">grep </span>tommy
+<span class="nb">local     </span>duke_tommy_volume
+
+<span class="c"># Stop  and remove the container</span>
+<span class="o">&gt;</span> docker stop duke_tommy<span class="p">;</span> docker <span class="nb">rm </span>duke_tommy
+
+<span class="c"># Ensure volume exists after container is removed</span>
+docker volume <span class="nb">ls</span> | <span class="nb">grep </span>tommy
+<span class="nb">local     </span>duke_tommy_volume
+
+</code></pre></div></div>
+
+<h2 id="bind-mount">Bind mount</h2>
+
+<p>A bind mount maps a directory in the host to a directory in the container.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Bind mount is only for development  -- A container cannot be programmed (via Dockerfile) to bind mount.
+- Bind mount is very useful during development -- For example, change app server pages, refresh the browser page to check working.
+</code></pre></div></div>
+
+<h3 id="bind-mount-tomcat-app">Bind mount tomcat app</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Creat a dir and copy the .war file to be deployed</span>
+<span class="o">&gt;</span> <span class="nb">mkdir</span> ~/work/test-bind-mount
+<span class="o">&gt;</span> <span class="nb">cp </span>duke.war ~/work/test-bind-mount
+<span class="o">&gt;</span> <span class="nb">cd</span> ~/work/test-bind-mount
+
+<span class="c"># Map the current directory to the webapps dir of tomcat</span>
+<span class="o">&gt;</span> docker run <span class="nt">--name</span> duke_tommy <span class="nt">--detach</span> <span class="nt">--publish</span> 18801:8080 <span class="nt">--volume</span> <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>:/usr/local/tomcat/webapps cafeduke/tomcat:latest
+
+<span class="c"># We are able do dynamically add files to duke and see changes.</span>
+<span class="o">&gt;</span> <span class="nb">echo</span> <span class="s2">"Hello"</span> <span class="o">&gt;</span> hello.txt
+<span class="o">&gt;</span> <span class="nb">sudo mv </span>hello.txt DukeApp
+<span class="o">&gt;</span> curl <span class="nt">-s</span> <span class="s2">"http://localhost:18801/duke/hello.txt"</span>
+Hello
+</code></pre></div></div>
+
+<h3 id="bind-mount-github-website">Bind mount GitHub website</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Access the jekyll website at localhost:8080</span>
+<span class="o">&gt;</span> git clone https://github.com/cafeduke/cafeduke.github.io DukeWebSite
+<span class="o">&gt;</span> <span class="nb">cd </span>DukeWebSite
+<span class="o">&gt;</span> docker container run <span class="nt">--detach</span> <span class="nt">--name</span> duke_site <span class="nt">--publish</span> 4000:4000 <span class="nt">--volume</span> <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>:/srv/jekyll jekyll/jekyll:builder jekyll serve
+
+<span class="c"># Ensure site is running</span>
+<span class="c"># Access the site at http://localhost:4000</span>
+<span class="o">&gt;</span> docker container ps
+CONTAINER ID   IMAGE                   COMMAND                  CREATED         STATUS         PORTS                                                  NAMES
+77ba8d869e75   jekyll/jekyll:builder   <span class="s2">"/usr/jekyll/bin/ent…"</span>   5 seconds ago   Up 4 seconds   0.0.0.0:4000-&gt;4000/tcp, :::4000-&gt;4000/tcp, 35729/tcp   duke_site
+
+<span class="c"># We can now start/stop and verify working of the site locally before pushing changes to server</span>
+<span class="o">&gt;</span> docker container stop duke_site
+<span class="o">&gt;</span> docker container start duke_site
+</code></pre></div></div>
+
+<h1 id="docker-network">Docker Network</h1>
+
+<p>One of the reasons Docker containers and services are so powerful is that you can connect them together. Docker’s networking subsystem is pluggable, using drivers. Several drivers exist by default, and provide core networking functionality.</p>
+
+<blockquote>
+  <p>A network:container relationship is m:n – A network can have multiple containers connected to it. A container can be connected to multiple networks.</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Network Driver</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bridge</td>
+      <td>The default network driver. If you don’t specify a driver, this is the type of network you are creating.<br>Bridge network allows containers connected to the same bridge network to communicate, while providing isolation from containers which are not connected to that bridge network.<br><strong>User-defined bridges provide automatic DNS resolution between containers</strong>
+</td>
+    </tr>
+    <tr>
+      <td>Overlay</td>
+      <td>The <code class="language-plaintext highlighter-rouge">overlay</code> network driver creates a distributed network among multiple Docker daemon hosts. This network sits on top of (overlays) the host-specific networks.<br>Services or containers can be connected to more than one network at a time. Services or containers can only communicate across networks they are each connected to.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="bridge-network">Bridge network</h2>
+
+<h3 id="default">Default</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker container run <span class="nt">--rm</span> <span class="nt">--tty</span> <span class="nt">--detach</span> <span class="nt">--name</span> my_box.1 cafeduke/busybox
+<span class="o">&gt;</span> docker container run <span class="nt">--rm</span> <span class="nt">--tty</span> <span class="nt">--detach</span> <span class="nt">--name</span> my_box.2 cafeduke/busybox
+
+<span class="c"># Inspect default network 'bridge' to find the IP of the containers</span>
+<span class="o">&gt;</span> docker inspect bridge | egrep <span class="s2">"Name|IPv4"</span>
+<span class="s2">"Name"</span>: <span class="s2">"bridge"</span>,
+  <span class="s2">"Name"</span>: <span class="s2">"my_box.1"</span>,
+  <span class="s2">"IPv4Address"</span>: <span class="s2">"172.17.0.2/16"</span>,
+  <span class="s2">"Name"</span>: <span class="s2">"my_box.2"</span>,
+  <span class="s2">"IPv4Address"</span>: <span class="s2">"172.17.0.3/16"</span>,
+
+<span class="c"># Attach to a container -- Verify communcation b/w containers in SAME DEFAULT network using IP works.</span>
+<span class="o">&gt;</span> docker container <span class="nb">exec</span> <span class="nt">-it</span> my_box.1 sh <span class="nt">-l</span>
+172.17.0.2 /&gt; ping <span class="nt">-c</span> 2 172.17.0.3
+PING 172.17.0.3 <span class="o">(</span>172.17.0.3<span class="o">)</span>: 56 data bytes
+64 bytes from 172.17.0.3: <span class="nb">seq</span><span class="o">=</span>0 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.166 ms
+64 bytes from 172.17.0.3: <span class="nb">seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.200 ms
+
+<span class="c"># Attach to a container -- Verify communcation b/w containers in SAME DEFAULT network using hostname FAILS.</span>
+172.17.0.2 /&gt; ping <span class="nt">-c</span> 2 my_box.2
+ping: bad address <span class="s1">'my_box.2'</span>
+</code></pre></div></div>
+
+<h3 id="custom">Custom</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create two networks</span>
+<span class="o">&gt;</span> docker network create <span class="nt">--driver</span> bridge my-net-bridge-1
+<span class="o">&gt;</span> docker network create <span class="nt">--driver</span> bridge my-net-bridge-2
+
+<span class="c"># Attach two containers to my-net-bridge network.</span>
+<span class="c"># Attach third container to my-net-bridge-2 network</span>
+<span class="o">&gt;</span> docker container run <span class="nt">--rm</span> <span class="nt">--tty</span> <span class="nt">--detach</span> <span class="nt">--name</span> my_box.1 <span class="nt">--network</span> my-net-bridge-1 cafeduke/busybox
+<span class="o">&gt;</span> docker container run <span class="nt">--rm</span> <span class="nt">--tty</span> <span class="nt">--detach</span> <span class="nt">--name</span> my_box.2 <span class="nt">--network</span> my-net-bridge-1 cafeduke/busybox
+<span class="o">&gt;</span> docker container run <span class="nt">--rm</span> <span class="nt">--tty</span> <span class="nt">--detach</span> <span class="nt">--name</span> my_box.3 <span class="nt">--network</span> my-net-bridge-2 cafeduke/busybox
+
+<span class="c"># Attach to a container -- Verify communcation b/w containers in SAME CUSTOM network using IP works.</span>
+<span class="o">&gt;</span> docker container <span class="nb">exec</span> <span class="nt">-it</span> my_box.1 sh <span class="nt">-l</span>
+172.18.0.2 /&gt; ping <span class="nt">-c</span> 2 172.18.0.3
+64 bytes from 172.18.0.3: <span class="nb">seq</span><span class="o">=</span>0 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.193 ms
+64 bytes from 172.18.0.3: <span class="nb">seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.169 ms
+
+<span class="c"># Attach to a container -- Verify communcation b/w containers in SAME CUSTOM network using hostname works.</span>
+172.18.0.2 /&gt; ping <span class="nt">-c</span> 2 my_box.2
+64 bytes from 172.18.0.3: <span class="nb">seq</span><span class="o">=</span>0 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.109 ms
+64 bytes from 172.18.0.3: <span class="nb">seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.173 ms
+
+<span class="o">&gt;</span> docker inspect network my-net-bridge-2 | egrep <span class="s2">"Name|IPv4"</span>
+<span class="s2">"Name"</span>: <span class="s2">"my-net-bridge-2"</span>,
+  <span class="s2">"Name"</span>: <span class="s2">"my_box.3"</span>,
+  <span class="s2">"IPv4Address"</span>: <span class="s2">"172.19.0.2/16"</span>,
+
+<span class="c"># Attach to a container -- Verify communcation b/w containers in DIFFERENT CUSTOM network using IP/hostname FAILS.</span>
+172.18.0.2 /&gt; ping <span class="nt">-c</span> 2 my_box.3
+ping: bad address <span class="s1">'my_box.3'</span>
+
+<span class="o">&gt;</span> ping <span class="nt">-c</span> 2 172.19.0.2
+PING 172.19.0.2 <span class="o">(</span>172.19.0.2<span class="o">)</span>: 56 data bytes
+2 packets transmitted, 0 packets received, 100% packet loss
+</code></pre></div></div>
+
+<h2 id="overlay-network">Overlay network</h2>
+
+<p>Overlay network comes into play in docker swarm as we shall see later.</p>
+
+<blockquote>
+  <p>Before you can create an overlay network, you need to either initialize your Docker daemon as a swarm manager using <code class="language-plaintext highlighter-rouge">docker swarm init</code> or join it to an existing swarm using <code class="language-plaintext highlighter-rouge">docker swarm join</code>.</p>
+
+  <p>Either of these creates the default <code class="language-plaintext highlighter-rouge">ingress</code> overlay network which is used by swarm services by default. You need to do this even if you never plan to use swarm services. Afterward, you can create additional user-defined overlay networks.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create two attachable overlay network</span>
+<span class="o">&gt;</span> docker network create <span class="nt">--driver</span> overlay <span class="nt">--attachable</span> my-net-overlay-1
+<span class="o">&gt;</span> docker network create <span class="nt">--driver</span> overlay <span class="nt">--attachable</span> my-net-overlay-2
+
+<span class="c"># Attach my_box.1 to network 'my-net-overlay' and 'my_box.2' to 'my-net-overlay-test'</span>
+<span class="o">&gt;</span> docker container run <span class="nt">--rm</span> <span class="nt">--detach</span> <span class="nt">-it</span> <span class="nt">--name</span> my_box.1 <span class="nt">--network</span> my-net-overlay-1 cafeduke/busybox
+<span class="o">&gt;</span> docker container run <span class="nt">--rm</span> <span class="nt">--detach</span> <span class="nt">-it</span> <span class="nt">--name</span> my_box.2 <span class="nt">--network</span> my-net-overlay-2 cafeduke/busybox
+
+<span class="c"># Attach to a container -- Verify communcation b/w containers in DIFFERENT CUSTOM OVERLAY network using IP/hostname FAILS.</span>
+<span class="o">&gt;</span> docker container <span class="nb">exec</span> <span class="nt">-it</span> my_box.1
+172.21.0.2 /&gt; ping <span class="nt">-c</span> 2 my_box.2
+ping: bad address <span class="s1">'my_box.2'</span>
+172.21.0.2 /&gt; Ctrl-pq <span class="o">(</span>detach<span class="o">)</span>
+
+</code></pre></div></div>
+
+<h1 id="swarm-single-node">Swarm single node</h1>
+
+<p>A docker swarm performs <strong>container orchestration</strong> across multiple nodes. Swarm nodes could be either master nodes or worker nodes.</p>
+
+<blockquote>
+  <p>A node is a machine (could be a VM)</p>
+</blockquote>
+
+<p>A swarm is a group of nodes that have joined as either manager node or worker node.</p>
+<ul>
+  <li>A swarm must have at-least one manager.</li>
+  <li>A new node can either join as manager or worker.</li>
+  <li>The status of a node (manager/worker) can be change.</li>
+</ul>
+
+<p>A swarm has security automation</p>
+<ul>
+  <li>Root Signing certificate is created for the Swarm.</li>
+  <li>First manager node is issued a certificate.</li>
+  <li>Different join tokens are created for nodes to join as worker.</li>
+  <li>Different join tokens are created for nodes to join as manager.</li>
+</ul>
+
+<h2 id="managing-swarm">Managing swarm</h2>
+
+<h3 id="initialise-a-swarm">Initialise a swarm</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Initialize swarm and get command to addes nodes as workers</span>
+<span class="o">&gt;</span> docker swarm init
+Swarm initialized: current node <span class="o">(</span>oo75je2p82824595oznd9tnaf<span class="o">)</span> is now a manager.
+To add a worker to this swarm, run the following <span class="nb">command</span>:
+
+    docker swarm <span class="nb">join</span> <span class="nt">--token</span> SWMTKN-1-1l9bzy4gyvtfhonoug854zdkt296lyalk6chjco40jms0m2nt9-63kvy0s9ocpbgu2e3cuo1d8k4 192.168.0.107:2377
+
+To add a manager to this swarm, run <span class="s1">'docker swarm join-token manager'</span> and follow the instructions.
+
+<span class="c"># Get command to to add nodes as managers</span>
+<span class="o">&gt;</span> docker swarm join-token manager
+To add a manager to this swarm, run the following <span class="nb">command</span>:
+
+    docker swarm <span class="nb">join</span> <span class="nt">--token</span> SWMTKN-1-1l9bzy4gyvtfhonoug854zdkt296lyalk6chjco40jms0m2nt9-8qs4tcpdispl1d2tamg7bz2l9 192.168.0.107:2377
+
+</code></pre></div></div>
+
+<ul>
+  <li>This adds the current node to the swarm.</li>
+  <li>Since this is the only node – It is now the master.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">docker swarm join ...</code> command that follows can be run on other nodes, so that they can <strong>join the swarm as worker</strong>
+</li>
+  <li>If we want other nodes to join as a manager as well then we run <code class="language-plaintext highlighter-rouge">docker swarm join-token manager</code> – This generates a join command with different token.</li>
+</ul>
+
+<p>In essence, we have initialised a swarm and have the join commands to add nodes as either manager or worker.</p>
+
+<h3 id="join-a-swarm">Join a swarm</h3>
+
+<p>As seen in the above section <code class="language-plaintext highlighter-rouge">docker swarm join ...</code> command is used to join a swarm as either manager or worker. However, note that a worker can be promoted and manager can be demoted, later as well!</p>
+
+<h3 id="leave-a-swarm">Leave a swarm</h3>
+
+<p>To leave a swarm execute <code class="language-plaintext highlighter-rouge">docker swarm leave</code> on the corresponding node.</p>
+
+<h2 id="managing-nodes">Managing nodes</h2>
+
+<p>The swarm nodes are managed using <code class="language-plaintext highlighter-rouge">docker node</code> command</p>
+
+<h3 id="list-nodes">List nodes</h3>
+
+<p>List all the nodes of this swarm. Since this is a single node swarm – we will have just one node. Note that the manager status is <strong>Leader</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker node <span class="nb">ls
+</span>ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+oo75je2p82824595oznd9tnaf <span class="k">*</span>   raghu-pc   Ready     Active         Leader           20.10.1
+</code></pre></div></div>
+
+<h3 id="promotedemote-nodes">Promote/demote nodes</h3>
+
+<p>Worker nodes can be promoted later by running <code class="language-plaintext highlighter-rouge">docker node promote &lt;node-id...&gt;</code> on the node.
+Manager nodes can be demoted later by running <code class="language-plaintext highlighter-rouge">docker node demote &lt;node-id...&gt;</code> on the node.</p>
+
+<h3 id="list-tasks-running-a-node">List tasks running a node</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">docker node ps [&lt;node-id...&gt;]</code> command is used to list <strong>tasks</strong> running on one or more nodes (defaults to current node). Docker tasks are covered later.</p>
+
+<h1 id="swarm-service">Swarm service</h1>
+
+<p>A docker service exists only in the <strong>swarm world</strong>. A docker service is an abstraction (Similar to Kubernetes cluster) that is used manage a homogeneous cluster of containers.</p>
+
+<ul>
+  <li>A docker service is a feature that exists <strong>only</strong> in the context of swarm.</li>
+  <li>A docker service can be used to create replicas of tasks, <strong>scale-up</strong> tasks and <strong>scale-down</strong> tasks.</li>
+  <li>Each task is a wrapper for a docker container.</li>
+  <li>If a task/container gets killed (Eg: node hosting the container goes down) then a swarm service automatically starts the task on another node.</li>
+</ul>
+
+<blockquote>
+  <p>A docker service can be used to scale the cluster  – Scale up/down tasks across nodes.
+A docker service is also maintains the cluster size – If task gets killed it is started on another node.</p>
+</blockquote>
+
+<h2 id="core-service-operations">Core service operations</h2>
+
+<p>The below commands demonstrate the advantage of docker service.</p>
+
+<h3 id="create-service">Create service</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">docker service create</code> command is very similar to the <code class="language-plaintext highlighter-rouge">docker container run</code> command. Here we created a service with <code class="language-plaintext highlighter-rouge">alpine</code> image and provided it with the task of <code class="language-plaintext highlighter-rouge">pinging 8.8.8.8</code>. The <code class="language-plaintext highlighter-rouge">8.8.8.8</code> is a google DNS IP which shall always be there and ping command never returns in Unix. So, the container shall run for ever.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker service create <span class="nt">--name</span> my_box <span class="nt">--tty</span> <span class="nt">--detach</span> cafeduke/busybox:latest sh <span class="nt">-l</span>
+u3vu6onvmb6w9mxckdooy8c5v
+</code></pre></div></div>
+
+<h3 id="list-services">List services</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># List services</span>
+<span class="o">&gt;</span> docker service <span class="nb">ls
+</span>ID             NAME      MODE         REPLICAS   IMAGE                     PORTS
+u3vu6onvmb6w   my_box    replicated   1/1        cafeduke/busybox:latest
+
+<span class="c"># List tasks for a given service</span>
+<span class="c">#  - Task name is of the format &lt;service-name&gt;.&lt;task-index&gt;</span>
+<span class="c">#  - Task could be running in any node. However, we have only one node here.</span>
+<span class="o">&gt;</span> docker service ps my_box
+ID             NAME       IMAGE                     NODE       DESIRED STATE   CURRENT STATE            ERROR     PORTS
+5vif6wy9ityo   my_box.1   cafeduke/busybox:latest   raghu-pc   Running         Running 46 seconds ago
+
+<span class="c"># List container (Wrapped by task)</span>
+<span class="c">#  - A task wraps a container. Hence TaskId is NOT the same as ContainerId</span>
+<span class="c">#  - The name of the container wrapped by the task is of the format &lt;service-name&gt;.&lt;task-index&gt;.&lt;task-id&gt;</span>
+<span class="o">&gt;</span> docker container <span class="nb">ls
+</span>CONTAINER ID   IMAGE                     COMMAND   CREATED              STATUS              PORTS     NAMES
+3aae4f88ddf4   cafeduke/busybox:latest   <span class="s2">"sh -l"</span>   About a minute ago   Up About a minute             my_box.1.5vif6wy9ityod8xushbs400ew
+</code></pre></div></div>
+
+<h3 id="scale-up">Scale up</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Scale up  -- The service from 1 to 5</span>
+<span class="o">&gt;</span> docker service scale <span class="nv">my_box</span><span class="o">=</span>5
+my_box scaled to 5
+overall progress: 5 out of 5 tasks
+1/5: running   <span class="o">[==================================================&gt;]</span>
+2/5: running   <span class="o">[==================================================&gt;]</span>
+3/5: running   <span class="o">[==================================================&gt;]</span>
+4/5: running   <span class="o">[==================================================&gt;]</span>
+5/5: running   <span class="o">[==================================================&gt;]</span>
+verify: Service converged
+
+<span class="c"># Note that all 5 replicas are running</span>
+<span class="o">&gt;</span> docker service <span class="nb">ls
+</span>ID             NAME      MODE         REPLICAS   IMAGE                     PORTS
+u3vu6onvmb6w   my_box    replicated   5/5        cafeduke/busybox:latest
+
+<span class="c"># We have 3 tasks (my_alpine.1 through my_alpine.3)</span>
+<span class="o">&gt;</span> docker service ps my_box
+ID             NAME       IMAGE                     NODE       DESIRED STATE   CURRENT STATE            ERROR     PORTS
+5vif6wy9ityo   my_box.1   cafeduke/busybox:latest   raghu-pc   Running         Running 3 minutes ago
+jfevqsv77svc   my_box.2   cafeduke/busybox:latest   raghu-pc   Running         Running 38 seconds ago
+eih37w3i9t7w   my_box.3   cafeduke/busybox:latest   raghu-pc   Running         Running 38 seconds ago
+w49sb4f8jcij   my_box.4   cafeduke/busybox:latest   raghu-pc   Running         Running 39 seconds ago
+w7pob4xku6cx   my_box.5   cafeduke/busybox:latest   raghu-pc   Running         Running 38 seconds ago
+</code></pre></div></div>
+
+<h3 id="scale-down">Scale down</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Scale down  -- The service from 3 to 2</span>
+<span class="o">&gt;</span> docker service scale <span class="nv">my_box</span><span class="o">=</span>2
+my_box scaled to 2
+overall progress: 2 out of 2 tasks
+1/2: running   <span class="o">[==================================================&gt;]</span>
+2/2: running   <span class="o">[==================================================&gt;]</span>
+verify: Service converged
+
+<span class="o">&gt;</span> docker service <span class="nb">ls
+</span>ID             NAME      MODE         REPLICAS   IMAGE                     PORTS
+u3vu6onvmb6w   my_box    replicated   2/2        cafeduke/busybox:latest
+</code></pre></div></div>
+
+<h3 id="task-resilience">Task resilience</h3>
+
+<p>If a container goes down, the service ensures it is restarted.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The service has two tasks and are they are running.</span>
+<span class="o">&gt;</span> docker service ps my_box
+ID             NAME       IMAGE                     NODE       DESIRED STATE   CURRENT STATE                ERROR     PORTS
+vyvf0mzqrsvb   my_box.1   cafeduke/busybox:latest   raghu-pc   Running         Running about a minute ago
+fvjwtgdfdw51   my_box.2   cafeduke/busybox:latest   raghu-pc   Running         Running about a minute ago
+
+<span class="c"># Following are the corresponding containers for the task.</span>
+<span class="c"># Note that tasks abstract containers and medling with containers is really backdoor for a task.</span>
+<span class="o">&gt;</span> docker container <span class="nb">ls</span> | <span class="nb">grep </span>my_box
+b5eab599c57a   cafeduke/busybox:latest     <span class="s2">"sh -l"</span>                  2 minutes ago   Up 2 minutes             my_box.2.fvjwtgdfdw51s0yuk0ygoekot
+738fef75a486   cafeduke/busybox:latest     <span class="s2">"sh -l"</span>                  2 minutes ago   Up 2 minutes             my_box.1.vyvf0mzqrsvb65hxhu1eqepbo
+
+<span class="c"># Stop a container</span>
+<span class="o">&gt;</span> docker container stop my_box.2.fvjwtgdfdw51s0yuk0ygoekot
+
+<span class="c"># Note that the task restarts</span>
+<span class="c"># On a multi-node env, the task could have been restarted on any node.</span>
+<span class="o">&gt;</span> docker service ps my_box
+ID             NAME           IMAGE                     NODE       DESIRED STATE   CURRENT STATE           ERROR                         PORTS
+vyvf0mzqrsvb   my_box.1       cafeduke/busybox:latest   raghu-pc   Running         Running 3 minutes ago
+kbul3mk69cy4   my_box.2       cafeduke/busybox:latest   raghu-pc   Running         Running 8 seconds ago
+fvjwtgdfdw51    <span class="se">\_</span> my_box.2   cafeduke/busybox:latest   raghu-pc   Shutdown        Failed 13 seconds ago   <span class="s2">"task: non-zero exit (137)"</span>
+
+<span class="c"># We could filter out the failed tasks and show only the running ones as follows</span>
+<span class="o">&gt;</span> docker service ps my_box <span class="nt">--filter</span> desired-state<span class="o">=</span>running
+ID             NAME       IMAGE                     NODE       DESIRED STATE   CURRENT STATE           ERROR     PORTS
+vyvf0mzqrsvb   my_box.1   cafeduke/busybox:latest   raghu-pc   Running         Running 5 minutes ago
+kbul3mk69cy4   my_box.2   cafeduke/busybox:latest   raghu-pc   Running         Running 2 minutes ago
+</code></pre></div></div>
+
+<h3 id="remove-a-service">Remove a service</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Remove all services</span>
+<span class="c"># This removes all the assiciated tasks</span>
+<span class="o">&gt;</span> docker service <span class="nb">rm </span>my_box
+</code></pre></div></div>
+
+<h2 id="docker-service-across-overlay-network">Docker service across overlay network</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create two overlay network</span>
+<span class="o">&gt;</span> docker network create <span class="nt">--attachable</span> <span class="nt">--driver</span> overlay my-net-overlay-1
+<span class="o">&gt;</span> docker network create <span class="nt">--attachable</span> <span class="nt">--driver</span> overlay my-net-overlay-2
+
+<span class="c"># Create two services attached to DIFFERENT network</span>
+<span class="o">&gt;</span> docker service create <span class="nt">--name</span> foo_box <span class="nt">--replicas</span><span class="o">=</span>3 <span class="nt">--network</span> my-net-overlay-1 <span class="nt">--tty</span> <span class="nt">--detach</span> cafeduke/busybox:latest sh <span class="nt">-l</span>
+<span class="o">&gt;</span> docker service create <span class="nt">--name</span> bar_box <span class="nt">--replicas</span><span class="o">=</span>2 <span class="nt">--network</span> my-net-overlay-2 <span class="nt">--tty</span> <span class="nt">--detach</span> cafeduke/busybox:latest sh <span class="nt">-l</span>
+
+<span class="c"># List containers</span>
+<span class="o">&gt;</span> docker container <span class="nb">ls
+</span>CONTAINER ID   IMAGE                     COMMAND   CREATED              STATUS          PORTS     NAMES
+f22126a42a2f   cafeduke/busybox:latest   <span class="s2">"sh -l"</span>   37 seconds ago       Up 36 seconds             bar_box.2.t062uy6zqv26etmh2r01m2xae
+06c20eddf648   cafeduke/busybox:latest   <span class="s2">"sh -l"</span>   37 seconds ago       Up 36 seconds             bar_box.1.mdxen6tsht4ijhuuonnbieemv
+5efe31db796f   cafeduke/busybox:latest   <span class="s2">"sh -l"</span>   59 seconds ago       Up 58 seconds             foo_box.1.x49cl1czrm14vn6pfn3bo8uqt
+6875c9d8ea87   cafeduke/busybox:latest   <span class="s2">"sh -l"</span>   About a minute ago   Up 58 seconds             foo_box.2.k8upsje2qnfcejtldabktnbfd
+4089040fe4b2   cafeduke/busybox:latest   <span class="s2">"sh -l"</span>   About a minute ago   Up 58 seconds             foo_box.3.s13r28pgabx8udbadtmqvdfzr
+
+<span class="c"># Verify that container from one network CANNOT communicate with other.</span>
+<span class="o">&gt;</span> docker container <span class="nb">exec</span> <span class="nt">-it</span> foo_box.1.x49cl1czrm14vn6pfn3bo8uqt sh <span class="nt">-l</span>
+Sourcing /root/.profile
+10.0.1.9 /&gt; ping <span class="nt">-c</span> 2 bar_box
+ping: bad address <span class="s1">'bar_box'</span>
+
+</code></pre></div></div>
+
+<h1 id="swarm-stack-single-node">Swarm stack single node</h1>
+
+<h2 id="create-a-stack-yaml">Create a stack YAML</h2>
+<ul>
+  <li>The image used here is ‘hypoport/httpd-cgi’ which is an Apache HTTP server with CGI scripts</li>
+  <li>We have ap_foo service and ap_bar service with multiple replicas</li>
+</ul>
+
+<blockquote>
+  <p>Both services have a common network ‘my_net’ due to which they can communicate with each other using the SERVICE name as DNS</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">cat </span>docker-compose.yml
+version: <span class="s2">"3.8"</span>
+
+services:
+
+  ap_foo:
+    image: hypoport/httpd-cgi
+    ports:
+      - 8801:80
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+    networks:
+      - my_net_foo
+      - my_net
+
+  ap_bar:
+    image: hypoport/httpd-cgi
+    ports:
+      - 8802:80
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    networks:
+      - my_net_bar
+      - my_net
+
+networks:
+  my_net_foo:
+  my_net_bar:
+  my_net:
+</code></pre></div></div>
+<h2 id="deploy-list-services-tasks-and-containers">Deploy, list services, tasks and containers</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Deploy the stack using compose file</span>
+<span class="o">&gt;</span> docker stack deploy <span class="nt">--compose-file</span> docker-compose.yml mystack
+Creating network mystack_my_net_bar
+Creating network mystack_my_net_foo
+Creating network mystack_my_net
+Creating service mystack_ap_foo
+Creating service mystack_ap_bar
+
+<span class="c"># List the swarms</span>
+<span class="o">&gt;</span> docker stack <span class="nb">ls
+</span>NAME      SERVICES   ORCHESTRATOR
+mystack   2          Swarm
+
+<span class="c"># List services of a given swarm</span>
+<span class="o">&gt;</span> docker stack services mystack
+ID             NAME             MODE         REPLICAS   IMAGE                       PORTS
+udr6qt5bwvjc   mystack_ap_bar   replicated   2/2        hypoport/httpd-cgi:latest   <span class="k">*</span>:8802-&gt;80/tcp
+nc2w6f22eee8   mystack_ap_foo   replicated   3/3        hypoport/httpd-cgi:latest   <span class="k">*</span>:8801-&gt;80/tcp
+
+<span class="c"># List tasks of a given swarm</span>
+<span class="o">&gt;</span> docker stack ps mystack
+ID             NAME               IMAGE                       NODE       DESIRED STATE   CURRENT STATE           ERROR     PORTS
+y8nf79qw9imm   mystack_ap_bar.1   hypoport/httpd-cgi:latest   raghu-pc   Running         Running 4 minutes ago
+kc8twgfo8skk   mystack_ap_bar.2   hypoport/httpd-cgi:latest   raghu-pc   Running         Running 4 minutes ago
+ihzapy3kdzge   mystack_ap_foo.1   hypoport/httpd-cgi:latest   raghu-pc   Running         Running 4 minutes ago
+ix6ix23100yi   mystack_ap_foo.2   hypoport/httpd-cgi:latest   raghu-pc   Running         Running 4 minutes ago
+7hxvf0223elq   mystack_ap_foo.3   hypoport/httpd-cgi:latest   raghu-pc   Running         Running 4 minutes ago
+
+<span class="c"># List all containers</span>
+<span class="o">&gt;</span> docker container <span class="nb">ls
+</span>CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS          PORTS     NAMES
+5aba92fbd850   hypoport/httpd-cgi:latest   <span class="s2">"/usr/local/apache2/…"</span>   6 seconds ago    Up 3 seconds    80/tcp    mystack_ap_bar.2.kc8twgfo8skk6eknnhhm661te
+4927e02f38e0   hypoport/httpd-cgi:latest   <span class="s2">"/usr/local/apache2/…"</span>   6 seconds ago    Up 3 seconds    80/tcp    mystack_ap_bar.1.y8nf79qw9immrlu4ekk2h6fm9
+b89c7a2a3a36   hypoport/httpd-cgi:latest   <span class="s2">"/usr/local/apache2/…"</span>   11 seconds ago   Up 9 seconds    80/tcp    mystack_ap_foo.1.ihzapy3kdzgeskl6qqpm0voek
+498ff86251e2   hypoport/httpd-cgi:latest   <span class="s2">"/usr/local/apache2/…"</span>   11 seconds ago   Up 9 seconds    80/tcp    mystack_ap_foo.3.7hxvf0223elqxyy6fxqzpyzyq
+f55d7e926592   hypoport/httpd-cgi:latest   <span class="s2">"/usr/local/apache2/…"</span>   11 seconds ago   Up 9 seconds    80/tcp    mystack_ap_foo.2.ix6ix23100yi0c9zqy1ad5hgg
+</code></pre></div></div>
+
+<h2 id="verify-tasks-communicate-using-service-name">Verify tasks communicate using service name</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># mystack_ap_foo.1 can communicate with one of the tasks among ap_bar using the SERVICE name 'ap_bar' as hostname</span>
+<span class="o">&gt;</span> docker <span class="nb">exec </span>mystack_ap_foo.1.ihzapy3kdzgeskl6qqpm0voek curl <span class="nt">-s</span> http://ap_bar/hello
+Hello world!
+
+<span class="c"># mystack_ap_bar.1 can communicate with one of the tasks among ap_foo using the SERVICE name 'ap_foo' as hostname</span>
+<span class="o">&gt;</span> docker <span class="nb">exec </span>mystack_ap_bar.1.y8nf79qw9immrlu4ekk2h6fm9 curl <span class="nt">-s</span> http://ap_foo/hello
+Hello world!
+</code></pre></div></div>
+
+<h2 id="verify-routing-mesh">Verify routing mesh</h2>
+
+<h3 id="ips-from-networks">IPs from networks</h3>
+
+<p>Each network the container is associated with gives it an IP.</p>
+
+<blockquote>
+  <p>A network acts like an NIC (Network Interface Card) for the container.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker network <span class="nb">ls</span> | <span class="nb">grep </span>mystack
+y33ke14moxcw   mystack_my_net       overlay   swarm
+vndr6wduxwx9   mystack_my_net_bar   overlay   swarm
+i4c3ifvcii4d   mystack_my_net_foo   overlay   swarm
+
+<span class="c"># IPs of ap_foo and ap_bar containers from shared network</span>
+<span class="o">&gt;</span> docker network inspect mystack_my_net | egrep <span class="s2">"Name|IPv4"</span>
+<span class="s2">"Name"</span>: <span class="s2">"mystack_my_net"</span>,
+  <span class="s2">"Name"</span>: <span class="s2">"mystack_ap_foo.1.ihzapy3kdzgeskl6qqpm0voek"</span>,
+  <span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.9.3/24"</span>,
+  <span class="s2">"Name"</span>: <span class="s2">"mystack_ap_foo.2.ix6ix23100yi0c9zqy1ad5hgg"</span>,
+  <span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.9.4/24"</span>,
+  <span class="s2">"Name"</span>: <span class="s2">"mystack_ap_foo.3.7hxvf0223elqxyy6fxqzpyzyq"</span>,
+  <span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.9.5/24"</span>,
+
+  <span class="s2">"Name"</span>: <span class="s2">"mystack_ap_bar.1.y8nf79qw9immrlu4ekk2h6fm9"</span>,
+  <span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.9.8/24"</span>,
+  <span class="s2">"Name"</span>: <span class="s2">"mystack_ap_bar.2.kc8twgfo8skk6eknnhhm661te"</span>,
+  <span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.9.9/24"</span>,
+
+  <span class="s2">"Name"</span>: <span class="s2">"mystack_my_net-endpoint"</span>,
+  <span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.9.6/24"</span>,
+
+<span class="c"># IPs of ap_foo containers</span>
+<span class="o">&gt;</span> docker network inspect mystack_my_net_foo | egrep <span class="s2">"IPv4"</span>
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.8.5/24"</span>,
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.8.3/24"</span>,
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.8.4/24"</span>,
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.8.6/24"</span>,
+
+<span class="c"># IPs of ap_bar containers</span>
+<span class="o">&gt;</span> docker network inspect mystack_my_net_bar | egrep <span class="s2">"IPv4"</span>
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.7.3/24"</span>,
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.7.4/24"</span>,
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.7.5/24"</span>,
+
+</code></pre></div></div>
+
+<h3 id="verify-load-balancing">Verify load balancing</h3>
+
+<blockquote>
+  <p>Requesting one service from another, using service name as hostname, automatically load-balances (round robin algorithm) among the available tasks.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Request service ap_foo from one of bar containers</span>
+docker container <span class="nb">exec</span> <span class="nt">-it</span> mystack_ap_bar.1.y8nf79qw9immrlu4ekk2h6fm9 bash <span class="nt">-c</span> <span class="s1">'for x in {1..10}
+&gt; do
+&gt;   curl -s http://ap_foo/show_env | grep SERVER_ADDR
+&gt; done
+&gt; '</span>
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.5
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.4
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.3
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.5
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.4
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.3
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.5
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.4
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.3
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.5
+
+<span class="c"># Request service ap_bar from one of foo containers</span>
+<span class="o">&gt;</span> docker container <span class="nb">exec </span>mystack_ap_foo.1.ihzapy3kdzgeskl6qqpm0voek bash <span class="nt">-c</span> <span class="s1">'for x in {1..10}
+&gt; do
+&gt;   curl -s http://ap_bar/show_env | grep SERVER_ADDR
+&gt; done
+&gt; '</span>
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.9
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.8
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.9
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.8
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.9
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.8
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.9
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.8
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.9
+<span class="nv">SERVER_ADDR</span><span class="o">=</span>10.0.9.8
+</code></pre></div></div>
+
+<h3 id="verify-vip">Verify VIP</h3>
+
+<ul>
+  <li>The IPs obtained by pinging services <code class="language-plaintext highlighter-rouge">ap_bar</code> and <code class="language-plaintext highlighter-rouge">ap_foo</code> do not belong to any container!</li>
+  <li>These are VIPs – There is no container running with this IP  – The swarm manages these IPs</li>
+  <li>Tasks/Containers may die and come up with another IP –  The corresponding VIP will keep track.</li>
+  <li>The VIP remains and load-balances among the tasks of the service.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker <span class="nb">exec </span>mystack_ap_foo.1.ihzapy3kdzgeskl6qqpm0voek ping <span class="nt">-c</span> 2 ap_bar
+PING ap_bar <span class="o">(</span>10.0.9.7<span class="o">)</span>: 56 data bytes
+64 bytes from 10.0.9.7: <span class="nb">seq</span><span class="o">=</span>0 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.088 ms
+64 bytes from 10.0.9.7: <span class="nb">seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.182 ms
+
+<span class="o">&gt;</span> docker <span class="nb">exec </span>mystack_ap_foo.1.ihzapy3kdzgeskl6qqpm0voek ping <span class="nt">-c</span> 2 ap_foo
+PING ap_foo <span class="o">(</span>10.0.9.2<span class="o">)</span>: 56 data bytes
+64 bytes from 10.0.9.2: <span class="nb">seq</span><span class="o">=</span>0 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.099 ms
+64 bytes from 10.0.9.2: <span class="nb">seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.165 ms
+
+<span class="c"># Note that the address returned by the ping to service is not part of any network container</span>
+<span class="o">&gt;</span> docker network inspect mystack_my_net mystack_my_net_foo mystack_my_net_bar | <span class="nb">grep </span>10.0.9.2
+<span class="o">&gt;</span> docker network inspect mystack_my_net mystack_my_net_foo mystack_my_net_bar | <span class="nb">grep </span>10.0.9.7
+
+</code></pre></div></div>
+
+<h2 id="cleanup-stack">Cleanup Stack</h2>
+
+<p>Note that removing the stack removes all services (all task replicas) and networks.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Removing service mystack_ap_bar
+Removing service mystack_ap_foo
+Removing network mystack_my_net_foo
+Removing network mystack_my_net_bar
+Removing network mystack_my_net
+</code></pre></div></div>
+
+<h2 id="stack-lb-apache-tomcat">Stack lb-apache-tomcat</h2>
+
+<p>The stack consists of</p>
+
+<ul>
+  <li>A load-balancer (lb service) load balances among Apache HTTP servers (apache service).</li>
+  <li>Apache hosts static files (like images) under <code class="language-plaintext highlighter-rouge">/duke</code>
+</li>
+  <li>Upon receiving request to  prefix <code class="language-plaintext highlighter-rouge">/duke/app</code> the Apache acts as a reverse-proxy routing requests to Tomcat servers (tomcat service).</li>
+  <li>Tomcat hosts a web-app <code class="language-plaintext highlighter-rouge">duke.war</code>
+</li>
+</ul>
+
+<p>This way any request to a JSP reaches tomcat via load-balancer and apache. The JSP may include several static files (such as images, css, js). While browser renders the HTML (generated by JSP) requests to static files are answered by apache. This way tomcat is better utilised to handle dynamic content.</p>
+
+<h3 id="stack-directory-structure">Stack directory structure</h3>
+
+<p>The load balancer is implemented using a generic image <code class="language-plaintext highlighter-rouge">cafeduke/lb:latest</code>. By generic we mean, it is not specific to this project.</p>
+
+<p>However, the apache and tomcat and specific to this project and we have corresponding <code class="language-plaintext highlighter-rouge">cafeduke-apache</code> and <code class="language-plaintext highlighter-rouge">cafeduke-tomcat</code> directories having files to build the images.</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">cafeduke-apache</code>  routes requests to dynamic prefix <code class="language-plaintext highlighter-rouge">/duke/app</code> to <code class="language-plaintext highlighter-rouge">tomcat</code> service.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">cafeduke-apache</code> uses <code class="language-plaintext highlighter-rouge">tomcat</code> service name as DNS resolvable hostname.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">cafeduke-tomcat</code> hosts  <code class="language-plaintext highlighter-rouge">duke.war</code> that includes static files. For example, <code class="language-plaintext highlighter-rouge">pic.jsp</code> generates path to image using <code class="language-plaintext highlighter-rouge">&lt;c:url value="relative path to static file"/&gt;</code>
+</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> tree <span class="nt">-P</span> <span class="s2">"docker-compose.yml|Dockerfile"</span>
+<span class="nb">.</span>
+├── cafeduke-apache
+│   ├── conf
+│   ├── Dockerfile
+│   └── htdocs
+│       └── duke
+│           └── images
+├── cafeduke-tomcat
+│   └── Dockerfile
+└── docker-compose.yml
+
+<span class="c"># Note: We are using service name 'tomcat' as DNS hostname</span>
+<span class="o">&gt;</span> <span class="nb">cat </span>cafeduke-apache/conf/duke.conf
+ProxyPass <span class="s2">"/duke/app"</span> <span class="s2">"http://tomcat:8080/duke"</span>
+ProxyPassReverse <span class="s2">"/duke/app"</span> <span class="s2">"http://tomcat:8080/duke"</span>
+
+<span class="c"># pic.jsp from duke.war</span>
+...
+&lt;c:url <span class="nv">value</span><span class="o">=</span><span class="s2">"/images/</span><span class="k">${</span><span class="nv">param</span><span class="p">.name</span><span class="k">}</span><span class="s2">"</span> <span class="nv">var</span><span class="o">=</span><span class="s2">"urlPic"</span> /&gt;
+&lt;img <span class="nv">src</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">urlPic</span><span class="k">}</span><span class="s2">"</span> <span class="nv">height</span><span class="o">=</span><span class="s2">"200px"</span>/&gt;
+...
+</code></pre></div></div>
+
+<h3 id="stack-compose-file">Stack compose file</h3>
+
+<p>We have 3 services – lb(2 replicas), apache(3 replicas) and tomcat(3 replicas)</p>
+
+<ul>
+  <li>The images for apache (<code class="language-plaintext highlighter-rouge">cafeduke/apache-stack-demo:latest</code>) and tomcat (<code class="language-plaintext highlighter-rouge">cafeduke/tomcat-stack-demo:latest</code>) are built</li>
+  <li>Both apache’s and tomcat’s images are tagged <code class="language-plaintext highlighter-rouge">latest</code>
+</li>
+  <li>The <code class="language-plaintext highlighter-rouge">build &gt; context</code> YAML element specifies the directory to find <code class="language-plaintext highlighter-rouge">Dockerfile</code>
+</li>
+  <li>Service <code class="language-plaintext highlighter-rouge">tomcat</code> is in network <code class="language-plaintext highlighter-rouge">backend</code> and service <code class="language-plaintext highlighter-rouge">lb</code> is in network <code class="language-plaintext highlighter-rouge">front_end</code>. However, service <code class="language-plaintext highlighter-rouge">apache</code> is on both networks <code class="language-plaintext highlighter-rouge">back_end</code> as well as <code class="language-plaintext highlighter-rouge">front_end</code>. This is because <code class="language-plaintext highlighter-rouge">apache</code> needs to route dynamic requests to <code class="language-plaintext highlighter-rouge">tomcat</code>, so they need to have a <strong>network in common</strong>  in order to communicate.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">depends_on</code> element ensures the dependent services are started ensuring proper order of bring up the stack.</li>
+</ul>
+
+<blockquote>
+  <p>Services need a network in common to communicate with each other.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: <span class="s2">"3.8"</span>
+
+services:
+
+  tomcat:
+    image: cafeduke/tomcat-stack-demo:latest
+    build:
+      context: cafeduke-tomcat
+    ports:
+      - <span class="s2">"18801:8080"</span>
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+    networks:
+      back_end:
+
+  apache:
+    image: cafeduke/apache-stack-demo:latest
+    build:
+      context: cafeduke-apache
+    ports:
+      - <span class="s2">"8801:80"</span>
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+    networks:
+      front_end:
+      back_end:
+    depends_on:
+      - tomcat
+
+  lb:
+    image: cafeduke/lb:latest
+    ports:
+      - <span class="s2">"8080:80"</span>
+    environment:
+      - <span class="nv">ORIGIN_SERVER</span><span class="o">=</span>apache
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    networks:
+      front_end:
+    depends_on:
+      - apache
+
+networks:
+  front_end:
+  back_end:
+</code></pre></div></div>
+
+<h3 id="build-images-of-the-stack">Build images of the stack</h3>
+
+<p>A docker stack is a feature of swarm that typically manages multiple nodes. A node can go down and corresponding tasks will have to be <strong>automatically</strong> recreated on <strong>other</strong> node(s). Hence, the images used to create these tasks cannot be locally stored on a machine – It has to be uploaded (pushed) to <a href="https://hub.docker.com">docker-hub</a>.</p>
+
+<blockquote>
+  <p>A docker stack gives first preference to images uploaded to docker-hub.</p>
+</blockquote>
+
+<p>We can use <code class="language-plaintext highlighter-rouge">docker-compose</code> to build all the images specific to the stack in one go. Note that we do not have a <code class="language-plaintext highlighter-rouge">build</code> element for the generic service <code class="language-plaintext highlighter-rouge">lb</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Build images for the stack</span>
+<span class="o">&gt;</span> <span class="nb">cd </span>Learn/Docker/04-swarm/swarm-stack-lb-apache-tomcat
+<span class="o">&gt;</span> docker-compose build
+
+<span class="c"># No build need for lb</span>
+lb uses an image, skipping
+Building with native build. Learn about native build <span class="k">in </span>Compose here: https://docs.docker.com/go/compose-native-build/
+
+<span class="c"># Service tomcat. Image cafeduke/tomcat-stack-demo:latest</span>
+Building tomcat
+Sending build context to Docker daemon  268.8kB
+
+Step 1/3 : FROM tomcat:9
+ <span class="nt">---</span><span class="o">&gt;</span> 040bdb29ab37
+Step 2/3 : WORKDIR /usr/local/tomcat/webapps
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 19e71d584577
+Step 3/3 : COPY duke.war <span class="nb">.</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> fdae51fdfe1e
+Successfully built fdae51fdfe1e
+Successfully tagged cafeduke/tomcat-stack-demo:latest
+
+<span class="c"># Service apache. Image cafeduke/apache-stack-demo:latest</span>
+Building apache
+Sending build context to Docker daemon  593.9kB
+
+Step 1/4 : FROM hypoport/httpd-cgi:latest
+ <span class="nt">---</span><span class="o">&gt;</span> 1cb56ef98369
+Step 2/4 : WORKDIR /usr/local/apache2
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 3962d9b56e8e
+Step 3/4 : COPY htdocs/ htdocs/
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 031a9b2abcdc
+Step 4/4 : COPY conf/ conf/
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 53aa4cd103a7
+Successfully built 53aa4cd103a7
+Successfully tagged cafeduke/apache-stack-demo:latest
+
+</code></pre></div></div>
+<h3 id="deploy-using-docker-stack-deploy">Deploy using docker stack deploy</h3>
+
+<p>A stack looks first at  <a href="https://hub.docker.com">docker-hub</a> for the image</p>
+<ul>
+  <li>A stack deploy shall first look for an image (along with tag) in <a href="https://hub.docker.com">docker-hub</a>.</li>
+  <li>If found this shall be used (even if a more recent one exists among local machine’s docker images), otherwise the local docker image shall be used warning the user.</li>
+</ul>
+
+<p>We begin by creating the stack using <code class="language-plaintext highlighter-rouge">docker stack deploy</code> command. We use the same <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, that is used to build images as well.</p>
+
+<ul>
+  <li>The stack creates the necessary networks and tasks</li>
+  <li>The networks and services are appended with the stack name (In this case <code class="language-plaintext highlighter-rouge">mystack</code>)</li>
+</ul>
+
+<blockquote>
+  <p>A single YAML file is used to build images (development) as well as deploy to a stack (production).</p>
+</blockquote>
+
+<p>Push images to  <a href="https://hub.docker.com">docker-hub</a></p>
+
+<ul>
+  <li>Login using <code class="language-plaintext highlighter-rouge">docker login</code> command</li>
+  <li>Push images to  <a href="https://hub.docker.com">docker-hub</a> using <code class="language-plaintext highlighter-rouge">docker push &lt;image&gt;</code> command</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Deploy</span>
+<span class="o">&gt;</span> docker stack deploy <span class="nt">--compose-file</span> docker-compose.yml mystack
+Ignoring unsupported options: build
+Creating network mystack_front_end
+Creating network mystack_back_end
+Creating service mystack_apache
+Creating service mystack_lb
+Creating service mystack_tomcat
+​<span class="sb">```</span>bash
+
+<span class="c">### Push images to hub.docker.com</span>
+​<span class="sb">```</span>bash
+<span class="c"># Login using hub.docker.com's login/password</span>
+<span class="o">&gt;</span> docker login
+
+<span class="c"># Push images to hub.docker.com</span>
+<span class="o">&gt;</span> docker push cafeduke/apache-stack-demo:latest
+The push refers to repository <span class="o">[</span>docker.io/cafeduke/apache-stack-demo]
+latest: digest: sha256:67cc9a2d7448b4879c9e12cd7b0d9fc5a4554d46a4e51b993376562ade44fdcb size: 2820
+
+<span class="o">&gt;</span> docker push cafeduke/tomcat-stack-demo:latest
+The push refers to repository <span class="o">[</span>docker.io/cafeduke/tomcat-stack-demo]
+latest: digest: sha256:3b5a80d3ccd8bd385935299071661ca9ef1db397d7ef248d40ca8dbdf2449691 size: 2631
+</code></pre></div></div>
+<h3 id="update-stack-using-docker-stack-deploy">Update stack using docker stack deploy</h3>
+<p>The <code class="language-plaintext highlighter-rouge">docker stack deploy</code> command is used to update the stack as well. The new stack could have new services, scaled up/down replicas of a given service, updated config or even a new tag (version) of the service image. All services shall be updated accordingly.</p>
+
+<blockquote>
+  <p>The command to create a stack is used to update the stack as well</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The command to create a stack is used to update the stack as well</span>
+<span class="o">&gt;</span> docker stack deploy <span class="nt">--compose-file</span> docker-compose.yml mystack
+Ignoring unsupported options: build
+Updating service mystack_tomcat <span class="o">(</span><span class="nb">id</span>: s6xdsxghfvbfc8hdlufwf7531<span class="o">)</span>
+Updating service mystack_apache <span class="o">(</span><span class="nb">id</span>: lqb65l7h758n7m22mmvtc12qh<span class="o">)</span>
+Updating service mystack_lb <span class="o">(</span><span class="nb">id</span>: hwp0r0dqi35v0ylzb00ebqxhh<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="access-pages-and-verify-working">Access pages and verify working</h3>
+
+<ul>
+  <li>Verify working of http://localhost:8080/duke/app/pic.jsp?name=duke.png</li>
+  <li>Verify working of http://localhost:8080/duke/app/pic.jsp?name=penguin.png</li>
+  <li>Note that the <code class="language-plaintext highlighter-rouge">ServerIP</code> changes among the IPs of the <code class="language-plaintext highlighter-rouge">tomcat</code> server indicating load balancing.</li>
+</ul>
+
+<h3 id="verify-service-is-running-with-the-expected-latest-version">Verify service is running with the expected <strong>latest</strong> version</h3>
+
+<p>Consider this</p>
+<ul>
+  <li>We have an existing stack up and running.</li>
+  <li>We now have made changes some of our docker images, built them, tagged them as <strong>latest</strong> and pushed to  <a href="https://hub.docker.com">docker-hub</a>
+</li>
+  <li>Now when we execute <code class="language-plaintext highlighter-rouge">docker stack deploy</code> the image of the running service is <code class="language-plaintext highlighter-rouge">&lt;image&gt;:latest</code>, yet it does not have the changes in the <a href="https://hub.docker.com">docker-hub</a>  also tagged <code class="language-plaintext highlighter-rouge">&lt;image&gt;:latest</code>. What will docker do?
+    <ul>
+      <li>Thanks to <code class="language-plaintext highlighter-rouge">--resolve-image</code> option of <code class="language-plaintext highlighter-rouge">docker stack deploy</code> which is by default <code class="language-plaintext highlighter-rouge">always</code> , docker shall check if the <code class="language-plaintext highlighter-rouge">hash (SHA 256)</code> of the image at <a href="https://hub.docker.com">docker-hub</a> matches the one used by the running service. If they are not the same, the service shall be updated with the  <a href="https://hub.docker.com">docker-hub</a> image.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check the hash at docker-hub</span>
+<span class="c"># -----------------------------------------------------------------------------</span>
+<span class="c"># https://hub.docker.com/r/cafeduke/apache-stack-demo/tags)</span>
+Note the DIGEST <span class="o">(</span><span class="nb">hash</span><span class="o">)</span>: 67cc9a2d7448b48
+
+<span class="c"># Check the hash of the image built locally</span>
+<span class="c"># -----------------------------------------------------------------------------</span>
+<span class="o">&gt;</span> docker image <span class="nb">ls</span> <span class="nt">--digests</span> cafeduke/apache-stack-demo | <span class="nb">grep </span>latest
+cafeduke/apache-stack-demo   latest    sha256:67cc9a2d7448b4879c9e12cd7b0d9fc5a4554d46a4e51b993376562ade44fdcb   53aa4cd103a7   22 minutes ago   112MB
+
+<span class="c"># Check the hash of the running service 'apache'</span>
+<span class="c"># -----------------------------------------------------------------------------</span>
+<span class="o">&gt;</span> docker service inspect mystack_apache | <span class="nb">grep</span> <span class="nt">-i</span> sha | <span class="nb">head</span> <span class="nt">-1</span>
+<span class="s2">"Image"</span>: <span class="s2">"cafeduke/apache-stack-demo:latest@sha256:67cc9a2d7448b4879c9e12cd7b0d9fc5a4554d46a4e51b993376562ade44fdcb"</span>,
+
+</code></pre></div></div>
+
+<h1 id="swarm-multi-node">Swarm multi node</h1>
+
+<p>Multiple nodes (machines VM/physical) can be simulated using <code class="language-plaintext highlighter-rouge">docker-machine</code> and Oracle VirtualBox softwares.</p>
+
+<h2 id="installation">Installation</h2>
+
+<h3 id="docker-machine">Docker machine</h3>
+
+<ul>
+  <li>Install <a href="https://docs.docker.com/machine/install-machine">docker-machine</a>
+</li>
+  <li>Verify installation</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker-machine <span class="nt">--version</span>
+docker-machine version 0.16.0, build 702c267f
+</code></pre></div></div>
+
+<h3 id="install-oracle-virtualbox">Install Oracle VirtualBox</h3>
+
+<ul>
+  <li>Install <a href="https://www.virtualbox.org/wiki/Linux_Downloads">Oracle VirtualBox</a>
+</li>
+</ul>
+
+<h2 id="create-and-manage-nodes">Create and manage nodes</h2>
+
+<blockquote>
+  <p>Each node is like a separate physical machine.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create node</span>
+<span class="o">&gt;</span> docker-machine create node1 nod2 node3
+
+<span class="c"># Verify working of node</span>
+<span class="o">&gt;</span> docker-machine ssh node1
+   <span class="o">(</span> <span class="s1">'&gt;'</span><span class="o">)</span>
+  /<span class="o">)</span> TC <span class="o">(</span><span class="se">\ </span>  Core is distributed with ABSOLUTELY NO WARRANTY.
+ <span class="o">(</span>/-_--_-<span class="se">\)</span>           www.tinycorelinux.net
+
+<span class="c"># Stop nodes</span>
+<span class="o">&gt;</span> docker-machine stop node1 node2 node3
+
+<span class="c"># Start nodes</span>
+<span class="o">&gt;</span> docker-machine start node1 node2 node3
+docker-machine start node1 node2 node3
+Starting <span class="s2">"node3"</span>...
+Starting <span class="s2">"node2"</span>...
+Starting <span class="s2">"node1"</span>...
+...
+...
+Started machines may have new IP addresses. You may need to re-run the <span class="sb">`</span>docker-machine <span class="nb">env</span><span class="sb">`</span> command.
+
+<span class="c"># List nodes -- Note the IPs of the node</span>
+<span class="o">&gt;</span> docker-machine <span class="nb">ls
+</span>NAME    ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER      ERRORS
+node1   -        virtualbox   Running   tcp://192.168.99.100:2376           v19.03.12
+node2   -        virtualbox   Running   tcp://192.168.99.101:2376           v19.03.12
+node3   -        virtualbox   Running   tcp://192.168.99.102:2376           v19.03.12
+</code></pre></div></div>
+
+<blockquote>
+  <p>docker-machine ls command lists all nodes along with their IP.</p>
+</blockquote>
+
+<h2 id="update-docker-client-to-point-to-node">Update docker client to point to node</h2>
+
+<p>Docker client <code class="language-plaintext highlighter-rouge">docker</code> is just command (binary) that points to a given node based on environment variables.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Run the command to get the list of environent vairalbes to set OR simply run "eval $(docker-machine env node1)"</span>
+<span class="o">&gt;</span> docker-machine <span class="nb">env </span>node1
+<span class="nb">export </span><span class="nv">DOCKER_TLS_VERIFY</span><span class="o">=</span><span class="s2">"1"</span>
+<span class="nb">export </span><span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="s2">"tcp://192.168.99.100:2376"</span>
+<span class="nb">export </span><span class="nv">DOCKER_CERT_PATH</span><span class="o">=</span><span class="s2">"/home/raghu/.docker/machine/machines/node1"</span>
+<span class="nb">export </span><span class="nv">DOCKER_MACHINE_NAME</span><span class="o">=</span><span class="s2">"node1"</span>
+<span class="c"># Run this command to configure your shell:</span>
+<span class="c"># eval $(docker-machine env node1)</span>
+
+<span class="c"># Switching to node1</span>
+raghu-pc ~/work&gt; <span class="nb">eval</span> <span class="si">$(</span>docker-machine <span class="nb">env </span>node1<span class="si">)</span>
+raghu-pc ~/work&gt; bash
+Sourcing /home/raghu/.bashrc
+Sourcing /home/raghu/.profile
+
+<span class="c"># Note that 'node1' is the new host</span>
+node1 ~/work&gt; docker info | <span class="nb">grep </span>Name
+ Name: node1
+</code></pre></div></div>
+
+<h2 id="manage-nodes">Manage nodes</h2>
+
+<p>A node is like a new physical machine and is not part of any swarm. A node can join a swarm as a <strong>master</strong> or <strong>worker</strong>.</p>
+
+<h3 id="make-node1-the-lonely-leader">Make node1 the lonely Leader</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Switching to node1</span>
+raghu-pc ~/work&gt; <span class="nb">eval</span> <span class="si">$(</span>docker-machine <span class="nb">env </span>node1<span class="si">)</span>
+
+<span class="c"># Initalize swarm on the node1 and make it the 'Leader'</span>
+node1 ~/work&gt; docker swarm init <span class="nt">--advertise-addr</span> 192.168.99.100
+Swarm initialized: current node <span class="o">(</span>qy4muu46yuadq5mgyrojzsp2o<span class="o">)</span> is now a manager.
+
+To add a worker to this swarm, run the following <span class="nb">command</span>:
+
+    docker swarm <span class="nb">join</span> <span class="nt">--token</span> SWMTKN-1-1ygd8r5s56qzcph7cm9m0ii0eyp0hiio1gxmiomi5ofkei2l5c-5k21hnpwpzuvfjbh44nhnnaol 192.168.99.100:2377
+
+To add a manager to this swarm, run <span class="s1">'docker swarm join-token manager'</span> and follow the instructions.
+
+<span class="c"># Command to add a node as manager</span>
+<span class="o">&gt;</span> docker swarm join-token manager
+To add a manager to this swarm, run the following <span class="nb">command</span>:
+
+    docker swarm <span class="nb">join</span> <span class="nt">--token</span> SWMTKN-1-1ygd8r5s56qzcph7cm9m0ii0eyp0hiio1gxmiomi5ofkei2l5c-8qr70bbax49dtienbi9f0e0ao 192.168.99.100:2377
+
+
+<span class="c"># Currently there is only node1 and it's the 'Leader'</span>
+<span class="o">&gt;</span> docker node <span class="nb">ls
+</span>ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+qy4muu46yuadq5mgyrojzsp2o <span class="k">*</span>   node1      Ready     Active         Leader           19.03.12
+
+</code></pre></div></div>
+<p>A node can join as either mananger or worker by executing corresponding command on the node.</p>
+<ul>
+  <li>Join as worker: Use command <code class="language-plaintext highlighter-rouge">docker swarm join --token SWMTKN-1-1ygd8r5s56qzcph7cm9m0ii0eyp0hiio1gxmiomi5ofkei2l5c-5k21hnpwpzuvfjbh44nhnnaol 192.168.99.100:2377</code>
+</li>
+  <li>Join as manager: Use command <code class="language-plaintext highlighter-rouge">docker swarm join --token SWMTKN-1-1ygd8r5s56qzcph7cm9m0ii0eyp0hiio1gxmiomi5ofkei2l5c-8qr70bbax49dtienbi9f0e0ao 192.168.99.100:2377</code>
+</li>
+</ul>
+
+<blockquote>
+  <p>Docker swarm initialisation using <code class="language-plaintext highlighter-rouge">docker swarm init</code> gives commands to make nodes join as worker or manager</p>
+</blockquote>
+
+<h3 id="make-node2-join-the-swarm-as-worker">Make node2 join the swarm as worker</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>raghu-pc ~/work&gt; <span class="nb">eval</span> <span class="si">$(</span>docker-machine <span class="nb">env </span>node2<span class="si">)</span>
+
+node2 ~/work&gt; docker swarm <span class="nb">join</span> <span class="nt">--token</span> SWMTKN-1-1ygd8r5s56qzcph7cm9m0ii0eyp0hiio1gxmiomi5ofkei2l5c-5k21hnpwpzuvfjbh44nhnnaol 192.168.99.100:2377
+This node joined a swarm as a worker.
+
+</code></pre></div></div>
+
+<h4 id="verify-that-worker-cannot-viewmodify-swarm-cluster">Verify that worker cannot view/modify swarm cluster</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node2 ~/work&gt; docker node <span class="nb">ls
+</span>Error response from daemon: This node is not a swarm manager. Worker nodes can<span class="s1">'t be used to view or modify cluster state. Please run this command on a manager node or promote the current node to a manager.
+</span></code></pre></div></div>
+
+<h4 id="verify-that-we-now-have-two-nodes-in-the-swarm">Verify that we now have two nodes in the swarm</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node1 ~/work&gt; docker node <span class="nb">ls
+</span>ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+qy4muu46yuadq5mgyrojzsp2o <span class="k">*</span>   node1      Ready     Active         Leader           19.03.12
+ybw0jqm936fwhwz1gvmnfcgv5     node2      Ready     Active                          19.03.12
+</code></pre></div></div>
+
+<h3 id="promote-node2">Promote node2</h3>
+
+<ul>
+  <li>The manager status <code class="language-plaintext highlighter-rouge">Reachable</code> indicates that the node is a manager and is reachable.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node1 ~/work&gt; docker node promote node2
+Node node2 promoted to a manager <span class="k">in </span>the swarm.
+node1 ~/work&gt; docker node <span class="nb">ls
+</span>ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+qy4muu46yuadq5mgyrojzsp2o <span class="k">*</span>   node1      Ready     Active         Leader           19.03.12
+ybw0jqm936fwhwz1gvmnfcgv5     node2      Ready     Active         Reachable        19.03.12
+</code></pre></div></div>
+
+<h3 id="make-node3-join-the-swarm-directly-as-manager">Make node3 join the swarm directly as manager</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node3 ~/work&gt; docker swarm <span class="nb">join</span> <span class="nt">--token</span> SWMTKN-1-1ygd8r5s56qzcph7cm9m0ii0eyp0hiio1gxmiomi5ofkei2l5c-8qr70bbax49dtienbi9f0e0ao 192.168.99.100:2377
+This node joined a swarm as a manager.
+</code></pre></div></div>
+
+<h3 id="verify-node1-is-no-more-lonely">Verify node1 is no more lonely</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node1 ~/work&gt; docker node <span class="nb">ls
+</span>ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+qy4muu46yuadq5mgyrojzsp2o <span class="k">*</span>   node1      Ready     Active         Leader           19.03.12
+ybw0jqm936fwhwz1gvmnfcgv5     node2      Ready     Active         Reachable        19.03.12
+tr6kf9ec72b3wi4bdn1v39168     node3      Ready     Active         Reachable        19.03.12
+</code></pre></div></div>
+
+<h3 id="demote-node1">Demote node1</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Demote node1</span>
+node1 ~/work&gt; docker node demote node1
+Manager node1 demoted <span class="k">in </span>the swarm.
+
+<span class="c"># Note that node2 is now the Leader</span>
+node2 ~/work&gt; docker node <span class="nb">ls
+</span>ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+qy4muu46yuadq5mgyrojzsp2o     node1      Ready     Active                          19.03.12
+ybw0jqm936fwhwz1gvmnfcgv5 <span class="k">*</span>   node2      Ready     Active         Leader           19.03.12
+tr6kf9ec72b3wi4bdn1v39168     node3      Ready     Active         Reachable        19.03.12
+
+</code></pre></div></div>
+
+<h3 id="restore-status">Restore status</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># We are promoting node1 back to manager</span>
+node2 ~/work&gt; docker node promote node1
+Node node1 promoted to a manager <span class="k">in </span>the swarm.
+
+<span class="c"># However, note that node2 remains the 'Leader'</span>
+node2 ~/work&gt; docker node <span class="nb">ls
+</span>ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+qy4muu46yuadq5mgyrojzsp2o     node1      Ready     Active         Reachable        19.03.12
+ybw0jqm936fwhwz1gvmnfcgv5 <span class="k">*</span>   node2      Ready     Active         Leader           19.03.12
+tr6kf9ec72b3wi4bdn1v39168     node3      Ready     Active         Reachable        19.03.12
+
+</code></pre></div></div>
+
+<h1 id="swarm-stack-on-multi-node">Swarm stack on multi-node</h1>
+
+<h2 id="stack-lb-apache-tomcat-1">Stack lb-apache-tomcat</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker stack deploy <span class="nt">--compose-file</span> docker-compose.yml mystack
+Creating network mystack_front_end
+Creating network mystack_back_end
+Creating service mystack_lb
+Creating service mystack_tomcat
+Creating service mystack_apache
+
+<span class="o">&gt;</span> docker stack <span class="nb">ls
+</span>NAME      SERVICES   ORCHESTRATOR
+mystack   3          Swarm
+
+<span class="o">&gt;</span> docker stack services mystack
+ID             NAME             MODE         REPLICAS   IMAGE                               PORTS
+hd9ggc261a2l   mystack_apache   replicated   3/3        cafeduke/apache-stack-demo:latest   <span class="k">*</span>:8801-&gt;80/tcp
+59fsvfei7jpm   mystack_lb       replicated   2/2        cafeduke/lb:latest                  <span class="k">*</span>:8080-&gt;80/tcp
+emlju8x06l9k   mystack_tomcat   replicated   3/3        cafeduke/tomcat-stack-demo:latest   <span class="k">*</span>:18801-&gt;8080/tcp
+
+<span class="o">&gt;</span> docker service ps mystack_apache mystack_lb mystack_tomcat <span class="nt">--filter</span> desired-state<span class="o">=</span>running
+ID             NAME               IMAGE                               NODE      DESIRED STATE   CURRENT STATE           ERROR     PORTS
+hsh5ndry3d20   mystack_apache.1   cafeduke/apache-stack-demo:latest   node1     Running         Running 6 minutes ago
+j2txqvfi2jrg   mystack_apache.2   cafeduke/apache-stack-demo:latest   node3     Running         Running 7 minutes ago
+ynzr9m2s98i4   mystack_apache.3   cafeduke/apache-stack-demo:latest   node2     Running         Running 7 minutes ago
+jms3xqe1mvh3   mystack_lb.1       cafeduke/lb:latest                  node1     Running         Running 6 minutes ago
+w207xkrcd40x   mystack_lb.2       cafeduke/lb:latest                  node3     Running         Running 7 minutes ago
+hpi42q3p3ujo   mystack_tomcat.1   cafeduke/tomcat-stack-demo:latest   node2     Running         Running 6 minutes ago
+9pbxttf4chdc   mystack_tomcat.2   cafeduke/tomcat-stack-demo:latest   node3     Running         Running 5 minutes ago
+x86x8qze8w2y   mystack_tomcat.3   cafeduke/tomcat-stack-demo:latest   node1     Running         Running 5 minutes ago
+
+</code></pre></div></div>
+
+<h3 id="access-pages-and-verify-working-1">Access pages and verify working</h3>
+
+<ul>
+  <li>Get the IPs of nodes using <code class="language-plaintext highlighter-rouge">docker-machine ls</code>
+</li>
+  <li>Verify working of http://192.168.99.100:8080/duke/app/pic.jsp?name=duke.png</li>
+  <li>Verify working of http://192.168.99.100:8080/duke/app/pic.jsp?name=penguin.png</li>
+  <li>Note that the <code class="language-plaintext highlighter-rouge">ServerIP</code> changes among the IPs of the <code class="language-plaintext highlighter-rouge">tomcat</code> server indicating load balancing.</li>
+</ul>
+
+<p><strong>Note tomcat IP from each node</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node1 ~/work&gt; docker network inspect mystack_back_end | <span class="nb">grep</span> <span class="nt">-A</span> 4 <span class="s2">"tomcat"</span> | egrep <span class="s2">"Name|IPv4"</span>
+<span class="s2">"Name"</span>: <span class="s2">"mystack_tomcat.3.x86x8qze8w2y1a4k97o04vt16"</span>,
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.2.5/24"</span>,
+
+node2 ~/work&gt; docker network inspect mystack_back_end | <span class="nb">grep</span> <span class="nt">-A</span> 4 <span class="s2">"tomcat"</span> | egrep <span class="s2">"Name|IPv4"</span>
+<span class="s2">"Name"</span>: <span class="s2">"mystack_tomcat.1.hpi42q3p3ujocefjo6atcuo8n"</span>,
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.2.3/24"</span>,
+
+node3 ~/work&gt; docker network inspect mystack_back_end | <span class="nb">grep</span> <span class="nt">-A</span> 4 <span class="s2">"tomcat"</span> | egrep <span class="s2">"Name|IPv4"</span>
+<span class="s2">"Name"</span>: <span class="s2">"mystack_tomcat.2.9pbxttf4chdch42vcr4k5issd"</span>,
+<span class="s2">"IPv4Address"</span>: <span class="s2">"10.0.2.4/24"</span>,
+</code></pre></div></div>
+
+<p><strong>Send simultaneous requests and verify load-balancing</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> jget <span class="nt">-u</span> <span class="s2">"http://192.168.99.100:8080/duke/app/Snoop.jsp"</span> <span class="nt">-mode</span> MSC <span class="nt">-n</span> 10 <span class="nt">-o</span> file<span class="p">;</span> <span class="nb">grep </span>ServerIP file<span class="k">*</span>
+file0001.html:ServerIP<span class="o">=</span>10.0.2.3
+file0002.html:ServerIP<span class="o">=</span>10.0.2.4
+file0003.html:ServerIP<span class="o">=</span>10.0.2.3
+file0004.html:ServerIP<span class="o">=</span>10.0.2.5
+file0005.html:ServerIP<span class="o">=</span>10.0.2.3
+file0006.html:ServerIP<span class="o">=</span>10.0.2.5
+file0007.html:ServerIP<span class="o">=</span>10.0.2.4
+file0008.html:ServerIP<span class="o">=</span>10.0.2.4
+file0009.html:ServerIP<span class="o">=</span>10.0.2.4
+file0010.html:ServerIP<span class="o">=</span>10.0.2.3
+</code></pre></div></div>
+
+<h3 id="verify-routing-mesh-1">Verify routing mesh</h3>
+
+<p>We see that requesting any of the nodes</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>raghu-pc ~/work&gt; curl <span class="nt">-s</span> <span class="nt">-I</span> <span class="s2">"http://192.168.99.100:8080/duke/app/hello.jsp"</span> | <span class="nb">head</span> <span class="nt">-1</span>
+HTTP/1.1 200
+
+raghu-pc ~/work&gt; curl <span class="nt">-s</span> <span class="nt">-I</span> <span class="s2">"http://192.168.99.101:8080/duke/app/hello.jsp"</span> | <span class="nb">head</span> <span class="nt">-1</span>
+HTTP/1.1 200
+
+raghu-pc ~/work&gt; curl <span class="nt">-s</span> <span class="nt">-I</span> <span class="s2">"http://192.168.99.102:8080/duke/app/hello.jsp"</span> | <span class="nb">head</span> <span class="nt">-1</span>
+HTTP/1.1 200
+</code></pre></div></div>
+
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

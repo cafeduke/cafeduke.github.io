@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Git Essentials</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Git Essentials</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Thursday, 12 November 2020
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li>
+<a href="#setup-git-and-duke-git" id="markdown-toc-setup-git-and-duke-git">Setup git and duke-git</a>    <ol>
+      <li><a href="#install-git" id="markdown-toc-install-git">Install git</a></li>
+      <li><a href="#install-duke-git" id="markdown-toc-install-duke-git">Install duke-git</a></li>
+      <li><a href="#create-your-own-git-project" id="markdown-toc-create-your-own-git-project">Create your own git project</a></li>
+      <li><a href="#fork-and-clone-duke-git" id="markdown-toc-fork-and-clone-duke-git">Fork and clone duke-git</a></li>
+    </ol>
+  </li>
+  <li><a href="#different-areas-of-storage" id="markdown-toc-different-areas-of-storage">Different areas of storage</a></li>
+  <li>
+<a href="#typical-core-workflow" id="markdown-toc-typical-core-workflow">Typical Core Workflow</a>    <ol>
+      <li>
+<a href="#moving-across-areas-of-storage" id="markdown-toc-moving-across-areas-of-storage">Moving across areas of storage</a>        <ol>
+          <li><a href="#stage-files" id="markdown-toc-stage-files">Stage files</a></li>
+          <li><a href="#restoring-staged-file-to-work-when-needed" id="markdown-toc-restoring-staged-file-to-work-when-needed">Restoring staged file to work, when needed</a></li>
+          <li><a href="#commit-files" id="markdown-toc-commit-files">Commit files</a></li>
+          <li><a href="#restore-commit-file-to-work-when-needed" id="markdown-toc-restore-commit-file-to-work-when-needed">Restore commit file to work when needed</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><a href="#undo-push" id="markdown-toc-undo-push">Undo push</a></li>
+  <li>
+<a href="#digging-little-deeper" id="markdown-toc-digging-little-deeper">Digging little deeper</a>    <ol>
+      <li>
+<a href="#more-committed" id="markdown-toc-more-committed">More committed</a>        <ol>
+          <li><a href="#commits-are-stacked" id="markdown-toc-commits-are-stacked">Commits are stacked</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#terminologies" id="markdown-toc-terminologies">Terminologies</a>        <ol>
+          <li><a href="#git-repository" id="markdown-toc-git-repository">Git Repository</a></li>
+          <li><a href="#master" id="markdown-toc-master">Master</a></li>
+          <li><a href="#head" id="markdown-toc-head">HEAD</a></li>
+          <li><a href="#remote-and-local-repository" id="markdown-toc-remote-and-local-repository">Remote and Local Repository</a></li>
+        </ol>
+      </li>
+      <li><a href="#a-look-a-git-config" id="markdown-toc-a-look-a-git-config">A look a git config</a></li>
+      <li><a href="#local-and-remote-commits" id="markdown-toc-local-and-remote-commits">Local and remote commits</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#hard-reset" id="markdown-toc-hard-reset">Hard reset</a>    <ol>
+      <li><a href="#why-hard-reset" id="markdown-toc-why-hard-reset">Why hard reset?</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#push-git-refresh-and-conflict-resolution" id="markdown-toc-push-git-refresh-and-conflict-resolution">Push, git-refresh and conflict resolution</a>    <ol>
+      <li>
+<a href="#push" id="markdown-toc-push">push</a>        <ol>
+          <li><a href="#what-commits-are-we-pushing" id="markdown-toc-what-commits-are-we-pushing">What commits are we pushing?</a></li>
+          <li><a href="#where-are-we-pushing" id="markdown-toc-where-are-we-pushing">Where are we pushing?</a></li>
+        </ol>
+      </li>
+      <li><a href="#git-refresh--no-conflict" id="markdown-toc-git-refresh--no-conflict">git-refresh – no conflict</a></li>
+      <li>
+<a href="#git-refresh--conflict" id="markdown-toc-git-refresh--conflict">git-refresh – conflict</a>        <ol>
+          <li><a href="#a-look-at-the-tree-before-refresh" id="markdown-toc-a-look-at-the-tree-before-refresh">A look at the tree before refresh</a></li>
+          <li><a href="#refresh-branch" id="markdown-toc-refresh-branch">Refresh branch</a></li>
+          <li><a href="#3-way-merge-with-meld" id="markdown-toc-3-way-merge-with-meld">3-way merge with Meld</a></li>
+          <li><a href="#a-look-at-the-tree-after-refresh" id="markdown-toc-a-look-at-the-tree-after-refresh">A look at the tree after refresh</a></li>
+          <li><a href="#merging-later" id="markdown-toc-merging-later">Merging later</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#branches" id="markdown-toc-branches">Branches</a>    <ol>
+      <li><a href="#know-your-branch" id="markdown-toc-know-your-branch">Know your branch</a></li>
+      <li>
+<a href="#hopping-branches" id="markdown-toc-hopping-branches">Hopping branches</a>        <ol>
+          <li><a href="#hopping-to-a-branch" id="markdown-toc-hopping-to-a-branch">Hopping to a branch</a></li>
+          <li><a href="#hoping-to-another-and-back" id="markdown-toc-hoping-to-another-and-back">Hoping to another and back</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#why-branch" id="markdown-toc-why-branch">Why branch?</a>        <ol>
+          <li><a href="#feature-branch" id="markdown-toc-feature-branch">Feature branch</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#creating-and-persisting-branches" id="markdown-toc-creating-and-persisting-branches">Creating and persisting branches</a>        <ol>
+          <li><a href="#update-the-local-master" id="markdown-toc-update-the-local-master">Update the local master</a></li>
+          <li><a href="#create-a-local-branch" id="markdown-toc-create-a-local-branch">Create a local branch</a></li>
+          <li><a href="#add-commits-to-local-branch" id="markdown-toc-add-commits-to-local-branch">Add commits to local branch</a></li>
+          <li><a href="#push-local-branch-and-all-its-commits-to-remote-repository" id="markdown-toc-push-local-branch-and-all-its-commits-to-remote-repository">Push local branch and all its commits to remote repository</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#merge-branches" id="markdown-toc-merge-branches">Merge branches</a>    <ol>
+      <li>
+<a href="#fast-forward-merge" id="markdown-toc-fast-forward-merge">Fast forward merge</a>        <ol>
+          <li><a href="#a-look-at-the-tree-before-merge" id="markdown-toc-a-look-at-the-tree-before-merge">A look at the tree before merge</a></li>
+          <li><a href="#merge-feature-to-master--local-repository" id="markdown-toc-merge-feature-to-master--local-repository">Merge feature to master – local repository</a></li>
+          <li><a href="#a-look-at-the-tree-after-merge" id="markdown-toc-a-look-at-the-tree-after-merge">A look at the tree after merge</a></li>
+          <li><a href="#persist-merge--push-to-remote" id="markdown-toc-persist-merge--push-to-remote">Persist merge – Push to remote</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#fork-merge" id="markdown-toc-fork-merge">Fork Merge</a>        <ol>
+          <li><a href="#a-look-at-the-tree-before-merge-1" id="markdown-toc-a-look-at-the-tree-before-merge-1">A look at the tree before merge</a></li>
+          <li><a href="#merge-feature-to-master--local-repository-1" id="markdown-toc-merge-feature-to-master--local-repository-1">Merge feature to master – local repository</a></li>
+          <li><a href="#resolve-conflicts" id="markdown-toc-resolve-conflicts">Resolve conflicts</a></li>
+          <li><a href="#3-way-merge" id="markdown-toc-3-way-merge">3-way merge</a></li>
+          <li><a href="#a-look-at-the-tree-after-merge-1" id="markdown-toc-a-look-at-the-tree-after-merge-1">A look at the tree after merge</a></li>
+          <li><a href="#persist-merge--push-to-remote-1" id="markdown-toc-persist-merge--push-to-remote-1">Persist merge – Push to remote</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><a href="#references" id="markdown-toc-references">References</a></li>
+</ol>
+
+</nav>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Git is a open-source version control system.</p>
+
+<p>A version control system (like git, ADE, clear-case) is used for distributed software storage, development and versioning. So, a version control provides the following.</p>
+<ul>
+  <li>Distributed storage – The files (are shard-ed) and stored in multiple servers (using distributed file system)</li>
+  <li>Parallel development – Many people can work and add features to the same project</li>
+  <li>Distributed development – Two or more developers in different parts of the world can develop software. Eg: Any open source software.</li>
+  <li>Conflict management  – If two developers have modified same set of files, then they can resolve the conflict (diff), typically to include both their changes.</li>
+  <li>Versioning  – Various versions (stages of development) of the files are stored. So, we have the entire version history stored for each file.</li>
+</ul>
+
+<h1 id="setup-git-and-duke-git">Setup git and duke-git</h1>
+
+<h2 id="install-git">Install git</h2>
+<p><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Getting-Started-Installing-Git</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> which git
+/usr/bin/git
+
+<span class="o">&gt;</span> git <span class="nt">--version</span>
+git version 2.25.1
+</code></pre></div></div>
+<h2 id="install-duke-git">Install duke-git</h2>
+
+<p>DukeGit is an open source projects having executable shell scripts that act as wrappers for git commands. DukeGit aims to be easy, intuitive, add-on to git commands.</p>
+
+<p>https://github.com/cafeduke/duke-git</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ensure duke-git is part of path</span>
+<span class="o">&gt;</span> which git-history
+/home/raghu/bin/duke-git/git-history
+</code></pre></div></div>
+
+<h2 id="create-your-own-git-project">Create your own git project</h2>
+
+<ul>
+  <li>Create GIT account on https://github.com/ and login. (Eg: https://github.com/raghubs81)</li>
+  <li>Go to Home &gt; Repositories (tab) &gt; New (button)</li>
+  <li>Create a repository say “Work” (Eg: https://github.com/raghubs81/Work)</li>
+</ul>
+
+<h2 id="fork-and-clone-duke-git">Fork and clone duke-git</h2>
+
+<ul>
+  <li>Sign into to your repository at <code class="language-plaintext highlighter-rouge">https://github.com/&lt;my_git_login&gt;</code>
+</li>
+  <li>Go to https://github.com/raghubs81/LearnGit</li>
+  <li>Click on “Fork button”</li>
+  <li>Now this will clone “LearnGit” into your account</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> git clone https://github.com/&lt;my_git_login&gt;/LearnGit
+</code></pre></div></div>
+
+<h1 id="different-areas-of-storage">Different areas of storage</h1>
+
+<p><img src="/assets/images/git/DukeGitStorageLevel.jpg" alt="Workflow01"></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Alias</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Work</td>
+      <td>Working directory, Working area, Work tree</td>
+      <td>Has tracked, but modified files plus untracked files.</td>
+    </tr>
+    <tr>
+      <td>Stage</td>
+      <td>Cache, Index</td>
+      <td>After reaching a milestone with a file, we save a copy (stage the file) before modifying it further. <br>In case we are not happy with the modifications we can always restore the staged version back to work.</td>
+    </tr>
+    <tr>
+      <td>Local</td>
+      <td>Local repo, Local repository</td>
+      <td>After finishing a module (a bundle of files), we save the bundle of files into what we call a <strong>commit</strong>.</td>
+    </tr>
+    <tr>
+      <td>Remote</td>
+      <td>Remote repo, Remote repository</td>
+      <td>Copy commits from local repository to the remove server.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="typical-core-workflow">Typical Core Workflow</h1>
+
+<p>During development, we modify files. Before we proceed further, we would like to save a copy of these files – This is called <strong>staging</strong> files. In case, we are not happy with current changes we could restore the staged copy.</p>
+<ul>
+  <li>Files are staged using the <code class="language-plaintext highlighter-rouge">git add &lt;path to file&gt;...</code> command.</li>
+  <li>Files are copied from stage to work  using <code class="language-plaintext highlighter-rouge">git-cp-stage-work &lt;file1&gt; [&lt;file2 ... &lt;filen&gt;]</code> command</li>
+  <li>Files are moved from stage to work  using <code class="language-plaintext highlighter-rouge">git-cp-stage-work &lt;file1&gt; [&lt;file2 ... &lt;filen&gt;]</code> command. Note that moving staged files, removes them from stage.</li>
+</ul>
+
+<blockquote>
+  <p>Staging provides a mechanism to save a copy of the files before we make further edits</p>
+</blockquote>
+
+<p>Once we reach a milestone (could just be a minor milestone) during the development, we bundle the set of files into what we call a <strong>commit</strong>. We provide a name to the commit, indicating the milestone reached. For example, we could have a commit named “Update usage of all scripts”, “Format files to have right indentation” or “Add option –help to provide help”.</p>
+
+<ul>
+  <li>A set of files is committed using <code class="language-plaintext highlighter-rouge">git commit &lt;path to file&gt;...</code>
+</li>
+</ul>
+
+<h2 id="moving-across-areas-of-storage">Moving across areas of storage</h2>
+<h3 id="stage-files">Stage files</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check the history</span>
+<span class="o">&gt;</span> git-history
+a9a329f  Version 4   <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="c"># Modify fruit.txt and version.txt to add 'Orange' as version 'v4'</span>
+<span class="o">&gt;</span> <span class="nb">paste </span>fruit.txt version.txt | column <span class="nt">-t</span>
+Apple    v1
+Banana  v2
+Cherry  v3
+Dates    v4
+Grapes  v5
+
+<span class="c"># Check status (We have removed unwanted lines lines from output).</span>
+<span class="c"># Note that we fruit.txt and version.txt are considered modified, but are yet to be staged.</span>
+<span class="o">&gt;</span> git status
+Changes not staged <span class="k">for </span>commit:
+  modified:   fruit.txt
+  modified:   version.txt
+
+<span class="c"># Stage the files</span>
+git add version.txt fruit.txt
+
+<span class="c"># Check status. The files are not staged, but are yet to be committed.</span>
+<span class="o">&gt;</span> git status
+Changes to be committed:
+  modified:   fruit.txt
+  modified:   version.txt
+</code></pre></div></div>
+<h3 id="restoring-staged-file-to-work-when-needed">Restoring staged file to work, when needed</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Let say, we messed up fruit.txt</span>
+<span class="o">&gt;</span> <span class="nb">cat</span> <span class="o">&gt;</span> fruit.txt
+This file got messed up!
+
+<span class="c"># What's the status now?</span>
+<span class="c"># We have our staged fruit.txt and version.txt. The fruit.txt in work is messed up.</span>
+<span class="o">&gt;</span> git status
+Changes to be committed:
+  modified:   fruit.txt
+  modified:   version.txt
+
+Changes not staged <span class="k">for </span>commit:
+  modified:   fruit.txt
+
+<span class="c"># Lets see the one we had staged. This looks good!</span>
+<span class="o">&gt;</span> git-cat-stage-file fruit.txt
+Apple
+Banana
+Cherry
+Orange
+
+<span class="c"># Lets copy this back to work. There we go</span>
+<span class="o">&gt;</span> git-cp-stage-work fruit.txt
+<span class="o">&gt;</span> <span class="nb">cat </span>fruit.txt
+Apple
+Banana
+Cherry
+Orange
+</code></pre></div></div>
+
+<h3 id="commit-files">Commit files</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Status again! We are good to commit</span>
+<span class="o">&gt;</span> git status
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">"git restore --staged &lt;file&gt;..."</span> to unstage<span class="o">)</span>
+  modified:   fruit.txt
+  modified:   version.txt
+
+<span class="c"># Lets commit!</span>
+<span class="o">&gt;</span> git commit <span class="nt">--all</span> <span class="nt">-m</span> <span class="s2">"Version 5"</span>
+<span class="o">[</span>master e9dce6b] Version 5
+
+<span class="c"># Yes! We have "Version 4", a commit with ID 'e9dce6b'</span>
+<span class="o">&gt;</span> git-history
+e9dce6b  Version 5   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+a9a329f  Version 4   <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="c"># Push this to the server</span>
+<span class="o">&gt;</span> git push
+Username <span class="k">for</span> <span class="s1">'https://github.com'</span>: &lt;Enter username&gt;
+Password <span class="k">for</span> <span class="s1">'https://&lt;my_git_login&gt;@github.com'</span>: &lt;Enter password&gt;
+...
+To https://github.com/&lt;my_git_login&gt;/LearnGit
+
+<span class="c"># Lets check the history now!</span>
+<span class="o">&gt;</span> git-history
+e9dce6b  Version 5        <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+a9a329f  Version 4
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+</code></pre></div></div>
+
+<blockquote>
+  <p>Go to<code class="language-plaintext highlighter-rouge"> https://github.com/&lt;my_git_login&gt;/LearnGit</code> and verify you see ‘Orange’</p>
+</blockquote>
+
+<h3 id="restore-commit-file-to-work-when-needed">Restore commit file to work when needed</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Let say, we messed up fruit.txt</span>
+<span class="o">&gt;</span> <span class="nb">cat</span> <span class="o">&gt;</span> fruit.txt
+This file got messed up!
+
+<span class="c"># What's the status now?</span>
+<span class="o">&gt;</span> git status
+On branch master
+Your branch is up to <span class="nb">date </span>with <span class="s1">'origin/master'</span><span class="nb">.</span>
+
+Changes not staged <span class="k">for </span>commit:
+  modified:   fruit.txt
+
+<span class="c"># Lets check if the commited file is okay</span>
+<span class="o">&gt;</span> git-history
+e9dce6b  Version 4        <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+a9a329f  Version 4
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="c"># This commit file looks good!</span>
+<span class="c"># Just FYI, we could have accessed the same as 'git-cat-commit-file HEAD fruit.txt'</span>
+<span class="o">&gt;</span> git-cat-commit-file e9dce6b fruit.txt
+Apple
+Banana
+Cherry
+Dates
+Grapes
+
+<span class="c"># Lets restore from commit</span>
+<span class="o">&gt;</span> git-cp-commit-work e9dce6b <span class="nt">--</span> fruit.txt
+<span class="o">&gt;</span> <span class="nb">cat </span>fruit.txt
+Apple
+Banana
+Cherry
+Dates
+Grapes
+</code></pre></div></div>
+
+<p>In the above workflow, we cloned an existing project, modified existing files, staged them, committed them and pushed it to the remote server. We also saw restoring files from stage and commit. We covered a core portion of the workflow. If you are maintaining a repo on Git as a single contributor, this is probably what you shall most often need. However, this could be considered the “Hello World!” of git :)</p>
+
+<h1 id="undo-push">Undo push</h1>
+
+<p>Lets undo push and understand the commands in later sections. In a new section, we shall assume the stage (similar to a newly forked and cloned repository)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> git reset <span class="nt">--hard</span> a9a329f
+HEAD is now at a9a329f Version 4
+
+<span class="o">&gt;</span> git-history
+a9a329f  Version 4   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="c"># The regular 'git push' fails</span>
+<span class="o">&gt;</span> git push
+Username <span class="k">for</span> <span class="s1">'https://github.com'</span>: cafeduke
+Password <span class="k">for</span> <span class="s1">'https://cafeduke@github.com'</span>:
+...
+error: failed to push some refs to <span class="s1">'https://github.com/&lt;my_git_login&gt;/LearnGit'</span>
+
+<span class="c"># Lets do a force push</span>
+<span class="o">&gt;</span> git push <span class="nt">--force</span>
+Username <span class="k">for</span> <span class="s1">'https://github.com'</span>:
+Password <span class="k">for</span> <span class="s1">'https://&lt;my_git_login&gt;@github.com'</span>:
+...
+To https://github.com/&lt;my_git_login&gt;/LearnGit
+</code></pre></div></div>
+
+<h1 id="digging-little-deeper">Digging little deeper</h1>
+
+<h2 id="more-committed">More committed</h2>
+
+<p>In this section lets get to know more about commit. A commit contains a set of files (and directories) that were created, updated or deleted. A commit represents a milestone. A text summary describes (summarises) the milestone.</p>
+
+<blockquote>
+  <p>The commit represents a milestone in the journey of developing a feature.</p>
+</blockquote>
+
+<p>We see that <code class="language-plaintext highlighter-rouge">git-history</code> lists few commits. Each commit is a seven digit hexadecimal number, along with its description. Few commits have some additional information as well. Lets learn more on these.</p>
+
+<p>Lets take a look at a more detailed history.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git-history <span class="nt">--long</span>
+a9a329f06eb46e355d23dce550b91dce5e5187fc  Version 4  Raghunandan.Seshadri  Sun,15-Nov-2020 16:46:18   <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+5d95c770db3c86e85d5c9d03cd45ebf3b9f08727  Version 3  Raghunandan.Seshadri  Sun,15-Nov-2020 16:45:29
+02f7753798193f27bd6bb2c7f75b58d61e58eed8  Version 2  Raghunandan.Seshadri  Sun,15-Nov-2020 16:45:10
+691f07d0eecd58f59815098c38abed675e49e802  Version 1  Raghunandan.Seshadri  Sat,12-May-2018 08:37:39
+</code></pre></div></div>
+
+<ul>
+  <li>A commit is a 160bit (20 byte) SHA1 hash code of the files. The same set of files, with the same change will generate the same hash. So, cloning project duke-git <code class="language-plaintext highlighter-rouge">git clone https://github.com/&lt;my_git_login&gt;/LearnGit</code> will produce the same commit IDs as given above.</li>
+  <li>A one line summary of what the commit is all about. Very helpful for someone else to know what the commit is about.</li>
+  <li>The author of the commit</li>
+  <li>Date of commit</li>
+  <li>Optional, meta-data for selected commits.</li>
+</ul>
+
+<h3 id="commits-are-stacked">Commits are stacked</h3>
+
+<p>First off, we see that the latest commit is listed first. In other words, latest commit is at the top, followed by older commits.</p>
+
+<h2 id="terminologies">Terminologies</h2>
+
+<h3 id="git-repository">Git Repository</h3>
+
+<p>A repository is a store house of all our commits. Going forward we shall see that a repository with commits is a <code class="language-plaintext highlighter-rouge">Tree</code> data structure, with several <strong>branches</strong>,  where each <code class="language-plaintext highlighter-rouge">Node</code> is a commit. A branch can have one or more <code class="language-plaintext highlighter-rouge">Nodes</code> (commits).</p>
+
+<h3 id="master">Master</h3>
+<p>By default, there is only one branch – the <code class="language-plaintext highlighter-rouge">master</code> branch.</p>
+
+<blockquote>
+  <p>In git, the default branch is called <strong>master</strong>. Git is now changing the name to <strong>main</strong></p>
+</blockquote>
+
+<p>A branch is also a <strong>pointer</strong>, pointing to the latest commit (node) of that branch. We could create several branches (stemming from any node, as we see later) and each branch shall have a name. For example, if we have a branch named <code class="language-plaintext highlighter-rouge">dev_feature1</code> then <code class="language-plaintext highlighter-rouge">dev_feature1</code> shall point to the latest commit on branch <code class="language-plaintext highlighter-rouge">dev_feature1</code></p>
+
+<h3 id="head">HEAD</h3>
+<p><code class="language-plaintext highlighter-rouge">HEAD</code> is a pointer as well. HEAD either points to a branch or directly point to a commit. Typically, <code class="language-plaintext highlighter-rouge">HEAD</code> points to a branch. As we know, the branch in-turn points to the latest commit.</p>
+
+<blockquote>
+  <p>HEAD determines where the next commit shall be pushed (added). If we have many branches, we need to make sure HEAD is pointing to the right branch!</p>
+</blockquote>
+
+<h3 id="remote-and-local-repository">Remote and Local Repository</h3>
+
+<p>A repository is a storehouse of commits where the commits are stored as a <code class="language-plaintext highlighter-rouge">Tree</code> data structure. A local repository stores is our local computer. However, a remote repository stores in remote server where the data is really safe (backed up).</p>
+
+<blockquote>
+  <p>Commits are <strong>not really safe</strong> until they are pushed to remote repository.</p>
+</blockquote>
+
+<p>The entire tree of commits shall be identical in local and remote repository to begin with. However, during the course of development they shall go out of sync.</p>
+
+<h2 id="a-look-a-git-config">A look a git config</h2>
+
+<p>We have a hidden directory in our base project folder called <code class="language-plaintext highlighter-rouge">.git</code> Lets take a look a section of the configuration stored in <code class="language-plaintext highlighter-rouge">.git/config</code></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">[</span><span class="nv">core</span><span class="pi">]</span>
+  <span class="s">...</span>
+<span class="pi">[</span><span class="nv">remote "origin"</span><span class="pi">]</span>
+  <span class="s">url = https://github.com/&lt;my_git_login&gt;/LearnGit</span>
+  <span class="s">...</span>
+<span class="pi">[</span><span class="nv">branch "master"</span><span class="pi">]</span>
+  <span class="s">remote = origin</span>
+  <span class="s">...</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>A remote (remote repository) named <code class="language-plaintext highlighter-rouge">origin</code> is configured with the URL <code class="language-plaintext highlighter-rouge">https://github.com/&lt;my_git_login&gt;/LearnGit</code> – This is the remote server storing our project.</li>
+  <li>A branch named <code class="language-plaintext highlighter-rouge">master</code> is configured with remote <code class="language-plaintext highlighter-rouge">origin</code>.</li>
+</ul>
+
+<blockquote>
+  <p>We address (point to) the remote repository using <strong>origin</strong>.  The URL provides the remote storage location.</p>
+</blockquote>
+
+<h2 id="local-and-remote-commits">Local and remote commits</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># git-history takes a branch argument that defaults to current branch which is 'master'</span>
+<span class="o">&gt;</span> git-history <span class="nt">-h</span>
+List commit <span class="nb">history </span>of last <span class="s1">'n'</span> commits. By default, <span class="nv">n</span><span class="o">=</span>25, <span class="nv">branch</span><span class="o">=</span>&lt;current checkout branch&gt;
+
+Usage: git-history <span class="o">[</span><span class="nt">--long</span><span class="o">]</span> <span class="o">[</span>branch] <span class="o">[</span>&lt;number of commits&gt;]
+
+<span class="c"># Git history of master</span>
+<span class="o">&gt;</span> git-history master
+a9a329f  Version 4   <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="c"># Get history of commits on remote repo's master using 'origin/master'</span>
+<span class="o">&gt;</span> git <span class="nb">history </span>origin/master
+a9a329f  Version 4   <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="c"># Now lets add a version 5, Grapes</span>
+<span class="o">&gt;</span> <span class="nb">paste </span>fruit.txt version.txt | column <span class="nt">-t</span>
+Apple   v1
+Banana  v2
+Cherry  v3
+Dates   v4
+Grapes  v5
+
+<span class="c"># Lets add to local repo using commit</span>
+<span class="o">&gt;</span> git commit <span class="nt">--all</span> <span class="nt">-m</span> <span class="s2">"Version 5"</span>
+<span class="o">[</span>master 991a6bc] Version 5
+
+<span class="c"># NOTE: It reads "Your branch is ahead of 'origin/master' by 1 commit"</span>
+<span class="o">&gt;</span> git status
+On branch master
+Your branch is ahead of <span class="s1">'origin/master'</span> by 1 commit.
+...
+
+<span class="c"># Get the history of local branch now</span>
+<span class="o">&gt;</span> git <span class="nb">history </span>master
+991a6bc  Version 5   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+a9a329f  Version 4   <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+</code></pre></div></div>
+
+<p>In the output of <code class="language-plaintext highlighter-rouge">git-history master</code> ,</p>
+
+<ul>
+  <li>The local repository’s master branch (or just <code class="language-plaintext highlighter-rouge">master</code> ) as usual points to the latest commit. Now, the latest commit is <code class="language-plaintext highlighter-rouge">991a6bc</code>. So, <code class="language-plaintext highlighter-rouge">master</code> is pointing to this.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">HEAD</code> points to the local branch <code class="language-plaintext highlighter-rouge">master</code>
+</li>
+  <li>The remote repository’s master branch  <code class="language-plaintext highlighter-rouge">origin/master</code> is pointing to <code class="language-plaintext highlighter-rouge">04c22ee</code> as before.</li>
+  <li>The remote repository’s <code class="language-plaintext highlighter-rouge">HEAD</code> pointer is at the same commit <code class="language-plaintext highlighter-rouge">04c22ee</code> as well.</li>
+</ul>
+
+<h1 id="hard-reset">Hard reset</h1>
+<p>We saw hard reset <code class="language-plaintext highlighter-rouge">reset --hard</code> in the <a href="#undo-push">Undo push</a> section . Using a hard reset we can go back to a desired commit.</p>
+
+<blockquote>
+  <p><strong>Warning:</strong> A hard reset deletes all tracked files in stage and work. Untracked files are unaffected.</p>
+</blockquote>
+
+<p>There are two common <code class="language-plaintext highlighter-rouge">git reset</code> methods</p>
+
+<ul>
+  <li>Relative
+    <ul>
+      <li>The relative method is relative to a pointer like <code class="language-plaintext highlighter-rouge">HEAD</code>
+</li>
+      <li>For example <code class="language-plaintext highlighter-rouge">git rest --hard HEAD~3</code> shall take HEAD down by 3 commits.</li>
+    </ul>
+  </li>
+  <li>Absolute
+    <ul>
+      <li>Here you provide the Id of the target commit (short or full)</li>
+      <li>For example <code class="language-plaintext highlighter-rouge">git reset --hard 02f7753</code> shall take HEAD to this commit “Version 2”</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> git-history
+991a6bc  Version 5   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+a9a329f  Version 4   <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="c"># Relative reset.</span>
+<span class="c"># Absolute equivalent of the command would be "git reset --hard 02f7753"</span>
+<span class="o">&gt;</span> git reset <span class="nt">--hard</span> HEAD~3
+HEAD is now at 02f7753 Version 2
+
+<span class="o">&gt;</span> git-history
+02f7753  Version 2   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+691f07d  Version 1
+
+<span class="c"># You can reset to a commit not in history! This just undid our previous reset.</span>
+<span class="o">&gt;</span> git reset <span class="nt">--hard</span> 991a6bc
+HEAD is now at 991a6bc Version 5
+
+<span class="o">&gt;</span> git-history
+991a6bc  Version 5   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+a9a329f  Version 4   <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Warnings</strong></p>
+
+  <ol>
+    <li>Hard reset <strong>deletes</strong> all tracked files in work and stage</li>
+    <li>Hard reset moves both HEAD and master points to the target commit.</li>
+    <li>After HARD reset, the commits that are no more part of history are made available for garbage collection. (Similar to Java objects that have no reference)</li>
+    <li>In order to reset to a commit not in history, we need to know the commit ID and hope it is not garbage collected.</li>
+  </ol>
+</blockquote>
+
+<h2 id="why-hard-reset">Why hard reset?</h2>
+
+<p>One of the typical uses of hard reset is when we are sure, we want to discard everything (in work and stage) and go to a commit (and thus all commits leading to it). Typically this commit is in the history – So, we are sure, we want to discard the top ‘n’ commits.</p>
+
+<p>The reason we are learning hard reset so early-on it is an easy way to test several git usecases as we shall see in subsequent sections.</p>
+
+<h1 id="push-git-refresh-and-conflict-resolution">Push, git-refresh and conflict resolution</h1>
+
+<h2 id="push">push</h2>
+
+<p>As we keep committing to the local repository, the local repository is not only out of sync with remote (in case someone else needs to check on the progress). It is also <strong>not safe</strong>. As we have already seen, we need to push commits to remote.</p>
+
+<blockquote>
+  <p>We should periodically push commits to remote</p>
+</blockquote>
+
+<h4 id="what-commits-are-we-pushing">What commits are we pushing?</h4>
+
+<p>Git push will NOT push the entire local repository tree to the remote. It will only push the <strong>new commits</strong> of the <strong>current branch</strong>.</p>
+
+<h4 id="where-are-we-pushing">Where are we pushing?</h4>
+
+<p>From <code class="language-plaintext highlighter-rouge">.git/config</code> we see that <code class="language-plaintext highlighter-rouge">master</code> branch uses a remote named <code class="language-plaintext highlighter-rouge">origin</code>. We see <code class="language-plaintext highlighter-rouge">origin</code> uses URL <code class="language-plaintext highlighter-rouge">https://github.com/&lt;my_git_login&gt;/LearnGit</code>. This is the remote destination for the commits.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>remote <span class="s2">"origin"</span><span class="o">]</span>
+  url <span class="o">=</span> https://github.com/cafeduke/LearnGit
+  ...
+<span class="o">[</span>branch <span class="s2">"master"</span><span class="o">]</span>
+  remote <span class="o">=</span> origin
+</code></pre></div></div>
+
+<h2 id="git-refresh--no-conflict">git-refresh – no conflict</h2>
+
+<p>The remote repo can go ahead of what we are doing. This can be easily simulated using git-reset.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Lets reset to 'Version 2'</span>
+<span class="o">&gt;</span> git-history
+991a6bc  Version 5   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+a9a329f  Version 4   <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="o">&gt;</span> git reset <span class="nt">--hard</span> 02f7753
+HEAD is now at 02f7753 Version 2
+
+<span class="c"># We see that our branch is behind by 2 commits</span>
+<span class="o">&gt;</span> git status
+On branch master
+Your branch is behind <span class="s1">'origin/master'</span> by 2 commits, and can be fast-forwarded.
+
+<span class="o">&gt;</span> git-refresh
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Pull latest commits from origin/master
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+From https://github.com/&lt;my_git_login&gt;/LearnGit
+ <span class="k">*</span> branch            master     -&gt; FETCH_HEAD
+Updating ...
+Fast-forward
+...
+...
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+<span class="o">[</span><span class="nv">Branch</span><span class="o">=</span>master] Top 10 commits AFTER pull
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+991a6bc  Version 5   <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+a9a329f  Version 4
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+</code></pre></div></div>
+
+<h2 id="git-refresh--conflict">git-refresh – conflict</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Lets reset to 'Version 2'</span>
+<span class="o">&gt;</span> git-history
+991a6bc  Version 5   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+a9a329f  Version 4   <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="o">&gt;</span> git reset <span class="nt">--hard</span> 02f7753
+HEAD is now at 02f7753 Version 2
+
+<span class="c"># Commit with "Cactus" fruit for "Version 3"</span>
+<span class="o">&gt;</span> <span class="nb">paste </span>fruit.txt version.txt
+Apple    v1
+Banana  v2
+Cactus  v3
+
+<span class="o">&gt;</span> git commit <span class="nt">--all</span> <span class="nt">-m</span> <span class="s2">"My version 3"</span>
+<span class="o">[</span>master 5037c96] My version 3
+
+<span class="c"># We see that the status says branch 'master' has diverged from remote 'origin/master'</span>
+<span class="o">&gt;</span> git status
+On branch master
+Your branch and <span class="s1">'origin/master'</span> have diverged,
+and have 1 and 2 different commits each, respectively.
+...
+
+<span class="c"># These are the commits on local master</span>
+<span class="o">&gt;</span> git-history
+5037c96  My version 3   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="c"># These are the commits on remote origin/master</span>
+<span class="o">&gt;</span> git-history origin/master
+a9a329f  Version 4   <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+</code></pre></div></div>
+
+<p>Here,</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">git status</code> mentions that <code class="language-plaintext highlighter-rouge">Your branch and 'origin/master' have diverged</code>
+</li>
+  <li>The local and remote branches have same commits until “Version 2”. After that we have our own commits while the remote has its own.</li>
+</ul>
+
+<h3 id="a-look-at-the-tree-before-refresh">A look at the tree before refresh</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># BEFORE refresh</span>
+<span class="c"># --------------</span>
+Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> Version_3 <span class="nt">--</span> Version_4    <span class="o">(</span>origin/master<span class="o">)</span>
+Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> My_version_3              <span class="o">(</span>master<span class="o">)</span>
+</code></pre></div></div>
+<h3 id="refresh-branch">Refresh branch</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Execute git-refresh now</span>
+<span class="o">&gt;</span> git-refresh
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Pull latest commits from origin/master
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+From https://github.com/&lt;my_git_login&gt;/LearnGit
+ <span class="k">*</span> branch            master     -&gt; FETCH_HEAD
+Removing state_resue.txt
+Removing set_state.sh
+Auto-merging fruit.txt
+CONFLICT <span class="o">(</span>content<span class="o">)</span>: Merge conflict <span class="k">in </span>fruit.txt
+Removing fruit.3.1.mod.txt
+Automatic merge failed<span class="p">;</span> fix conflicts and <span class="k">then </span>commit the result.
+
+<span class="c">###################################################################################################</span>
+CAUTION: <span class="k">***</span> Merge conflicts found <span class="k">***</span>
+List of conflicts
+<span class="c">###################################################################################################</span>
+fruit.txt
+
+Open conflicts using meld tool <span class="o">[</span>y]/n ?
+</code></pre></div></div>
+<p>Here,</p>
+
+<ul>
+  <li>There are other files that come as part of <code class="language-plaintext highlighter-rouge">origin/master</code> but we don’t have them so there is no conflict</li>
+  <li>However,local and remote have updated <code class="language-plaintext highlighter-rouge">fruit.txt</code> and the changes are different resulting in a conflict.</li>
+  <li>Now, you can choose ‘y’ that opens up a UI to merge or choose ‘n’ and do the same later. Lets go with ‘y’</li>
+</ul>
+
+<h3 id="3-way-merge-with-meld">3-way merge with Meld</h3>
+
+<p>Meld is a tool that provides a UI for handling merge.</p>
+
+<p><img src="/assets/images/git/DukeGitRefreshConflict.jpg" alt="Refresh Conflict With Meld"></p>
+
+<ul>
+  <li>3-way refresh merge
+    <ul>
+      <li>A refresh merge is between local and remote branch</li>
+      <li>Column-1: fruit_LOCAL: The file as in latest local commit (The content of fruit.txt as per <code class="language-plaintext highlighter-rouge">master</code>)</li>
+      <li>Column-3: fruit_REMOTE: The file as in latest remote commit (The content of fruit.txt as per <code class="language-plaintext highlighter-rouge">origin/master</code>)</li>
+      <li>Column-2: fruit.txt: The file as per the commit that is common to both local and remote (Commit “Version 2”)</li>
+    </ul>
+  </li>
+  <li>In essence, Column-1 tells us how <strong>we</strong> have modified contents in Column-2 and Column-3 tells us how someone else (remote) has modified contents in Column-2.</li>
+  <li>
+    <p>Now, we need to update the file <strong>only</strong> in Column-2 by referring the other columns and deciding what we want to keep.</p>
+  </li>
+  <li>Lets go with following fruits for fruit.txt (Column-2)
+    <ul>
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Cherry Citric</li>
+      <li>Dates</li>
+    </ul>
+  </li>
+  <li>Save and close</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Normal merge conflict <span class="k">for</span> <span class="s1">'fruit.txt'</span>:
+  <span class="o">{</span><span class="nb">local</span><span class="o">}</span>: modified file
+  <span class="o">{</span>remote<span class="o">}</span>: modified file
+
+Normal merge conflict <span class="k">for</span> <span class="s1">'version.txt'</span>:
+  <span class="o">{</span><span class="nb">local</span><span class="o">}</span>: modified file
+  <span class="o">{</span>remote<span class="o">}</span>: modified file
+
+<span class="c">###################################################################################################</span>
+Double check the conflict resolution and execute <span class="s1">'git commit --all -m &lt;commit message&gt;'</span>
+<span class="c">###################################################################################################</span>
+</code></pre></div></div>
+
+<p>Note that we need to check if the merge is fine and commit the files.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Note:</span>
+<span class="c"># - The mesage says conflicts are fixed. Yet, commit is pending.</span>
+<span class="c"># - Files are staged</span>
+<span class="c"># - There are untracked files fruit.txt.orig and version.txt.orig</span>
+<span class="o">&gt;</span> git status
+...
+...
+All conflicts fixed but you are still merging.
+  <span class="o">(</span>use <span class="s2">"git commit"</span> to conclude merge<span class="o">)</span>
+
+Changes to be committed:
+  modified:   fruit.txt
+  modified:   version.txt
+
+Untracked files:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to include <span class="k">in </span>what will be committed<span class="o">)</span>
+  fruit.txt.orig
+  version.txt.orig
+
+<span class="c"># The untracked file is just a backup of the conflict. Lets discard the untracked file</span>
+<span class="o">&gt;</span> git-rm-work
+<span class="nt">--------------------------------</span>  Following files shall be deleted  <span class="nt">-------------------------------</span>
+Would remove fruit.txt.orig
+Would remove version.txt.orig
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Continue <span class="o">[</span>y]/n ?
+y
+Removing fruit.txt.orig
+Removing version.txt.orig
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Status
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+...
+
+<span class="c"># Lets check the staged fruit.txt and version.txt</span>
+<span class="o">&gt;</span> git-cat-stage-file fruit.txt
+Apple
+Banana
+Cherry Citric
+Dates
+
+<span class="o">&gt;</span> git-cat-stage-file version.txt
+v1
+v2
+v3
+v4
+
+<span class="o">&gt;</span> git commit <span class="nt">--all</span> <span class="nt">-m</span> <span class="s2">"My merge of version 3"</span>
+<span class="o">[</span>master 3a9a9e1] My merge of version 3
+
+<span class="o">&gt;</span> git-history
+3a9a9e1  My merge of version 3   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+5037c96  My version 3
+a9a329f  Version 4               <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+</code></pre></div></div>
+
+<h3 id="a-look-at-the-tree-after-refresh">A look at the tree after refresh</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># BEFORE refresh</span>
+master         : Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> My_Version_3
+origin/master  : Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> Version_3 <span class="nt">--</span> Version_4
+
+<span class="c"># AFTER refresh</span>
+master         : Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> Version_3 <span class="nt">--</span> Version_4 <span class="nt">--</span> My_Version_3 <span class="nt">--</span> My_Merge_Of_Version_3
+
+<span class="c"># In General</span>
+<span class="c"># ----------</span>
+
+<span class="c"># Before refresh</span>
+master        : A <span class="nt">--</span> B <span class="nt">--</span> P
+origin/master : A <span class="nt">--</span> B <span class="nt">--</span> C <span class="nt">--</span> D
+
+<span class="c"># After refresh</span>
+master        : A <span class="nt">--</span> B <span class="nt">--</span> C <span class="nt">--</span> D <span class="nt">--</span> P <span class="nt">--</span> M1
+</code></pre></div></div>
+
+<h3 id="merging-later">Merging later</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Lets go back to that state before refresh</span>
+<span class="o">&gt;</span> git reset <span class="nt">--hard</span> 5037c96
+HEAD is now at 5037c96 My Version 3
+
+<span class="c"># Now choose 'n'</span>
+<span class="o">&gt;</span> git-refresh
+...
+Open conflicts using meld tool <span class="o">[</span>y]/n ?
+n
+
+<span class="c"># Note that the status says we have conflicts</span>
+<span class="o">&gt;</span> git status
+On branch master
+Your branch and <span class="s1">'origin/master'</span> have diverged,
+...
+You have unmerged paths.
+  <span class="o">(</span>fix conflicts and run <span class="s2">"git commit"</span><span class="o">)</span>
+...
+
+<span class="c"># Lets list those conflict files</span>
+<span class="o">&gt;</span> git-ls-conflict-files
+fruit.txt
+version.txt
+
+<span class="c"># Lets use meld to merge now</span>
+<span class="o">&gt;</span> git mergetool
+</code></pre></div></div>
+
+<h1 id="branches">Branches</h1>
+
+<p>A simple git project (to begin with) shall have all nodes (commits) in the same branch (master). However, a tree can and most likely will have several branches with its own nodes.</p>
+
+<h2 id="know-your-branch">Know your branch</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Display local branches</span>
+<span class="c"># Star (*) indicates the current branch.</span>
+<span class="o">&gt;</span> git branch
+<span class="k">*</span> master
+
+<span class="c"># Display current branch</span>
+<span class="o">&gt;</span> git branch <span class="nt">--show-current</span>
+master
+
+<span class="c"># Display all branches</span>
+<span class="o">&gt;</span> git branch <span class="nt">-a</span>
+<span class="k">*</span> master
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/dev_jackie
+  remotes/origin/dev_mango
+  remotes/origin/master
+</code></pre></div></div>
+
+<p>Here,</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">remotes/</code> prefix indicates it’s a remote branch. Absence of it indicates it is a local branch.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">remotes/origin</code> indicates that it is a remote branch associated with a remote (remote repository) named <code class="language-plaintext highlighter-rouge">origin</code></p>
+  </li>
+</ul>
+
+<h2 id="hopping-branches">Hopping branches</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Tree (Used _ intead of space in commit message)</span>
+Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> Version_3 <span class="nt">--</span> Version_4                    <span class="o">(</span>master<span class="o">)</span>
+               |                         |
+               |                         +-- Add_Jackie             <span class="o">(</span>dev_jackie<span class="o">)</span>
+               |
+               +-- Add_Mango <span class="nt">--</span> Add_Raw_Mango                       <span class="o">(</span>dev_mango<span class="o">)</span>
+
+</code></pre></div></div>
+
+<h3 id="hopping-to-a-branch">Hopping to a branch</h3>
+
+<p>We hop to a new branch using <code class="language-plaintext highlighter-rouge">git checkout</code> command.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Lets go to an existing branch</span>
+<span class="o">&gt;</span> git checkout dev_jackie
+Branch <span class="s1">'dev_jackie'</span> <span class="nb">set </span>up to track remote branch <span class="s1">'dev_jackie'</span> from <span class="s1">'origin'</span><span class="nb">.</span>
+Switched to a new branch <span class="s1">'dev_jackie'</span>
+
+<span class="c"># A local dev_jackie branch wasn't there. The remote branch was cloned to local repo and we switched.</span>
+<span class="o">&gt;</span> git branch <span class="nt">-a</span>
+<span class="k">*</span> dev_jackie
+  master
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/dev_jackie
+  remotes/origin/dev_mango
+  remotes/origin/master
+
+<span class="c"># Node</span>
+<span class="c">#  - Local branch 'dev_jackie' and remote branch 'origin/dev_jackie' point to same commit</span>
+<span class="c">#  - HEAD points to the local branch 'dev_jackie' now!</span>
+<span class="o">&gt;</span> git-history
+c2bd70b  Add jackie  <span class="o">(</span>HEAD -&gt; dev_jackie, origin/dev_jackie<span class="o">)</span>
+a9a329f  Version 4   <span class="o">(</span>origin/master, origin/HEAD, master<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="c"># Lets check the status</span>
+<span class="o">&gt;</span> git status
+On branch dev_jackie
+Your branch is up to <span class="nb">date </span>with <span class="s1">'origin/dev_jackie'</span><span class="nb">.</span>
+
+nothing to commit, working tree clean
+
+<span class="c"># Lets see contents</span>
+<span class="o">&gt;</span> <span class="nb">paste </span>fruit.txt version.txt | column <span class="nt">-t</span>
+Apple      v1
+Banana     v2
+Cherry     v3
+Dates      v4
+Jackfruit  v5
+</code></pre></div></div>
+
+<blockquote>
+  <p>When you hop a branch HEAD shall point to the target branch.</p>
+</blockquote>
+
+<h3 id="hoping-to-another-and-back">Hoping to another and back</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> git checkout dev_mango
+Branch <span class="s1">'dev_mango'</span> <span class="nb">set </span>up to track remote branch <span class="s1">'dev_mango'</span> from <span class="s1">'origin'</span><span class="nb">.</span>
+Switched to a new branch <span class="s1">'dev_mango'</span>
+
+<span class="o">&gt;</span> git branch <span class="nt">-a</span>
+  dev_jackie
+<span class="k">*</span> dev_mango
+  master
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/dev_jackie
+  remotes/origin/dev_mango
+  remotes/origin/master
+
+<span class="c"># Note that this commit has branched after 'Version 2' and has added two more commits</span>
+<span class="o">&gt;</span> git-history
+3bf806c  Add raw mango   <span class="o">(</span>HEAD -&gt; dev_mango, origin/dev_mango<span class="o">)</span>
+1dcae00  Add mango
+02f7753  Version 2       <span class="o">(</span>master<span class="o">)</span>
+691f07d  Version 1
+
+<span class="o">&gt;</span> git checkout master
+Switched to branch <span class="s1">'master'</span>
+Your branch is up to <span class="nb">date </span>with <span class="s1">'origin/master'</span><span class="nb">.</span>
+
+<span class="o">&gt;</span> git-history
+a9a329f  Version 4   <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+</code></pre></div></div>
+
+<h2 id="why-branch">Why branch?</h2>
+
+<p>There are two broad purposes for having a branch.</p>
+
+<ol>
+  <li>Feature branch
+    <ul>
+      <li>The purpose of this branch is for the developer to add a feature or fix a bug.</li>
+      <li>This is the branch we have seen all the while in previous sections.</li>
+    </ul>
+  </li>
+  <li>Release branch
+    <ul>
+      <li>This is a branch meant for a specific release of the product.</li>
+      <li>This branch shall be maintained (bug fixes are supported) as long as the release is supported.</li>
+      <li>Typically new features will be added to <code class="language-plaintext highlighter-rouge">master</code> only. The release branch will have only bug fixes that are encountered in this branch.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="feature-branch">Feature branch</h3>
+
+<p>Even as a single developer, we might be working on several bugs and features at the same time. We will have to maintain separate code lines to deal with each of them.</p>
+
+<ul>
+  <li>A typical development environment shall have several developers.</li>
+  <li>Each developer shall have several branches for each feature/bug being worked on.</li>
+  <li>Typically, a development (dev) branch name will be of the format
+    <ul>
+      <li>
+<code class="language-plaintext highlighter-rouge">&lt;developer id&gt;_bug&lt;bug number&gt;</code> in case of a bug fix.</li>
+      <li>
+<code class="language-plaintext highlighter-rouge">&lt;developer id&gt;_&lt;feature&gt;</code> in case of a feature.</li>
+    </ul>
+  </li>
+  <li>Once the branch is ready with all commits and is working fine.
+    <ul>
+      <li>We will have to test it with new commits (if any) in target branch (<code class="language-plaintext highlighter-rouge">master</code>)</li>
+      <li>Merge the dev branch with target branch (<code class="language-plaintext highlighter-rouge">master</code>)</li>
+      <li>Test again to make sure everything is working</li>
+      <li>Push to remote</li>
+    </ul>
+  </li>
+</ul>
+
+<p>We shall see these in detail in coming sections.</p>
+
+<h2 id="creating-and-persisting-branches">Creating and persisting branches</h2>
+
+<p>A typical feature development or bug fix workflow involves the following steps</p>
+
+<h3 id="update-the-local-master">Update the local master</h3>
+
+<p>Ensure your local <code class="language-plaintext highlighter-rouge">master</code> is up to date with remote master <code class="language-plaintext highlighter-rouge">origin/master</code>. This is to ensure we are branching from the latest commit on master.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> git checkout master
+<span class="o">&gt;</span> git pull
+</code></pre></div></div>
+
+<h3 id="create-a-local-branch">Create a local branch</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># We have created and swtiched to a new branch</span>
+<span class="o">&gt;</span> git-mk-branch dev_my_fruit
+<span class="o">&gt;</span> git branch <span class="nt">--show-current</span>
+dev_my_fruit
+</code></pre></div></div>
+
+<h3 id="add-commits-to-local-branch">Add commits to local branch</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add 'Grapes' as our 'Version 5' fruit and commit</span>
+<span class="o">&gt;</span> <span class="nb">paste </span>fruit.txt version.txt | column <span class="nt">-t</span>
+Apple    v1
+Banana  v2
+Cherry  v3
+Dates    v4
+Grapes  v5
+
+<span class="c"># Add 'DryGrapes' as our 'Version 6' fruit and commit</span>
+<span class="o">&gt;</span> <span class="nb">paste </span>fruit.txt version.txt  | column <span class="nt">-t</span>
+Apple      v1
+Banana     v2
+Cherry     v3
+Dates      v4
+Grapes     v5
+DryGrapes  v6
+
+<span class="c"># Graph</span>
+Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> Version_3 <span class="nt">--</span> Version_4                       <span class="o">(</span>master<span class="o">)</span>
+                                         |
+                                         +-- Version_5  <span class="nt">--</span> Version_6   <span class="o">(</span>dev_my_fruit<span class="o">)</span>
+
+</code></pre></div></div>
+
+<blockquote>
+  <p>The commits as well as the branch added above are <strong>not safe</strong> as they are still in the local repository.</p>
+</blockquote>
+
+<h3 id="push-local-branch-and-all-its-commits-to-remote-repository">Push local branch and all its commits to remote repository</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> git push origin dev_my_fruit
+...
+...
+remote:
+...
+ <span class="k">*</span> <span class="o">[</span>new branch]      dev_my_fruit -&gt; dev_my_fruit
+
+<span class="c"># We see a local and remote dev_my_fruit</span>
+<span class="o">&gt;</span> git branch <span class="nt">-a</span>
+  dev_jackie
+  dev_mango
+<span class="k">*</span> dev_my_fruit
+  master
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/dev_jackie
+  remotes/origin/dev_mango
+  remotes/origin/dev_my_fruit
+  remotes/origin/master
+
+<span class="c"># List the remote commits of newly created branch</span>
+<span class="o">&gt;</span> git <span class="nb">history </span>origin/dev_my_fruit
+d7012b1  Version 6        <span class="o">(</span>HEAD -&gt; dev_my_fruit, origin/dev_my_fruit<span class="o">)</span>
+d68e9c5  Version 5
+a9a329f  Version 4        <span class="o">(</span>origin/master, origin/HEAD, master<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+</code></pre></div></div>
+
+<p>We see branch <code class="language-plaintext highlighter-rouge">origin/dev_my_fruit</code> is clearly ahead of <code class="language-plaintext highlighter-rouge">master</code> by 2 commits. The commits are now safe.</p>
+
+<h1 id="merge-branches">Merge branches</h1>
+
+<p>Typically merging of branches lands us into two situations. Lets take a look at them</p>
+
+<h2 id="fast-forward-merge">Fast forward merge</h2>
+
+<h3 id="a-look-at-the-tree-before-merge">A look at the tree before merge</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># BEFORE merge</span>
+<span class="c"># ------------</span>
+<span class="c"># Tree (Used _ intead of space in commit message)</span>
+Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> Version_3 <span class="nt">--</span> Version_4                   <span class="o">(</span>master<span class="o">)</span>
+                                        |
+                                        +-- Add_Jackie             <span class="o">(</span>dev_jackie<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Here,</p>
+
+<ul>
+  <li>Branch <code class="language-plaintext highlighter-rouge">dev_jackie</code> is branched from commit  <code class="language-plaintext highlighter-rouge">Version_4</code> of <code class="language-plaintext highlighter-rouge">master</code>
+</li>
+  <li>No commits are added to <code class="language-plaintext highlighter-rouge">master</code> after this. However, new commits are added to <code class="language-plaintext highlighter-rouge">dev_jackie</code>
+</li>
+  <li>In this situation, we say “Branches <code class="language-plaintext highlighter-rouge">master</code>  and <code class="language-plaintext highlighter-rouge">dev_jackie</code> have <strong>not</strong> diverged” (Since they are on the same line without any fork)</li>
+</ul>
+
+<h3 id="merge-feature-to-master--local-repository">Merge feature to master – local repository</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ensure you are the the master branch</span>
+<span class="o">&gt;</span> git checkout master
+
+<span class="c"># Merge dev_jackie to it</span>
+git-merge-branch dev_jackie
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Pull latest commits from origin/master
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Already on <span class="s1">'master'</span>
+Your branch is up to <span class="nb">date </span>with <span class="s1">'origin/master'</span><span class="nb">.</span>
+Already up to date.
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+<span class="o">[</span><span class="nv">TargetBranch</span><span class="o">=</span>master] Top 10 commits
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+a9a329f  Version 4   <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+<span class="o">[</span><span class="nv">SourceBranch</span><span class="o">=</span>dev_jackie] Top 10 commits
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+c2bd70b  Add jackie   <span class="o">(</span>origin/dev_jackie, dev_jackie<span class="o">)</span>
+a9a329f  Version 4    <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Merge dev_jackie <span class="nt">--</span><span class="o">&gt;</span> master
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Merge dev_jackie <span class="o">[</span>y]/n ?
+y
+Updating a9a329f..c2bd70b
+Fast-forward
+ fruit.txt   | 1 +
+ version.txt | 1 +
+ 2 files changed, 2 insertions<span class="o">(</span>+<span class="o">)</span>
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+<span class="o">[</span><span class="nv">Branch</span><span class="o">=</span>master] Top 10 commits AFTER merge
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+c2bd70b  Add jackie   <span class="o">(</span>HEAD -&gt; master, origin/dev_jackie, dev_jackie<span class="o">)</span>
+a9a329f  Version 4    <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">git-merge-branch</code> did the following</p>
+
+<ul>
+  <li>A <code class="language-plaintext highlighter-rouge">git-merge-branch</code> merges source branch onto the target branch. Here, source branch is <code class="language-plaintext highlighter-rouge">dev_jackie</code> and target branch is <code class="language-plaintext highlighter-rouge">master</code> (We have not explicitly provided the target branch. The target branch by default is current branch ,which in this case is <code class="language-plaintext highlighter-rouge">master</code>)</li>
+  <li>The current branch <code class="language-plaintext highlighter-rouge">master</code> was updated with it’s remote counter part <code class="language-plaintext highlighter-rouge">origin/master</code>
+</li>
+  <li>The top 10 commits of target branch and source branch are displayed.</li>
+  <li>There is a confirmation to merge <code class="language-plaintext highlighter-rouge">dev_jackie --&gt; master</code>
+</li>
+  <li>Note that the merge is termed ‘<strong>Fast-forward</strong>’</li>
+  <li>Finally, the top 10 commits of source branch <code class="language-plaintext highlighter-rouge">master</code> post merge is displayed</li>
+</ul>
+
+<h3 id="a-look-at-the-tree-after-merge">A look at the tree after merge</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># AFTER merge</span>
+<span class="c"># ------------</span>
+<span class="c"># Tree (Used _ intead of space in commit message)</span>
+Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> Version_3 <span class="nt">--</span> Version_4 <span class="nt">--</span> Add_Jackie     <span class="o">(</span>master<span class="o">)</span>
+                                        |
+                                        +-- Add_Jackie             <span class="o">(</span>dev_jackie<span class="o">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>The source (parent) branch gets appended with new commits.
+The target (child) branch  is <strong>unaffected</strong> by merge (The target branch is neither altered nor removed)</p>
+</blockquote>
+
+<h3 id="persist-merge--push-to-remote">Persist merge – Push to remote</h3>
+
+<p>Its not over yet! The merge is only done on local repository. It’s not over until pushed to remote.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> git status
+On branch master
+Your branch is ahead of <span class="s1">'origin/master'</span> by 1 commit.
+...
+
+<span class="o">&gt;</span> git push
+...
+
+<span class="c"># Now its merged</span>
+<span class="o">&gt;</span> git <span class="nb">history </span>origin/master
+c2bd70b  Add jackie <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+a9a329f  Version 4
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+</code></pre></div></div>
+
+<h2 id="fork-merge">Fork Merge</h2>
+
+<h3 id="a-look-at-the-tree-before-merge-1">A look at the tree before merge</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># BEFORE merge</span>
+<span class="c"># ------------</span>
+<span class="c"># Tree (Used _ intead of space in commit message)</span>
+Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> Version_3 <span class="nt">--</span> Version_4                    <span class="o">(</span>master<span class="o">)</span>
+               |
+               +-- Add_Mango <span class="nt">--</span> Add_Raw_Mango                       <span class="o">(</span>dev_mango<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Here,</p>
+
+<ul>
+  <li>Branch <code class="language-plaintext highlighter-rouge">dev_mango</code> is branched from commit  <code class="language-plaintext highlighter-rouge">Version_2</code> of <code class="language-plaintext highlighter-rouge">master</code>
+</li>
+  <li>New commits are added to <code class="language-plaintext highlighter-rouge">master</code> after the branch. New commits are added to <code class="language-plaintext highlighter-rouge">dev_mango</code> as well.</li>
+  <li>In this situation, we say “Branches <code class="language-plaintext highlighter-rouge">master</code> and <code class="language-plaintext highlighter-rouge">dev_mango</code>  <strong>have diverged</strong>” (Since there are two different paths after branching)</li>
+</ul>
+
+<h3 id="merge-feature-to-master--local-repository-1">Merge feature to master – local repository</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ensure you are the the master branch</span>
+<span class="o">&gt;</span> git checkout master
+
+<span class="c"># Merge dev_mango with master</span>
+<span class="o">&gt;</span> git-merge-branch dev_mango
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Pull latest commits from origin/master
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Already on <span class="s1">'master'</span>
+Your branch is up to <span class="nb">date </span>with <span class="s1">'origin/master'</span><span class="nb">.</span>
+Already up to date.
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+<span class="o">[</span><span class="nv">TargetBranch</span><span class="o">=</span>master] Top 10 commits
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+a9a329f  Version 4   <span class="o">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+<span class="o">[</span><span class="nv">SourceBranch</span><span class="o">=</span>dev_mango] Top 10 commits
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+3bf806c  Add raw mango   <span class="o">(</span>origin/dev_mango, dev_mango<span class="o">)</span>
+1dcae00  Add mango
+02f7753  Version 2
+691f07d  Version 1
+
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Merge dev_mango <span class="nt">--</span><span class="o">&gt;</span> master
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Merge dev_mango <span class="o">[</span>y]/n ?
+y
+Auto-merging fruit.txt
+CONFLICT <span class="o">(</span>content<span class="o">)</span>: Merge conflict <span class="k">in </span>fruit.txt
+Automatic merge failed<span class="p">;</span> fix conflicts and <span class="k">then </span>commit the result.
+
+<span class="c">###################################################################################################</span>
+CAUTION: <span class="k">***</span> Merge conflicts found <span class="k">***</span>
+List of conflicts
+<span class="c">###################################################################################################</span>
+fruit.txt
+
+Open conflicts using meld tool <span class="o">[</span>y]/n ?
+n
+
+<span class="c"># Note that merge conflicts are staged</span>
+<span class="o">&gt;</span> git status
+You have unmerged paths.
+  <span class="o">(</span>fix conflicts and run <span class="s2">"git commit"</span><span class="o">)</span>
+
+</code></pre></div></div>
+
+<p>Here,</p>
+
+<ul>
+  <li>The current branch <code class="language-plaintext highlighter-rouge">master</code> was updated with it’s remote counter part <code class="language-plaintext highlighter-rouge">origin/master</code>
+</li>
+  <li>The top 10 commits of target branch and source branch are displayed.</li>
+  <li>There is a confirmation to merge <code class="language-plaintext highlighter-rouge">dev_mango --&gt; master</code>
+</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">Automatic merge failed; fix conflicts and then commit the result.</code> After branch if master and branch have altered different files, then auto merge would have succeeded.  However in our case same files are altered. This requires us to manually resolve conflict.</li>
+  <li>We have chosen to resolve conflict later.</li>
+  <li>A look at the status tells us there are <strong>unmerged paths</strong>.</li>
+</ul>
+
+<h3 id="resolve-conflicts">Resolve conflicts</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># List files having conflict</span>
+<span class="o">&gt;</span> git-ls-conflict-files
+fruit.txt
+
+<span class="c"># This shows a text representation of the conflict</span>
+<span class="o">&gt;</span> <span class="nb">cat </span>fruit.txt
+Apple
+Banana
+<span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt; HEAD
+Cherry
+Dates
+<span class="o">=======</span>
+Mango
+Raw Mango
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> dev_mango
+
+<span class="c"># Lets merge using the UI</span>
+<span class="o">&gt;</span> git mergetool
+</code></pre></div></div>
+<h3 id="3-way-merge">3-way merge</h3>
+
+<p><img src="/assets/images/git/DukeGitMergeConflict.jpg" alt=""></p>
+
+<p>3-way merge from branch <code class="language-plaintext highlighter-rouge">dev_mango</code> (source) to <code class="language-plaintext highlighter-rouge">master</code> (target/current)</p>
+
+<ul>
+  <li>The source branch is merged with the target branch.
+    <ul>
+      <li>Column-1: fruit_LOCAL: The file fruit.txt as per the latest commit on target branch <code class="language-plaintext highlighter-rouge">master</code>
+</li>
+      <li>Column-3: fruit-REMOTE: The file fruit.txt as per the latest commit on source branch <code class="language-plaintext highlighter-rouge">dev_mango</code>
+</li>
+      <li>Column-2: fruit.txt: The file fruit.txt as per the commit common to branches  <code class="language-plaintext highlighter-rouge">dev_mango</code> and <code class="language-plaintext highlighter-rouge">master</code>
+</li>
+    </ul>
+  </li>
+  <li>Update Column-2 by referring to Column-1 and Column-3</li>
+  <li>Save and Close</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># File after resolving conflict</span>
+<span class="o">&gt;</span> <span class="nb">cat </span>fruit.txt
+Apple
+Banana
+Cherry
+Dates
+Mango
+Raw Mango
+
+<span class="c"># Remove temp files in work</span>
+<span class="o">&gt;</span> git-rm-work
+git-rm-work
+<span class="nt">--------------------------------</span>  Following files shall be deleted  <span class="nt">-------------------------------</span>
+Would remove fruit.txt.orig
+<span class="nt">---------------------------------------------------------------------------------------------------</span>
+Continue <span class="o">[</span>y]/n ?
+y
+
+<span class="c"># Commit after resolving merge conflicts</span>
+<span class="o">&gt;</span> git commit <span class="nt">--all</span> <span class="nt">-m</span> <span class="s2">"Merge dev_jackie"</span>
+<span class="o">[</span>master 3e606f2] Merge dev_jackie
+
+<span class="o">&gt;</span> git-history
+3e606f2  Merge dev_jackie   <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+3bf806c  Add raw mango      <span class="o">(</span>origin/dev_mango, dev_mango<span class="o">)</span>
+1dcae00  Add mango
+a9a329f  Version 4          <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+</code></pre></div></div>
+
+<h3 id="a-look-at-the-tree-after-merge-1">A look at the tree after merge</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># AFTER merge</span>
+<span class="c"># -----------</span>
+<span class="c"># Tree (Used _ intead of space in commit message)</span>
+Version_1 <span class="nt">--</span> Version_2 <span class="nt">--</span> Version_3 <span class="nt">--</span> Version_4 <span class="nt">--</span> Add_mango <span class="nt">--</span> Add_raw_mango <span class="nt">--</span> Merge_dev_jackie  <span class="o">(</span>master<span class="o">)</span>
+               |
+               +-- Add_mango <span class="nt">--</span> Add_raw_mango                                                       <span class="o">(</span>dev_mango<span class="o">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>The source (parent) branch gets appended with new commits. There is an <strong>extra commit</strong> that resolves merge conflicts between the branches.
+The target (child) branch  is <strong>unaffected</strong> by merge (The target branch is neither altered nor removed)</p>
+</blockquote>
+
+<h3 id="persist-merge--push-to-remote-1">Persist merge – Push to remote</h3>
+
+<p>Following isa crucial difference between fast-forward merge and fork merge.</p>
+
+<p><strong>Fast Forward merge (FF Merge):</strong> No need to test after merge</p>
+
+<ul>
+  <li>In case of fast-forward merge we saw earlier, we had tested <code class="language-plaintext highlighter-rouge">master</code> and we had tested <code class="language-plaintext highlighter-rouge">dev_jackie</code> individually before merge.</li>
+  <li>There is no need to test after merge, since <code class="language-plaintext highlighter-rouge">dev_jackie</code> is just an extension of <code class="language-plaintext highlighter-rouge">master</code>  (clear super-set).</li>
+  <li>Post merge, <code class="language-plaintext highlighter-rouge">master</code> has the exact same commits as <code class="language-plaintext highlighter-rouge">dev_jackie</code>.</li>
+  <li>Since <code class="language-plaintext highlighter-rouge">dev_jackie</code> is already tested there is no need to test <code class="language-plaintext highlighter-rouge">master</code> after merge.</li>
+</ul>
+
+<p><strong>Fork merge:</strong> MUST test after merge</p>
+
+<ul>
+  <li>The working of new commits of <code class="language-plaintext highlighter-rouge">master</code> after branch (<code class="language-plaintext highlighter-rouge">Version_3, Version_4</code>) with commits coming from branch ( <code class="language-plaintext highlighter-rouge">Add_mango Add_raw_mango</code>) plus the merge commit <code class="language-plaintext highlighter-rouge">Merge_dev_jackie</code> has NEVER been tested.</li>
+</ul>
+
+<blockquote>
+  <p>Ensure all tests succeed on local master before pushing to remote</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> git status
+On branch master
+Your branch is ahead of <span class="s1">'origin/master'</span> by 1 commit.
+...
+
+<span class="o">&gt;</span> git push
+...
+
+<span class="c"># Now its merged!</span>
+<span class="o">&gt;</span> git <span class="nb">history </span>origin/master
+3e606f2  Merge dev_jackie   <span class="o">(</span>origin/master, origin/HEAD<span class="o">)</span>
+3bf806c  Add raw mango
+1dcae00  Add mango
+a9a329f  Version 4
+5d95c77  Version 3
+02f7753  Version 2
+691f07d  Version 1
+</code></pre></div></div>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="https://github.com/firstcontributions/first-contributions">How to contribute to open source</a></li>
+  <li><a href="https://gist.github.com/Chaser324/ce0505fbed06b947d962">Pull request workflow</a></li>
+</ul>
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

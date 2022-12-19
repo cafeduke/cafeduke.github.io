@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Brewing Java Logging</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Brewing Java Logging</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Tuesday, 21 February 2017
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li>
+<a href="#brewing-with-java-logging" id="markdown-toc-brewing-with-java-logging">Brewing with Java Logging</a>    <ol>
+      <li><a href="#set-log-related-system-properties" id="markdown-toc-set-log-related-system-properties">Set log related system properties</a></li>
+      <li>
+<a href="#basic-logging" id="markdown-toc-basic-logging">Basic Logging</a>        <ol>
+          <li><a href="#creating-logger-object" id="markdown-toc-creating-logger-object">Creating Logger object</a></li>
+          <li><a href="#putting-a-simple-logger-to-test" id="markdown-toc-putting-a-simple-logger-to-test">Putting a simple logger to test</a></li>
+          <li><a href="#analyzing-logger" id="markdown-toc-analyzing-logger">Analyzing Logger</a></li>
+          <li><a href="#quick-fix" id="markdown-toc-quick-fix">Quick Fix</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#mlogger---refining-log-utility" id="markdown-toc-mlogger---refining-log-utility">MLogger - Refining log utility</a>        <ol>
+          <li><a href="#reset-logmanager" id="markdown-toc-reset-logmanager">Reset LogManager</a></li>
+          <li><a href="#customized-logger-object" id="markdown-toc-customized-logger-object">Customized Logger Object</a></li>
+          <li><a href="#set-loglevel-for-logger-and-all-handlers" id="markdown-toc-set-loglevel-for-logger-and-all-handlers">Set LogLevel for Logger and all Handlers</a></li>
+          <li><a href="#putting-it-all-together" id="markdown-toc-putting-it-all-together">Putting it all together</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#taking-mlogger-for-a-spin" id="markdown-toc-taking-mlogger-for-a-spin">Taking MLogger for a spin</a>        <ol>
+          <li><a href="#test-hierarchical-log" id="markdown-toc-test-hierarchical-log">Test Hierarchical Log</a></li>
+          <li><a href="#test-loglevel-as-system-property" id="markdown-toc-test-loglevel-as-system-property">Test LogLevel as system property</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+</nav>
+
+<h1 id="brewing-with-java-logging">Brewing with Java Logging</h1>
+
+<p>In this article, we shall take advantage of <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html">Java Logging API</a> to quickly setting basic console and text file logging.</p>
+
+<p>We begin by analyzing the existing Logger, understanding why messages more verbose than INFO are not logged (against what one would expect) and provide a quick fix for this. However, you can choose to skip these and go to the final section “Finer Log Utility” to get hold of the log utility that addresses typical concerns.</p>
+
+<h2 id="set-log-related-system-properties">Set log related system properties</h2>
+
+<p>First, lets take a look at the desired log format. The meta data is enclosed within square brackets followed by log message. The meta data includes timestamp, log level, log message source.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="nc">Wed</span> <span class="mi">18</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">10</span><span class="o">:</span><span class="mi">10</span><span class="o">:</span><span class="mf">05.596</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="nc">HelloWorld</span>  
+
+</code></pre></div></div>
+<p>By setting a System property <code class="language-plaintext highlighter-rouge">java.util.logging.SimpleFormatter.format</code> to an appropriate value having format specifiers, we can ensure the above log format. <a href="https://docs.oracle.com/javase/8/docs/api/java/util/logging/SimpleFormatter.html#format-java.util.logging.LogRecord-">SimpleFormatter.format</a> documents the various format options. Also, see <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html#syntax">format string</a> syntax. Now that we have decided on the format string, we set the system property  <code class="language-plaintext highlighter-rouge">java.util.logging.SimpleFormatter.format</code> in the static block.</p>
+
+<p>`public class MLogger<br>
+{<br>
+/**</p>
+<ul>
+  <li>Property name (key) to format log messages<br>
+    */<br>
+public static final String LOG_FORMAT_KEY = “java.util.logging.SimpleFormatter.format”;</li>
+</ul>
+
+<p>/**</p>
+<ul>
+  <li>Value for key ‘java.util.logging.SimpleFormatter.format’.<br>
+    */<br>
+public static final String LOG_FORMAT_VALUE = “[%1$ta %1$td-%1$tb-%1$tY %1$tT.%1$tL %1$tZ] [%4$-7s] [%2$s] %5$s%6$s%n”;</li>
+</ul>
+
+<p>static<br>
+{<br>
+System.setProperty(LOG_FORMAT_KEY, LOG_FORMAT_VALUE);<br>
+}<br>
+}`</p>
+
+<h2 id="basic-logging">Basic Logging</h2>
+
+<h3 id="creating-logger-object">Creating Logger object</h3>
+
+<p>We use the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html">java.util.logging.Logger</a> to create a logger object. The <code class="language-plaintext highlighter-rouge">getLogger</code> method accepts a <code class="language-plaintext highlighter-rouge">name</code>. The name is generally a fully qualified (dot separated) class name. The class that intends to log. Essentially, every class can have its own private logger object as given below.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.myorg.ace</span><span class="o">;</span>  
+  
+<span class="kd">class</span> <span class="nc">A</span>  
+<span class="o">{</span>  
+   <span class="kd">private</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">currClass</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+<span class="o">}</span>  
+
+</code></pre></div></div>
+<p>Class <code class="language-plaintext highlighter-rouge">A</code> shall have a logger by name <code class="language-plaintext highlighter-rouge">com.myorg.ace.A</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.myorg.bee</span><span class="o">;</span>  
+  
+<span class="kd">class</span> <span class="nc">B</span>  
+<span class="o">{</span>  
+   <span class="kd">private</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">currClass</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Class <code class="language-plaintext highlighter-rouge">B</code> shall have a logger by name <code class="language-plaintext highlighter-rouge">com.myorg.bee.B</code></p>
+
+<h3 id="putting-a-simple-logger-to-test">Putting a simple logger to test</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.logging.*</span><span class="o">;</span>  
+  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MLogger</span>  
+<span class="o">{</span>  
+   <span class="cm">/**  
+* Property name (key) to format log messages  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">LOG_FORMAT_KEY</span> <span class="o">=</span> <span class="s">"java.util.logging.SimpleFormatter.format"</span><span class="o">;</span>  
+     
+   <span class="cm">/**  
+* Value for key 'java.util.logging.SimpleFormatter.format'.  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">LOG_FORMAT_VALUE</span> <span class="o">=</span> <span class="s">"[%1$ta %1$td-%1$tb-%1$tY %1$tT.%1$tL %1$tZ] [%4$-7s] [%2$s] %5$s%6$s%n"</span><span class="o">;</span>     
+    
+   <span class="kd">static</span>  
+   <span class="o">{</span>  
+      <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="no">LOG_FORMAT_KEY</span><span class="o">,</span> <span class="no">LOG_FORMAT_VALUE</span><span class="o">);</span>  
+   <span class="o">}</span>  
+     
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span>  
+   <span class="o">{</span>  
+      <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">LoggerTest</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+      <span class="n">logAllLevels</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>   
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">logAllLevels</span> <span class="o">(</span><span class="nc">Logger</span> <span class="n">logger</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">severe</span> <span class="o">(</span><span class="s">"Severe"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Warning"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">info</span>  <span class="o">(</span><span class="s">"Info"</span><span class="o">);</span>       
+      <span class="n">logger</span><span class="o">.</span><span class="na">fine</span>  <span class="o">(</span><span class="s">"Fine"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">finer</span> <span class="o">(</span><span class="s">"Finer"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">finest</span><span class="o">(</span><span class="s">"Finest"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">info</span>  <span class="o">(</span><span class="s">"Begin stacktrace"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="s">"Ooops! Error occured."</span><span class="o">,</span> <span class="k">new</span> <span class="nc">IllegalStateException</span><span class="o">(</span><span class="s">"Ooops"</span><span class="o">));</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">info</span>  <span class="o">(</span><span class="s">"End stacktrace"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">info</span>  <span class="o">(</span><span class="s">""</span><span class="o">);</span>  
+   <span class="o">}</span>  
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Output</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">14</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mf">40.601</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Severe</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">14</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mf">40.640</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Warning</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">14</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mf">40.641</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Info</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">14</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mf">40.641</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Begin</span> <span class="n">stacktrace</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">14</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mf">40.642</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Ooops</span><span class="o">!</span> <span class="nc">Error</span> <span class="n">occured</span><span class="o">.</span>  
+<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalStateException</span><span class="o">:</span> <span class="nc">Ooops</span>  
+	<span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">logAllLevels</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">94</span><span class="o">)</span>  
+	<span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">39</span><span class="o">)</span>  
+  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">14</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mf">40.643</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">End</span> <span class="n">stacktrace</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">14</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mf">40.644</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> 
+</code></pre></div></div>
+
+<p>We find that log level fine and more verbose logs are not displayed!</p>
+
+<h3 id="analyzing-logger">Analyzing Logger</h3>
+
+<p>From <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html">Java Logging API</a> documentation, we find that a Logger can have multiple <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html#a1.5">Handlers</a>. Each Handler can additionally have a formatter to format logs. Now, lets see what is cooking with your logger object.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.logging.*</span><span class="o">;</span>  
+  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MLogger</span>  
+<span class="o">{</span>  
+   <span class="o">...</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span>  
+   <span class="o">{</span>  
+      <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">LoggerTest</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>        
+      <span class="n">printLoggersAndHandlers</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>  
+  <span class="err"> </span><span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printLoggersAndHandlers</span> <span class="o">(</span><span class="nc">Logger</span> <span class="n">logger</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">if</span> <span class="o">(</span><span class="n">logger</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>  
+         <span class="k">return</span><span class="o">;</span>  
+        
+      <span class="k">while</span> <span class="o">(</span><span class="n">logger</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Logger Name="</span> <span class="err">\</span><span class="o">+</span> <span class="n">logger</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">" Level="</span> <span class="err">\</span><span class="o">+</span> <span class="n">logger</span><span class="o">.</span><span class="na">getLevel</span><span class="o">());</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--------------------------------"</span><span class="o">);</span>  
+         <span class="n">printHandlers</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>  
+         <span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="na">getParent</span><span class="o">();</span>  
+      <span class="o">}</span>  
+   <span class="o">}</span>  
+     
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printHandlers</span> <span class="o">(</span><span class="nc">Logger</span> <span class="n">logger</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">if</span> <span class="o">(</span><span class="n">logger</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>  
+         <span class="k">return</span><span class="o">;</span>  
+        
+      <span class="nc">Handler</span> <span class="n">handler</span><span class="o">[]</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">();</span>  
+      <span class="k">if</span> <span class="o">(</span><span class="n">handler</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">handler</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No handers"</span><span class="o">);</span>  
+         <span class="k">return</span><span class="o">;</span>  
+      <span class="o">}</span>  
+        
+      <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>  
+      <span class="k">for</span> <span class="o">(</span><span class="nc">Handler</span> <span class="n">h</span> <span class="o">:</span> <span class="n">handler</span><span class="o">)</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Handler[%d] Name=%s Level=%s Formatter=%s"</span><span class="o">,</span> <span class="n">count</span><span class="o">++,</span> <span class="n">h</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getSimpleName</span><span class="o">(),</span> <span class="n">h</span><span class="o">.</span><span class="na">getLevel</span><span class="o">(),</span> <span class="n">h</span><span class="o">.</span><span class="na">getFormatter</span><span class="o">().</span><span class="na">getClass</span><span class="o">().</span><span class="na">getSimpleName</span><span class="o">()));</span>  
+   <span class="o">}</span>  
+  
+<span class="o">}</span>  
+
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Output</span>  
+<span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="nc">Level</span><span class="o">=</span><span class="kc">null</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">No</span> <span class="n">handers</span>  
+  
+<span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span> <span class="nc">Level</span><span class="o">=</span><span class="no">INFO</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">Handler</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="nc">Name</span><span class="o">=</span><span class="nc">ConsoleHandler</span> <span class="nc">Level</span><span class="o">=</span><span class="no">INFO</span> <span class="nc">Formatter</span><span class="o">=</span><span class="nc">SimpleFormatter</span>
+</code></pre></div></div>
+
+<p>We find that, by default, a logger has ‘null’ level and has no handlers. From <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html#a1.3">Java Logging API - Loggers</a>, we find the following</p>
+
+<p>If a Logger’s level is set to be null then the Logger will use an effective Level that will be obtained by walking up the parent tree and using the first non-null Level.</p>
+
+<p>The parent of this logger has a name <code class="language-plaintext highlighter-rouge">""</code>. An logger with empty name is the Root Logger. The root logger has a console hander with INFO verbosity. Hence, all messages that are verbose than INFO are not printed.</p>
+
+<h3 id="quick-fix">Quick Fix</h3>
+
+<p>As a quick fix we can update the root logger itself to allow <code class="language-plaintext highlighter-rouge">ALL</code> log levels.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MLogger</span>  
+<span class="o">{</span>  
+   <span class="o">...</span>  
+  
+   <span class="kd">static</span>  
+   <span class="o">{</span>  
+      <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="no">LOG_FORMAT_KEY</span><span class="o">,</span> <span class="no">LOG_FORMAT_VALUE</span><span class="o">);</span>  
+      <span class="n">setLevelAcrossHandlers</span> <span class="o">(</span><span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="s">""</span><span class="o">),</span> <span class="nc">Level</span><span class="o">.</span><span class="na">ALL</span><span class="o">);</span>      
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span>  
+   <span class="o">{</span>  
+      <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">LoggerTest</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+      <span class="n">printLoggersAndHandlers</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>  
+      <span class="n">logAllLevels</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>   
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setLevelAcrossHandlers</span> <span class="o">(</span><span class="nc">Logger</span> <span class="n">logger</span><span class="o">,</span> <span class="nc">Level</span> <span class="n">level</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">().</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>  
+         <span class="k">return</span><span class="o">;</span>  
+        
+      <span class="n">logger</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="n">level</span><span class="o">);</span>  
+      <span class="k">for</span> <span class="o">(</span><span class="nc">Handler</span> <span class="n">handler</span> <span class="o">:</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">())</span>  
+         <span class="n">handler</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="n">level</span><span class="o">);</span>        
+   <span class="o">}</span>   
+  
+<span class="err"> </span><span class="o">}</span>  
+
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Output</span>  
+<span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="nc">Level</span><span class="o">=</span><span class="kc">null</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">No</span> <span class="n">handers</span>  
+  
+<span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span> <span class="nc">Level</span><span class="o">=</span><span class="no">ALL</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">Handler</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="nc">Name</span><span class="o">=</span><span class="nc">ConsoleHandler</span> <span class="nc">Level</span><span class="o">=</span><span class="no">ALL</span> <span class="nc">Formatter</span><span class="o">=</span><span class="nc">SimpleFormatter</span>  
+  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.588</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Severe</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.593</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Warning</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.594</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Info</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.595</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">FINE</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Fine</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.595</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">FINER</span>  <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Finer</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.596</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">FINEST</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Finest</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.596</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Begin</span> <span class="n">stacktrace</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.597</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Ooops</span><span class="o">!</span> <span class="nc">Error</span> <span class="n">occured</span><span class="o">.</span>  
+<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalStateException</span><span class="o">:</span> <span class="nc">Ooops</span>  
+	<span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">logAllLevels</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">96</span><span class="o">)</span>  
+	<span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">41</span><span class="o">)</span>  
+  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.598</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">End</span> <span class="n">stacktrace</span>  
+<span class="o">[</span><span class="nc">Mon</span> <span class="mi">23</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">16</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mf">28.599</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span>   
+
+</code></pre></div></div>
+
+<h2 id="mlogger---refining-log-utility">MLogger - Refining log utility</h2>
+
+<p>Earlier, we provided a quick fix that updates the root logger. However, we would like to provide individual logger for each class name (or dot separated string). This can be done as follows.</p>
+
+<h3 id="reset-logmanager">Reset LogManager</h3>
+
+<p>First, we don’t want the root logger (Logger with empty name) with console handler to be attached to every logger we create. So, lets reset the <code class="language-plaintext highlighter-rouge">LogManager LogManager.getLogManager().reset()</code> in a static block.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MLogger</span>  
+<span class="o">{</span>  
+   <span class="o">...</span>  
+  
+   <span class="kd">static</span>  
+   <span class="o">{</span>  
+      <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="no">LOG_FORMAT_KEY</span><span class="o">,</span> <span class="no">LOG_FORMAT_VALUE</span><span class="o">);</span>  
+      <span class="nc">LogManager</span><span class="o">.</span><span class="na">getLogManager</span><span class="o">().</span><span class="na">reset</span><span class="o">();</span>     
+   <span class="o">}</span>  
+  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span>  
+   <span class="o">{</span>  
+      <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">LoggerTest</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+      <span class="n">printLoggersAndHandlers</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>  
+      <span class="n">logAllLevels</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>   
+   <span class="o">}</span>  
+  
+   <span class="o">...</span>   
+<span class="o">}</span>  
+
+</code></pre></div></div>
+<p>Below is the output before and after <code class="language-plaintext highlighter-rouge">LogManager</code> reset. We find that root logger has no handlers. So, the root logger does not log messages. Eventually, no messages are logged.</p>
+
+<p>After LogManager reset</p>
+
+<p>Defaut - Before LogManager reset</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="nc">Level</span><span class="o">=</span><span class="kc">null</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">No</span> <span class="n">handers</span>        
+  
+<span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span> <span class="nc">Level</span><span class="o">=</span><span class="no">INFO</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">No</span> <span class="n">handers</span>      
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="nc">Level</span><span class="o">=</span><span class="kc">null</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">No</span> <span class="n">handers</span>        
+  
+<span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span> <span class="nc">Level</span><span class="o">=</span><span class="no">INFO</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">Handler</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="nc">Name</span><span class="o">=</span><span class="nc">ConsoleHandler</span> <span class="nc">Level</span><span class="o">=</span><span class="no">INFO</span> <span class="nc">Formatter</span><span class="o">=</span><span class="nc">SimpleFormatter</span>      
+</code></pre></div></div>
+
+<h3 id="customized-logger-object">Customized Logger Object</h3>
+
+<p>The MLogger has a <code class="language-plaintext highlighter-rouge">getLogger()</code> function the uses the given <code class="language-plaintext highlighter-rouge">String</code> to create a logger. Thus created logger</p>
+
+<ul>
+  <li>
+    <p>Allows use of parent handlers - Allowed by default.</p>
+  </li>
+  <li>Adds a <code class="language-plaintext highlighter-rouge">FileHandler</code> if a file is provided otherwise adds a ConsoleHandler</li>
+  <li>The hander sets <code class="language-plaintext highlighter-rouge">SimpleFormatter</code>
+</li>
+  <li>
+    <p>The hander and logger levels are set as per <code class="language-plaintext highlighter-rouge">LOG_LEVEL</code> variable.</p>
+  </li>
+  <li>The <code class="language-plaintext highlighter-rouge">LOG_LEVEL</code> defaults to <code class="language-plaintext highlighter-rouge">INFO</code> if system property <code class="language-plaintext highlighter-rouge">maga.mlogger.loglevel</code> is not set.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MLogger</span>  
+<span class="o">{</span>  
+   <span class="cm">/**  
+* Property name (key) to format log messages  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">LOG_FORMAT_KEY</span> <span class="o">=</span> <span class="s">"java.util.logging.SimpleFormatter.format"</span><span class="o">;</span>  
+     
+   <span class="cm">/**  
+* Value for key 'java.util.logging.SimpleFormatter.format'.  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">LOG_FORMAT_VALUE</span> <span class="o">=</span> <span class="s">"[%1$ta %1$td-%1$tb-%1$tY %1$tT.%1$tL %1$tZ] [%3$s] [%4$-7s] [%2$s] %5$s%6$s%n"</span><span class="o">;</span>  
+     
+   <span class="cm">/**  
+* The system property to be used to set the default log level for MLogger.  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">PROP_LOG_LEVEL</span> <span class="o">=</span> <span class="s">"maga.mlogger.loglevel"</span><span class="o">;</span>  
+  
+   <span class="cm">/**http://aseng-wiki.us.oracle.com/asengwiki/display/ASQA/Test+Environment+Setup#TestEnvironmentSetup-CreateTestView  
+* Default log level  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Level</span> <span class="no">LOG_LEVEL</span> <span class="o">=</span> <span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="no">PROP_LOG_LEVEL</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span> <span class="o">:</span> <span class="nc">Level</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="no">PROP_LOG_LEVEL</span><span class="o">));</span>     
+  
+   <span class="kd">static</span>  
+   <span class="o">{</span>  
+      <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="no">LOG_FORMAT_KEY</span><span class="o">,</span> <span class="no">LOG_FORMAT_VALUE</span><span class="o">);</span>  
+      <span class="nc">LogManager</span><span class="o">.</span><span class="na">getLogManager</span><span class="o">().</span><span class="na">reset</span><span class="o">();</span>     
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span>  
+   <span class="o">{</span>  
+      <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">MLogger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">LoggerTest</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+      <span class="n">printLoggersAndHandlers</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>  
+      <span class="n">logAllLevels</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>   
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="nf">getLogger</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?</span><span class="err">\</span><span class="o">&gt;</span> <span class="n">currClass</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">return</span> <span class="nf">getLogger</span><span class="o">(</span><span class="n">currClass</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="nf">getLogger</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?</span><span class="err">\</span><span class="o">&gt;</span> <span class="n">currClass</span><span class="o">,</span> <span class="nc">File</span> <span class="n">file</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">return</span> <span class="nf">getLogger</span><span class="o">(</span><span class="n">currClass</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">file</span><span class="o">);</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="nf">getLogger</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">return</span> <span class="nf">getLogger</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="nf">getLogger</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">File</span> <span class="n">file</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>  
+        
+      <span class="k">try</span>  
+      <span class="o">{</span>  
+         <span class="c1">// Return logger if it is already initialized.  </span>
+         <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">().</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>  
+            <span class="k">return</span> <span class="n">logger</span><span class="o">;</span>  
+     
+         <span class="c1">// Allow use of parent handlers  </span>
+         <span class="n">logger</span><span class="o">.</span><span class="na">setUseParentHandlers</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>  
+     
+         <span class="c1">// Use custom console handler  </span>
+         <span class="nc">Handler</span> <span class="n">handler</span> <span class="o">=</span> <span class="o">(</span><span class="n">file</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="k">new</span> <span class="nc">ConsoleHandler</span><span class="o">()</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">FileHandler</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">());</span>  
+         <span class="n">handler</span><span class="o">.</span><span class="na">setFormatter</span><span class="o">(</span><span class="k">new</span> <span class="nc">SimpleFormatter</span><span class="o">());</span>  
+     
+         <span class="c1">// Set log level for handler and logger  </span>
+         <span class="n">logger</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="no">LOG_LEVEL</span><span class="o">);</span>  
+         <span class="n">handler</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="no">LOG_LEVEL</span><span class="o">);</span>  
+     
+         <span class="c1">// Add handler to logger  </span>
+         <span class="n">logger</span><span class="o">.</span><span class="na">addHandler</span><span class="o">(</span><span class="n">handler</span><span class="o">);</span>  
+      <span class="o">}</span>  
+      <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span> <span class="o">(</span><span class="s">"Error initializing logger."</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>  
+      <span class="o">}</span>  
+      <span class="k">return</span> <span class="n">logger</span><span class="o">;</span>  
+   <span class="o">}</span>  
+<span class="o">}</span>  
+
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Output</span>  
+<span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="nc">Level</span><span class="o">=</span><span class="no">INFO</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">Handler</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="nc">Name</span><span class="o">=</span><span class="nc">ConsoleHandler</span> <span class="nc">Level</span><span class="o">=</span><span class="no">INFO</span> <span class="nc">Formatter</span><span class="o">=</span><span class="nc">SimpleFormatter</span>  
+  
+<span class="nc">Logger</span> <span class="nc">Name</span><span class="o">=</span> <span class="nc">Level</span><span class="o">=</span><span class="no">INFO</span>  
+<span class="o">--------------------------------</span>  
+<span class="nc">No</span> <span class="n">handers</span>
+</code></pre></div></div>
+
+<h3 id="set-loglevel-for-logger-and-all-handlers">Set LogLevel for Logger and all Handlers</h3>
+
+<p>Here, we are setting the LogLevel of <code class="language-plaintext highlighter-rouge">Logger</code> and all its <code class="language-plaintext highlighter-rouge">Handler</code>s. By default (though explicitly set) a logger sets use of parent handlers <code class="language-plaintext highlighter-rouge">logger.setUseParentHandlers(true)</code>. This enables hierarchical logging - The parent of a Logger with name a.b.c would be a.b (if it exits). Its parent would be a (if it exits).  Root logger with name “” is the base of all loggers.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MLogger</span>  
+<span class="o">{</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setLevelAcrossHandlers</span> <span class="o">(</span><span class="nc">Logger</span> <span class="n">logger</span><span class="o">,</span> <span class="nc">Level</span> <span class="n">level</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">if</span> <span class="o">(</span><span class="n">logger</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">().</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>  
+         <span class="k">return</span><span class="o">;</span>  
+        
+      <span class="n">logger</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="n">level</span><span class="o">);</span>  
+      <span class="k">for</span> <span class="o">(</span><span class="nc">Handler</span> <span class="n">handler</span> <span class="o">:</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">())</span>  
+         <span class="n">handler</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="n">level</span><span class="o">);</span>        
+   <span class="o">}</span>    
+<span class="o">}</span>  
+
+</code></pre></div></div>
+
+<h3 id="putting-it-all-together">Putting it all together</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.maga.util</span><span class="o">;</span>  
+  
+<span class="kn">import</span> <span class="nn">java.util.logging.ConsoleHandler</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.logging.FileHandler</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.logging.Handler</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.logging.Level</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.logging.LogManager</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.logging.Logger</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.logging.SimpleFormatter</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>  
+  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MLogger</span>  
+<span class="o">{</span>  
+   <span class="cm">/**  
+* Property name (key) to format log messages  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">LOG_FORMAT_KEY</span> <span class="o">=</span> <span class="s">"java.util.logging.SimpleFormatter.format"</span><span class="o">;</span>  
+     
+   <span class="cm">/**  
+* Value for key 'java.util.logging.SimpleFormatter.format'.  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">LOG_FORMAT_VALUE</span> <span class="o">=</span> <span class="s">"[%1$ta %1$td-%1$tb-%1$tY %1$tT.%1$tL %1$tZ] [%3$s] [%4$-7s] [%2$s] %5$s%6$s%n"</span><span class="o">;</span>  
+     
+   <span class="cm">/**  
+* The system property to be used to set the default log level for MLogger.  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">PROP_LOG_LEVEL</span> <span class="o">=</span> <span class="s">"maga.mlogger.loglevel"</span><span class="o">;</span>  
+  
+   <span class="cm">/**  
+* Default log level  
+    */</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Level</span> <span class="no">LOG_LEVEL</span> <span class="o">=</span> <span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="no">PROP_LOG_LEVEL</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span> <span class="o">:</span> <span class="nc">Level</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="no">PROP_LOG_LEVEL</span><span class="o">));</span>     
+     
+   <span class="kd">static</span>  
+   <span class="o">{</span>  
+      <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="no">LOG_FORMAT_KEY</span><span class="o">,</span> <span class="no">LOG_FORMAT_VALUE</span><span class="o">);</span>  
+      <span class="nc">LogManager</span><span class="o">.</span><span class="na">getLogManager</span><span class="o">().</span><span class="na">reset</span><span class="o">();</span>  
+   <span class="o">}</span>     
+     
+   <span class="cm">/*  
+    * ------------------------------------------------------------------  
+    * Logging  
+* -----------------------------------------------------------------   
+    */</span>  
+     
+   <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="nf">getLogger</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?</span><span class="err">\</span><span class="o">&gt;</span> <span class="n">currClass</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">return</span> <span class="nf">getLogger</span><span class="o">(</span><span class="n">currClass</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="nf">getLogger</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?</span><span class="err">\</span><span class="o">&gt;</span> <span class="n">currClass</span><span class="o">,</span> <span class="nc">File</span> <span class="n">file</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">return</span> <span class="nf">getLogger</span><span class="o">(</span><span class="n">currClass</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">file</span><span class="o">);</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="nf">getLogger</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">return</span> <span class="nf">getLogger</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="nf">getLogger</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">File</span> <span class="n">file</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>  
+        
+      <span class="k">try</span>  
+      <span class="o">{</span>  
+         <span class="c1">// Return logger if it is already initialized.  </span>
+         <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">().</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>  
+            <span class="k">return</span> <span class="n">logger</span><span class="o">;</span>  
+     
+         <span class="c1">// Allow use of parent handlers  </span>
+         <span class="n">logger</span><span class="o">.</span><span class="na">setUseParentHandlers</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>  
+     
+         <span class="c1">// Use custom console handler  </span>
+         <span class="nc">Handler</span> <span class="n">handler</span> <span class="o">=</span> <span class="o">(</span><span class="n">file</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="k">new</span> <span class="nc">ConsoleHandler</span><span class="o">()</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">FileHandler</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">());</span>  
+         <span class="n">handler</span><span class="o">.</span><span class="na">setFormatter</span><span class="o">(</span><span class="k">new</span> <span class="nc">SimpleFormatter</span><span class="o">());</span>  
+     
+         <span class="c1">// Set log level for handler and logger  </span>
+         <span class="n">logger</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="no">LOG_LEVEL</span><span class="o">);</span>  
+         <span class="n">handler</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="no">LOG_LEVEL</span><span class="o">);</span>  
+     
+         <span class="c1">// Add handler to logger  </span>
+         <span class="n">logger</span><span class="o">.</span><span class="na">addHandler</span><span class="o">(</span><span class="n">handler</span><span class="o">);</span>  
+      <span class="o">}</span>  
+      <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span> <span class="o">(</span><span class="s">"Error initializing logger."</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>  
+      <span class="o">}</span>  
+      <span class="k">return</span> <span class="n">logger</span><span class="o">;</span>  
+   <span class="o">}</span>     
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">logAllLevels</span> <span class="o">(</span><span class="nc">Logger</span> <span class="n">logger</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">severe</span> <span class="o">(</span><span class="s">"Severe"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Warning"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">info</span>  <span class="o">(</span><span class="s">"Info"</span><span class="o">);</span>       
+      <span class="n">logger</span><span class="o">.</span><span class="na">fine</span>  <span class="o">(</span><span class="s">"Fine"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">finer</span> <span class="o">(</span><span class="s">"Finer"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">finest</span><span class="o">(</span><span class="s">"Finest"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">info</span>  <span class="o">(</span><span class="s">"Begin stacktrace"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="s">"Ooops! Error occured."</span><span class="o">,</span> <span class="k">new</span> <span class="nc">IllegalStateException</span><span class="o">(</span><span class="s">"Ooops"</span><span class="o">));</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">info</span>  <span class="o">(</span><span class="s">"End stacktrace"</span><span class="o">);</span>  
+      <span class="n">logger</span><span class="o">.</span><span class="na">info</span>  <span class="o">(</span><span class="s">""</span><span class="o">);</span>  
+   <span class="o">}</span>  
+     
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setLevelAcrossHandlers</span> <span class="o">(</span><span class="nc">Logger</span> <span class="n">logger</span><span class="o">,</span> <span class="nc">Level</span> <span class="n">level</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">if</span> <span class="o">(</span><span class="n">logger</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">().</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>  
+         <span class="k">return</span><span class="o">;</span>  
+        
+      <span class="n">logger</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="n">level</span><span class="o">);</span>  
+      <span class="k">for</span> <span class="o">(</span><span class="nc">Handler</span> <span class="n">handler</span> <span class="o">:</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">())</span>  
+         <span class="n">handler</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="n">level</span><span class="o">);</span>        
+   <span class="o">}</span>     
+     
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printLoggersAndHandlers</span> <span class="o">(</span><span class="nc">Logger</span> <span class="n">logger</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">if</span> <span class="o">(</span><span class="n">logger</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>  
+         <span class="k">return</span><span class="o">;</span>  
+        
+      <span class="k">while</span> <span class="o">(</span><span class="n">logger</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Logger Name=%s Level=%s"</span><span class="o">,</span> <span class="n">logger</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">logger</span><span class="o">.</span><span class="na">getLevel</span><span class="o">()));</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--------------------------------"</span><span class="o">);</span>  
+         <span class="n">printHandlers</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>  
+         <span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="na">getParent</span><span class="o">();</span>  
+      <span class="o">}</span>  
+   <span class="o">}</span>  
+     
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printHandlers</span> <span class="o">(</span><span class="nc">Logger</span> <span class="n">logger</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">if</span> <span class="o">(</span><span class="n">logger</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>  
+         <span class="k">return</span><span class="o">;</span>  
+        
+      <span class="nc">Handler</span> <span class="n">handler</span><span class="o">[]</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="na">getHandlers</span><span class="o">();</span>  
+      <span class="k">if</span> <span class="o">(</span><span class="n">handler</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">handler</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No handers"</span><span class="o">);</span>  
+         <span class="k">return</span><span class="o">;</span>  
+      <span class="o">}</span>  
+        
+      <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>  
+      <span class="k">for</span> <span class="o">(</span><span class="nc">Handler</span> <span class="n">h</span> <span class="o">:</span> <span class="n">handler</span><span class="o">)</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Handler[%d] Name=%s Level=%s Formatter=%s"</span><span class="o">,</span> <span class="n">count</span><span class="o">++,</span> <span class="n">h</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getSimpleName</span><span class="o">(),</span> <span class="n">h</span><span class="o">.</span><span class="na">getLevel</span><span class="o">(),</span> <span class="n">h</span><span class="o">.</span><span class="na">getFormatter</span><span class="o">().</span><span class="na">getClass</span><span class="o">().</span><span class="na">getSimpleName</span><span class="o">()));</span>  
+   <span class="o">}</span>  
+     
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="taking-mlogger-for-a-spin">Taking MLogger for a spin</h2>
+
+<h3 id="test-hierarchical-log">Test Hierarchical Log</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MLogger</span>  
+<span class="o">{</span>  
+   <span class="o">...</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span> <span class="kd">throws</span> <span class="nc">SecurityException</span><span class="o">,</span> <span class="nc">IOException</span>  
+   <span class="o">{</span>  
+  
+       <span class="nc">Logger</span> <span class="n">loggerMaga</span> <span class="o">=</span> <span class="nc">MLogger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="s">"com.maga"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"Maga.log"</span><span class="o">));</span>  
+  
+       <span class="n">loggerMaga</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"---------------------------------------------"</span><span class="o">);</span>  
+       <span class="n">loggerMaga</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Warning"</span><span class="o">);</span>  
+       <span class="n">loggerMaga</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"---------------------------------------------"</span><span class="o">);</span>         
+       <span class="nc">MLogger</span><span class="o">.</span><span class="na">setLevelAcrossHandlers</span><span class="o">(</span><span class="n">loggerMaga</span><span class="o">,</span> <span class="nc">Level</span><span class="o">.</span><span class="na">WARNING</span><span class="o">);</span>  
+       <span class="n">logAllLevels</span><span class="o">(</span><span class="n">loggerMaga</span><span class="o">);</span>
+  
+       <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">MLogger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+  
+       <span class="n">logger</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"---------------------------------------------"</span><span class="o">);</span>  
+       <span class="n">logger</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Info"</span><span class="o">);</span>  
+       <span class="n">logger</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"---------------------------------------------"</span><span class="o">);</span>  
+       <span class="n">logAllLevels</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>  
+         
+       <span class="nc">MLogger</span><span class="o">.</span><span class="na">setLevelAcrossHandlers</span><span class="o">(</span><span class="n">logger</span><span class="o">,</span> <span class="nc">Level</span><span class="o">.</span><span class="na">FINER</span><span class="o">);</span>  
+       <span class="n">logger</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"---------------------------------------------"</span><span class="o">);</span>  
+       <span class="n">logger</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Finer"</span><span class="o">);</span>  
+       <span class="n">logger</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"---------------------------------------------"</span><span class="o">);</span>  
+       <span class="n">logAllLevels</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>  
+         
+  
+   <span class="o">}</span>  
+<span class="o">}</span>  
+
+</code></pre></div></div>
+<p>Any class can use the <code class="language-plaintext highlighter-rouge">MLogger</code> utility as shown above</p>
+
+<ul>
+  <li>A Logger object is obtained using <code class="language-plaintext highlighter-rouge">MLogger.getLogger(String)</code>
+</li>
+  <li>We set the level of the logger and all its handers using <code class="language-plaintext highlighter-rouge">MLogger.setLevelAcrossHandlers(Logger,Level)</code>
+</li>
+</ul>
+
+<p>In the above test</p>
+
+<ul>
+  <li>We have two logger objects <code class="language-plaintext highlighter-rouge">logger</code> and <code class="language-plaintext highlighter-rouge">loggerMaga</code>
+</li>
+  <li>
+    <p>Logger  <code class="language-plaintext highlighter-rouge">logger</code> has name <code class="language-plaintext highlighter-rouge">com.maga.util.MLogger</code> while the <code class="language-plaintext highlighter-rouge">loggerMaga</code> has name <code class="language-plaintext highlighter-rouge">com.maga</code></p>
+  </li>
+  <li>Since hierarchical logging is enabled <code class="language-plaintext highlighter-rouge">loggerMaga</code> is the parent of <code class="language-plaintext highlighter-rouge">logger</code>
+</li>
+  <li>
+    <p>All logs by logger reaches loggerMaga. However, loggerMaga and its handers are set the log only WARNING verbosity. So, all logs (its own and what reaches from the children) below WARNING are ignored.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">logger</code> level is INFO by default. All levels are logged - Only INFO and above are logged.</p>
+  </li>
+  <li>
+<code class="language-plaintext highlighter-rouge">logger</code> level is set to FINER using  <code class="language-plaintext highlighter-rouge">MLogger.setLevelAcrossHandlers</code> - Only FINER and above are logged.</li>
+  <li>In Maga.log file we find that the logs from the child is captured but verbosity below WARNING are ignored.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Contents</span> <span class="n">of</span> <span class="nc">Maga</span><span class="o">.</span><span class="na">log</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.579</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="o">---------------------------------------------</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.584</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="nc">Warning</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.585</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="o">---------------------------------------------</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.585</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Severe</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.586</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Warning</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.587</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Ooops</span><span class="o">!</span> <span class="nc">Error</span> <span class="n">occured</span><span class="o">.</span>  
+<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalStateException</span><span class="o">:</span> <span class="nc">Ooops</span>  
+        <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">logAllLevels</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">114</span><span class="o">)</span>  
+        <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">44</span><span class="o">)</span>  
+  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.588</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="o">---------------------------------------------</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.590</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="nc">Info</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.591</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="o">---------------------------------------------</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.593</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Severe</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.593</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Warning</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.596</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Ooops</span><span class="o">!</span> <span class="nc">Error</span> <span class="n">occured</span><span class="o">.</span>  
+<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalStateException</span><span class="o">:</span> <span class="nc">Ooops</span>  
+        <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">logAllLevels</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">114</span><span class="o">)</span>  
+        <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">50</span><span class="o">)</span>  
+  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.597</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="o">---------------------------------------------</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.598</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="nc">Finer</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.599</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">main</span><span class="o">]</span> <span class="o">---------------------------------------------</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.600</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Severe</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.600</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Warning</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">11</span><span class="o">:</span><span class="mf">26.606</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Ooops</span><span class="o">!</span> <span class="nc">Error</span> <span class="n">occured</span><span class="o">.</span>  
+<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalStateException</span><span class="o">:</span> <span class="nc">Ooops</span>  
+        <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">logAllLevels</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">114</span><span class="o">)</span>  
+        <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">56</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="test-loglevel-as-system-property">Test LogLevel as system property</h3>
+
+<p>As we demonstrate below, by setting the system property <code class="language-plaintext highlighter-rouge">maga.mlogger.loglevel</code> we run the entire code with new log level. This way we can rerun the code with more granular verbosity for debugging.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MLogger</span>  
+<span class="o">{</span>  
+   <span class="o">...</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span> <span class="kd">throws</span> <span class="nc">SecurityException</span><span class="o">,</span> <span class="nc">IOException</span>  
+   <span class="o">{</span>  
+       <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">MLogger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  
+       <span class="n">logAllLevels</span><span class="o">(</span><span class="n">logger</span><span class="o">);</span>  
+   <span class="o">}</span>  
+<span class="o">}</span>  
+
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Output</span>  
+<span class="o">&gt;</span><span class="n">java</span> <span class="o">-</span><span class="n">cp</span> <span class="n">classes</span> <span class="o">-</span><span class="nc">Dmaga</span><span class="o">.</span><span class="na">mlogger</span><span class="o">.</span><span class="na">loglevel</span><span class="o">=</span><span class="no">FINER</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mf">34.925</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Severe</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mf">34.966</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">WARNING</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Warning</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mf">34.968</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Info</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mf">34.970</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">FINE</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Fine</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mf">34.971</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">FINER</span>  <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Finer</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mf">34.972</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Begin</span> <span class="n">stacktrace</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mf">34.974</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">SEVERE</span> <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">Ooops</span><span class="o">!</span> <span class="nc">Error</span> <span class="n">occured</span><span class="o">.</span>  
+<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalStateException</span><span class="o">:</span> <span class="nc">Ooops</span>  
+        <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">logAllLevels</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">110</span><span class="o">)</span>  
+        <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="nc">MLogger</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">51</span><span class="o">)</span>  
+  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mf">34.976</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span> <span class="nc">End</span> <span class="n">stacktrace</span>  
+<span class="o">[</span><span class="nc">Tue</span> <span class="mi">24</span><span class="o">-</span><span class="nc">Jan</span><span class="o">-</span><span class="mi">2017</span> <span class="mi">15</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mf">34.978</span> <span class="no">IST</span><span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span><span class="o">]</span> <span class="o">[</span><span class="no">INFO</span>   <span class="o">]</span> <span class="o">[</span><span class="n">com</span><span class="o">.</span><span class="na">maga</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MLogger</span> <span class="n">logAllLevels</span><span class="o">]</span>  
+
+</code></pre></div></div>
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

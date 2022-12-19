@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Introduction to Convolutional Neural Networks</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Introduction to Convolutional Neural Networks</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Monday, 10 September 2018
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li><a href="#computer-vision" id="markdown-toc-computer-vision">Computer Vision</a></li>
+  <li><a href="#limitation-of-nn-for-computer-vision" id="markdown-toc-limitation-of-nn-for-computer-vision">Limitation of NN for computer vision</a></li>
+  <li>
+<a href="#convolution" id="markdown-toc-convolution">Convolution</a>    <ol>
+      <li>
+<a href="#basic-convolution" id="markdown-toc-basic-convolution">Basic Convolution</a>        <ol>
+          <li><a href="#operation-details" id="markdown-toc-operation-details">Operation Details</a></li>
+          <li><a href="#example" id="markdown-toc-example">Example</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#filter" id="markdown-toc-filter">Filter</a>        <ol>
+          <li>
+<a href="#standard-filter---vertical-edge-detection" id="markdown-toc-standard-filter---vertical-edge-detection">Standard filter - Vertical edge detection</a>            <ol>
+              <li><a href="#example-1" id="markdown-toc-example-1">Example</a></li>
+              <li><a href="#obervation---selected-cell" id="markdown-toc-obervation---selected-cell">Obervation - Selected Cell</a></li>
+              <li><a href="#obervation---overall" id="markdown-toc-obervation---overall">Obervation - Overall</a></li>
+              <li><a href="#conclusion" id="markdown-toc-conclusion">Conclusion</a></li>
+            </ol>
+          </li>
+          <li>
+<a href="#standard-filter---horizontal-edge-detection" id="markdown-toc-standard-filter---horizontal-edge-detection">Standard filter - Horizontal edge detection</a>            <ol>
+              <li><a href="#example-2" id="markdown-toc-example-2">Example</a></li>
+              <li><a href="#obervation---selected-cell-1" id="markdown-toc-obervation---selected-cell-1">Obervation - Selected Cell</a></li>
+            </ol>
+          </li>
+          <li><a href="#calculation" id="markdown-toc-calculation">Calculation</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#padding" id="markdown-toc-padding">Padding</a>        <ol>
+          <li><a href="#why-padding" id="markdown-toc-why-padding">Why Padding?</a></li>
+          <li><a href="#calculation-1" id="markdown-toc-calculation-1">Calculation</a></li>
+          <li>
+<a href="#types-of-padding" id="markdown-toc-types-of-padding">Types of Padding</a>            <ol>
+              <li><a href="#valid---no-padding-at-all" id="markdown-toc-valid---no-padding-at-all">Valid - No padding at all</a></li>
+              <li><a href="#same---padding-to-prevent-shrinking-output" id="markdown-toc-same---padding-to-prevent-shrinking-output">Same - Padding to prevent shrinking output</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li><a href="#stride" id="markdown-toc-stride">Stride</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#volume-convolution" id="markdown-toc-volume-convolution">Volume convolution</a>    <ol>
+      <li><a href="#convolve-multiple-channels" id="markdown-toc-convolve-multiple-channels">Convolve multiple channels</a></li>
+      <li><a href="#understanding-channels-in-filter" id="markdown-toc-understanding-channels-in-filter">Understanding channels in filter</a></li>
+      <li><a href="#multiple-filters" id="markdown-toc-multiple-filters">Multiple filters</a></li>
+      <li><a href="#calculation-2" id="markdown-toc-calculation-2">Calculation</a></li>
+    </ol>
+  </li>
+  <li><a href="#types-of-layers-in-convolution-network" id="markdown-toc-types-of-layers-in-convolution-network">Types of layers in convolution network</a></li>
+  <li>
+<a href="#one-convolution-layer" id="markdown-toc-one-convolution-layer">One Convolution Layer</a>    <ol>
+      <li><a href="#generic-notations" id="markdown-toc-generic-notations">Generic Notations</a></li>
+      <li><a href="#single-convolution-layer" id="markdown-toc-single-convolution-layer">Single convolution layer</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#one-pooling-layer" id="markdown-toc-one-pooling-layer">One Pooling Layer</a>    <ol>
+      <li><a href="#max-pooling" id="markdown-toc-max-pooling">Max Pooling</a></li>
+      <li><a href="#average-pooling" id="markdown-toc-average-pooling">Average Pooling</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#why-convolution" id="markdown-toc-why-convolution">Why Convolution?</a>    <ol>
+      <li><a href="#weight-parameter-sharing" id="markdown-toc-weight-parameter-sharing">Weight (Parameter) Sharing</a></li>
+      <li><a href="#sparsity-of-connections" id="markdown-toc-sparsity-of-connections">Sparsity of Connections</a></li>
+    </ol>
+  </li>
+</ol>
+
+</nav>
+
+<h1 id="computer-vision">Computer Vision</h1>
+
+<p>Computer vision is one of the areas were deep learning performs very well. Deep learning computer vission has the following applications</p>
+
+<ul>
+  <li>Handwriting analysis. Identify plant by the image of its flower/leaf
+    <ul>
+      <li>Image classification</li>
+    </ul>
+  </li>
+  <li>Self driving cars
+    <ul>
+      <li>Object detection: Detect other cars and pedestrians</li>
+      <li>Object localization: Determine the location (position and size) of the objects</li>
+    </ul>
+  </li>
+  <li>Face recoginision $$-$$ Use face as ID for authentication.</li>
+  <li>Face Styling $$-$$ Add features like hair style, eye style, nose modification etc to the face.</li>
+  <li>New art $$-$$ Merge images.</li>
+  <li>Transfer learning $$-$$ Ideas learnt in computer vision can be useful in speech recognition.</li>
+</ul>
+
+<h1 id="limitation-of-nn-for-computer-vision">Limitation of NN for computer vision</h1>
+
+<p>One of the primary limitation of NN is the exponential increase in memory, computation resources and computation time required with just average image resolutions by today’s standards (Eg resolution: 1000x1000)</p>
+
+<p>Sample neuron overhead calucation for a 1000x1000 image</p>
+
+<ul>
+  <li>Each column in X will be 1000 x 1000 x 3 (considering RGB) = 3 million</li>
+  <li>Let the first hidden layer to have only 1000 neurons</li>
+  <li>W1.shape = (1000,  3M) = 3 billion weights</li>
+</ul>
+
+<p>Huge number of neurons, greatly increases the chances of <em>overfitting</em> and increases computational overhead. However, image size cannot be compromised $$-$$ Enter CNN (<em>Convolutional Neural Networks</em>).</p>
+
+<h1 id="convolution">Convolution</h1>
+
+<p>Below we take a look at how a basic convolution operation is performed. A single image layer (As against considering 3 channels of RGB) is convolved (operation denoted by ‘*’) with a single filter layer to produce a resultant layer.</p>
+
+<h2 id="basic-convolution">Basic Convolution</h2>
+
+<p>The <strong>convolve</strong>  operation requires an <strong>input</strong> layer (6x6 in this case) and a <strong>filter</strong> layer (3x3 in this case) to produce an <strong>ouput</strong> layer.</p>
+
+<p><img src="/assets/images/dl/Convolution.png" alt="Convolution"></p>
+
+<h3 id="operation-details">Operation Details</h3>
+
+<ul>
+  <li>The filter layer is super imposed on the input layer starting with the left hand top corner</li>
+  <li>The overlapping numbers are multiplied. The products are then added to get the value of a cell in the resultant matrix.</li>
+  <li>The following operations are performed to fill cells of the resultant matrix
+    <ul>
+      <li>The filter is shifted right hand by one cell (stride = 1) as long as possible</li>
+      <li>The filter is shifted down by one cell as long as possible</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="example">Example</h3>
+
+<p>Cell (1,2) of the resultant matrix as shown in the diagram above is obtained as follows:</p>
+
+<div class="language-mathematica highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Cell</span><span class="p">(</span><span class="m">1</span><span class="o">,</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="o">*</span><span class="m">0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0</span><span class="o">*</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="o">*</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="o">*</span><span class="m">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0</span><span class="o">*</span><span class="m">8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="o">*</span><span class="m">9</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="o">*</span><span class="m">7</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0</span><span class="o">*</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="o">*</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="nb">Cell</span><span class="p">(</span><span class="m">1</span><span class="o">,</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="m">0</span><span class="o">+</span><span class="m">0</span><span class="o">-</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">5</span><span class="o">+</span><span class="m">0</span><span class="o">-</span><span class="m">9</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">7</span><span class="o">+</span><span class="m">0</span><span class="o">-</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="nb">Cell</span><span class="p">(</span><span class="m">1</span><span class="o">,</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="nb">Cell</span><span class="p">(</span><span class="m">1</span><span class="o">,</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="m">4</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="filter">Filter</h2>
+
+<p>The input/output image is analogous to a NN layer and the filter is analogous to the weight.</p>
+
+<p>Filter detects a pattern.</p>
+
+<ul>
+  <li>To establish this consider a gray scale image.</li>
+  <li>Higher value gets a whiter shade and lower value gets darker shade.</li>
+  <li>With this convention, the above filter has stripes from light to dark. (1 is lightest and -1 is darkest)</li>
+  <li>In essense, the above filter detects vertical edges.</li>
+</ul>
+
+<h3 id="standard-filter---vertical-edge-detection">Standard filter - Vertical edge detection</h3>
+
+<p>In the below example the vertical edge detector filter (with transitions from light to dark, as seen above) is applied to an image. A filter with light to dark transitions is called a <em>positive edge detector</em> and a filter with dark to light transitions is called a <em>negative edge detector</em>.</p>
+
+<h4 id="example-1">Example</h4>
+
+<p><img src="/assets/images/dl/VerticalEdge.png" alt="VerticalEdge"></p>
+
+<h4 id="obervation---selected-cell">Obervation - Selected Cell</h4>
+
+<ul>
+  <li>Green square
+    <ul>
+      <li>It is just a light box (number 10s only) without any edges</li>
+      <li>The corresponding resultant matrix cell has 0 which indicates there is no edge detection.</li>
+    </ul>
+  </li>
+  <li>Red square
+    <ul>
+      <li>Here we have light to dark transition</li>
+      <li>The corresponding resultant matrix cell has 30 which indicates an edge detection.</li>
+      <li>A positive number indicates that edge transition is from light to dark (accordance with filter).</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="obervation---overall">Obervation - Overall</h4>
+
+<ul>
+  <li>The input image has light and dark colums</li>
+  <li>After convolution we see that the resultant layer identifies a thick white edge (number 30s) right in the middle.</li>
+  <li>The resultant convolution is referrering to the vertical edge seperating the light layer (number 10s) from the dark layer (number 0s)</li>
+</ul>
+
+<h4 id="conclusion">Conclusion</h4>
+
+<p>The output image indicates that the input image has a vertical edge in the center. The filter acts as vertical edge detector.</p>
+
+<h3 id="standard-filter---horizontal-edge-detection">Standard filter - Horizontal edge detection</h3>
+
+<p>The image is like a chess board with both vertical and horizontal images.</p>
+
+<h4 id="example-2">Example</h4>
+
+<p><img src="/assets/images/dl/ChessBox.png" alt="ChessBox"></p>
+
+<h4 id="obervation---selected-cell-1">Obervation - Selected Cell</h4>
+
+<ul>
+  <li>Blue Square	$-$ No edge. Resultant value = 0.</li>
+  <li>Green Square $$-$$ Horizontal edge found. Resultant value = 30.</li>
+  <li>Yellow Sqaure $$-$$ Two horizontal edge. The positive one (Goes from 10 to 0. In accordance with filter) is larger than the negative one (Goes from 0 to 10). Resultant value = 10</li>
+  <li>Purple square $$-$$ Horizontal edge found, but negative. Resultant value = -30.</li>
+</ul>
+
+<h3 id="calculation">Calculation</h3>
+
+<p>Let <code class="language-plaintext highlighter-rouge">nxn</code> be the size of input matrix and <code class="language-plaintext highlighter-rouge">fxf</code> be the size of the filter.
+$$
+Output \ Layer \ Size = \ (n-f+1, n-f+1)
+$$</p>
+
+<h2 id="padding">Padding</h2>
+
+<p>Padding is a process of making the input matrix larger by surrounding the existing matrix with a padded value. By convention, the padded value is zero.</p>
+
+<h3 id="why-padding">Why Padding?</h3>
+
+<p>Following is observed in convolution operation</p>
+
+<ul>
+  <li>Without padding, the corner/edge cells of input matrix are involved in fewer computations while the cells in the middle are involved in more computations.</li>
+  <li>The width and height of resultant volume shrinks.</li>
+</ul>
+
+<p>The above behavior results in following issues</p>
+
+<ul>
+  <li>The information in corner/edge cells are not utilized to optimum.</li>
+  <li>
+<strong>Shrinking output</strong> $$-$$ With shrinking image applying multiple convolutions becomes impractical.</li>
+</ul>
+
+<h3 id="calculation-1">Calculation</h3>
+
+<p>Let <code class="language-plaintext highlighter-rouge">nxn</code> be the size of input matrix and <code class="language-plaintext highlighter-rouge">fxf</code> be the size of the filter and <code class="language-plaintext highlighter-rouge">p</code> be the padding count.
+$$
+Output \ Layer \ Size \ = \ (n+2p-f+1, n+2p-f+1)
+$$</p>
+
+<h3 id="types-of-padding">Types of Padding</h3>
+
+<h4 id="valid---no-padding-at-all">Valid - No padding at all</h4>
+
+<p>A valid padding (or a valid convolution padding) is a convolution where p = 0.</p>
+
+<p>$$
+\begin{aligned}
+Dimension &amp;= \left[ \frac{n + 2*0 -f }{s} + 1 \right] <br>
+Dimension &amp;= \left[ \frac{n - f}{s} + 1 \right] <br>
+\end{aligned}
+$$</p>
+
+<h4 id="same---padding-to-prevent-shrinking-output">Same - Padding to prevent shrinking output</h4>
+
+<p>If we have to ensure that the output layer size should be <code class="language-plaintext highlighter-rouge">n</code> then the required padding can be figured as follows</p>
+
+<p>$$
+\begin{gathered}
+n + 2p -f + 1 = n <br>
+p = \frac{f - 1}{2} <br>
+\end{gathered}
+$$</p>
+
+<blockquote>
+  <p>Filter is typically odd sized, so padding will typically be symmetric.</p>
+</blockquote>
+
+<h2 id="stride">Stride</h2>
+
+<p>Shride tells the number of cells to hop (to the right and down) while performing computations. It is analogous to the increment count in a for loop. By default, stride is 1.</p>
+
+<p><img src="/assets/images/dl/Stride.png" alt="Stride"></p>
+
+<p>Let <code class="language-plaintext highlighter-rouge">nxn</code> be the size of input matrix and <code class="language-plaintext highlighter-rouge">fxf</code> be the size of the filter and <code class="language-plaintext highlighter-rouge">p</code> be the padding count and <code class="language-plaintext highlighter-rouge">s</code> be the stride.
+$$
+Output \ Layer \ Size = \left[ \ \left\lfloor {\frac{n+2p-f}{s} + 1}\right\rfloor, \left\lfloor \frac{n+2p-f}{s} + 1 \right\rfloor \ \right]
+$$</p>
+
+<blockquote>
+  <p>The flooring division ensures that the filter boundry does not go out of the input matrix.</p>
+</blockquote>
+
+<h1 id="volume-convolution">Volume convolution</h1>
+
+<h2 id="convolve-multiple-channels">Convolve multiple channels</h2>
+
+<p>Volume convolutions are the convolutions performed when the input layer has multple channels (Example: RGB channels).</p>
+
+<blockquote>
+  <p>The number of channels in the filter <strong>==</strong> The number of channels in the input layer</p>
+</blockquote>
+
+<p><img src="/assets/images/dl/ConvolutionVolume.png" alt="ConvolutionVolume"></p>
+
+<p>Similar to single channel convolutions</p>
+
+<ul>
+  <li>The filter channels are placed over the input layer channels at left hand top corner.</li>
+  <li>SInce the number of channels in filter and input layer are the same there is perfect overlap.</li>
+  <li>
+<strong>Sum Of Products(SOP):</strong> The overlapping cells are multiplied and the <strong>entire</strong> volume is summed to get a single digit.</li>
+  <li>Thus obtained single digit will be the first element of the resultant layer.</li>
+  <li>The filter volume is strided (moved) right and then down to calculate remaining elements.</li>
+</ul>
+
+<blockquote>
+  <p>Eash cell in the resultant layer is SOP obtained by overlapping filter channels over input channels.</p>
+</blockquote>
+
+<h2 id="understanding-channels-in-filter">Understanding channels in filter</h2>
+
+<p>Consider a 3 filter channel of RGB.</p>
+
+<ol>
+  <li>Channel R has vertical edge detector while G and B channels are zeros $$-$$ A volume filter to detect red vertical lines</li>
+</ol>
+
+<p>$$
+R=
+\begin{bmatrix}
+1 &amp; 0 &amp; -1<br>
+1 &amp; 0 &amp; -1<br>
+1 &amp; 0 &amp; -1
+\end{bmatrix}
+\ \ <br>
+G=
+\begin{bmatrix}
+0 &amp; 0 &amp; 0<br>
+0 &amp; 0 &amp; 0<br>
+0 &amp; 0 &amp; 0
+\end{bmatrix}
+\ \ <br>
+B=
+\begin{bmatrix}
+0 &amp; 0 &amp; 0<br>
+0 &amp; 0 &amp; 0<br>
+0 &amp; 0 &amp; 0
+\end{bmatrix}
+$$</p>
+
+<ol>
+  <li>Channels R, G and B have vertical edge detectors $$-$$ A volume filter to detect vertical lines of any color.</li>
+</ol>
+
+<p>$$
+R=
+\begin{bmatrix}
+1 &amp; 0 &amp; -1<br>
+1 &amp; 0 &amp; -1<br>
+1 &amp; 0 &amp; -1
+\end{bmatrix}
+\ \ <br>
+G=
+\begin{bmatrix}
+1 &amp; 0 &amp; -1<br>
+1 &amp; 0 &amp; -1<br>
+1 &amp; 0 &amp; -1
+\end{bmatrix}
+\ \ <br>
+B=
+\begin{bmatrix}
+1 &amp; 0 &amp; -1<br>
+1 &amp; 0 &amp; -1<br>
+1 &amp; 0 &amp; -1
+\end{bmatrix}
+$$</p>
+
+<h2 id="multiple-filters">Multiple filters</h2>
+
+<p>A filter (with one or more channels) can detect a feature like red vertical edge, a 45 degree green edge , blue vertical edge and so on. We could have multiple filters as well.</p>
+
+<p><img src="/assets/images/dl/MultipleFilters.png" alt="MultipleFilters"></p>
+
+<p>In the above diagram</p>
+
+<ul>
+  <li>The input layer was convolved with first filter (yellow) to get a 4x4 output channel.</li>
+  <li>The input layer was convolved with second filter (orange) to get another 4x4 output channel.</li>
+  <li>The output channels are stacked together to get a 4x4x2 output volume.</li>
+</ul>
+
+<blockquote>
+  <p>The $$n^{th}$$ channel of the output layer is got by convolving the input layer with the $$n^{th}$$ filter.</p>
+</blockquote>
+
+<h2 id="calculation-2">Calculation</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(n_h\) x \(n_w\) x \(n_c\)</td>
+      <td>Dimentions of input layer. <br>Note: \(n_c\) is number of channels in input layer.</td>
+    </tr>
+    <tr>
+      <td>\(f_h\) x \(f_w\) x \(n_c\)</td>
+      <td>Dimentions of filter layer. <br>Note: number of filter channels is same as number of input channels</td>
+    </tr>
+    <tr>
+      <td>\[n_f\]
+</td>
+      <td>Number of filters</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>With the above terminologies for input/filter layers the output layer volume is as follows
+$$
+Output \ Layer \ Volume = \left[ \ \left\lfloor {\frac{n_h+2p-f_h}{s} + 1}\right\rfloor, \left\lfloor \frac{n_w+2p-f_w}{s} + 1 \right\rfloor, n_f \ \right]
+$$</p>
+
+<h1 id="types-of-layers-in-convolution-network">Types of layers in convolution network</h1>
+
+<p>One layer from input</p>
+
+<ul>
+  <li>Convolution</li>
+  <li>Pool</li>
+  <li>Fully Connected</li>
+</ul>
+
+<h1 id="one-convolution-layer">One Convolution Layer</h1>
+
+<p>One convolutional layer refers to</p>
+
+<h2 id="generic-notations">Generic Notations</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Dimension</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\[n^{l-1}_c\]
+</td>
+      <td>-</td>
+      <td>Number of channels in input layer \(l-1\)</td>
+    </tr>
+    <tr>
+      <td>\[n^l_c\]
+</td>
+      <td>-</td>
+      <td>Number of channels in output layer \(l\). This is the same as number of filters in layer \(l\).</td>
+    </tr>
+    <tr>
+      <td>\[a_{l-1}\]
+</td>
+      <td>\[n^{l-1}_h \times n^{l-1}_w \times n^{l-1}_c\]
+</td>
+      <td>Input volume</td>
+    </tr>
+    <tr>
+      <td>\[W_{l}\]
+</td>
+      <td>\[(f^l_h \times f^l_w \times n^{l-1}_c ) \times n^l_c\]
+</td>
+      <td>Number of channels in a filter volume = Number of channels in input layer<br>Weight of layer \(l\) = filter volume x  number of filters.</td>
+    </tr>
+    <tr>
+      <td>\[a_l\]
+</td>
+      <td> </td>
+      <td>See calculation section of “Multiple filters” above.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="single-convolution-layer">Single convolution layer</h2>
+
+<ul>
+  <li>Output volume $$z_l$$ is obtained by convolving $$a_{l-1}$$ with $$n^l_c$$  filters each of dimension $$f^l_h$$ x $$f^l_w$$ x $$n^{l-1}_c$$</li>
+  <li>A bias is added to each channel of $$z_l$$ and then a activation function is applied. $$a_l = g(z_l + bias \ per \ channel)$$</li>
+</ul>
+
+<h1 id="one-pooling-layer">One Pooling Layer</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Convolution Filter</th>
+      <th>Pooling Filter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Filter is 3-dimensional</td>
+      <td>Filter is 2-dimensional</td>
+    </tr>
+    <tr>
+      <td>Number of channels in the filter is equal to the number of channels in the input layer.</td>
+      <td>Pooling filter will have only one channel</td>
+    </tr>
+    <tr>
+      <td>Filter stores weights</td>
+      <td>Filter just specifies dimension, has no weights. Filter can be visualized as transparent blank layer.</td>
+    </tr>
+    <tr>
+      <td>A convolution operation applies filter volume on input volume (depths match). Filter then strides right and down.</td>
+      <td>A convolution operation applies single filter layer on input channel (depths match). Filter then strides right and down. The filter is then applied to next input channel.</td>
+    </tr>
+    <tr>
+      <td>A convolution operation (without padding) reduces the height and width of the output layer.</td>
+      <td>A pooling operation reduces the height and width of the output layer.</td>
+    </tr>
+    <tr>
+      <td>The number of channels in the output layer depends on the number of filters.</td>
+      <td>The number of channels will be the same as the input layer.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="max-pooling">Max Pooling</h2>
+
+<p>In case of Max pooling the max among the overlapping elements is used to get the result. The filter strides by stride amount (1 in this case) and the max in the new overlap is calculated. This continues from left to right, top to bottom similar to convolution.</p>
+
+<p><img src="/assets/images/dl/MaxPool.png" alt="MaxPool"></p>
+
+<h2 id="average-pooling">Average Pooling</h2>
+
+<p>Similar to max pooling instead of the max function the average (mean) is used. Average pooling is not used frequently.</p>
+
+<h1 id="why-convolution">Why Convolution?</h1>
+
+<h2 id="weight-parameter-sharing">Weight (Parameter) Sharing</h2>
+
+<p>Consider a 32 x 32 x 3 (3072 neurons) image convolving with 6 filters each of size 5 x 5. The output layer shall be 28 x 28 x 6 (4704 neurons)</p>
+
+<ul>
+  <li>If this was a fully connected NN then W1 = 4704 * 3072 = 14.45 million neurons</li>
+  <li>In case of CNN, W1 = (5 * 5 * 3 + 1) * 6 = 456. (Filter volume +  bias) * number of filters</li>
+</ul>
+
+<p>In case of NN, 14 million weights (parameters) are required for a resolution as low as 32 x 32 for a single layer. With higher resolutions this number shall grow to billions.</p>
+
+<p>The reason CNN reduces the weight or parameters is because once a filter detects a feature, <em>the same filter is applied at different portions of the image</em>. For example, the same vertical edge detector (a eye/node filter is an example of high level feature) is applied to different sections of the image.</p>
+
+<h2 id="sparsity-of-connections">Sparsity of Connections</h2>
+
+<p><strong>Consider a single output layer result:</strong> A filter volume overlaps over the input volume. Only the overlapping region determines the value in the output layer. The entire non-overlapping section does not involve. This means all neurons in the non-overlapping regions are not connected to produce this output.</p>
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

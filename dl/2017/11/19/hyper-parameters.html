@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Hyper parameters</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Hyper parameters</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Sunday, 19 November 2017
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li><a href="#table-of-hyper-parameters" id="markdown-toc-table-of-hyper-parameters">Table of hyper parameters</a></li>
+  <li>
+<a href="#hyper-parameter-scale" id="markdown-toc-hyper-parameter-scale">Hyper parameter scale</a>    <ol>
+      <li><a href="#random-sampling-of-hyper-parameters" id="markdown-toc-random-sampling-of-hyper-parameters">Random sampling of hyper parameters</a></li>
+      <li><a href="#why-linear-scale-wont-work-for-some-hyper-parameters" id="markdown-toc-why-linear-scale-wont-work-for-some-hyper-parameters">Why linear scale won’t work for some hyper parameters?</a></li>
+      <li><a href="#choosing-log-scale" id="markdown-toc-choosing-log-scale">Choosing log scale</a></li>
+    </ol>
+  </li>
+  <li><a href="#hyper-parameter-tuning-practice" id="markdown-toc-hyper-parameter-tuning-practice">Hyper parameter tuning practice</a></li>
+  <li><a href="#orthogonalization" id="markdown-toc-orthogonalization">Orthogonalization</a></li>
+  <li>
+<a href="#single-number-evaluation" id="markdown-toc-single-number-evaluation">Single Number Evaluation</a>    <ol>
+      <li>
+<a href="#unacceptable-errors" id="markdown-toc-unacceptable-errors">Unacceptable errors</a>        <ol>
+          <li><a href="#issue" id="markdown-toc-issue">Issue</a></li>
+          <li><a href="#resolution" id="markdown-toc-resolution">Resolution</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#skewed-classes" id="markdown-toc-skewed-classes">Skewed Classes</a>        <ol>
+          <li><a href="#issue-1" id="markdown-toc-issue-1">Issue</a></li>
+          <li>
+<a href="#resolution-1" id="markdown-toc-resolution-1">Resolution</a>            <ol>
+              <li><a href="#prediction" id="markdown-toc-prediction">Prediction</a></li>
+              <li><a href="#recall" id="markdown-toc-recall">Recall</a></li>
+              <li><a href="#f1-score" id="markdown-toc-f1-score">F1 score</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+</nav>
+
+<h1 id="table-of-hyper-parameters">Table of hyper parameters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\[\alpha\]
+</td>
+      <td>The learning rate. The derivative \(dW\) and \(db\) are multiplied by alpha to adjust weights.</td>
+    </tr>
+    <tr>
+      <td>\[\beta\]
+</td>
+      <td>Momentum. Used to calculate the exponentially weighted average of the gradient (\(dW\) and \(db\)).</td>
+    </tr>
+    <tr>
+      <td>mini match size</td>
+      <td>Size of the mini batch</td>
+    </tr>
+    <tr>
+      <td>L</td>
+      <td>Number of layers</td>
+    </tr>
+    <tr>
+      <td>learning rate decay</td>
+      <td>Rate at which learning rate parameter should reduce after each epoch (iteration of one full batch)</td>
+    </tr>
+    <tr>
+      <td>\[\beta_{1}\]
+</td>
+      <td>Used in Adam optimization for momentum of  \(dW\) and \(db\)  (Typically : 0.9   )</td>
+    </tr>
+    <tr>
+      <td>\[\beta_{2}\]
+</td>
+      <td>Used in Adam optimization for momentum of \(dW^2\)  and  \(db^2\)  (Typically : 0.999 )</td>
+    </tr>
+    <tr>
+      <td>\[\epsilon\]
+</td>
+      <td>Used in Adam optimization to avoid divide by zero         (Typically : \(10^{-8}\))</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="hyper-parameter-scale">Hyper parameter scale</h1>
+
+<h2 id="random-sampling-of-hyper-parameters">Random sampling of hyper parameters</h2>
+
+<p>Sampling at random does not necessarily mean uniformly sampling at random.</p>
+<ul>
+  <li>Uniform random search for parameter ‘number of layers’ over range (2, 4, 6, 8, 10) etc might make sense.</li>
+  <li>Uniform random search for parameter ‘alpha’ over range (0, 0.2, 0.4, 0.6, 0.8, 1) does not make sense</li>
+</ul>
+
+<h2 id="why-linear-scale-wont-work-for-some-hyper-parameters">Why linear scale won’t work for some hyper parameters?</h2>
+
+<p>Some hyper parameter do not linearly affect the system.  Small changes may cause small or extremely large impact depending on the current value of the hyper parameter.</p>
+
+<ul>
+  <li>Current values of beta
+    <ul>
+      <li>If beta = 0.91, it will average over 11.11 days.</li>
+      <li>If beta = 0.99, it will average over 99.99 days.</li>
+    </ul>
+  </li>
+  <li>Add 0.005 to each of the above case
+    <ul>
+      <li>If beta = 0.91 + 0.005 = 0.915, it will average over  11.76 days. (Diff : 0.65)</li>
+      <li>If beta = 0.99 + 0.005 = 0.915, it will average over 199.99 days. (Diff : 100 )</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="choosing-log-scale">Choosing log scale</h2>
+
+<p>To select a uniformly random value over a scale 0.1 to 0.0001 ( $10^-1 to 10^-4$)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">exp</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>    <span class="c1"># Randomly select a value between 1 and 4
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**-</span><span class="n">exp</span>  <span class="c1"># random number raised to the power
+</span></code></pre></div></div>
+
+<h1 id="hyper-parameter-tuning-practice">Hyper parameter tuning practice</h1>
+
+<p>Periodically, retest hyper parameters to ensure it is not stale.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Panda</th>
+      <th>Caviar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Babysit a model.</td>
+      <td>Train many models in parallel.</td>
+    </tr>
+    <tr>
+      <td>Every day, watch the cost function, tweak parameters like learning rate until reasonable accuracy is achieved.</td>
+      <td>Execute multiple models with different hyper parameters to run in parallel. Select a model with best accuracy.</td>
+    </tr>
+    <tr>
+      <td>Need more human time and less GPUs.</td>
+      <td>Needs less human time and more GPUs.</td>
+    </tr>
+    <tr>
+      <td>Like a panda that takes care of one baby at a time.</td>
+      <td>Like fish that lays many eggs (caviar) and the fittest shall survive.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="orthogonalization">Orthogonalization</h1>
+
+<p>Consider a 90s television with several tuning knobs for width, height, move-vertical, move-horizontal and so on. We tune each parameter to desired value and then move to the next. Having one knob to adjust several parameters will cause more confusion and lead to chaos.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Model Status</th>
+      <th>Issue</th>
+      <th>Resolution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Training set does not fit.</td>
+      <td>Bias</td>
+      <td>Use Bigger network. Use better optimization algorithm like Adam.</td>
+    </tr>
+    <tr>
+      <td>Training set fits. Dev does not fit.</td>
+      <td>Variance</td>
+      <td>Regularization. Get more training data.</td>
+    </tr>
+    <tr>
+      <td>Training and dev set fits. Test does not fit.</td>
+      <td> </td>
+      <td>Formulation of dev/test set is not correct. Possible bug in cost function.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="single-number-evaluation">Single Number Evaluation</h1>
+
+<p>A numeric evaluation metric that incorporates all the function and provides a single number to optimize is required. Sometimes accuracy itself is not a good enough measure.</p>
+
+<h2 id="unacceptable-errors">Unacceptable errors</h2>
+
+<h3 id="issue">Issue</h3>
+
+<p>Consider a binary cat classifier model.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>Accuracy</th>
+      <th>Nature of error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>98.5%</td>
+      <td>Few blurry cat images are not identified.</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>99.3%</td>
+      <td>Few porn images are classified as cat.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Though the accuracy of model-B is much better than model-A. The nature of errors of model-B is unacceptable. Here, traditional accuracy is not a good measure.</p>
+
+<h3 id="resolution">Resolution</h3>
+
+<p>Training data can be associated with corresponding weight. Cost function shall include weight. Essentially, misclassification of certain training data will incur higher cost compared to others. Thus model-B will result in lesser accuracy.</p>
+
+<h2 id="skewed-classes">Skewed Classes</h2>
+
+<h3 id="issue-1">Issue</h3>
+
+<p>Consider the binary classification problem of cancer detection from tumor. Most tumors, (say 99% of them) are benign.</p>
+
+<ul>
+  <li>A model that does a very good job at detecting benign tumors but a very poor job at detecting cancer tumors can have high accuracy (say 99.2%).</li>
+  <li>A model that just marks all tumors as benign will still have 99% accuracy</li>
+</ul>
+
+<h3 id="resolution-1">Resolution</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">Actual Positive</th>
+      <th style="text-align: center">Actual Negative (-)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>Predicted Positive (+ve)</strong></td>
+      <td style="text-align: center">\[T_{p}\]
+</td>
+      <td style="text-align: center">\[F_{p}\]
+</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Predicted Negative (-ve)</strong></td>
+      <td style="text-align: center">\[F_{n}\]
+</td>
+      <td style="text-align: center">\[T_{n}\]
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>The cells will have +ve or -ve based on the prediction.</li>
+  <li>If the prediction matches the actual its True else False</li>
+</ul>
+
+<h4 id="prediction">Prediction</h4>
+
+<p>A prediction is defined as follows</p>
+
+<p>$$
+Prediction \ = \ \frac{T_{p}}{T_{p} \ + \ F_{p}}
+$$</p>
+
+<ul>
+  <li>A higher prediction means $$\uparrow \ T_{p} \downarrow F_{p}$$ . This means very few false positives.</li>
+  <li>When a tumor is predicted to be cancer - It is most likely cancer. (You can bet on +ve prediction)</li>
+  <li>When a tumor is predicted to be benign - Could still be cancer. (You cannot be sure about -ve prediction)</li>
+</ul>
+
+<h4 id="recall">Recall</h4>
+
+<p>A recall is defined as follows</p>
+
+<p>$$
+Recall \ = \ \frac{T_{p}}{T_{p} \ + \ F_{n}}
+$$</p>
+
+<ul>
+  <li>A higher recall means  $$\uparrow \ T_{p} \downarrow F_{n}$$ . This means very few false negatives.</li>
+  <li>When a tumor is predicted to be benign - It is more likely benign. (You can bet on -ve prediction)</li>
+  <li>When a tumor is predicted to be cancer - It could be benign. (You cannot be sure about +ve prediction)</li>
+</ul>
+
+<h4 id="f1-score">F1 score</h4>
+
+<p>Both precision and recall have to be used to determine the accuracy of the model. We need a model with high precision and recall - These are two metrics. However, we need a single evaluation metric.</p>
+
+<p>$$
+F1 \ score \ = \ \frac{2}{\frac{1}{P} + \frac{1}{R}} \ = \ \frac{2PR}{P+R}
+$$</p>
+
+<blockquote>
+
+  <p>F1 score is obtained by taking the harmonic mean between precision(P) and recall (R)</p>
+
+</blockquote>
+
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

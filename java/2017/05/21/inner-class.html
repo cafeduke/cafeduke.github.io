@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Brewing with inner classes</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Brewing with inner classes</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Sunday, 21 May 2017
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li>
+<a href="#brewing-with-inner-classes" id="markdown-toc-brewing-with-inner-classes">Brewing with Inner classes</a>    <ol>
+      <li><a href="#what-is-an-inner-class" id="markdown-toc-what-is-an-inner-class">What is an Inner class?</a></li>
+      <li>
+<a href="#outer---inner-relationship" id="markdown-toc-outer---inner-relationship">Outer - Inner relationship</a>        <ol>
+          <li>
+<a href="#no-secrets-innerouter-classes-have-access-to-each-others-private-members" id="markdown-toc-no-secrets-innerouter-classes-have-access-to-each-others-private-members">No secrets: Inner/Outer classes have access to each other’s private members</a>            <ol>
+              <li><a href="#accessing-private-members-of-inner-from-outer-class" id="markdown-toc-accessing-private-members-of-inner-from-outer-class">Accessing private members of Inner from Outer class</a></li>
+              <li><a href="#accessing-private-members-of-outer-from-inner-class" id="markdown-toc-accessing-private-members-of-outer-from-inner-class">Accessing private members of Outer from Inner class</a></li>
+            </ol>
+          </li>
+          <li><a href="#one-to-many-an-outer-class-can-be-associated-with-multiple-inner-classes" id="markdown-toc-one-to-many-an-outer-class-can-be-associated-with-multiple-inner-classes">One-to-many: An outer class can be associated with multiple inner classes</a></li>
+          <li><a href="#example-items-and-paid-by-users" id="markdown-toc-example-items-and-paid-by-users">Example: Items and paid-by users</a></li>
+        </ol>
+      </li>
+      <li><a href="#visibility-modifier-and-inner-class" id="markdown-toc-visibility-modifier-and-inner-class">Visibility modifier and Inner class</a></li>
+      <li>
+<a href="#static-modifier-and-inner-class" id="markdown-toc-static-modifier-and-inner-class">Static modifier and Inner class</a>        <ol>
+          <li><a href="#static-inner-class" id="markdown-toc-static-inner-class">Static inner class</a></li>
+          <li><a href="#static-methods-in-inner-class" id="markdown-toc-static-methods-in-inner-class">Static methods in Inner Class</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+</nav>
+
+<h1 id="brewing-with-inner-classes">Brewing with Inner classes</h1>
+
+<p>In this article, we look at basics of inner classes, relationship between Inner and Outer classs and the advantage the relationship brings, an example to add clarity, visibility in Inner classes and finally we shall explore the effect of static modifier in Inner classes.</p>
+
+<h2 id="what-is-an-inner-class">What is an Inner class?</h2>
+
+<p>A class can include a nested class. The nested class is called an Inner class. An Inner class has its existence only within the context of the outer class.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Outer class  </span>
+<span class="kd">class</span> <span class="nc">Outer</span>  
+<span class="o">{</span>  
+   <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"TheOuter"</span><span class="o">;</span>  
+    
+   <span class="kd">private</span> <span class="nc">InnerPublic</span> <span class="n">myInnerPublic</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InnerPublic</span> <span class="o">(</span><span class="s">"MyInnerPublic"</span><span class="o">);</span>     
+     
+   <span class="kd">public</span> <span class="nf">Outer</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>  
+   <span class="o">}</span>  
+  
+ <span class="c1">// Inner class      </span>
+   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">InnerPublic</span>  
+   <span class="o">{</span>  
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>  
+        
+      <span class="kd">public</span> <span class="nf">InnerPublic</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>  
+      <span class="o">}</span>  
+   <span class="o">}</span>  
+<span class="o">}</span>  
+
+</code></pre></div></div>
+
+<h2 id="outer---inner-relationship">Outer - Inner relationship</h2>
+
+<h3 id="no-secrets-innerouter-classes-have-access-to-each-others-private-members">No secrets: Inner/Outer classes have access to each other’s private members</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Outer</span>  
+<span class="o">{</span>  
+   <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>  
+     
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>     
+    
+   <span class="kd">private</span> <span class="nc">InnerPublic</span> <span class="n">myInnerPublic</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InnerPublic</span> <span class="o">(</span><span class="s">"MyInnerPublic"</span><span class="o">);</span>     
+     
+   <span class="kd">public</span> <span class="nf">Outer</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>  
+   <span class="o">}</span>  
+     
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">funOuter</span> <span class="o">()</span>  
+   <span class="o">{</span>  
+      <span class="nc">Util</span><span class="o">.</span><span class="na">printHeading</span><span class="o">(</span><span class="s">"Outer Class - Instance Method"</span><span class="o">);</span>  
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access private instance variable of Outer class.        this.name="</span>    <span class="err">\</span><span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>  
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access private instance variable of InnerPublic class.  myInnerPublic.name="</span> <span class="err">\</span><span class="o">+</span> <span class="n">myInnerPublic</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>        
+   <span class="o">}</span>  
+     
+     
+   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">InnerPublic</span>  
+   <span class="o">{</span>  
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>  
+        
+      <span class="kd">public</span> <span class="nf">InnerPublic</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>  
+      <span class="o">}</span>  
+        
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">display</span> <span class="o">()</span>  
+      <span class="o">{</span>  
+         <span class="nc">Util</span><span class="o">.</span><span class="na">printHeading</span><span class="o">(</span><span class="s">"Inner Class - Instance Method"</span><span class="o">);</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access private instance variable of InnerPublic class. this.name="</span> <span class="err">\</span><span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access private instance variable of Outer class.       size="</span> <span class="err">\</span><span class="o">+</span> <span class="n">size</span><span class="o">);</span>  
+      <span class="o">}</span>  
+   <span class="o">}</span>        
+<span class="o">}</span>
+</code></pre></div></div>
+<p>The class <code class="language-plaintext highlighter-rouge">Outer</code> has</p>
+
+<ul>
+  <li>
+    <p>A private instance variable <code class="language-plaintext highlighter-rouge">size</code></p>
+  </li>
+  <li>
+    <p>An instance variable of type inner class <code class="language-plaintext highlighter-rouge">InnerPublic</code> namely <code class="language-plaintext highlighter-rouge">myInnerPublic</code>.</p>
+  </li>
+</ul>
+
+<p>The class <code class="language-plaintext highlighter-rouge">InnerPublic</code> has</p>
+
+<ul>
+  <li>A private instance variable <code class="language-plaintext highlighter-rouge">name</code>
+</li>
+</ul>
+
+<h4 id="accessing-private-members-of-inner-from-outer-class">Accessing private members of Inner from Outer class</h4>
+
+<p>From method <code class="language-plaintext highlighter-rouge">funOuter</code> of class <code class="language-plaintext highlighter-rouge">Outer</code>, we are able to access the private variable of class <code class="language-plaintext highlighter-rouge">InnerPublic</code> as <code class="language-plaintext highlighter-rouge">myInnerPublic.name</code></p>
+
+<h4 id="accessing-private-members-of-outer-from-inner-class">Accessing private members of Outer from Inner class</h4>
+
+<p>From method <code class="language-plaintext highlighter-rouge">display</code> of class <code class="language-plaintext highlighter-rouge">InnerPublic</code>, we are able to access the private variable <code class="language-plaintext highlighter-rouge">size</code> of class <code class="language-plaintext highlighter-rouge">Outer</code>.</p>
+
+<h3 id="one-to-many-an-outer-class-can-be-associated-with-multiple-inner-classes">One-to-many: An outer class can be associated with multiple inner classes</h3>
+
+<p>An instance of outer class can be associated with multiple instances for various inner classes.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InnerClassPrinciple</span>  
+<span class="o">{</span>  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span>  
+    <span class="o">{</span>        
+       <span class="nc">Outer</span> <span class="n">outer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Outer</span> <span class="o">(</span><span class="s">"Outer"</span><span class="o">);</span>  
+       <span class="nc">InnerA</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">outer</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerA</span> <span class="o">();</span>   
+       <span class="nc">InnerA</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">outer</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerA</span> <span class="o">();</span>  
+       <span class="nc">InnerB</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">outer</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerB</span> <span class="o">();</span>  
+       <span class="nc">InnerC</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">outer</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerC</span> <span class="o">();</span>  
+       <span class="nc">InnerC</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">outer</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerC</span> <span class="o">();</span>  
+       <span class="nc">InnerC</span> <span class="n">c3</span> <span class="o">=</span> <span class="n">outer</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerC</span> <span class="o">();</span>  
+    <span class="o">}</span>  
+<span class="o">}</span>  
+  
+<span class="kd">class</span> <span class="nc">Outer</span>  
+<span class="o">{</span>  
+   <span class="kd">class</span> <span class="nc">InnerA</span>  
+   <span class="o">{</span>  
+        
+   <span class="o">}</span>  
+     
+   <span class="kd">class</span> <span class="nc">InnerB</span>  
+   <span class="o">{</span>  
+        
+   <span class="o">}</span>  
+     
+   <span class="kd">class</span> <span class="nc">InnerC</span>  
+   <span class="o">{</span>  
+        
+   <span class="o">}</span>  
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>An Inner class has its existence only within the context of an Outer class. Hence, an instance of Outer class is necessary to create an instance of Inner class.<br>
+Note the syntax: InnerA a1 = outer.new InnerA ();</p>
+
+<p>In previous examples instance of Inner class was created within the Outer class. So, the implicit <code class="language-plaintext highlighter-rouge">this</code> object was used.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Outer</span>  
+<span class="o">{</span>  
+   <span class="c1">// The below code uses implicit this object of outer class</span>
+ <span class="kd">private</span> <span class="nc">InnerPublic</span> <span class="n">myInnerPublicA</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InnerPublic</span> <span class="o">(</span><span class="s">"MyInnerPublicA"</span><span class="o">);</span>  
+  
+   <span class="c1">// The below code explicitly specifies 'this.new'  </span>
+ <span class="kd">private</span> <span class="nc">InnerPublic</span> <span class="n">myInnerPublicB</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">new</span> <span class="nc">InnerPublic</span> <span class="o">(</span><span class="s">"MyInnerPublicB"</span><span class="o">);</span>  
+<span class="o">}</span>  
+
+</code></pre></div></div>
+
+<h3 id="example-items-and-paid-by-users">Example: Items and paid-by users</h3>
+
+<p>In this example, we use an outer class <code class="language-plaintext highlighter-rouge">Item</code> and inner class <code class="language-plaintext highlighter-rouge">PaidBy</code>. An item can be paid by multiple users. So, <code class="language-plaintext highlighter-rouge">Item</code>  can be associated with multiple <code class="language-plaintext highlighter-rouge">PaidBy</code> objects.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">core.classes</span><span class="o">;</span>  
+  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">InnerClassExample</span>  
+<span class="o">{</span>  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span>  
+   <span class="o">{</span>  
+      <span class="nc">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Item</span> <span class="o">(</span><span class="s">"Lunch"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">String</span><span class="o">[]</span> <span class="o">{</span><span class="s">"Raghu"</span><span class="o">,</span> <span class="s">"Pavi"</span><span class="o">,</span> <span class="s">"Madhu"</span><span class="o">,</span> <span class="s">"Sanjeev"</span><span class="o">},</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">110</span><span class="o">,</span> <span class="mi">250</span><span class="o">,</span> <span class="mi">80</span><span class="o">,</span> <span class="mi">25</span><span class="o">});</span>  
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>  
+   <span class="o">}</span>  
+<span class="o">}</span>  
+  
+<span class="kd">class</span> <span class="nc">Item</span>  
+<span class="o">{</span>  
+   <span class="kd">private</span> <span class="nc">String</span> <span class="n">itemname</span><span class="o">;</span>  
+     
+   <span class="kd">private</span> <span class="nc">PaidBy</span> <span class="n">paidBy</span><span class="o">[];</span>  
+     
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">HR</span> <span class="o">=</span> <span class="s">"--------------------------------------------------"</span><span class="o">;</span>  
+     
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="nc">NewLine</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"line.separator"</span><span class="o">);</span>  
+     
+   <span class="kd">public</span> <span class="nf">Item</span> <span class="o">(</span><span class="nc">String</span> <span class="n">itemname</span><span class="o">,</span> <span class="nc">String</span> <span class="n">username</span><span class="o">[],</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">[])</span>  
+   <span class="o">{</span>  
+      <span class="k">this</span><span class="o">.</span><span class="na">itemname</span> <span class="o">=</span> <span class="n">itemname</span><span class="o">;</span>  
+      <span class="k">this</span><span class="o">.</span><span class="na">paidBy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PaidBy</span> <span class="o">[</span><span class="n">username</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>  
+        
+      <span class="k">if</span> <span class="o">(</span><span class="n">username</span><span class="o">.</span><span class="na">length</span> <span class="o">!=</span> <span class="n">amount</span><span class="o">.</span><span class="na">length</span><span class="o">)</span>  
+         <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"Username and amount size must match"</span><span class="o">);</span>  
+        
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">username</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>  
+         <span class="k">this</span><span class="o">.</span><span class="na">paidBy</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">new</span> <span class="nc">PaidBy</span> <span class="o">(</span><span class="n">username</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">amount</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>        
+   <span class="o">}</span>  
+     
+   <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span> <span class="o">()</span>  
+   <span class="o">{</span>  
+      <span class="nc">StringBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>  
+        
+      <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>  
+      <span class="k">for</span> <span class="o">(</span><span class="nc">PaidBy</span> <span class="n">currPaidBy</span> <span class="o">:</span> <span class="n">paidBy</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">currPaidBy</span><span class="o">);</span>  
+         <span class="n">total</span> <span class="o">+=</span> <span class="n">currPaidBy</span><span class="o">.</span><span class="na">amount</span><span class="o">;</span>  
+      <span class="o">}</span>        
+      <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="no">HR</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="nc">NewLine</span><span class="o">);</span>  
+      <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Total amount = "</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="n">total</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="nc">NewLine</span><span class="o">);</span>  
+      <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>  
+   <span class="o">}</span>  
+     
+   <span class="kd">private</span> <span class="kd">class</span> <span class="nc">PaidBy</span>  
+   <span class="o">{</span>  
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>  
+        
+      <span class="kd">private</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">;</span>  
+        
+      <span class="kd">public</span> <span class="nf">PaidBy</span> <span class="o">(</span><span class="nc">String</span> <span class="n">username</span><span class="o">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="k">this</span><span class="o">.</span><span class="na">username</span> <span class="o">=</span> <span class="n">username</span><span class="o">;</span>  
+         <span class="k">this</span><span class="o">.</span><span class="na">amount</span> <span class="o">=</span> <span class="n">amount</span><span class="o">;</span>  
+      <span class="o">}</span>  
+        
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span> <span class="o">()</span>  
+      <span class="o">{</span>  
+         <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%-10s paid %3d for %s"</span> <span class="err">\</span><span class="o">+</span> <span class="nc">NewLine</span> <span class="o">,</span> <span class="n">username</span><span class="o">,</span> <span class="n">amount</span><span class="o">,</span> <span class="n">itemname</span><span class="o">);</span>  
+      <span class="o">}</span>  
+   <span class="o">}</span>  
+<span class="o">}</span>  
+
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">Output:</span>  
+<span class="nc">Raghu</span>      <span class="n">paid</span> <span class="mi">110</span> <span class="k">for</span> <span class="nc">Lunch</span>  
+<span class="nc">Pavi</span>       <span class="n">paid</span> <span class="mi">250</span> <span class="k">for</span> <span class="nc">Lunch</span>  
+<span class="nc">Madhu</span>      <span class="n">paid</span>  <span class="mi">80</span> <span class="k">for</span> <span class="nc">Lunch</span>  
+<span class="nc">Sanjeev</span>    <span class="n">paid</span>  <span class="mi">25</span> <span class="k">for</span> <span class="nc">Lunch</span>  
+<span class="o">--------------------------------------------------</span>  
+<span class="nc">Total</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">465</span>  
+
+</code></pre></div></div>
+
+<p>Note 1) Following is a code snippet from the above code. Here the implicit <code class="language-plaintext highlighter-rouge">this</code> object of Item is used to create <code class="language-plaintext highlighter-rouge">PaidBy</code> objects.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Item</span>  
+<span class="o">{</span>  
+   <span class="o">...</span>  
+   <span class="o">...</span>  
+     
+ <span class="kd">public</span> <span class="nf">Item</span> <span class="o">(</span><span class="nc">String</span> <span class="n">itemname</span><span class="o">,</span> <span class="nc">String</span> <span class="n">username</span><span class="o">[],</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">[])</span>  
+   <span class="o">{</span>  
+      <span class="o">...</span>  
+      <span class="k">this</span><span class="o">.</span><span class="na">paidBy</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">new</span> <span class="nc">PaidBy</span> <span class="o">(</span><span class="n">username</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">amount</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>  
+   <span class="o">}</span>  
+<span class="o">}</span>  
+
+</code></pre></div></div>
+<p>Note 2) <code class="language-plaintext highlighter-rouge">Item</code> class can easily access private variable <code class="language-plaintext highlighter-rouge">amount</code> of the <code class="language-plaintext highlighter-rouge">PaidBy</code> class to calculate the total <code class="language-plaintext highlighter-rouge">amount</code>.</p>
+
+<p>Note 3) <code class="language-plaintext highlighter-rouge">PaidBy</code> class can easily access private variable <code class="language-plaintext highlighter-rouge">itemname</code> of the <code class="language-plaintext highlighter-rouge">Item</code> class in its <code class="language-plaintext highlighter-rouge">toString()</code> method.</p>
+
+<h2 id="visibility-modifier-and-inner-class">Visibility modifier and Inner class</h2>
+
+<p>We understand private, default, protected and public visibility for variables and methods. Similarly, an inner class also have various visibility. Similar to visibility of methods and variables, a private inner class is not visible to another class while an public inner class is visible.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InnerClassPrinciple</span>  
+<span class="o">{</span>  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span>  
+    <span class="o">{</span>  
+       <span class="cm">/* Outer Class */</span>         
+       <span class="nc">Outer</span> <span class="n">outerA</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Outer</span> <span class="o">(</span><span class="s">"OuterA"</span><span class="o">);</span>  
+       <span class="n">outerA</span><span class="o">.</span><span class="na">funOuter</span><span class="o">();</span>  
+  
+       <span class="cm">/* Public Inner Class */</span>         
+       <span class="nc">InnerPublic</span> <span class="n">innerA1</span> <span class="o">=</span> <span class="n">outerA</span><span class="o">.</span><span class="na">new</span> <span class="nf">InnerPublic</span> <span class="o">(</span><span class="s">"InnerA1"</span><span class="o">);</span>  
+       <span class="n">innerA1</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>  
+  
+       <span class="cm">/* Private Inner Classes */</span>  
+       <span class="c1">// Class InnerPrivate is not visible here  </span>
+    <span class="o">}</span>  
+<span class="o">}</span>  
+  
+<span class="kd">class</span> <span class="nc">Outer</span>  
+<span class="o">{</span>  
+   <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>  
+     
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>     
+     
+   <span class="kd">private</span> <span class="nc">InnerPublic</span> <span class="n">myInnerPublic</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InnerPublic</span> <span class="o">(</span><span class="s">"MyInnerPublic"</span><span class="o">);</span>     
+     
+   <span class="kd">private</span> <span class="nc">InnerPrivate</span> <span class="n">myInnerPrivate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InnerPrivate</span> <span class="o">(</span><span class="s">"MyInnerPrivate"</span><span class="o">);</span>  
+  
+   <span class="kd">public</span> <span class="nf">Outer</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">InnerPublic</span>  
+   <span class="o">{</span>  
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>  
+        
+      <span class="kd">public</span> <span class="nf">InnerPublic</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>  
+      <span class="o">}</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">private</span> <span class="kd">class</span> <span class="nc">InnerPrivate</span>  
+   <span class="o">{</span>  
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>  
+        
+      <span class="kd">public</span> <span class="nf">InnerPrivate</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>  
+      <span class="o">}</span>        
+   <span class="o">}</span>  
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="static-modifier-and-inner-class">Static modifier and Inner class</h2>
+
+<h3 id="static-inner-class">Static inner class</h3>
+
+<p>Like any static variable or method, a static Inner class is a property of the class (Outer class) and not any instance. So, a static Inner class can be accessed using the Outer classname - no instance necessary.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InnerClassPrinciple</span>  
+<span class="o">{</span>  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span> <span class="n">arg</span><span class="o">[])</span>  
+    <span class="o">{</span>  
+       <span class="cm">/* Public Static Inner Classes */</span>  
+       <span class="nc">Outer</span><span class="o">.</span><span class="na">StaticInner</span> <span class="n">staticInnerA1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Outer</span><span class="o">.</span><span class="na">StaticInner</span><span class="o">(</span><span class="s">"StaticInnerA1"</span><span class="o">);</span>  
+       <span class="n">staticInnerA1</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>  
+    <span class="o">}</span>  
+<span class="o">}</span>  
+  
+<span class="kd">class</span> <span class="nc">Outer</span>  
+<span class="o">{</span>  
+   <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>  
+  
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>  
+     
+   <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="no">MAX_SIZE</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>  
+  
+   <span class="kd">public</span> <span class="nf">Outer</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+   <span class="o">{</span>  
+      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">StaticInner</span>  
+   <span class="o">{</span>  
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"StaticInner"</span><span class="o">;</span>  
+        
+      <span class="kd">public</span> <span class="nf">StaticInner</span> <span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span>  
+      <span class="o">{</span>  
+         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>  
+      <span class="o">}</span>  
+        
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">display</span> <span class="o">()</span>  
+      <span class="o">{</span>  
+         <span class="nc">Util</span><span class="o">.</span><span class="na">printHeading</span> <span class="o">(</span><span class="s">"StaticInner Class - Instance Method"</span><span class="o">);</span>  
+           
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access private instance variable of InnerPublic class.                      this.name= "</span> <span class="err">\</span><span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cannot Access private instance variable of Outer class with name conflict.  Outer.this.name"</span><span class="o">);</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cannot Access private instance variable of Outer class.                     size"</span><span class="o">);</span>  
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access private static   variable of Outer class.                            Outer.MAX_SIZE= "</span> <span class="err">\</span><span class="o">+</span> <span class="nc">Outer</span><span class="o">.</span><span class="na">MAX_SIZE</span><span class="o">);</span>  
+      <span class="o">}</span>        
+   <span class="o">}</span>  
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Note</p>
+
+<ul>
+  <li>An instance of static Inner class is created using <code class="language-plaintext highlighter-rouge">Outer</code> classname. <code class="language-plaintext highlighter-rouge">Outer.StaticInner staticInnerA1 = new Outer.StaticInner("StaticInnerA1");</code>
+</li>
+  <li>A static inner class can access only static variables of the outer class.</li>
+</ul>
+
+<h3 id="static-methods-in-inner-class">Static methods in Inner Class</h3>
+
+<p>A static inner class can have its own static variables and methods. However, a non-static inner class cannot have its own static variables/methods. All static content has  to be moved to the Outer class.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Outer</span>  
+<span class="o">{</span>  
+   <span class="o">...</span>  
+  
+   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">InnerPublic</span>  
+   <span class="o">{</span>  
+      <span class="c1">// private static int FUN_STATIC = 1;  </span>
+  
+      <span class="cm">/*  
+Error:   
+         - Static methods can only be declared in a static or top level type  
+         - We have to either move the static method to outer class OR declare the class static.  
+   
+      public static void funStatic ()  
+      {  
+  
+      }  
+  
+      */</span>  
+  
+      <span class="o">...</span>  
+   <span class="o">}</span>  
+  
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">StaticInner</span>  
+   <span class="o">{</span>  
+      <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="no">FUN_STATIC</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>  
+  
+      <span class="o">...</span>  
+   <span class="o">}</span>  
+<span class="o">}</span>
+</code></pre></div></div>
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

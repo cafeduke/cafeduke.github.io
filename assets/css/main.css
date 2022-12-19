@@ -1,0 +1,242 @@
+/**/
+:root {
+    --primary     : #1565C0;    /* mdc-text-blue-800   */
+    --dark-parrot : #33691E;    /* mdc-text-light-green-900 */
+    --dark-green  : #1B5E20;
+}
+
+/**
+ * Core
+ * ________________________________________________________________________________________________
+ */
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    font: normal 16px/1.6 'Roboto', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    background: WhiteSmoke;
+    color: Black;
+}
+
+.collapsing {
+    transition: none !important;
+}
+
+/* Anchor */
+a {
+    color: var(--primary);
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--dark-green);
+}
+
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-family: 'Roboto';
+    margin-bottom: 15px;
+    padding-bottom: 3px;
+}
+
+h1 {  font-size: 32px; color:rgb(0,100,180); border-bottom: 1px groove #004080; }
+h2 {  font-size: 26px; color:rgb(0, 64,128); }
+h3 {  font-size: 20px; color:rgb(0, 50,100); }
+h4 {  font-size: 18px; color:rgb(0, 40, 80); font-weight: bold; }
+
+em, i {
+    font-family: 'Vollkorn';
+    font-style: italic;
+    font-size: 18px;
+}
+
+/* Image - Not centered by Typora */
+img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 80%;
+}
+
+
+/* Code */
+code {
+    font-family: 'Roboto Mono', 'Consolas';
+    font-weight: bold;
+    font-size: 14px;
+
+    color:rgb(0,128,0);
+}
+
+/* Table */
+
+table {
+    margin-bottom: 30px;
+    text-align: left;
+    color: rgb(0,40,0);
+    border-collapse: collapse;
+}
+
+table th {
+    color: White;
+    background-color: rgb(70,110,0);
+    border: 1px solid rgb(143,184,20);
+}
+
+table tr:nth-child(2n) {
+    background-color: rgb(244,250,239);
+}
+
+
+table td {
+    border: 1px solid #8fb814;
+}
+
+table th, table td {
+    padding: 5px 10px;
+}
+
+/* Blockquote */
+
+blockquote {
+    border-left: 3px solid #2196F3;
+    font-family: 'Vollkorn';
+    font-style: italic;
+    font-size: 18px;
+    padding-left: 15px;
+}
+
+/**
+ * Sidebar
+ * ________________________________________________________________________________________________
+ */
+
+#sidebar {
+   font-weight: normal;
+   max-width: 250px;
+   min-width: 50px;
+   background-color: rgb(1,87,155);
+}
+
+#sidebar a.nav-link, #sidebar a.nav-link[class~='disabled']:hover {
+   color: rgb(225,221,240);
+   border-left: 2px solid #4A148C;
+}
+
+#sidebar a.nav-link:hover {
+   color: White;
+}
+
+#sidebar a.nav-link[class~='active'] {
+   border-left: 2px solid Orange;
+}
+
+#sidebar li.nav-item {
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+#sidebar li.nav-item ul.nav a.nav-link {
+   padding-left: 2rem;
+}
+
+#sidebar .nav-link-text {
+   margin-left: 5px;
+}
+
+#sidebar li.nav-item > div {
+   background-color: rgb(1,75,137);
+}
+
+/* Icon of the sidebar */
+#sidebar a.nav-link i {
+   width: 15%;
+}
+
+/**
+ * Icon
+ * ________________________________________________________________________________________________
+ */
+.icon-django {
+    background-image: url("/assets/icon/django.png");
+    background-position: center center;
+}
+
+
+/**
+ * Post Generic
+ * ________________________________________________________________________________________________
+ */
+
+#markdown-toc {
+    color: var(--primary);
+}
+
+/* Content Anchor */
+a.post-link {
+    color: rgb(20,100,190);
+    text-decoration: none;
+}
+
+a.post-link:hover {
+   color: #004080;
+   text-decoration: underline;
+}
+
+.post-meta {
+    color:rgb(80,80,80);
+}
+
+/**
+ * Post List
+ * ________________________________________________________________________________________________
+ */
+
+ul.post-list {
+    margin-left: 20px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+ul.post-list > li {
+    margin-bottom: 30px;
+}
+
+a.post-link {
+    font-size: 24px;
+    display: block;
+}
+
+/**
+ * Post
+ * ________________________________________________________________________________________________
+ */
+
+.post-title {
+    font-size: 42px;
+    letter-spacing: -1px;
+    color: #004080;
+    border-style: none;
+}
+
+hr.post-ruler {
+    margin-top: 2px;
+    width: 100%;
+}
+
+/**
+ * Footer
+ * ________________________________________________________________________________________________
+ */
+
+footer {
+   border-top: 1px solid #d5d5d5;
+   font-size: .8em;
+}

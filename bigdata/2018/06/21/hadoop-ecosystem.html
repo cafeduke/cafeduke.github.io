@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Hadoop Ecosystem</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Hadoop Ecosystem</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Thursday, 21 June 2018
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li><a href="#apache-hadoop-ecosystem" id="markdown-toc-apache-hadoop-ecosystem">Apache Hadoop Ecosystem</a></li>
+  <li>
+<a href="#hdfs" id="markdown-toc-hdfs">HDFS</a>    <ol>
+      <li>
+<a href="#architecture" id="markdown-toc-architecture">Architecture</a>        <ol>
+          <li><a href="#namenode" id="markdown-toc-namenode">NameNode</a></li>
+          <li><a href="#datanode" id="markdown-toc-datanode">DataNode</a></li>
+          <li><a href="#working-reading-a-file" id="markdown-toc-working-reading-a-file">Working: Reading a file</a></li>
+          <li><a href="#working-writing-a-file" id="markdown-toc-working-writing-a-file">Working: Writing a file</a></li>
+        </ol>
+      </li>
+      <li><a href="#what-happens-if-the-namenode-fails" id="markdown-toc-what-happens-if-the-namenode-fails">What happens if the NameNode fails?</a></li>
+      <li><a href="#how-to-interface-with-hdfs" id="markdown-toc-how-to-interface-with-hdfs">How to interface with HDFS</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#apache-spark" id="markdown-toc-apache-spark">Apache Spark</a>    <ol>
+      <li><a href="#what-sets-spark-apart" id="markdown-toc-what-sets-spark-apart">What sets Spark apart?</a></li>
+      <li><a href="#components-of-spark" id="markdown-toc-components-of-spark">Components of Spark</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#hive" id="markdown-toc-hive">Hive</a>    <ol>
+      <li><a href="#advantanges-of-hive" id="markdown-toc-advantanges-of-hive">Advantanges of Hive</a></li>
+      <li><a href="#disadvantanges" id="markdown-toc-disadvantanges">Disadvantanges</a></li>
+      <li><a href="#hiveql" id="markdown-toc-hiveql">HiveQL</a></li>
+      <li>
+<a href="#schema-on-read" id="markdown-toc-schema-on-read">Schema On Read</a>        <ol>
+          <li><a href="#traditional-database-schema-on-write" id="markdown-toc-traditional-database-schema-on-write">Traditional Database: Schema on Write</a></li>
+          <li><a href="#hive-schema-on-read" id="markdown-toc-hive-schema-on-read">Hive: Schema on Read</a></li>
+        </ol>
+      </li>
+      <li><a href="#managed-vs-external-table" id="markdown-toc-managed-vs-external-table">Managed Vs External Table</a></li>
+      <li><a href="#partitioning" id="markdown-toc-partitioning">Partitioning</a></li>
+      <li><a href="#ways-to-use-hive" id="markdown-toc-ways-to-use-hive">Ways to use Hive</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#integrating-hadoop-and-mysql" id="markdown-toc-integrating-hadoop-and-mysql">Integrating Hadoop and MySQL</a>    <ol>
+      <li><a href="#mysql" id="markdown-toc-mysql">MySQL</a></li>
+      <li><a href="#sqoop-to-sql" id="markdown-toc-sqoop-to-sql">Sqoop to SQL</a></li>
+      <li><a href="#sql-to-sqoop" id="markdown-toc-sql-to-sqoop">SQL to Sqoop</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#nosql" id="markdown-toc-nosql">NoSQL</a>    <ol>
+      <li><a href="#where-rdbms-fits" id="markdown-toc-where-rdbms-fits">Where RDBMS fits?</a></li>
+      <li><a href="#where-nosql-fits" id="markdown-toc-where-nosql-fits">Where NoSQL fits?</a></li>
+      <li><a href="#best-of-both-worlds" id="markdown-toc-best-of-both-worlds">Best of both worlds!</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#cap-theorem" id="markdown-toc-cap-theorem">CAP Theorem</a>    <ol>
+      <li>
+<a href="#the-difference-is-in-the-choices-made" id="markdown-toc-the-difference-is-in-the-choices-made">The difference is in the choices made</a>        <ol>
+          <li><a href="#traditional-database" id="markdown-toc-traditional-database">Traditional Database</a></li>
+          <li><a href="#hbase--mongodb" id="markdown-toc-hbase--mongodb">HBase &amp; MongoDB</a></li>
+          <li><a href="#cassandra" id="markdown-toc-cassandra">Cassandra</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#apache-hbase" id="markdown-toc-apache-hbase">Apache HBase</a>    <ol>
+      <li>
+<a href="#architecture-1" id="markdown-toc-architecture-1">Architecture</a>        <ol>
+          <li><a href="#region-server" id="markdown-toc-region-server">Region Server</a></li>
+          <li><a href="#hmaster" id="markdown-toc-hmaster">HMaster</a></li>
+          <li><a href="#zookeeper" id="markdown-toc-zookeeper">Zookeeper</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#data-model" id="markdown-toc-data-model">Data Model</a>        <ol>
+          <li>
+<a href="#data-model-example-weblinkdetail" id="markdown-toc-data-model-example-weblinkdetail">Data Model Example: WebLinkDetail</a>            <ol>
+              <li><a href="#key" id="markdown-toc-key">Key</a></li>
+              <li><a href="#contents-column-family" id="markdown-toc-contents-column-family">Contents Column Family</a></li>
+              <li><a href="#anchor-column-family" id="markdown-toc-anchor-column-family">Anchor Column Family</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li><a href="#access-hbase" id="markdown-toc-access-hbase">Access HBase</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#cassandra-1" id="markdown-toc-cassandra-1">Cassandra</a>    <ol>
+      <li><a href="#cap" id="markdown-toc-cap">CAP</a></li>
+      <li>
+<a href="#cassandra-achives-high-availability" id="markdown-toc-cassandra-achives-high-availability">Cassandra achives high availability</a>        <ol>
+          <li><a href="#ring-architecture" id="markdown-toc-ring-architecture">Ring Architecture</a></li>
+          <li><a href="#working" id="markdown-toc-working">Working</a></li>
+          <li><a href="#tuning-consistency" id="markdown-toc-tuning-consistency">Tuning Consistency</a></li>
+        </ol>
+      </li>
+      <li><a href="#connecting-cassanda-rings" id="markdown-toc-connecting-cassanda-rings">Connecting Cassanda Rings</a></li>
+      <li><a href="#cql" id="markdown-toc-cql">CQL</a></li>
+      <li><a href="#spark--cassandra" id="markdown-toc-spark--cassandra">Spark + Cassandra</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#mongo-db" id="markdown-toc-mongo-db">Mongo DB</a>    <ol>
+      <li><a href="#cap-1" id="markdown-toc-cap-1">CAP</a></li>
+      <li><a href="#terminology" id="markdown-toc-terminology">Terminology</a></li>
+      <li><a href="#architecture-2" id="markdown-toc-architecture-2">Architecture</a></li>
+    </ol>
+  </li>
+  <li><a href="#query-nosql-data" id="markdown-toc-query-nosql-data">Query NoSQL Data</a></li>
+  <li>
+<a href="#yarn---resource-negotiation" id="markdown-toc-yarn---resource-negotiation">YARN - Resource Negotiation</a>    <ol>
+      <li>
+<a href="#stack" id="markdown-toc-stack">Stack</a>        <ol>
+          <li><a href="#cluster-storage-layer" id="markdown-toc-cluster-storage-layer">Cluster Storage Layer</a></li>
+          <li><a href="#cluster-compute-layer" id="markdown-toc-cluster-compute-layer">Cluster Compute Layer</a></li>
+          <li><a href="#yarn-applications" id="markdown-toc-yarn-applications">YARN Applications</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#working-1" id="markdown-toc-working-1">Working</a>        <ol>
+          <li><a href="#running-a-job" id="markdown-toc-running-a-job">Running a job</a></li>
+          <li><a href="#scheduling-options" id="markdown-toc-scheduling-options">Scheduling Options</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#mesos---resource-negotiation" id="markdown-toc-mesos---resource-negotiation">Mesos - Resource Negotiation</a>    <ol>
+      <li><a href="#how-does-mesos-differ-from-yarn" id="markdown-toc-how-does-mesos-differ-from-yarn">How does Mesos differ from YARN?</a></li>
+      <li><a href="#mesos-and-yarn-together" id="markdown-toc-mesos-and-yarn-together">Mesos and YARN together</a></li>
+    </ol>
+  </li>
+  <li><a href="#apache-tez" id="markdown-toc-apache-tez">Apache Tez</a></li>
+  <li>
+<a href="#zookeeper-1" id="markdown-toc-zookeeper-1">ZooKeeper</a>    <ol>
+      <li>
+<a href="#operations-requirement-in-a-distributed-system" id="markdown-toc-operations-requirement-in-a-distributed-system">Operations requirement in a distributed system</a>        <ol>
+          <li><a href="#single-master" id="markdown-toc-single-master">Single Master</a></li>
+          <li><a href="#crash-detection---ephemeral-data" id="markdown-toc-crash-detection---ephemeral-data">Crash Detection - Ephemeral data</a></li>
+          <li><a href="#group-management" id="markdown-toc-group-management">Group Management</a></li>
+          <li><a href="#metadata" id="markdown-toc-metadata">Metadata</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#zookeeper---generic-solutions-to-operations" id="markdown-toc-zookeeper---generic-solutions-to-operations">Zookeeper - Generic solutions to operations</a>        <ol>
+          <li><a href="#generic-services" id="markdown-toc-generic-services">Generic Services</a></li>
+          <li><a href="#znodes" id="markdown-toc-znodes">ZNodes</a></li>
+          <li><a href="#znode-apis" id="markdown-toc-znode-apis">ZNode APIs</a></li>
+          <li><a href="#znode-notifications" id="markdown-toc-znode-notifications">ZNode Notifications</a></li>
+          <li><a href="#case---election-when-master-goes-down" id="markdown-toc-case---election-when-master-goes-down">Case - Election when master goes down</a></li>
+          <li><a href="#case---task-execution-upon-masterworker-crash" id="markdown-toc-case---task-execution-upon-masterworker-crash">Case - Task execution upon master/worker crash</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#architecture-3" id="markdown-toc-architecture-3">Architecture</a>        <ol>
+          <li><a href="#zookeeper-ensemble" id="markdown-toc-zookeeper-ensemble">Zookeeper Ensemble</a></li>
+          <li><a href="#zookeeper-quorum-level" id="markdown-toc-zookeeper-quorum-level">Zookeeper Quorum Level</a></li>
+          <li><a href="#zookeeper-brain-split" id="markdown-toc-zookeeper-brain-split">Zookeeper Brain Split</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#oozie" id="markdown-toc-oozie">Oozie</a>    <ol>
+      <li>
+<a href="#oozie-workflow---tasks-with-dependencies" id="markdown-toc-oozie-workflow---tasks-with-dependencies">Oozie Workflow - Tasks with dependencies</a>        <ol>
+          <li><a href="#setup-workflow" id="markdown-toc-setup-workflow">Setup Workflow</a></li>
+          <li>
+<a href="#run-workflow-in-masternode" id="markdown-toc-run-workflow-in-masternode">Run Workflow In MasterNode</a>            <ol>
+              <li><a href="#run-oozie-to-start-the-web-console" id="markdown-toc-run-oozie-to-start-the-web-console">Run Oozie to start the Web Console</a></li>
+              <li><a href="#access-oozie-readonly-web-console" id="markdown-toc-access-oozie-readonly-web-console">Access Oozie Readonly Web Console</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li><a href="#oozie-co-ordinators---schedule-workflow" id="markdown-toc-oozie-co-ordinators---schedule-workflow">Oozie Co-ordinators - Schedule Workflow</a></li>
+      <li><a href="#oozie-bundle---a-bundle-of-co-ordinators" id="markdown-toc-oozie-bundle---a-bundle-of-co-ordinators">Oozie Bundle - A bundle of co-ordinators</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#apache-zeppelin" id="markdown-toc-apache-zeppelin">Apache Zeppelin</a>    <ol>
+      <li><a href="#zeppelin-spark-integration---making-spark-feel-like-data-science-tool" id="markdown-toc-zeppelin-spark-integration---making-spark-feel-like-data-science-tool">Zeppelin Spark Integration - Making Spark feel like data science tool</a></li>
+      <li><a href="#zeppelin-interpreters---plugin-to-integrate-with-zeppelin" id="markdown-toc-zeppelin-interpreters---plugin-to-integrate-with-zeppelin">Zeppelin Interpreters - Plugin to integrate with Zeppelin</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#hue-hadoop-user-experience" id="markdown-toc-hue-hadoop-user-experience">Hue (Hadoop User Experience)</a>    <ol>
+      <li><a href="#top-hadoop-distributions" id="markdown-toc-top-hadoop-distributions">Top Hadoop Distributions</a></li>
+      <li><a href="#hue-provides" id="markdown-toc-hue-provides">Hue Provides</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#kafka---streaming-data-into-cluster" id="markdown-toc-kafka---streaming-data-into-cluster">Kafka - Streaming data into cluster</a>    <ol>
+      <li><a href="#the-publishsubscribe-system" id="markdown-toc-the-publishsubscribe-system">The Publish/Subscribe system</a></li>
+      <li><a href="#kafka-architecture" id="markdown-toc-kafka-architecture">Kafka Architecture</a></li>
+      <li><a href="#kafka-scaling" id="markdown-toc-kafka-scaling">Kafka Scaling</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#apache-flume---streaming-data-into-cluster" id="markdown-toc-apache-flume---streaming-data-into-cluster">Apache Flume - Streaming data into cluster</a>    <ol>
+      <li>
+<a href="#architecture-4" id="markdown-toc-architecture-4">Architecture</a>        <ol>
+          <li><a href="#source" id="markdown-toc-source">Source</a></li>
+          <li><a href="#channel" id="markdown-toc-channel">Channel</a></li>
+          <li><a href="#sink" id="markdown-toc-sink">Sink</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#built-in-sources-and-sinks" id="markdown-toc-built-in-sources-and-sinks">Built-in Sources and Sinks</a>        <ol>
+          <li><a href="#sources" id="markdown-toc-sources">Sources</a></li>
+          <li><a href="#sink-1" id="markdown-toc-sink-1">Sink</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#multitier-flume-agents---avro" id="markdown-toc-multitier-flume-agents---avro">Multitier Flume Agents - Avro</a>        <ol>
+          <li><a href="#tiers" id="markdown-toc-tiers">Tiers</a></li>
+          <li><a href="#flumeagent-block-per-tier" id="markdown-toc-flumeagent-block-per-tier">FlumeAgent block per tier</a></li>
+          <li><a href="#multitier-advantanges" id="markdown-toc-multitier-advantanges">Multitier Advantanges</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#spark-steaming" id="markdown-toc-spark-steaming">Spark Steaming</a>    <ol>
+      <li>
+<a href="#architecture-5" id="markdown-toc-architecture-5">Architecture</a>        <ol>
+          <li><a href="#micro-batching" id="markdown-toc-micro-batching">Micro-batching</a></li>
+          <li><a href="#distributed-micro-batching" id="markdown-toc-distributed-micro-batching">Distributed Micro-batching</a></li>
+          <li>
+<a href="#dstream-discretized-streams" id="markdown-toc-dstream-discretized-streams">DStream (Discretized Streams)</a>            <ol>
+              <li><a href="#spark-dstream-vs-spark-batch-processing" id="markdown-toc-spark-dstream-vs-spark-batch-processing">Spark DStream vs Spark Batch Processing</a></li>
+              <li><a href="#transformations-on-dstreams" id="markdown-toc-transformations-on-dstreams">Transformations on DStreams</a></li>
+            </ol>
+          </li>
+          <li>
+<a href="#dstream---stateful-data-using-sliding-window-transfomations" id="markdown-toc-dstream---stateful-data-using-sliding-window-transfomations">DStream - Stateful data using sliding window transfomations</a>            <ol>
+              <li><a href="#sliding-window" id="markdown-toc-sliding-window">Sliding Window</a></li>
+              <li><a href="#sliding-window-example" id="markdown-toc-sliding-window-example">Sliding Window Example</a></li>
+              <li><a href="#sliding-window-code" id="markdown-toc-sliding-window-code">Sliding Window Code</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>
+<a href="#structured-streaming" id="markdown-toc-structured-streaming">Structured Streaming</a>        <ol>
+          <li><a href="#advantages" id="markdown-toc-advantages">Advantages</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><a href="#resources" id="markdown-toc-resources">Resources</a></li>
+</ol>
+
+</nav>
+
+<h1 id="apache-hadoop-ecosystem">Apache Hadoop Ecosystem</h1>
+
+<p>Apache <strong>Hadoop</strong> is an open source  software platform for <strong><em>distributed storage</em></strong> and <strong><em>distributed processing</em></strong> of  <strong><em>very large</em></strong> data sets on computer <strong><em>clusters</em></strong> built from <strong><em>commodity hardware</em></strong>.</p>
+
+<p><img src="/assets/images/bigdata/HadoopEcosystem.png" alt="HadoopEcosystem"></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Layer</th>
+      <th>Term</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">H1</td>
+      <td>HDFS</td>
+      <td>Hadoop Distrubuted File System (HDFS) is a fault tolerant, distributed file system.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H1</td>
+      <td>HDFS Providers</td>
+      <td>HDFS is a file system that is implemented by several providers like Apache, HortonWorks, CloudEra</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H2</td>
+      <td>YARN</td>
+      <td>YARN is a resource negotiator \(-\) Yet Another Resource Negotiator (YARN), manages resources (nodes) on the computing cluster. Resource Negotiation \(-\) What nodes are available? What nodes are not available? What gets to run where?</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H2</td>
+      <td>Mesos</td>
+      <td>Mesos is also a resource negotiator. Alternative to YARN. Solves save problems in different ways. It can work with YARN as well.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H3</td>
+      <td>MapReduce</td>
+      <td>A versative programming model to process data across HDFS cluster. A mapper transforms data. A reducer aggregates data.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H3</td>
+      <td>TEZ</td>
+      <td>More optimal than MapReduce.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H3</td>
+      <td>Spark</td>
+      <td>Works on top of YARN/Mesos. Spark scripts are written using Scala/Python/Java. Efficient and reliable to process data across Hadoop cluster. Handles streaming data in realtime. Supports machine learning libraries.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H4</td>
+      <td>Pig</td>
+      <td>Works on top of MapRedue. A high level scripting language with some similarities with SQL.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H4</td>
+      <td>Hive</td>
+      <td>Works on top of MapRedue. A high level scripting language very similar to SQL.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H5</td>
+      <td>Apache Ambari</td>
+      <td>Gives the total overview of cluster. Views provide resource utilization, execute queries, import databases etc.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V1</td>
+      <td>Apache HBase</td>
+      <td>A NoSQL database provding <em>columnar</em> datastore that is very fast. Performant on a very large transaction base. Can be used to expose data (transfomed by Spark/MapReduce) to be consumed by other systems (like RDBMS)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V2</td>
+      <td>Apache Storm</td>
+      <td>Process streaming data in real time. A streaming machine learning model can work with Apache Storm.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V3</td>
+      <td>Oozie</td>
+      <td>Way of scheduling jobs on Hadoop cluster.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V4</td>
+      <td>Zookeper</td>
+      <td>Keep track of shared states that many applications can use.  (Eg: Is the node up? Who is the master?)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V5</td>
+      <td>Data Ingestion</td>
+      <td>Getting data from other sources into HDFS system.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V5.1</td>
+      <td>Sqoop</td>
+      <td>
+<strong>Sq</strong>l-Had<strong>oop</strong> is a data ingestion tool for RDBMS. Acts as a connector between HDFS and legacy databases.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V5.2</td>
+      <td>Flume</td>
+      <td>A data ingestion that transport weblogs at a large scale to cluster in realtime for Spark/Storm.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V5.2</td>
+      <td>Kafka</td>
+      <td>A generic data ingestion version of Flume. Collect data of any type from PCs, webservers.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V6</td>
+      <td>External Data</td>
+      <td>Data stored in other places, other than Hadoop cluster.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V6.1</td>
+      <td>MySQL</td>
+      <td>Any SQL database. Import/Export data from SQL database to Hadoop using Sqoop.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V6.2</td>
+      <td>Cassandra / MongoDB</td>
+      <td>Alternative to HBase. Columnar database for exposing data for realtime usage. A database layer like this is required to reside between the realtime application and Hadoop cluster.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V7</td>
+      <td>Query Engines</td>
+      <td>Alternative to Hive. Interactively enter (SQL) queries.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V7.1</td>
+      <td>Apache Drill</td>
+      <td>Query Engine that can make SQL queries work across a wide range of NoSQL databases.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V7.2</td>
+      <td>Hue</td>
+      <td>For CloudEra (Another Hadoop stack provider) this takes the role of Ambari.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V7.3</td>
+      <td>Apache Phoenix</td>
+      <td>Similar but more advaced than Apache Drill.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="hdfs">HDFS</h1>
+
+<p>Hadoop Distrubuted File System (HDFS) is a fault tolerant, distributed file system. There are competing providers of Hadoop statcks like HortonWorks, CloudEra, MapR.</p>
+
+<ul>
+  <li>BigData is stored in a distributed and reliable manner. Apps can access the BigData quickly and reliably</li>
+  <li>BigData (large files like logs) can be broken into chunks called  <strong>blocks</strong>  (128MB per block by default) and distributed.</li>
+  <li>
+<strong>High Availability:</strong> Multiple copies of each block are stored in different commodity (regular) computers.</li>
+  <li>Blocks can be processed in parallel.  Efficiency is improved by trying to keep the computer processing a block, physically closer to the block.</li>
+</ul>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>HDFS consists of a single <strong>NameNode</strong> and multiple <strong>DataNode</strong>s</p>
+
+<p><img src="/assets/images/bigdata/HDFS.png" alt="HDFS"></p>
+
+<h3 id="namenode">NameNode</h3>
+
+<ul>
+  <li>Keeps track of where each block and its relica recides.</li>
+  <li>Keeps track of what is on all DataNodes.</li>
+  <li>At any given point of time all clients should be talking to the same <strong>NameNode</strong>
+</li>
+</ul>
+
+<h3 id="datanode">DataNode</h3>
+
+<ul>
+  <li>The client app queries the NameNode to figure out which DataNode(s) to contact for data.</li>
+</ul>
+
+<h3 id="working-reading-a-file">Working: Reading a file</h3>
+
+<ul>
+  <li>Client queries NameNode about the file it wishes to read</li>
+  <li>NameNode tells about the (DataNode, blocks) to contact.</li>
+  <li>The above data is provided by considering which blocks shall be most efficient based on the client. Note that the very same block could be replicated in different physical locations.</li>
+</ul>
+
+<h3 id="working-writing-a-file">Working: Writing a file</h3>
+
+<ul>
+  <li>Client tells its intention to write with the NameNode</li>
+  <li>The NameNode provies a handle using which the client writes data on a single DataNode.</li>
+  <li>The DataNodes talk to each other $$-$$ Divides into blocks. Distributes the data in a replicated manner.</li>
+  <li>Acknowlegement that all data/replication is successfully stored reaches the NameNode</li>
+  <li>The NameNode now creates a new entry.</li>
+</ul>
+
+<h2 id="what-happens-if-the-namenode-fails">What happens if the NameNode fails?</h2>
+
+<ul>
+  <li>
+<strong>Secondary NameNode:</strong> There is only one NameNode - The data of the NameNode could be consistently backed up.</li>
+  <li>
+<strong>HDFS NameNode Federation:</strong> Different namenodes for different volumes which are backedup at regular intervals. Reduce the extent of restoration damage upon failure.</li>
+  <li>
+<strong>HDFS High Availability:</strong> Hot standby NameNode with shared edit log. ZooKeeper knows which NameNode is primary.</li>
+</ul>
+
+<h2 id="how-to-interface-with-hdfs">How to interface with HDFS</h2>
+
+<p>HDFS is like a giant hard drive.</p>
+
+<ul>
+  <li>Ambari</li>
+  <li>CLI</li>
+  <li>HTTP / HDFS Proxies</li>
+  <li>Java Interface</li>
+  <li>NFS (Network File System  $$-$$ Mounting a remote file system on a server) Gateway. After mouting HDFS will just look like another directory structure on the current computer.</li>
+</ul>
+
+<h1 id="apache-spark">Apache Spark</h1>
+
+<p>Apache Spark gives flexibility to write Java/Scala/Python code to perform complex transformation and analysis of data.</p>
+
+<h2 id="what-sets-spark-apart">What sets Spark apart?</h2>
+
+<ul>
+  <li>Scalable</li>
+  <li>Fast - A memory based solution (as opposed to disk based). Tries to maintain as much as possible in RAM.</li>
+  <li>Spark/Tez use <strong>directed acyclic graphs</strong> and outperform MapReduce.</li>
+  <li>Libraries that are built on top of Spark that enables the following
+    <ul>
+      <li>Machine learning</li>
+      <li>Data mining</li>
+      <li>Visualization</li>
+      <li>Streaming data</li>
+    </ul>
+  </li>
+  <li>Does not require thinking in terms of mappers and reducers.</li>
+</ul>
+
+<h2 id="components-of-spark">Components of Spark</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Componenet</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Spark Streaming</td>
+      <td>Work on streamed data, realtime instead of batch processing.</td>
+    </tr>
+    <tr>
+      <td>Spark SQL</td>
+      <td>SQL interface to Spark. Optimizations namely datasets is focused in this direction in Spark 2.0</td>
+    </tr>
+    <tr>
+      <td>MLLib</td>
+      <td>Spark for Machine Learning problems.</td>
+    </tr>
+    <tr>
+      <td>GraphX</td>
+      <td>Analyze the properties of a graph - Like social networking connection graph.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="hive">Hive</h1>
+
+<p>Hive makes Hadoop cluster look like a traditional database by executing SQL.  (Hadoop cluster can also be integrated with an existing MySQL database.)</p>
+
+<p><img src="/assets/images/bigdata/Hive.png" alt="alt"></p>
+
+<h2 id="advantanges-of-hive">Advantanges of Hive</h2>
+
+<ul>
+  <li>Hive uses HiveQL which is very similar to SQL.</li>
+  <li>Hive converts HiveQL to MapReduce or Tez and executes them across the cluster abstracting the complexity.</li>
+  <li>Easy OLAP (Online Analytics Programming) - Lot easier than MapReduce</li>
+  <li>Hive can be talked to from a service.</li>
+  <li>Hive exposes JDBC/ODBC drivers and looks like any other database.</li>
+  <li>Hive over Tez is fast. (Faster than Hive over MapReduce.)</li>
+</ul>
+
+<h2 id="disadvantanges">Disadvantanges</h2>
+
+<ul>
+  <li>Hight Latency: Hive converts HiveQL to MapReduce/Tez which is not suitable for realtime. OLTP (Online Transaction Processing)</li>
+  <li>Stores data in a de-normalized way?</li>
+  <li>No transactions - Record level updates/inserts/deletes.</li>
+</ul>
+
+<h2 id="hiveql">HiveQL</h2>
+
+<ul>
+  <li>Very similar to SQL</li>
+  <li>Create table from unstructured text file</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">User_Movie</span> <span class="p">(</span>
+    <span class="n">UserId</span>  <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">MovieId</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">Rating</span>  <span class="nb">INT</span><span class="p">,</span>
+    <span class="nb">Time</span>    <span class="nb">INT</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span> <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">'</span><span class="se">\t</span><span class="s1">'</span>
+<span class="n">STORED</span> <span class="k">AS</span> <span class="n">TEXTFILE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+<strong>Views:</strong> Stores result of SQL that can be used as a table.</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">TopMovies</span> <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="n">MovieId</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">MovieId</span><span class="p">)</span> <span class="k">as</span> <span class="n">RatingCount</span>
+<span class="k">FROM</span> <span class="n">User_Movie</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">MovieId</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">RatingCount</span> <span class="k">DESC</span>
+
+<span class="k">SELECT</span> <span class="n">Title</span><span class="p">,</span> <span class="n">RatingCount</span>
+<span class="k">FROM</span> <span class="n">Movie</span><span class="p">,</span> <span class="n">TopMovies</span>
+<span class="k">WHERE</span> <span class="n">Movie</span><span class="p">.</span><span class="n">MovieId</span> <span class="o">=</span> <span class="n">TopMovies</span><span class="p">.</span><span class="n">MovieId</span>
+</code></pre></div></div>
+
+<h2 id="schema-on-read">Schema On Read</h2>
+
+<h3 id="traditional-database-schema-on-write">Traditional Database: Schema on Write</h3>
+
+<ul>
+  <li>The schema is defined before loading the data.</li>
+</ul>
+
+<h3 id="hive-schema-on-read">Hive: Schema on Read</h3>
+
+<ul>
+  <li>Unstructured data is stored in a text file (Delimited by tab/comma)</li>
+  <li>Hive takes unstructured data and applies schema to it as it is being <strong>read</strong>.</li>
+  <li>Hive has a metadata store that has info to interpret the raw data.</li>
+  <li>HCatalogRead can expose this metadata (SchemaOnRead) to other services as well.</li>
+</ul>
+
+<h2 id="managed-vs-external-table">Managed Vs External Table</h2>
+
+<p>By default, the table created above is a <em>Managed Table</em> – A table managed by Hive. This will move (as opposed to copy) the table from a distributed cluster to where Hive expects. If a table is dropped, it is permanently removed.</p>
+
+<p>External tables created as follows do not alter the actual data. Only the metadata attached to the data is removed when table is dropped.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="n">EXITS</span> <span class="n">User_Movie</span> <span class="p">(</span>
+    <span class="n">UserId</span>  <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">MovieId</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">Rating</span>  <span class="nb">INT</span><span class="p">,</span>
+    <span class="nb">Time</span>    <span class="nb">INT</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span> <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">'</span><span class="se">\t</span><span class="s1">'</span>
+<span class="k">LOCATION</span> <span class="s1">'/home/rbseshad/big-data/ml-100k/u.data'</span>
+</code></pre></div></div>
+
+<h2 id="partitioning">Partitioning</h2>
+
+<p>A huge data set can be stored in partitioned sub-directories. Hive is more performant if the dataset resides only on certain partitions.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Customer</span> <span class="p">(</span>
+    <span class="n">Name</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">Address</span> <span class="n">STRUCT</span> <span class="o">&lt;</span><span class="n">street</span><span class="p">:</span><span class="n">STRING</span><span class="p">,</span> <span class="n">city</span><span class="p">:</span><span class="n">STRING</span><span class="p">,</span> <span class="k">state</span><span class="p">:</span><span class="n">STRING</span><span class="p">,</span> <span class="n">pincode</span><span class="p">:</span><span class="nb">INT</span><span class="o">&gt;</span>
+    <span class="p">...</span>
+<span class="p">)</span>
+<span class="n">PARTITIONED</span> <span class="k">BY</span> <span class="p">(</span><span class="n">Country</span> <span class="n">STRING</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Each country in the above example could be in its own subdirectory</p>
+
+<ul>
+  <li>/customer/country=IN/</li>
+  <li>/customer/country=JP/</li>
+  <li>/customer/country=US/</li>
+</ul>
+
+<h2 id="ways-to-use-hive">Ways to use Hive</h2>
+
+<ol>
+  <li>Command</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive <span class="nt">-f</span> &lt;A .hql file&gt;
+</code></pre></div></div>
+
+<ol>
+  <li>Ambari &gt; Hue</li>
+  <li>JDBC/ODBC server</li>
+  <li>Via a <em>Thrift service</em>. Used to talk to Web clients, for example.</li>
+  <li>Via Oozie.</li>
+</ol>
+
+<h1 id="integrating-hadoop-and-mysql">Integrating Hadoop and MySQL</h1>
+
+<p><strong>Sqoop:</strong> Import data to or from Hadoop cluster to relational database like MySQL.</p>
+
+<h2 id="mysql">MySQL</h2>
+
+<ul>
+  <li>Popular and free relational database</li>
+  <li>Molithic: Resides on a single (typically huge) hard drive.</li>
+</ul>
+
+<h2 id="sqoop-to-sql">Sqoop to SQL</h2>
+
+<h2 id="sql-to-sqoop">SQL to Sqoop</h2>
+
+<h1 id="nosql">NoSQL</h1>
+
+<p>NoSQL stands for <strong>Not only SQL</strong>, Non relational dabases.</p>
+
+<blockquote>
+  <p>Large number of accesses to planet size data $$-$$ Answer simple queries at high transactional rate on massive data sets.</p>
+</blockquote>
+
+<p>Large amount of data (like google searches) keep growing and need to be fit <strong>horizontally scalable</strong> (Fit by adding more hardware)</p>
+
+<h2 id="where-rdbms-fits">Where RDBMS fits?</h2>
+
+<ul>
+  <li>RDBMS gives the power of <strong>rich analytical query language</strong> like SQL (Structured Query Language)</li>
+  <li>RDBMS is best suited for <strong>analytical work</strong>.</li>
+  <li>Scale of the data is not huge and does not keep growing horizontally. Eg: Company employee database $$-$$ even when there are lakhs of employees.</li>
+</ul>
+
+<h2 id="where-nosql-fits">Where NoSQL fits?</h2>
+
+<ul>
+  <li>Scale is huge and shall grow horizontally
+    <ul>
+      <li>Huge data can be scaled only by partitioning the data and storing on multiple nodes.</li>
+    </ul>
+  </li>
+  <li>Typically the same query is raised over and over again (at a large scale)
+    <ul>
+      <li>What movies should be recommended for this customer?</li>
+      <li>What pages has this customer visited?</li>
+      <li>What has this customer ordered in the past?</li>
+    </ul>
+  </li>
+  <li>
+<strong>KeyValue Datastore</strong>  is enough: A simple get/put API of key-value pairs address the needs (Key = employee Id, value = JSON object with details)</li>
+</ul>
+
+<h2 id="best-of-both-worlds">Best of both worlds!</h2>
+
+<p>It is possible!</p>
+
+<ul>
+  <li>Hive on top of HDFS cluster is exposed to answer the more analytical queries.</li>
+  <li>A NoSQL database on top of HDFS shall answer the more high tractional, repetitive, simple queries.</li>
+</ul>
+
+<p><img src="/assets/images/bigdata/BestOfBoth.png" alt="BestOfBoth"></p>
+
+<p>Consider a case of providing product recomendation to customer</p>
+
+<ul>
+  <li>A high transactional website (like google) can act as <strong>datasource</strong> feeding customer searches</li>
+  <li>A streaming tech like (Spark Flume) that sits on HDFS can listen to high transactional real time data</li>
+  <li>
+<strong>Spark</strong> can then transform the data into a format (denormalized $$-$$ join of several tables into a JSON object) that fits the requirement of the view</li>
+  <li>Thus transformed data is pushed by Spark into a <strong>NoSQL database</strong> like MongoDB</li>
+  <li>Front end <strong>webserver</strong>s will now display the recommendations to the Browser.</li>
+</ul>
+
+<h1 id="cap-theorem">CAP Theorem</h1>
+
+<blockquote>
+  <p>You can only have <em>two</em> out of CAP (Consistency, Availability and Partition tolerance)</p>
+</blockquote>
+
+<ul>
+  <li>
+<strong>Consistency:</strong>  Not everyone sees the change immediately $$-$$ there is a lag. Example: Facebook post may not be visible to few people while few others might be able to see it.</li>
+  <li>
+<strong>Availability:</strong> Always up and running.</li>
+  <li>
+<strong>Parition Tolerance:</strong> Easily split and distributed across cluster.</li>
+</ul>
+
+<p><img src="/assets/images/bigdata/CAP.png" alt="alt"></p>
+
+<h2 id="the-difference-is-in-the-choices-made">The difference is in the choices made</h2>
+
+<h3 id="traditional-database">Traditional Database</h3>
+
+<ul>
+  <li>Traditional databases need the at most consistency and availability</li>
+  <li>They compromize on the partition tolerance</li>
+</ul>
+
+<h3 id="hbase--mongodb">HBase &amp; MongoDB</h3>
+
+<ul>
+  <li>HBase and MongoDB rely on master and zookeeper which are central to availability. A failure of these shall affect availability.</li>
+  <li>HBase do avoid <em>single point of failure</em> by running mulitple master nodes. However, a failure of all the masters (though less probable) shall bring down the entire DB.</li>
+  <li>Essentially, HBase compromises on availability for consistency and partition tolerance.</li>
+</ul>
+
+<h3 id="cassandra">Cassandra</h3>
+
+<ul>
+  <li>Parition Tolerance is non negotiable in a Hadoop cluster.</li>
+  <li>Cassandra choses Availability over Consistency!
+    <ul>
+      <li>It takes some time (few seconds) for the change to be propagated throught the cluster and all nodes have the same content.</li>
+      <li>Cassandra provides <strong>enventual consistency</strong> (as opposed to immediate consistency)</li>
+    </ul>
+  </li>
+  <li>
+<strong>Tunable Consistency:</strong> Consistency requirements are tunable by compromising on availability.</li>
+</ul>
+
+<h1 id="apache-hbase">Apache HBase</h1>
+
+<p>A non-relational, scalable, columnar, noSQL database built on top of HDFS.</p>
+
+<ul>
+  <li>HBase can be used to vend a massive scale dataset stored on HDFS .</li>
+  <li>Does not have query language, but has API to perform CRUD operations.</li>
+  <li>HBase is based on Bigtable $$-$$ A paper published by google.</li>
+</ul>
+
+<h2 id="architecture-1">Architecture</h2>
+
+<p><img src="/assets/images/bigdata/HBase.png" alt="alt"></p>
+
+<h3 id="region-server">Region Server</h3>
+
+<p>Region here does not refer to geographical regions $$-$$ It is about the ranges of keys (Pretty much like sharding).</p>
+
+<ul>
+  <li>HBase distributes data across a fleat of Region servers. A region server inturn talks to distributed HDFS.</li>
+  <li>A RegionServer can automatically adapt with growing data by repartitioning</li>
+  <li>It can adpat to addition/removal of RegionServers</li>
+</ul>
+
+<h3 id="hmaster">HMaster</h3>
+
+<p>Mastermind, knows where everything is</p>
+
+<ul>
+  <li>
+    <p>A web app does not talk to HMaster directly. It talks to RegionServer.</p>
+  </li>
+  <li>
+    <p>A master keeps track of the following</p>
+
+    <ul>
+      <li>Schema of the data (metadata)</li>
+      <li>Where data is stored</li>
+      <li>How data is partitioned.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="zookeeper">Zookeeper</h3>
+
+<p>A watcher of the watcher (Zookeeper $$-$$ An answer to who watches the watcher!)</p>
+
+<ul>
+  <li>Keeps track of who is the current master.</li>
+  <li>If master goes down, it knows who the next master is and tell everyone about it.</li>
+</ul>
+
+<h2 id="data-model">Data Model</h2>
+
+<ul>
+  <li>A record (row in RDBMS) is identified by an unique <strong>key</strong> $$-$$ <em>primary key</em>
+</li>
+  <li>A record typically has a small number of feature families (column faimily)
+    <ul>
+      <li>A feature family can have subset of features</li>
+      <li>A record can have many features or just a few (Thus not storing empy columns/features)</li>
+    </ul>
+  </li>
+  <li>A cell is an intersection of record and feature. A cell can have many timestamp versions.</li>
+</ul>
+
+<h3 id="data-model-example-weblinkdetail">Data Model Example: WebLinkDetail</h3>
+
+<h4 id="key">Key</h4>
+
+<p>Each record here has a key $$-$$ ‘website domain’. That is for www.google.com domain the key shall be <code class="language-plaintext highlighter-rouge">com.google.www</code> (Stored as per hierarchy).</p>
+
+<h4 id="contents-column-family">Contents Column Family</h4>
+
+<ul>
+  <li>A column family storing multiple versions of the content</li>
+</ul>
+
+<h4 id="anchor-column-family">Anchor Column Family</h4>
+
+<ul>
+  <li>Format : <code class="language-plaintext highlighter-rouge">&lt;Column family name&gt;: &lt;Column name&gt;</code>
+</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">Anchor:cnsi.com &gt; CNN</code>
+    <ul>
+      <li>Column family = <code class="language-plaintext highlighter-rouge">Anchor</code>
+</li>
+      <li>Column = <code class="language-plaintext highlighter-rouge">cnsi.com</code>
+</li>
+      <li>Cell = <code class="language-plaintext highlighter-rouge">CNN</code>
+</li>
+      <li>This means the website <code class="language-plaintext highlighter-rouge">com.cnsi</code> has links to <code class="language-plaintext highlighter-rouge">www.google.com</code> via anchor text <code class="language-plaintext highlighter-rouge">CNN</code>
+</li>
+    </ul>
+  </li>
+  <li>
+<code class="language-plaintext highlighter-rouge">Anchor:my.look.ca &gt; click_here</code>
+    <ul>
+      <li>This means the website <code class="language-plaintext highlighter-rouge">ca.look.my</code> has links to <code class="language-plaintext highlighter-rouge">www.google.com</code> via anchor text <code class="language-plaintext highlighter-rouge">click_here</code>
+</li>
+    </ul>
+  </li>
+</ul>
+
+<p>In this example we find that a column family <code class="language-plaintext highlighter-rouge">Anchor</code> can have various columns (web site name) with cell being the anchor text.</p>
+
+<h2 id="access-hbase">Access HBase</h2>
+
+<ul>
+  <li>Java APIs and wrappers for Python, Scala</li>
+  <li>Connectors to Spark, Hive, Pig</li>
+  <li>REST service that runs on top of HBase</li>
+  <li>Protocol buffers like Thrift/Avro (More performat than REST)</li>
+</ul>
+
+<h1 id="cassandra-1">Cassandra</h1>
+
+<p>Cassandra is a distributed non-relational database. Highlight $$-$$ High availability. No master node. No single point of failure.</p>
+
+<ul>
+  <li>Different Architecture than HBase $$-$$ No master node</li>
+  <li>Similar Model as HBase</li>
+  <li>Unlike Hbase, Cassandra has a query language $$-$$ CQL (Cassandra Query Language)</li>
+  <li>Gets its name from a greek mythology which means *“Tells the future”</li>
+</ul>
+
+<h2 id="cap">CAP</h2>
+
+<p>Cassandra compromises on Consistency for Availability and Paritiion Tolerance.</p>
+
+<h2 id="cassandra-achives-high-availability">Cassandra achives high availability</h2>
+
+<p><img src="/assets/images/bigdata/Cassandra.png" alt="Cassandra"></p>
+
+<h3 id="ring-architecture">Ring Architecture</h3>
+
+<ul>
+  <li>No master nodes that keep track of which nodes serve what data.</li>
+  <li>**Gossip Protocol: ** Every node of the cluster communicates with each other every second to keep track of who is maintaining what data.</li>
+  <li>Every node of the cluster
+    <ul>
+      <li>Runs the same software</li>
+      <li>Performs the same operations</li>
+    </ul>
+  </li>
+  <li>Client can talk to any node to get the data</li>
+</ul>
+
+<h3 id="working">Working</h3>
+
+<ul>
+  <li>Consider a ring of 6 nodes.</li>
+  <li>Each nodes maintains ranges of keys.  The first node takes <code class="language-plaintext highlighter-rouge">1-1million</code> the second <code class="language-plaintext highlighter-rouge">1million - 2million</code>  and so on. Essentailly keys are distributed in the round robin fashion.</li>
+  <li>A new data, based on key goes to a primary node  and few backup nodes as well.</li>
+  <li>Nodes talk to each other to figure out
+    <ul>
+      <li>which nodes are up and which are down</li>
+      <li>which nodes has what range</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="tuning-consistency">Tuning Consistency</h3>
+
+<ul>
+  <li>The value for a given key can be accepted only if the results from <code class="language-plaintext highlighter-rouge">n</code> nodes match. If not, the operation waits until <code class="language-plaintext highlighter-rouge">n</code> nodes are consistent.</li>
+</ul>
+
+<h2 id="connecting-cassanda-rings">Connecting Cassanda Rings</h2>
+
+<p>Cassandra can manage replication between racks of Cassandra rings and/or Hadoop cluster.</p>
+
+<p>For example</p>
+
+<ul>
+  <li>We could connect a Cassandra <code class="language-plaintext highlighter-rouge">RingA</code> to Cassandra <code class="language-plaintext highlighter-rouge">RingB</code> which inturn distrubutes data on to Hadoop cluster</li>
+  <li>Data from <code class="language-plaintext highlighter-rouge">RingA</code> is replicated on to <code class="language-plaintext highlighter-rouge">RingB</code> and from there to Hadoop cluster</li>
+  <li>Clients like WebServer with heavy transactional requests connect to <code class="language-plaintext highlighter-rouge">RingA</code>
+</li>
+  <li>Clients like Hive which perform more <em>batch oriented big analytics</em> requests connect to <code class="language-plaintext highlighter-rouge">RingB</code>
+</li>
+</ul>
+
+<h2 id="cql">CQL</h2>
+
+<ul>
+  <li>CQL is just a fancy API $$-$$ Looks like SQL. Ment for get/put of key/value pairs.</li>
+  <li>Has no JOIN (big limitation)</li>
+  <li>All queries must have a primary key</li>
+</ul>
+
+<h2 id="spark--cassandra">Spark + Cassandra</h2>
+
+<p>DataStax offers a Spark-Cassandra connector.</p>
+
+<ul>
+  <li>Allows the read/write of Cassandra tables as Spark Dataframes.</li>
+  <li>Quries on DataFrame get translated into CQL queries in Cassandra</li>
+</ul>
+
+<h1 id="mongo-db">Mongo DB</h1>
+
+<p>Mongo DB gets its name as it can handle hu<strong>mongo</strong>us  data.</p>
+
+<ul>
+  <li>Uses a document based data model</li>
+  <li>Whats different? Any unstructured JSON document can be stored in MongoDB</li>
+  <li>No real schema is enfored. No primary key.</li>
+  <li>Can create index on any field.</li>
+</ul>
+
+<h2 id="cap-1">CAP</h2>
+
+<p>MongoDB compromises on Availability for Consistency and Paritiion Tolerance.</p>
+
+<h2 id="terminology">Terminology</h2>
+
+<ul>
+  <li>A MongoDB database contains <strong>Collections</strong> which inturn contains <strong>Documents</strong>
+</li>
+  <li>Documents cannot be moved between Collections belonging to <em>different</em> Databases</li>
+</ul>
+
+<h2 id="architecture-2">Architecture</h2>
+
+<ul>
+  <li>Single Master</li>
+  <li>Secondary maintain copies of primary.
+    <ul>
+      <li>As writes happen to the primary they get replicated to the secondary.</li>
+      <li>We could have multiple secondary datanodes in different data centers.</li>
+    </ul>
+  </li>
+  <li>Secondary elects primary if the primary goes down (in seconds).</li>
+</ul>
+
+<h1 id="query-nosql-data">Query NoSQL Data</h1>
+
+<p>Drill vs Phoenix Vs Presto</p>
+
+<h1 id="yarn---resource-negotiation">YARN - Resource Negotiation</h1>
+
+<p>Yet Another Resource Negotiator $$-$$ Manage resources of the cluster.</p>
+
+<ul>
+  <li>A component exclusively for managing resources on the cluster (Earlier, in Hadoop1.0 this was integrated into MapReduce)</li>
+  <li>YARN enabled development of MapReduce alternatives  $$-$$ Spark/Tez  $$-$$ Built on top of YARN.</li>
+  <li>Spark/Tez use <strong>DAG $$-$$ Directed Acyclic Graphs</strong> and outperform MapReduce significantly</li>
+</ul>
+
+<blockquote>
+  <p>Modular functionality Isolation $$-$$ The big performance advantange came as a result of separating resource negotiation from YARN.</p>
+</blockquote>
+
+<h2 id="stack">Stack</h2>
+
+<p>While HDFS manages the storage resource, YARN manages the compute resource.</p>
+
+<p><img src="/assets/images/bigdata/YARN.png" alt="YARN"></p>
+
+<h3 id="cluster-storage-layer">Cluster Storage Layer</h3>
+
+<p>HDFS is the cluster storage layer $$-$$ Spread out storage of big data, across nodes in cluster, by breaking up into blocks and replicating it.</p>
+
+<h3 id="cluster-compute-layer">Cluster Compute Layer</h3>
+
+<p>YARN is the cluster compute layer $$-$$ Split and execute computation (jobs/tasks) across cluster.</p>
+
+<p>YARN maintains <strong>data locality</strong> $$-$$ YARN tries to align data blocks on same physical nodes as much as possible to improve performance</p>
+
+<h3 id="yarn-applications">YARN Applications</h3>
+
+<p>Applications such as MapReduce, Tez and Spark run on top of YARN</p>
+
+<h2 id="working-1">Working</h2>
+
+<p><img src="/assets/images/bigdata/YARN_Working.png" alt="YARN_Working"></p>
+
+<h3 id="running-a-job">Running a job</h3>
+
+<ul>
+  <li>Client starts an application</li>
+  <li>A NodeManager daemon running on each physical node manages the node.</li>
+  <li>YARN will will contact the Master’s NodeManager to get the requisite Worker nodes ready to split and assign the tasks</li>
+  <li>YARN choses nodes, so that it minimizes data being pulled around in the network.</li>
+  <li>YARN optimizes both $$-$$ <strong>CPU cycles and data locality</strong>
+</li>
+</ul>
+
+<h3 id="scheduling-options">Scheduling Options</h3>
+
+<ul>
+  <li>FIFO $$-$$ Runs in first in first out. The job in the queue will have to wait from the previous to complete.</li>
+  <li>Capacity $$-$$ Run jobs from queue n parallel if there is capacity</li>
+  <li>Fair Schedulers $$-$$ Smaller jobs might run out of queue when big jobs are hogging.</li>
+</ul>
+
+<h1 id="mesos---resource-negotiation">Mesos - Resource Negotiation</h1>
+
+<p>A resource manager like YARN, more general $$-$$ A general container management system.</p>
+
+<h2 id="how-does-mesos-differ-from-yarn">How does Mesos differ from YARN?</h2>
+
+<p>YARN is restricted to distributing Hadoop tasks (MapReduce/Spark) with underlying HDFS file system.</p>
+
+<ul>
+  <li>YARN is <strong>monolithic</strong>  $$-$$ YARN makes the call. Decides where to run what task.</li>
+  <li>YARN is optimized for long analytical jobs.</li>
+</ul>
+
+<p>Mesos is general and manages resources across data center (not just for big stuff)</p>
+
+<ul>
+  <li>Mesos can allocate resources for webservers</li>
+  <li>Mesos can handle long and short lived processes $$-$$ Even run just small scripts</li>
+  <li>Mesos is not part of Hadoop ecosystem per se.</li>
+  <li>Mesos offers info on available resources back to the framework $$-$$ The framework makes the call.</li>
+</ul>
+
+<h2 id="mesos-and-yarn-together">Mesos and YARN together</h2>
+
+<p>YARN can talk to Mesos for mananging non-Hadoop computing resources.</p>
+
+<ul>
+  <li>
+<strong>Siloed</strong> A cluster of resources managed by Mesos and another managed by YARN.</li>
+  <li>
+<strong>Resource Sharing</strong> YARN and Mesos can be tied together using Myriad. This way, the resources managed by YARN can be used by Mesos if free.</li>
+</ul>
+
+<h1 id="apache-tez">Apache Tez</h1>
+
+<p>Accelerate jobs that run on Hadoop cluster $$-$$ A charging elephant.</p>
+
+<ul>
+  <li>Alternative to MapReduce.</li>
+  <li>Hive/Pig job can use Tez instead of MapReduce $$-$$ Hive uses Tez by default.</li>
+  <li>Ambari can be used configure what Tez/MapReduce uses underneath.</li>
+  <li>Constucts DAG (Directed Acyclic Graphs), similar to Spark for efficient processing of distributed Jobs/Tasks.</li>
+  <li>DAGs optimization $$-$$ Eleminates unnecessary steps/dependencies, run possible steps in parallel.</li>
+</ul>
+
+<h1 id="zookeeper-1">ZooKeeper</h1>
+
+<p>Keeps track of info that must be synchronized in a cluster.</p>
+
+<ul>
+  <li>When consistency is a primary concern (from CAP), synchronized info must be kept track of $$-$$ Enter Zookeper</li>
+  <li>Zookeeper solves the problem of reliable distributed coordination</li>
+  <li>Many deamons (including YARN) use Zookeper to store/access synchronized information</li>
+</ul>
+
+<p>Zookeeper as a service can be used to answer</p>
+
+<ul>
+  <li>Which node is the master?</li>
+  <li>What tasks are assigned to which workers?</li>
+  <li>When a worker fals, where to pick up from to redistribute.</li>
+  <li>Which workers are currently available?</li>
+</ul>
+
+<h2 id="operations-requirement-in-a-distributed-system">Operations requirement in a distributed system</h2>
+
+<h3 id="single-master">Single Master</h3>
+
+<ul>
+  <li>One node registers itself as master and holds the lock (throne)</li>
+  <li>Other nodes cannot become the master until the lock is released.</li>
+</ul>
+
+<h3 id="crash-detection---ephemeral-data">Crash Detection - Ephemeral data</h3>
+
+<ul>
+  <li>
+<strong>Ephemeral</strong> (read i-fhe-meh-ral) data means data that is short lived</li>
+  <li>Nodes are supposed to declare their availability by providing heart beat (ephmeral data). If a node fails to provide the data, it will be cosidered to have crashed</li>
+</ul>
+
+<h3 id="group-management">Group Management</h3>
+
+<ul>
+  <li>What workers are availabe in the pool</li>
+</ul>
+
+<h3 id="metadata">Metadata</h3>
+
+<ul>
+  <li>List of tasks and task assigment $$-$$ Who owns which task)</li>
+  <li>When master goes down or worker goes down the new node knows what to pick up.</li>
+</ul>
+
+<h2 id="zookeeper---generic-solutions-to-operations">Zookeeper - Generic solutions to operations</h2>
+
+<h3 id="generic-services">Generic Services</h3>
+
+<p>Zookeeper provides features like sychronized service, ephemeral data, notifications etc which can be used by a distributed system to achieve whatever it wants (Eg: Achieve a watcher of a watcher, watching the master OR watch the namenode in HDFS)</p>
+
+<h3 id="znodes">ZNodes</h3>
+
+<p><img src="/assets/images/bigdata/ZNode.png" alt="ZNode"></p>
+
+<ul>
+  <li>ZNodes are analogous to files in a hierarchical directory structure</li>
+  <li>ZNodes ensure synchronized access $$-$$ Avoid parallel overwrites</li>
+  <li>Zookeper provides Ephemeral and persistent ZNodes
+    <ul>
+      <li>
+<strong>Ephemeral</strong>  ZNodes $$-$$ Removed if heartbeat not recorded (Can be used to indicate node crash).</li>
+      <li>Persistent ZNodes $$-$$ Stays until explicitly removed (Can be used to store worker-task assignments)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="znode-apis">ZNode APIs</h3>
+
+<ul>
+  <li>APIs such as <code class="language-plaintext highlighter-rouge">create, delete, exists, getData, setData, getChildren</code> that operate on ZNode are provided</li>
+</ul>
+
+<h3 id="znode-notifications">ZNode Notifications</h3>
+
+<ul>
+  <li>Clients can subscribe for notifications on a ZNode</li>
+  <li>This is more efficient compared to client polling the status of ZNode</li>
+</ul>
+
+<h3 id="case---election-when-master-goes-down">Case - Election when master goes down</h3>
+
+<ul>
+  <li>A physical node has a ZNode entry and has registered itself as the master</li>
+  <li>Several other nodes have subscribed for notification in case the master goes down.</li>
+  <li>Current master crashes and hence for a timeout period there is no heartbeat recorded on the master ZNode</li>
+  <li>The master ZNode s removed and all the subscribers are notified by Zookeper</li>
+  <li>Only one of the competing nodes become the master and the new master ZNode is created</li>
+</ul>
+
+<h3 id="case---task-execution-upon-masterworker-crash">Case - Task execution upon master/worker crash</h3>
+
+<ul>
+  <li>The work assignment are written to persistant nodes</li>
+  <li>When worker/master goes down the new worker/master knows about the work assignment</li>
+</ul>
+
+<h2 id="architecture-3">Architecture</h2>
+
+<p>Any node in a distributed environment can make use of ZooKeeper services. Consider a Master-Worker setup of HBase that uses Zookeper to track current master.</p>
+
+<p><img src="/assets/images/bigdata/Zookeper.png" alt="Zookeper"></p>
+
+<h3 id="zookeeper-ensemble">Zookeeper Ensemble</h3>
+
+<p>Several ZooKeeper servers together as a cluster, replicating data form a <strong>Zookeeper Ensemble</strong> (Read On-som-bel)</p>
+
+<ul>
+  <li>ZooKeeper itself cannot itself be a single point of failure aswell $$-$$ Hence the ensemble.</li>
+  <li>The client should be aware of all the ZooKeeper servers and/or should configure LB to spread the load across the ensemble.</li>
+  <li>
+<strong>Consistency Level:</strong> ZooKeeper can be configured to ensure atleast ‘n’ replica servers  are updated before confirming write commit.</li>
+</ul>
+
+<h3 id="zookeeper-quorum-level">Zookeeper Quorum Level</h3>
+
+<p>The Zookeeper Quorum Level is the number of Zookeeper servers that must agree upon a value in-order for that to be sent to the client.</p>
+
+<p>If our ensemble has to tolerate 2 server failure then</p>
+
+<ul>
+  <li>Zookeeper Ensemble Count &gt;= 5</li>
+  <li>Zookeeper Quorum Level &gt;= 3</li>
+</ul>
+
+<h3 id="zookeeper-brain-split">Zookeeper Brain Split</h3>
+
+<ul>
+  <li>Consider Zookeeper Ensemble Count = 5 and Zookeeper Quorum Level = 2</li>
+  <li>Lets say 2 nodes in datacenter-A are unable to talk to 3 nodes in another datacenter-B (Brain Split)</li>
+  <li>Writes to datacenter-A will be replicated in datacenter-A and will succeed</li>
+  <li>Reads to datacenter-A and datacenter-B will also succeed even though the info is different.</li>
+</ul>
+
+<h1 id="oozie">Oozie</h1>
+
+<p>Oozie (Burmese name for ‘elephant keeper’ ) can schedule and execute workflows.</p>
+
+<h2 id="oozie-workflow---tasks-with-dependencies">Oozie Workflow - Tasks with dependencies</h2>
+
+<p>A Oozie Workflow is an XML <code class="language-plaintext highlighter-rouge">workflow.xml</code> made up of heterogenous actions (Hive tasks, Pig tasks, MapReduce tasks etc)  that have inter-dependencies.</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">workflow.xml</code> is a DAG (Directed Acyclic Graph) where a graph’s XML node/tag is an action</li>
+  <li>Actions that have no dependencies can run in parallel.</li>
+</ul>
+
+<p><img src="/assets/images/bigdata/OozieWorkflow.png" alt="OozieWorkflow"></p>
+
+<h3 id="setup-workflow">Setup Workflow</h3>
+
+<ul>
+  <li>Make sure each action (XML tag) works on its own.</li>
+  <li>Create directory in HDFS to place <code class="language-plaintext highlighter-rouge">workflow.xml </code> . The XML shall have actions and its dependencies configured.</li>
+  <li>Create a local file <code class="language-plaintext highlighter-rouge">job.properties</code> which shall have properties (key=value) referenced by <code class="language-plaintext highlighter-rouge">workflow.xml</code>
+</li>
+</ul>
+
+<h3 id="run-workflow-in-masternode">Run Workflow In MasterNode</h3>
+
+<h4 id="run-oozie-to-start-the-web-console">Run Oozie to start the Web Console</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oozie job <span class="nt">--oozie</span> &lt;URL to have Oozie console. Eg: http://localhost:11000&gt; <span class="nt">-config</span> &lt;Path to job.properties&gt; <span class="nt">-run</span>
+</code></pre></div></div>
+
+<h4 id="access-oozie-readonly-web-console">Access Oozie Readonly Web Console</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://localhost:11000/oozie
+</code></pre></div></div>
+
+<h2 id="oozie-co-ordinators---schedule-workflow">Oozie Co-ordinators - Schedule Workflow</h2>
+
+<p>A Oozie co-ordinator is an XML used to schedule workflow execution.</p>
+
+<ul>
+  <li>Schedule Workflow to begin at a <em>startime</em> and execute periodically at a given <em>frequency</em>
+</li>
+  <li>Schedule Workflow to run after a data becomes available.</li>
+</ul>
+
+<h2 id="oozie-bundle---a-bundle-of-co-ordinators">Oozie Bundle - A bundle of co-ordinators</h2>
+
+<ul>
+  <li>Oozie bundle is a bundle of co-ordinators that can be managed together</li>
+  <li>
+<strong>Example:</strong> Many oozie coordinators that perform log processing can be grouped as an Oozie Bundle.</li>
+  <li>
+<strong>Bundle Operations are handy</strong> $$-$$ An entire bundle could be suspended if required.</li>
+</ul>
+
+<h1 id="apache-zeppelin">Apache Zeppelin</h1>
+
+<p>Zepplin is a broader tool with plugins for various components of Hadoop ecosystem but is primarily a <strong>tool for data science</strong> $$-$$ Used to experiment with Apache Spark scripts and visualize big data.</p>
+
+<blockquote>
+  <p>Zepplin is like an IPython notebook for BigData</p>
+</blockquote>
+
+<h2 id="zeppelin-spark-integration---making-spark-feel-like-data-science-tool">Zeppelin Spark Integration - Making Spark feel like data science tool</h2>
+
+<ul>
+  <li>Zeppelin can run Spark code interractively.</li>
+  <li>Zeppelin can SQL queries against SparkQL <strong>+</strong> visualization</li>
+</ul>
+
+<h2 id="zeppelin-interpreters---plugin-to-integrate-with-zeppelin">Zeppelin Interpreters - Plugin to integrate with Zeppelin</h2>
+
+<p>Zeppelin Interpreter is a way to integrate with Zeppelin $$-$$ Another term for plugin. Interpreters for the following technologies are provided by default in Hadoop!</p>
+
+<p><img src="/assets/images/bigdata/ZeppelinInterpreters.png" alt="ZeppelinInterpreters"></p>
+
+<ul>
+  <li>Zeppelin Spark integration was possible using Spark Interpreter</li>
+  <li>Zeppelin ships by default with a whole bunch of interpreters for varous BigData technologies. A custom interpreter can be written as well.</li>
+</ul>
+
+<h1 id="hue-hadoop-user-experience">Hue (Hadoop User Experience)</h1>
+
+<p>Hue (Hadoop User Experience) is for Cloudera like Ambari is for HortonWorks.</p>
+
+<h2 id="top-hadoop-distributions">Top Hadoop Distributions</h2>
+
+<ul>
+  <li>HortonWorks
+    <ul>
+      <li>Ambari is used for primary management, execute query, files UI</li>
+      <li>Zeppelin is used for notebook style analysis.</li>
+      <li>100% open source</li>
+    </ul>
+  </li>
+  <li>CloudEra
+    <ul>
+      <li>Cloudera Manager is used for primary management</li>
+      <li>Hue (open sourced by couldera) is used to execute query, files UI</li>
+      <li>Few proprietery</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="hue-provides">Hue Provides</h2>
+
+<ul>
+  <li>Oozie Editor (Not there in HortonWorks)</li>
+  <li>Interfaces to Pig, Hive, HBase, HDFS and Sqoop (Like Ambari)</li>
+  <li>Built in notebook (Like Zeppelin)</li>
+</ul>
+
+<h1 id="kafka---streaming-data-into-cluster">Kafka - Streaming data into cluster</h1>
+
+<p>Kafka is a general prupose <em>publish/subscribe message system</em> to <em>steam data</em> into the cluster in <em>real time</em>.</p>
+
+<p>Examples of realtime BigData that can be streamed into cluster using Kafka</p>
+
+<ul>
+  <li>Log entries from Web servers</li>
+  <li>Sensor data from IoT devices</li>
+  <li>Stock trading data</li>
+</ul>
+
+<blockquote>
+  <p>Streaming helps publishing and optionally processing the data into cluster in realtime!</p>
+</blockquote>
+
+<h2 id="the-publishsubscribe-system">The Publish/Subscribe system</h2>
+
+<p>Kafka temporarily stores messages generated from various <em>producers</em> (such as IoT, webservers etc), for some period of time and makes them available under various streams (<em>topic</em>)  to <strong>consumers</strong> . A consumer subscribes to several interested topics.</p>
+
+<ul>
+  <li>Kafka stores data and the position of each customer $$-$$ Consumer can catch from where their left off.</li>
+  <li>Kafka can efficiently manage many consumers for each topic</li>
+</ul>
+
+<blockquote>
+  <p>Consider a overhead tank with several input pipes and serverl taps at the bottom.</p>
+
+  <ul>
+    <li>Kafka is the tank</li>
+    <li>Pipes are the publishers</li>
+    <li>Taps are the topic</li>
+  </ul>
+</blockquote>
+
+<h2 id="kafka-architecture">Kafka Architecture</h2>
+
+<p><img src="/assets/images/bigdata/Kafka.png" alt="Kafka"></p>
+
+<ul>
+  <li>
+<strong>Producer</strong> apps produce messages to topics.</li>
+  <li>
+<strong>Consumer</strong> apps subscribe to topic and receive data.</li>
+  <li>
+<strong>Connector</strong>s are modules that publish data as messages to Kafka OR receive messages from Kafka</li>
+  <li>
+<strong>Stream Processor</strong> $$-$$ Transform data as it comes
+    <ul>
+      <li>A producer might publish unstructured data against a topic (tA)</li>
+      <li>A stream processor is subscribed to this topic (tA).</li>
+      <li>The stream processor formats the data and publishes back to Kafka under a different topic (tB)</li>
+      <li>A database might listen this new topic (tB) more persistantly</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="kafka-scaling">Kafka Scaling</h2>
+
+<p><img src="/assets/images/bigdata/KafkaScaling.png" alt="KafkaScaling"></p>
+
+<ul>
+  <li>Kafka can itself provide scaling with multiple servers running multiple instances of Kafka</li>
+  <li>Comsumers can have cluster (Group of nodes) subscribtion as well
+    <ul>
+      <li>GroupA and GroupB have subscribtions to Kafka cluster.</li>
+      <li>C1 and C2 within GroupA replicate information amongst each other. Similarly, C3, C4, C5 and C6 within GroupB replicate information.</li>
+      <li>A new message published to the cluster shall be sent to all consumers $$-$$ GroupA and GroupB</li>
+      <li>The message shall be replicated within GroupA and GroupB (This is the consumer logic)</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="apache-flume---streaming-data-into-cluster">Apache Flume - Streaming data into cluster</h1>
+
+<p>Like Kafka, Flume is ment to stream data into the cluster. While Kafka is more generic, Flume is more specific to Hadoop ecosystem</p>
+
+<blockquote>
+  <p>Flume acts as a <strong>buffer</strong> between client and cluster.</p>
+</blockquote>
+
+<h2 id="architecture-4">Architecture</h2>
+
+<p>Flume consists of components called <strong>Flume Agents</strong>.  A Flume Agent is responsible for a particular role in Flume.</p>
+
+<p><img src="/assets/images/bigdata/Flume.png" alt="Flume"></p>
+
+<h3 id="source">Source</h3>
+
+<ul>
+  <li>A source collects the data that is coming in.</li>
+  <li>A source can optionally have Channel Selectors and/or Interceptors</li>
+  <li>
+<strong>Source Interceptors:</strong> Modifies the data</li>
+  <li>
+<strong>Source Channel Selector:</strong> Directs the data into appropriate channel</li>
+</ul>
+
+<h3 id="channel">Channel</h3>
+
+<ul>
+  <li>Channel is how the data gets transferred from the Source to the Sink</li>
+  <li>
+<strong>Persistent Channel:</strong>  Files  are used as channel. Slow but persistent.</li>
+  <li>
+<strong>Memory Channel:</strong> In memory transfer. Fast but not persistent. (Most cases memory is good enough)</li>
+</ul>
+
+<h3 id="sink">Sink</h3>
+
+<ul>
+  <li>This where the data is going.</li>
+  <li>Multiple Sinks can be grouped into a SinkGroup.</li>
+  <li>In Kafka data is temporarily stored for some time and multiple consumers can read when they want from where they left off.In flume the data is deleted once it makes to the sink.</li>
+</ul>
+
+<h2 id="built-in-sources-and-sinks">Built-in Sources and Sinks</h2>
+
+<h3 id="sources">Sources</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Source Type</th>
+      <th>What to get the data?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Spool</td>
+      <td>Monitor directory for files dropped into it.</td>
+    </tr>
+    <tr>
+      <td>Avro</td>
+      <td>Communications format specific to Hadoop. Tie different agents together.</td>
+    </tr>
+    <tr>
+      <td>Kafka</td>
+      <td>If you have subscribed to Kafka then Kafka is the source.</td>
+    </tr>
+    <tr>
+      <td>Exec</td>
+      <td>Output of any command line running on Linux like <code class="language-plaintext highlighter-rouge">tail -f my.log</code>
+</td>
+    </tr>
+    <tr>
+      <td>Thrift</td>
+      <td>Like Avro, used to tie different agents together.</td>
+    </tr>
+    <tr>
+      <td>Netcat</td>
+      <td>Listen to data streamted into TCP port.</td>
+    </tr>
+    <tr>
+      <td>HTTP</td>
+      <td>Listen to data streamted into HTTP port.</td>
+    </tr>
+    <tr>
+      <td>Custom</td>
+      <td>Custom source in Java</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="sink-1">Sink</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sink</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HDFS,  Hive, HBase</td>
+    </tr>
+    <tr>
+      <td>Avro, Thrift</td>
+    </tr>
+    <tr>
+      <td>ElasticSearch</td>
+    </tr>
+    <tr>
+      <td>Kafka</td>
+    </tr>
+    <tr>
+      <td>Custom</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="multitier-flume-agents---avro">Multitier Flume Agents - Avro</h2>
+
+<p><img src="/assets/images/bigdata/FlumeAgentWiring.png" alt="FlumeAgentWiring"></p>
+
+<h3 id="tiers">Tiers</h3>
+
+<ul>
+  <li>
+<strong>First Tier:</strong> Huge traffic can first go to a layer of <strong>Source FlumeAgents</strong> that are physically close to the WebServer.</li>
+  <li>
+<strong>Second Tier:</strong> This  layer has fewer flume agents that ultimately writes into the HDFS</li>
+</ul>
+
+<h3 id="flumeagent-block-per-tier">FlumeAgent block per tier</h3>
+
+<p>A FlumeAgent block will have a</p>
+
+<ul>
+  <li>
+    <p>FlumeSource (Eg: AppServerSource or AvroSource) at the begining</p>
+  </li>
+  <li>
+    <p>FlumeSink (Eg: AvroSink or HDFSSink) at the end</p>
+  </li>
+</ul>
+
+<h3 id="multitier-advantanges">Multitier Advantanges</h3>
+
+<ul>
+  <li>Limits amout of network traffic comming to HDFS at the end</li>
+  <li>Works well with distributed data centers</li>
+  <li>Each tier acts as a buffer to handle data. Only when both the all tiers (second and first in the example) are full will the app server request be dropped.</li>
+</ul>
+
+<h1 id="spark-steaming">Spark Steaming</h1>
+
+<p>Streaming $$-$$ Process data as it comes in as against process data in batches</p>
+
+<ul>
+  <li>Non stop flow of data from IoT receivers</li>
+  <li>Web server logs</li>
+</ul>
+
+<h2 id="architecture-5">Architecture</h2>
+
+<p><img src="/assets/images/bigdata/SparkStream.png" alt="SparkStream"></p>
+
+<h3 id="micro-batching">Micro-batching</h3>
+
+<ul>
+  <li>
+<strong>Receivers:</strong>  Spark cluster shall have receivers (spread out across the cluster) to receive data</li>
+  <li>
+<strong>RDD:</strong> Data at different time interval (like 1sec) goes into different RDDs for processing.</li>
+</ul>
+
+<h3 id="distributed-micro-batching">Distributed Micro-batching</h3>
+
+<p>The data received by the RDD (at regular timeinterval) can be processed in parallel in a distributed setting.</p>
+
+<h3 id="dstream-discretized-streams">DStream (Discretized Streams)</h3>
+
+<p>DStreams is an <strong>abstraction</strong> on top of all the RDD chunks.</p>
+
+<p>For each <strong>batch interval</strong></p>
+
+<ul>
+  <li>Generates RDDs</li>
+  <li>Process and genearete output for each RDD.</li>
+</ul>
+
+<h4 id="spark-dstream-vs-spark-batch-processing">Spark DStream vs Spark Batch Processing</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spark Streaming</th>
+      <th>Batch processing in Spark</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Operation on DStream</td>
+      <td>Operation on RDD</td>
+    </tr>
+    <tr>
+      <td>Every time new data is received in a batch, operation is applied on the batch forever.</td>
+      <td>The operation is divided into RDDs which are then processed and then its over.</td>
+    </tr>
+    <tr>
+      <td>Transform, map and actions are possible, but it is continuous.</td>
+      <td>Transform, map and actions are applied on each RDD.</td>
+    </tr>
+    <tr>
+      <td>Access to underlying RDD is possible</td>
+      <td>Operations are on RDD</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="transformations-on-dstreams">Transformations on DStreams</h4>
+
+<ul>
+  <li>Map</li>
+  <li>Flatmap</li>
+  <li>Filter</li>
+  <li>ReduceByKey</li>
+</ul>
+
+<h3 id="dstream---stateful-data-using-sliding-window-transfomations">DStream - Stateful data using sliding window transfomations</h3>
+
+<p>Longer lived state that persist beyond batch interval can be maintained, For example</p>
+
+<ul>
+  <li>Running totals : Each RDD has data that adds to the total.</li>
+  <li>Aggregate session data : Shopping cart</li>
+</ul>
+
+<h4 id="sliding-window">Sliding Window</h4>
+
+<p>To understand sliding window, we need to understand the following interval types</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Interval Type</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Batch</td>
+      <td>After batch interval \(-\) A new batch of data arrives. <strong>Eg:</strong> A batch interval of 1 sec means that a new batch/chunk of data is added every second.</td>
+    </tr>
+    <tr>
+      <td>Window</td>
+      <td>Process all batches in <code class="language-plaintext highlighter-rouge">t - window_interval</code> . All blocks visible in the window.</td>
+    </tr>
+    <tr>
+      <td>Slide</td>
+      <td>After slide interval \(-\) The Window slides to the end of the queue.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To visualize,</p>
+
+<ul>
+  <li>Consider a queue of blocks $$-$$ Each block is a batch/chunk of data.</li>
+  <li>Consider a window frame $$-$$ We see only few blocks in the frame</li>
+  <li>Window sliding $$-$$ After some time you push the slide the window</li>
+</ul>
+
+<p><img src="/assets/images/bigdata/SparkStreamSlidingWindow.png" alt="SparkStreamSlidingWindow"></p>
+
+<h4 id="sliding-window-example">Sliding Window Example</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Interval</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Batch Interval</td>
+      <td>1 second</td>
+    </tr>
+    <tr>
+      <td>Window Interval</td>
+      <td>3 seconds</td>
+    </tr>
+    <tr>
+      <td>Slide Interval</td>
+      <td>2 seconds</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Working is as follows</p>
+
+<ul>
+  <li>A batch of data is produced every second</li>
+  <li>Since <code class="language-plaintext highlighter-rouge">batch_interval=1</code> sec and <code class="language-plaintext highlighter-rouge">window_interval=3</code>, we see 3 blocks via the window.</li>
+  <li>After <code class="language-plaintext highlighter-rouge">slide_interval=2</code>
+    <ul>
+      <li>Window is pushed to the end of the queue  ( <em>Ensuring the latest block is visible</em> )</li>
+      <li>Only batches visible via the window are used for the computation.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="sliding-window-code">Sliding Window Code</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get spark context
+</span><span class="n">spark_context</span> <span class="o">=</span> <span class="n">util</span><span class="p">.</span><span class="n">getSparkContext</span> <span class="p">()</span>
+
+<span class="c1"># Get stream context by specifying 'BatchInterval'
+</span><span class="n">stream_context</span> <span class="o">=</span> <span class="n">StreamingContext</span> <span class="p">(</span><span class="n">spark_context</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Parameters
+# ----------
+# First Lambda : How two blocks can be combined within a window
+# Second Lambda : How two blocks can be separated within a window
+# Window Interval
+# Slide Interval
+</span><span class="n">count</span> <span class="o">=</span> <span class="n">dstream</span><span class="p">.</span><span class="n">reduceByKeyAndWindow</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="structured-streaming">Structured Streaming</h2>
+
+<p>Instead of dealing with DStream that uses RDD,  structured streaming uses a DataFrame that is an unbounded table (new rows keep getting appended forever).</p>
+
+<p><img src="/assets/images/bigdata/StructuredStreaming.png" alt="StructuredStreaming"></p>
+
+<p>Experimental in Spark 2.0 and Spark 2.1</p>
+
+<blockquote>
+  <p>Spark uses <strong>DataSet API based on Dataframe</strong> as opposed to using  <strong>RDD</strong> directly as primary API
+Structured streaming uses <strong>DataSet</strong> instead of <strong>DStream</strong> as primary API</p>
+</blockquote>
+
+<h3 id="advantages">Advantages</h3>
+
+<ul>
+  <li>Streaming version looks like regular batch version</li>
+  <li>
+<strong>MLLib</strong> is moving towards <strong>DataSet</strong> API $$-$$ Machine learning as data is received</li>
+</ul>
+
+<h1 id="resources">Resources</h1>
+
+<p>https://stackoverflow.com/questions/10732834/why-do-we-need-zookeeper-in-the-hadoop-stack</p>
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

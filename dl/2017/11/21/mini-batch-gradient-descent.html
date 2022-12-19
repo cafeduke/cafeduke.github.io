@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Mini batch gradient descent</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Mini batch gradient descent</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Tuesday, 21 November 2017
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li><a href="#limitation-of-batch-gradient-descent" id="markdown-toc-limitation-of-batch-gradient-descent">Limitation of batch gradient descent</a></li>
+  <li><a href="#algorithm" id="markdown-toc-algorithm">Algorithm</a></li>
+  <li><a href="#batch-vs-mini-vs-stochastic-descent" id="markdown-toc-batch-vs-mini-vs-stochastic-descent">Batch Vs mini Vs stochastic descent</a></li>
+  <li><a href="#stochastic-gradient-descent" id="markdown-toc-stochastic-gradient-descent">Stochastic Gradient Descent</a></li>
+  <li><a href="#choosing-mini-batch-size" id="markdown-toc-choosing-mini-batch-size">Choosing mini batch size</a></li>
+</ol>
+
+</nav>
+
+<h1 id="limitation-of-batch-gradient-descent">Limitation of batch gradient descent</h1>
+
+<p>Batch gradient descent becomes slower as the training set size increases. With data like 5 million training examples, the size of the matrix becomes huge and training slows down. This can be addressed using mini batch gradient descent</p>
+
+<h1 id="algorithm">Algorithm</h1>
+
+<p>Mini batch gradient descent performs the following for each iteration (<em>one epoch</em>) of the entire training set</p>
+
+<ul>
+  <li>Shuffle <code class="language-plaintext highlighter-rouge">X</code> and <code class="language-plaintext highlighter-rouge">Y</code>
+</li>
+  <li>Initialize $$v_{dW^{[l]}},  v_{db^{[l]}}$$ vectors which have the same size as $$W^{[l]}, b^{[l]}$$ vectors to zero</li>
+  <li>Divide the <code class="language-plaintext highlighter-rouge">X</code> into mini batches <code class="language-plaintext highlighter-rouge">mini-batch-count</code>  each of size <code class="language-plaintext highlighter-rouge">mini-batch-size</code>
+</li>
+  <li>Perform forward propagation of neural network</li>
+  <li>Compute cost for the mini batch</li>
+  <li>Perform back propagation of neural network</li>
+  <li>Calculate the <em>exponentially weighted average</em> (running average) of <code class="language-plaintext highlighter-rouge">dW</code> and <code class="language-plaintext highlighter-rouge">db</code>.</li>
+</ul>
+
+<p>$$
+v_{dW^{[l]}} = \beta v_{dW^{[l]}} + (1 - \beta) dW^{[l]} <br>
+v_{db^{[l]}} = \beta v_{db^{[l]}} + (1 - \beta) db^{[l]}
+$$</p>
+
+<ul>
+  <li>Update the weights.</li>
+</ul>
+
+<p>$$
+W^{[l]} = W^{[l]} - \alpha v_{dW^{[l]}} <br>
+b^{[l]} = b^{[l]} - \alpha v_{db^{[l]}}
+$$</p>
+
+<h1 id="batch-vs-mini-vs-stochastic-descent">Batch Vs mini Vs stochastic descent</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Batch gradient descent</th>
+      <th>Mini batch gradient descent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cost <strong>never</strong> goes higher, not even for a single iteration. If the cost goes up then there is something wrong – Perhaps the learning rate is too large.</td>
+      <td>Cost may not go up in every iteration. This is because, each time, cost is computed on a different mini batch.</td>
+    </tr>
+    <tr>
+      <td>The path to the optimum value is smooth and there is no noise</td>
+      <td>The path to the optimum value is noisy, however there is trend towards cost reduction.</td>
+    </tr>
+    <tr>
+      <td>Converges to the minimum</td>
+      <td>Wanders around the minimal area without actually converging.</td>
+    </tr>
+    <tr>
+      <td>Fast for small to medium training set sizes as vectorization is used.</td>
+      <td>If the size of the mini batch is small all the parallelism gained from vectorization is lost .</td>
+    </tr>
+    <tr>
+      <td>Slow to process large training set sizes.</td>
+      <td>For large training set the size of mini batch is substantial and takes advantage of vectorization.</td>
+    </tr>
+    <tr>
+      <td>One epoch will result in one step in gradient descent.</td>
+      <td>Each mini batch will take a step in gradient descent. So, one epoch will take <code class="language-plaintext highlighter-rouge">mini-batch-count</code> steps</td>
+    </tr>
+    <tr>
+      <td>Several epochs are required to reach optima.</td>
+      <td>Few epoch (some times just one) are enough.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="stochastic-gradient-descent">Stochastic Gradient Descent</h1>
+
+<p>An extreme case where <code class="language-plaintext highlighter-rouge">mini-batch-size</code> is set to <code class="language-plaintext highlighter-rouge">1</code>.  All the parallel execution advantage got from vectorization is lost. However, this provides the fastest training though not accurate as it proceeds and will have maximum noise.</p>
+
+<h1 id="choosing-mini-batch-size">Choosing mini batch size</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Training Data Size</th>
+      <th>Mini batch size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;= 2000</td>
+      <td>Use batch gradient descent. So <code class="language-plaintext highlighter-rouge">mini-batch-size = m</code>
+</td>
+    </tr>
+    <tr>
+      <td>
+<blockquote>
+  <p>2000</p>
+</blockquote>
+</td>
+      <td>Pick a mini batch size that is a power of 2 ranging from \(2^6 - 2^9\)</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li>
+<a href="#installation" id="markdown-toc-installation">Installation</a>    <ol>
+      <li><a href="#install-anaconda" id="markdown-toc-install-anaconda">Install Anaconda</a></li>
+      <li><a href="#install-drf" id="markdown-toc-install-drf">Install DRF</a></li>
+      <li><a href="#install-mysql" id="markdown-toc-install-mysql">Install MySQL</a></li>
+      <li><a href="#install-mysqlclient" id="markdown-toc-install-mysqlclient">Install MySQLClient</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#drf-project-and-app" id="markdown-toc-drf-project-and-app">DRF project and app</a>    <ol>
+      <li><a href="#create-project" id="markdown-toc-create-project">Create project</a></li>
+      <li><a href="#create-app-inside-project" id="markdown-toc-create-app-inside-project">Create app inside project</a></li>
+      <li><a href="#directory-structure" id="markdown-toc-directory-structure">Directory Structure</a></li>
+      <li>
+<a href="#function-based-view-fbv" id="markdown-toc-function-based-view-fbv">Function based view (FBV)</a>        <ol>
+          <li><a href="#configure-settings" id="markdown-toc-configure-settings">Configure Settings</a></li>
+          <li><a href="#create-view" id="markdown-toc-create-view">Create View</a></li>
+          <li><a href="#configure-urls-in-app" id="markdown-toc-configure-urls-in-app">Configure URLs in app</a></li>
+          <li><a href="#configure-urls-in-setup" id="markdown-toc-configure-urls-in-setup">Configure URLs in setup</a></li>
+          <li><a href="#start-app" id="markdown-toc-start-app">Start App</a></li>
+          <li><a href="#verify-requestresponse" id="markdown-toc-verify-requestresponse">Verify request/response</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#fbv-with-model" id="markdown-toc-fbv-with-model">FBV with Model</a>        <ol>
+          <li><a href="#create-model-class" id="markdown-toc-create-model-class">Create Model class</a></li>
+          <li><a href="#configure-mysql-as-database" id="markdown-toc-configure-mysql-as-database">Configure MySQL as database</a></li>
+          <li><a href="#create-db-and-grant-privileges" id="markdown-toc-create-db-and-grant-privileges">Create DB and grant privileges</a></li>
+          <li><a href="#verify-access-as-user" id="markdown-toc-verify-access-as-user">Verify access as user</a></li>
+          <li><a href="#run-migrations" id="markdown-toc-run-migrations">Run migrations</a></li>
+          <li><a href="#verify-creation-of-db-tables" id="markdown-toc-verify-creation-of-db-tables">Verify creation of DB tables</a></li>
+          <li><a href="#create-view-1" id="markdown-toc-create-view-1">Create View</a></li>
+          <li><a href="#configure-urls" id="markdown-toc-configure-urls">Configure URLs</a></li>
+          <li><a href="#verify-requestresponse-1" id="markdown-toc-verify-requestresponse-1">Verify request/response</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><a href="#mixin-generics-and-viewsets" id="markdown-toc-mixin-generics-and-viewsets">Mixin, Generics and ViewSets</a></li>
+  <li>
+<a href="#nested-serializers" id="markdown-toc-nested-serializers">Nested Serializers</a>    <ol>
+      <li><a href="#model" id="markdown-toc-model">Model</a></li>
+      <li><a href="#serializers" id="markdown-toc-serializers">Serializers</a></li>
+      <li><a href="#views" id="markdown-toc-views">Views</a></li>
+    </ol>
+  </li>
+  <li><a href="#relationships" id="markdown-toc-relationships">Relationships</a></li>
+</ol>
+
+</nav>
+
+<h1 id="installation">Installation</h1>
+
+<h2 id="install-anaconda">Install Anaconda</h2>
+
+<p>Follow instructions  on  <a href="https://docs.anaconda.com/anaconda/install/linux/">Anaconda for linux</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="o">&gt;</span> conda <span class="nt">--version</span>
+   conda 4.10.1
+   <span class="o">&gt;</span> python <span class="nt">--version</span>
+   Python 3.7.4
+   <span class="o">&gt;</span> pip <span class="nt">--version</span>
+   pip 19.2.3
+</code></pre></div></div>
+
+<h2 id="install-drf">Install DRF</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> pip <span class="nb">install </span>django djangorestframework pyfunctional
+</code></pre></div></div>
+
+<h2 id="install-mysql">Install MySQL</h2>
+
+<p>Follow instructions <a href="https://linuxhint.com/install_mysql_ubuntu_2004/">here</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>mysql
+mysql&gt; show databases<span class="p">;</span>
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows <span class="k">in </span><span class="nb">set</span> <span class="o">(</span>0.01 sec<span class="o">)</span>
+
+<span class="c"># Create user namely 'admin'</span>
+mysql&gt; create user <span class="s1">'admin'</span>@<span class="s1">'localhost'</span> IDENTIFIED BY <span class="s1">'&lt;password&gt;'</span><span class="p">;</span>
+
+<span class="c"># Show users</span>
+mysql&gt; <span class="k">select </span>user from mysql.user<span class="p">;</span>
++------------------+
+| user             |
++------------------+
+| admin            |
+| debian-sys-maint |
+| mysql.infoschema |
+| mysql.session    |
+| mysql.sys        |
+| raghu            |
+| root             |
++------------------+
+7 rows <span class="k">in </span><span class="nb">set</span> <span class="o">(</span>0.00 sec<span class="o">)</span>
+
+
+</code></pre></div></div>
+
+<h2 id="install-mysqlclient">Install MySQLClient</h2>
+
+<p>To connect to MySQL database using Django (or any python) application, we need mysqlclient.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># Since we are using anaconda as the manager</span>
+ conda <span class="nb">install </span>mysqlclient
+</code></pre></div></div>
+
+<h1 id="drf-project-and-app">DRF project and app</h1>
+
+<h2 id="create-project">Create project</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a project named 'setup'</span>
+~/Projects/DRF&gt; django-admin startproject setup
+
+<span class="c"># Rename the dir 'setup' to desired name like '01-hello'</span>
+~/Projects/DRF&gt; <span class="nb">mv </span>setup 01-hello<span class="p">;</span> <span class="nb">cd </span>01-hello
+
+<span class="c"># The project root = "~/Projects/DRF/01-hello"</span>
+~/Projects/DRF/01-hello&gt;
+</code></pre></div></div>
+
+<h2 id="create-app-inside-project">Create app inside project</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create an app (A project can have muliple apps)</span>
+~/Projects/DRF/01-hello&gt; python manage.py startapp app_hello
+</code></pre></div></div>
+
+<h2 id="directory-structure">Directory Structure</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/Projects/DRF/01-hello&gt; tree <span class="nt">-I</span> __pycache__                                        
+<span class="nb">.</span>
+├── app_hello
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+├── manage.py
+└── setup
+    ├── asgi.py
+    ├── __init__.py
+    ├── JGet.log
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+</code></pre></div></div>
+
+<h2 id="function-based-view-fbv">Function based view (FBV)</h2>
+
+<h3 id="configure-settings">Configure Settings</h3>
+
+<p>Configure <code class="language-plaintext highlighter-rouge">setup &gt; settings.py</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">'django.contrib.admin'</span><span class="p">,</span>
+		<span class="p">...</span>
+  
+    <span class="c1"># Add DRF
+</span>    <span class="s">'rest_framework'</span><span class="p">,</span>
+
+    <span class="c1"># Add project app_hello
+</span>    <span class="s">'app_hello'</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="create-view">Create View</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># cat app_hello/views.py
+</span><span class="k">def</span> <span class="nf">employeeView</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+  <span class="n">emp</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'id'</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span>
+    <span class="s">'name'</span><span class="p">:</span><span class="s">'Raghu'</span><span class="p">,</span>
+    <span class="s">'sal'</span><span class="p">:</span><span class="mi">50000</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span><span class="n">emp</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="configure-urls-in-app">Configure URLs in app</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+<span class="kn">from</span> <span class="nn">app_hello</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Add helloView as default for the URI
+</span>    <span class="n">path</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">views</span><span class="p">.</span><span class="n">helloView</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="configure-urls-in-setup">Configure URLs in setup</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># cat setup/urls.py 
+</span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+<span class="kn">from</span> <span class="nn">app_hello</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s">'admin/'</span><span class="p">,</span> <span class="n">admin</span><span class="p">.</span><span class="n">site</span><span class="p">.</span><span class="n">urls</span><span class="p">),</span>
+
+    <span class="c1"># Here, we have configured that any prefix 'hello/' shall be redirected to app_hello.urls
+</span>    <span class="n">path</span><span class="p">(</span><span class="s">'hello/'</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s">'app_hello.urls'</span><span class="p">)),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="start-app">Start App</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">cd</span> ~/Projects/DRF/01-hello
+<span class="o">&gt;</span> python manage.py runserver
+</code></pre></div></div>
+
+<h3 id="verify-requestresponse">Verify request/response</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> json-get http://localhost:8000/hello
+Status: HTTP/1.1 200 OK
+Content-Length: 33
+Content-Type: application/json
+Referrer-Policy: same-origin
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 100,
+  <span class="s2">"mesg"</span>: <span class="s2">"HelloWorld"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="fbv-with-model">FBV with Model</h2>
+
+<h3 id="create-model-class">Create Model class</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.db.models.fields</span> <span class="kn">import</span> <span class="n">IntegerField</span>
+
+<span class="c1"># Create your models here.
+</span><span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">sal</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">DecimalField</span><span class="p">(</span><span class="n">max_digits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">"[Employee] id={} name={} sal={}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">Employee</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Employee</span><span class="p">.</span><span class="n">sal</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="configure-mysql-as-database">Configure MySQL as database</h3>
+
+<ul>
+  <li>Open to <code class="language-plaintext highlighter-rouge">setup &gt; settings.py </code>
+</li>
+  <li>Configure <code class="language-plaintext highlighter-rouge">django.db.backends.mysql</code> as <code class="language-plaintext highlighter-rouge">ENGINE</code>
+</li>
+  <li>Configure the database user and password</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'ENGINE'</span><span class="p">:</span> <span class="s">'django.db.backends.mysql'</span><span class="p">,</span>
+        <span class="s">'NAME'</span><span class="p">:</span> <span class="s">'employeedb'</span><span class="p">,</span>
+        <span class="s">'USER'</span><span class="p">:</span> <span class="s">'admin'</span><span class="p">,</span>
+        <span class="s">'PASSWORD'</span><span class="p">:</span> <span class="s">'welcome1'</span><span class="p">,</span>
+        <span class="s">'HOST'</span><span class="p">:</span> <span class="s">'127.0.0.1'</span><span class="p">,</span>
+        <span class="s">'PORT'</span><span class="p">:</span> <span class="s">'3306'</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="create-db-and-grant-privileges">Create DB and grant privileges</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>mysql
+
+mysql&gt; CREATE DATABASE employeedb<span class="p">;</span>
+Database created.
+
+<span class="c"># Grant all tables of employeedb (using expression `employeedb`.*) to user 'admin' on host 'localhost'</span>
+<span class="c"># Without the GRANT command admin cannot access employeedb.</span>
+mysql&gt; GRANT ALL PRIVILEGES ON <span class="sb">`</span>employeedb<span class="sb">`</span>.<span class="k">*</span> TO <span class="s1">'admin'</span>@<span class="s1">'localhost'</span><span class="p">;</span>
+Query OK, 0 rows affected <span class="o">(</span>0.02 sec<span class="o">)</span>
+
+<span class="c"># This commits changes</span>
+mysql&gt; FLUSH PRIVILEGES<span class="p">;</span>
+Query OK, 0 rows affected <span class="o">(</span>0.01 sec<span class="o">)</span>	
+
+<span class="c"># ALTER USER &lt;user@host&gt; IDENTIFIED WITH caching_sha2_password BY &lt;password&gt;</span>
+<span class="c"># See https://stackoverflow.com/questions/50469587/django-db-utils-operationalerror-2059-authentication-plugin-caching-sha2-pas</span>
+mysql&gt; ALTER USER <span class="s1">'admin'</span>@<span class="s1">'localhost'</span> IDENTIFIED WITH mysql_native_password BY <span class="s1">'welcome1'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="verify-access-as-user">Verify access as user</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> mysql <span class="nt">--user</span><span class="o">=</span>admin <span class="nt">--password</span>
+
+<span class="c"># Note that employeedb is accessible to user 'admin'</span>
+mysql&gt; show databases<span class="p">;</span>
++--------------------+
+| Database           |
++--------------------+
+| employeedb         |
+| information_schema |
++--------------------+
+
+</code></pre></div></div>
+
+<h3 id="run-migrations">Run migrations</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>raghu-pc ~/Projects/DRF/01-hello&gt;  python manage.py makemigrations
+Migrations <span class="k">for</span> <span class="s1">'app_hello'</span>:
+  app_hello/migrations/0001_initial.py
+    - Create model Employee
+   
+raghu-pc ~/Projects/DRF/01-hello&gt; python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, app_hello, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying app_hello.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sessions.0001_initial... OK
+  
+</code></pre></div></div>
+
+<h3 id="verify-creation-of-db-tables">Verify creation of DB tables</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql&gt; use employeedb<span class="p">;</span>
+Database changed
+
+mysql&gt; show tables<span class="p">;</span>
++----------------------------+
+| Tables_in_employeedb       |
++----------------------------+
+| app_hello_employee         |
+| auth_group                 |
+| auth_group_permissions     |
+| auth_permission            |
+| auth_user                  |
+| auth_user_groups           |
+| auth_user_user_permissions |
+| django_admin_log           |
+| django_content_type        |
+| django_migrations          |
+| django_session             |
++----------------------------+
+11 rows <span class="k">in </span><span class="nb">set</span> <span class="o">(</span>0.00 sec<span class="o">)</span>
+
+mysql&gt; <span class="k">select</span> <span class="k">*</span> from app_hello_employee<span class="p">;</span>
+Empty <span class="nb">set</span> <span class="o">(</span>0.00 sec<span class="o">)</span>
+
+</code></pre></div></div>
+
+<h3 id="create-view-1">Create View</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">employeeView</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="s">'''Return from the DB model '''</span>
+
+    <span class="c1"># We get a QuerySet object of all the employee
+</span>    <span class="n">qsEmployee</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+
+    <span class="c1"># Create a dict with 'employees' as key and value is a list of employee objects.
+</span>    <span class="c1"># We select only name and value columns
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s">'employees'</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">qsEmployee</span><span class="p">.</span><span class="n">values</span><span class="p">(</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'sal'</span><span class="p">))}</span>
+    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="configure-urls">Configure URLs</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+<span class="kn">from</span> <span class="nn">app_hello</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Add helloView as default for the URI
+</span>    <span class="n">path</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">views</span><span class="p">.</span><span class="n">helloView</span><span class="p">),</span>
+
+    <span class="c1"># URI for all employees
+</span>    <span class="n">path</span><span class="p">(</span><span class="s">'emps/'</span><span class="p">,</span> <span class="n">views</span><span class="p">.</span><span class="n">employeeView</span><span class="p">)</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="verify-requestresponse-1">Verify request/response</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> json-get http://localhost:8000/hello/emps     
+Status: HTTP/1.1 200 OK
+Content-Length: 127
+Content-Type: application/json
+Referrer-Policy: same-origin
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+<span class="o">{</span>
+  <span class="s2">"employees"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"Raghu"</span>,
+      <span class="s2">"sal"</span>: <span class="s2">"50000.00"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"Hari"</span>,
+      <span class="s2">"sal"</span>: <span class="s2">"80000.00"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"Pavi"</span>,
+      <span class="s2">"sal"</span>: <span class="s2">"60000.00"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h1 id="mixin-generics-and-viewsets">Mixin, Generics and ViewSets</h1>
+
+<h1 id="nested-serializers">Nested Serializers</h1>
+
+<h2 id="model">Model</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+
+<span class="k">class</span> <span class="nc">Department</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">manangerId</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">()</span>
+    <span class="n">startDate</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">DateField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">"{}: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s">'M'</span><span class="p">,</span> <span class="s">'Male'</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">'F'</span><span class="p">,</span> <span class="s">'Female'</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">lname</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">dob</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">DateField</span><span class="p">()</span>
+    <span class="n">street</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">pin</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">()</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">)</span>
+    <span class="n">salary</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">DecimalField</span><span class="p">(</span><span class="n">max_digits</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">##
+</span>    <span class="c1"># The 'realated_name' is the derived field for the target 'class'. See
+</span>    <span class="c1"># For example,
+</span>    <span class="c1">#   The target class 'Department' gets all employees of that department using the field called 'empolyees' because the related_name is 'employees'
+</span>    <span class="c1">#   The target class 'Employee' gets all the employees managed by that employee using the field called 'team' because the related_name is 'team'
+</span>    <span class="c1">#
+</span>    <span class="c1"># The 'related_name' takes effect in Serializer.
+</span>    <span class="c1">#   DepartmentSerializer should use a feild called 'employees' to access employees of this department
+</span>    <span class="c1">#   EmployeeSerializer should use a feild called 'team' to access empoyees managed by this employee
+</span>    <span class="c1">##
+</span>    <span class="n">manager</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'self'</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">'team'</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">DO_NOTHING</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">department</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Department</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">'employees'</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">CASCADE</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">"{}. {}.{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">lname</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="serializers">Serializers</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">fields</span><span class="p">,</span> <span class="n">serializers</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Employee</span><span class="p">,</span> <span class="n">Department</span>
+
+<span class="k">class</span> <span class="nc">DepartmentSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="p">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+
+    <span class="c1"># read_only=True: While creating a department, the employees are read-only (not editable)
+</span>    <span class="c1"># many=True: For each department there are many employee objects.
+</span>
+    <span class="c1"># Serializer-01
+</span>    <span class="c1"># -------------
+</span>    <span class="c1"># Creates a list with link to each employee's detail page
+</span>    <span class="c1"># employees = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='employee-detail')
+</span>    <span class="n">employees</span> <span class="o">=</span> <span class="n">serializers</span><span class="p">.</span><span class="n">StringRelatedField</span><span class="p">(</span><span class="n">read_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Department</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s">'__all__'</span>
+        
+<span class="k">class</span> <span class="nc">EmployeeSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="p">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Employee</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s">'__all__'</span>
+
+
+<span class="k">class</span> <span class="nc">BasicEmployeeSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="p">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Employee</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s">'id'</span><span class="p">,</span> <span class="s">'fname'</span><span class="p">,</span> <span class="s">'lname'</span><span class="p">]</span>        
+</code></pre></div></div>
+
+<h2 id="views">Views</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Employee</span><span class="p">,</span> <span class="n">Department</span>
+<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">EmployeeSerializer</span><span class="p">,</span> <span class="n">DepartmentSerializer</span>
+
+<span class="k">class</span> <span class="nc">DepartmentViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="p">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Department</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">DepartmentSerializer</span>
+
+
+<span class="k">class</span> <span class="nc">EmployeeViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="p">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="c1"># Replace EmployeeSerializer with BasicEmployeeSerializer to see it in action.
+</span>    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">EmployeeSerializer</span>
+</code></pre></div></div>
+
+<h1 id="relationships">Relationships</h1>
+</body></html>

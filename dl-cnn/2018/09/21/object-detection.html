@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Object Detection</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Object Detection</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Friday, 21 September 2018
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li>
+<a href="#single-object-detection" id="markdown-toc-single-object-detection">Single object detection</a>    <ol>
+      <li><a href="#bounding-box-detection" id="markdown-toc-bounding-box-detection">Bounding box detection</a></li>
+      <li><a href="#cost-function" id="markdown-toc-cost-function">Cost Function</a></li>
+    </ol>
+  </li>
+  <li><a href="#landmark-detection" id="markdown-toc-landmark-detection">Landmark detection</a></li>
+  <li>
+<a href="#detecting-multiple-objects" id="markdown-toc-detecting-multiple-objects">Detecting multiple objects</a>    <ol>
+      <li><a href="#traditional-sliding-windows" id="markdown-toc-traditional-sliding-windows">Traditional sliding windows</a></li>
+      <li>
+<a href="#transform-convolution-nn-mix-to-pure-cnn-layer" id="markdown-toc-transform-convolution-nn-mix-to-pure-cnn-layer">Transform convolution-NN mix to pure CNN layer</a>        <ol>
+          <li><a href="#convolution---nn-layer" id="markdown-toc-convolution---nn-layer">Convolution - NN layer</a></li>
+          <li><a href="#pure-cnn-layer" id="markdown-toc-pure-cnn-layer">Pure CNN layer</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#convolutional-sliding-windows" id="markdown-toc-convolutional-sliding-windows">Convolutional sliding windows</a>        <ol>
+          <li><a href="#train-pure-cnn---detect-single-object" id="markdown-toc-train-pure-cnn---detect-single-object">Train Pure CNN - Detect single object</a></li>
+          <li><a href="#use-pure-cnn-to-detect-objects-in-a-large-image" id="markdown-toc-use-pure-cnn-to-detect-objects-in-a-large-image">Use pure CNN to detect objects in a large image</a></li>
+        </ol>
+      </li>
+      <li><a href="#limitations" id="markdown-toc-limitations">Limitations</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#yolo-you-look-only-once" id="markdown-toc-yolo-you-look-only-once">YOLO (You Look Only Once)</a>    <ol>
+      <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+      <li><a href="#evaluate-bounding-box-prediction---iou-algorithm" id="markdown-toc-evaluate-bounding-box-prediction---iou-algorithm">Evaluate bounding box prediction - IoU algorithm</a></li>
+      <li><a href="#pick-a-bounding-box---non-max-suppression" id="markdown-toc-pick-a-bounding-box---non-max-suppression">Pick a bounding box - Non max suppression</a></li>
+      <li><a href="#overlapping-objects---multiple-bounding-box-per-grid-cell" id="markdown-toc-overlapping-objects---multiple-bounding-box-per-grid-cell">Overlapping objects - Multiple bounding box per grid cell</a></li>
+      <li><a href="#limitations-1" id="markdown-toc-limitations-1">Limitations</a></li>
+    </ol>
+  </li>
+</ol>
+
+</nav>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Following is a broad classification of computer vision problems</p>
+
+<ul>
+  <li>Image classification $$-$$ Classifying an image into a class (Car, Pedestrian, Bike etc)</li>
+  <li>Single object detection $$-$$ Classify image into a class + drawing a bounding box (co-ordinates, width and height) around the object.</li>
+  <li>Multiple objects detection $$-$$ Detect multiple objects in an image.</li>
+</ul>
+
+<p>Furthermore, there could many objects of the same type and/or different types in a single image. For example there could be an image with several cars, bikes and pedestrians.</p>
+
+<h1 id="single-object-detection">Single object detection</h1>
+
+<p>The section deals with classification of an image (This is an image of what?) and locating the object (where is the object present?). This deals with a case where <strong>only one object of one class is present</strong>.</p>
+
+<h2 id="bounding-box-detection">Bounding box detection</h2>
+
+<p>A typical image classification problem for say 3 classes (Pedestrian, Car, Bike and None) will have a softmax with 3 neurons. In essence, the <code class="language-plaintext highlighter-rouge">y_cap</code> is just a number ranging from 0-3 indicating the predicted class (0 stands for None).</p>
+
+<p>In case of object localization <code class="language-plaintext highlighter-rouge">y</code> is a vector with following elements $$\left[ p_c, b_x, b_y, b_w, b_h, c_1, c_2, c_3 \right]$$</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Components of y</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\[c_1, c_2, c_3\]
+</td>
+      <td>Three different classes of objects \(-\) Pedestrian, Car, Bike<br>Eg: [0, 1, 0] indicates that a Car is present.</td>
+    </tr>
+    <tr>
+      <td>\[p_c\]
+</td>
+      <td>Probability that object belonging to any of the classes exists? <br>Eg: A zero indicates no object exists. A one indicates one of the objects exist.</td>
+    </tr>
+    <tr>
+      <td>\[b_x, b_y\]
+</td>
+      <td>The x and y distances of the <strong>bounding box</strong> measured from left hand top corner. <br> Eg: \(b_x\) = 0.4 means x co-ordinate = 40% of the image size.</td>
+    </tr>
+    <tr>
+      <td>\[b_w, b_h\]
+</td>
+      <td>Width and height of the <strong>bounding box</strong> measured from left hand top corner.<br>Eg: \(b_w\) = 0.3 means box width = 30% of the image size.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note</p>
+
+<ul>
+  <li>If $$p_c$$ = 1 then we know an object is present so, we care about which class and where?</li>
+  <li>If $$p_c$$ = 0 then we don’t care about the remaining values of <code class="language-plaintext highlighter-rouge">y</code>.</li>
+</ul>
+
+<blockquote>
+  <p>For each training image, the expected output <code class="language-plaintext highlighter-rouge">y</code> is manually generated by <strong>drawing a bounding box</strong> around the image and measuring the co-ordinates $$b_x, b_y$$, measuring the width and height $$b_w, b_h$$ of the bounding box.</p>
+</blockquote>
+
+<h2 id="cost-function">Cost Function</h2>
+
+<p>The cost function in case of object classification + object location is</p>
+
+<ul>
+  <li>If $$p_c == 1$$ $$-$$ Distance between the <code class="language-plaintext highlighter-rouge">y_cap</code> and <code class="language-plaintext highlighter-rouge">y</code> vectors.</li>
+  <li>If $$p_c == 0$$ $$-$$ Distance between the first element of <code class="language-plaintext highlighter-rouge">y_cap</code> and <code class="language-plaintext highlighter-rouge">y</code> vectors. That is $$\sqrt{(y_cap_{p_c} - y_{p_c})^2} $$</li>
+</ul>
+
+<h1 id="landmark-detection">Landmark detection</h1>
+
+<p>In certain applications like <strong>facial feature recognition</strong>, we could train a CNN to detect landmark locations on a face. For example, corner of the eye, edges of eye, corner of lip etc.</p>
+
+<blockquote>
+  <p>A landmark in general is a distinguished location that stands out or demarks otherwise seamless regions.</p>
+</blockquote>
+
+<p><img src="/assets/images/dl/Landmark.png" alt="Landmark"></p>
+
+<p>In the above the red dots are the landmarks. For each landmark corresponding co-ordinates ($$(l_x, l_y)$$ needs to be recorded.</p>
+
+<p>With 64 landmarks for a face</p>
+
+<ul>
+  <li>There are a total of $$ 64 \times 2 = 128 $$ points.</li>
+  <li>One classification probability $$p$$  that detects if the image is a face or not.</li>
+</ul>
+
+<p>The $$y$$ vector will be $$\left[ p, l1_x, l1_y, l2_x, l2_y, l3_x, l3_y, ….., l64_x, l64_y \right]$$</p>
+
+<blockquote>
+  <p>For each training image, the expected output <code class="language-plaintext highlighter-rouge">y</code> is manually generated by laboriously recording the landmark points on the face.</p>
+</blockquote>
+
+<p>A network that identifies landmarks can be used for applications such as</p>
+
+<ul>
+  <li>Emotion detection</li>
+  <li>Pose detection for full body landmarks</li>
+  <li>Facial effects like add hat, crown, cooling glass</li>
+</ul>
+
+<h1 id="detecting-multiple-objects">Detecting multiple objects</h1>
+
+<p>In the previous section we have looked at classification and location of a single object. However, an image could have multiple objects. One of the ways of detecting multiple objects is using a sliding windows detection.</p>
+
+<h2 id="traditional-sliding-windows">Traditional sliding windows</h2>
+
+<p>The sliding window method involves</p>
+
+<ol>
+  <li>Train a ConvNet (CNN) that can classify an image into Car, Pedestrian, Bike or None</li>
+  <li>Set crop size to smallest possible</li>
+  <li>For each crop size
+    <ol>
+      <li>Begin cropping from left hand top corner and slide to right and then down to cover the entire image</li>
+      <li>Feed each crop to the ConvNet to detect objects.</li>
+    </ol>
+  </li>
+  <li>Repeat step 3 with the next crop size
+The huge <strong>disadvantage</strong> of sliding window is the <strong>computational cost</strong> of evaluating a large number of cropped images</li>
+</ol>
+
+<h2 id="transform-convolution-nn-mix-to-pure-cnn-layer">Transform convolution-NN mix to pure CNN layer</h2>
+
+<p>Lets first look at converting a convolution to NN layer connection into a pure convolution layer.</p>
+
+<h3 id="convolution---nn-layer">Convolution - NN layer</h3>
+
+<p>Consider an input  convolution layer (3 x 3 x 20) with 180 cells, connected to a single output NN layer with 300 neurons.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Input Layer Volume</th>
+      <th>Output Layer Neuron Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3 x 3 x 20</td>
+      <td>300</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Every cell of the input layer is connected to every neuron of the output layer</li>
+  <li>This results in 180 x 300 that is 54,000 connections.</li>
+</ul>
+
+<h3 id="pure-cnn-layer">Pure CNN layer</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Input Layer Volume</th>
+      <th>Filter Volume</th>
+      <th>Filter Count</th>
+      <th>Output Layer Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3 x 3 x 20</td>
+      <td>3 x 3 x 20</td>
+      <td>300</td>
+      <td>1 x 300</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Every cell in the input layer volume is connected to every cell in the output layer volume</li>
+  <li>Each filter volume gives the weights for each set of connections.</li>
+</ul>
+
+<h2 id="convolutional-sliding-windows">Convolutional sliding windows</h2>
+
+<p>Now that we know how to create a pure convolutional implementation. Lets see how to optimize the traditional sliding windows using pure convolution.</p>
+
+<h3 id="train-pure-cnn---detect-single-object">Train Pure CNN - Detect single object</h3>
+
+<p>First, lets train a pure CNN that can classify and locate a single object.</p>
+
+<p><img src="/assets/images/dl/SlidingConvolution01.png" alt="SlidingConvolution01"></p>
+
+<p>In this example</p>
+
+<ul>
+  <li>The input image is of 14 x 14 resolution with 3 RGB channels.</li>
+  <li>The final output is (1 x 1 x 4) identifying one of 4 possible classes (Car, Pedestrian, Bike, None)</li>
+  <li>Once the above CNN network is trained the filters will have the weights</li>
+</ul>
+
+<h3 id="use-pure-cnn-to-detect-objects-in-a-large-image">Use pure CNN to detect objects in a large image</h3>
+
+<p><img src="/assets/images/dl/SlidingConvolution02.png" alt="SlidingConvolution02"></p>
+
+<p>Had we used traditional sliding windows method</p>
+
+<ul>
+  <li>We would have to crop 14 x 14 sections out of the 28 x 28 image (shown in orange) and then feed it to the Pure CNN.</li>
+  <li>Slide by 2 (stride=2), crop and feed to pure CNN again.</li>
+  <li>We would need 64 crops to cover the entire image</li>
+</ul>
+
+<p>Instead we now, feed the entire image to the above <strong>trained pure CNN</strong> network with the <strong>same filters and weights</strong></p>
+
+<ul>
+  <li>By using the same filters we get a final output volume of dimension (8 x 8 x 4)</li>
+  <li>The first cell corresponds to the first (14 x 14) crop, the second corresponds to the second (14 x 14) crop and the third crop is highlighted in orange.</li>
+  <li>In essence, the output of all 64 (14 x 14) crops, obtained in one shot.</li>
+  <li>We can now go through each cell of the output layer, to see which class each cell has identified.</li>
+</ul>
+
+<h2 id="limitations">Limitations</h2>
+
+<ul>
+  <li>Requires training multiple networks for various crop sizes and running them which is still elaborate task</li>
+  <li>The bounding box may not be accurate</li>
+  <li>@Validate: Will not work for two or more objects that are close to each other and thus (of same or different class) appearing in the same crop.</li>
+</ul>
+
+<h1 id="yolo-you-look-only-once">YOLO (You Look Only Once)</h1>
+
+<h2 id="overview">Overview</h2>
+
+<p>Several of the limitations of convolution sliding windows is overcome by the YOLO algorithm. The YOLO algorithm does not require running the image through multiple networks, each trained for different crop size. The YOLO algorithm detect objects, just like a human $$-$$ looks only once.  The YOLO is also more accurate in locating the bounding box.</p>
+
+<p><img src="/assets/images/dl/Yolo_overview.png" alt="Yolo_overview"></p>
+
+<p>The overview of the algorithm is as follows:</p>
+<ul>
+  <li>Divide the image into grids (9 grids, in the above case)</li>
+  <li>Each grid shall take part in image classification and localization.
+    <ul>
+      <li>Each grid shall output the following vectors $$\left[ p_c, b_x, b_y, b_h, b_w, c_1, c_2, c_3 \right]$$ to indicate the presence of the object, mid-point, height and width of object and the class of the object respectively.</li>
+      <li>The total number of values output per image is  $$ 3 \times 3 \times 8 = 72$$.</li>
+    </ul>
+  </li>
+  <li>The network is trained to output 72 values ($$y_{pred}$$) and is compared with the 72 expected values of $$y$$</li>
+  <li>The labeled data or $$y$$, per grid is determined as follows
+    <ul>
+      <li>The probability that a class exists $$p_c$$. Since this is  labelled probability, it is either 0 or 1.
+        <ul>
+          <li>If mid-point (yellow dot) of an object (Class, Bike or pedestrian) is part of the grid then $$p_c$$ is set to $$1$$</li>
+          <li>Even if parts of object(s) are in the grid, as long as mid-point is not inside the grid, $$p_c$$ shall be $$0$$ and rest of the values are don’t cares.</li>
+        </ul>
+      </li>
+      <li>Assuming the top left corner of the grid to be (0,0) and bottom right (1,1)
+        <ul>
+          <li>$$b_x$$ is the distance of the mid-point along the x-axis. Range: $$ 0 &lt; b_x &lt; 1 $$</li>
+          <li>$$b_y$$ is the distance of the mid-point along the y-axis. Range: $$ 0 &lt; b_y &lt; 1 $$</li>
+          <li>$$b_w$$ is the width of the object relative to the width of the grid, which is 1. Range: $$b_w$$ can be greater than 1.</li>
+          <li>$$b_h$$ is the height of the object relative to the height of the grid, which is 1. Range: $$b_h$$ can be greater than 1.</li>
+        </ul>
+      </li>
+      <li>If mid-point of the grid has an object, set corresponding class among $$c1, c2, c3$$ to 1</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="evaluate-bounding-box-prediction---iou-algorithm">Evaluate bounding box prediction - IoU algorithm</h2>
+
+<p>The labeled $$y$$ has the ideal bounding box ($$b_x, b_y, b_w, b_h$$) values. How do we evaluate this with the predicted values? We could just use the vector distance. However, a better approach is to use the <strong>Intersection over the union</strong> (IoU) algorithm.</p>
+
+<p>$$
+IoU = \frac{Area \ of \ the \ intersection}{Area \ of \ the \ union}
+$$</p>
+
+<p><img src="/assets/images/dl/Yolo_IoU.png" alt="Yolo_IoU"></p>
+
+<p>In the above diagram</p>
+
+<ul>
+  <li>The red square is the labeled (expected) bounding box.</li>
+  <li>The purple square has is the predicted bounding box.</li>
+</ul>
+
+<p>Greater the value of overlap, lesser the area missed and lesser the unnecessary area $$-$$ closer will be the value of IoU to 1 (Ideally, IoU = 1). Typically an IoU threshold value of at least 0.5 is used to accept the prediction.</p>
+
+<h2 id="pick-a-bounding-box---non-max-suppression">Pick a bounding box - Non max suppression</h2>
+
+<p>As per YOLO algorithm, the entire test image is divided into several grids (A typical value is 19). Each grid performs <strong>Single Object Detection</strong>. Each gird produces a vector with 8 values. In essence, when a single test image completes YOLO, we have a $$y_pred$$ with (19 x 19 x 8) output volume. In this section we look at how we might pick few grids over the other.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Grids and object mid-point</th>
+      <th style="text-align: center">Non max suppression</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/assets/images/dl/Yolo_Grid.png" alt="Yolo_Grid"></td>
+      <td style="text-align: center"><img src="/assets/images/dl/Yolo_NonMax.png" alt="Yolo_NonMax"></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note: In this section we are considering the <strong>test image</strong> and hence we do not have any benchmark to compare!</p>
+
+<ul>
+  <li>Each of the 361 (19 x 19) grids predicts = $$p_c$$ $$-$$ The probability of having detected an object.</li>
+  <li>As shown in the diagram above, an object can spawn several grids.</li>
+  <li>The center of the object lies in only one grid. In the labelled data, only this grid would have $$p_c = 1$$.</li>
+  <li>However, this is image prediction. Instead of immediately evaluating the output of the network, we preform some filtering.</li>
+  <li>It is possible for several grids to identify objects with different probabilities and bounding boxes.</li>
+  <li>Keeping the best of predictions and filtering out the rest is the <strong>non-max suppression</strong>.</li>
+</ul>
+
+<p>Working of non-max suppression</p>
+
+<ul>
+  <li>Discard all grids with a probability less than threshold $$ p_c &lt;= 0.6 $$  $$-$$ Too less a probability for an object to exist.</li>
+  <li>Add grids which have exceeded the threshold to a set</li>
+  <li>While the set is not empty
+    <ul>
+      <li>Pick the gird having the highest probability as <strong>chosen grid</strong>
+</li>
+      <li>Mark this gird and its <strong>chosen bounding box</strong> as valid prediction (Light blue)</li>
+      <li>Discard (and remove from the set) all other grids which has IoU &gt;= 0.5  with chosen bounding box.
+        <ul>
+          <li>If a grid has IoU &gt;= 0.5 with chosen grid then it means there is a huge overlap. So they are detecting the same object.</li>
+          <li>However, probability of the grid is less compared to chosen grid. So, the chosen grid should be having a better bounding box.</li>
+          <li>If a grid has IoU &lt; 0.5 with chosen grid then it means there is less overlap. So they might be detecting different objects.</li>
+        </ul>
+      </li>
+      <li>After this step, all the grids that were detecting the same object as <strong>chosen grid</strong> are discarded/suppressed (Dark blue)</li>
+      <li>The next chosen grid will be of the next object in the image.</li>
+    </ul>
+  </li>
+  <li>Once we are here, each chosen grid should be detecting an object of its own with the best possible bounding box.</li>
+</ul>
+
+<h2 id="overlapping-objects---multiple-bounding-box-per-grid-cell">Overlapping objects - Multiple bounding box per grid cell</h2>
+
+<p>It is possible for the mid-point of multiple objects to fall under a single grid cell. So, a single gird cell will have to classify multiple objects and also locate (draw bounding boxes) multiple objects.</p>
+
+<p><img src="/assets/images/dl/Yolo_Overlap.png" alt="Yolo_Overlap"></p>
+
+<p>In the above image, divided into 9 grids, the mid-point of the car and the pedestrian fall in the same grid cell. To accommodate such cases, we require a $$y$$ that can hold two or more bounding boxes.</p>
+
+<ul>
+  <li>A $$y$$ that holds 2 bounding box is as follows $$ \left[ p1_c, b1_x, b1_y, b1_w, b1_h, c1_1, c1_2, c1_3, p2_c, b2_x, b2_y, b2_w, b2_h, c2_1, c2_2, c2_3 \right] $$</li>
+  <li>The first 8 values give the probability, location and class of object-1 and next 8 values indicate the same of object-2</li>
+</ul>
+
+<h2 id="limitations-1">Limitations</h2>
+
+<p>The number of overlapping objects that can be detected by the algorithm is limited by the capacity of y (8 per object) chosen during training. This is not a huge limitation as it depends on the size of the objects to be detected and the size of each grid cell. Typically the objects are much larger compared to the gird cells. So,git  it is less probable for the mid-point of all these objects to fall under a single grid cell.</p>
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

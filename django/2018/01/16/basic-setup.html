@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Python and django project setup</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Python and django project setup</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Tuesday, 16 January 2018
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li>
+<a href="#core-django-project" id="markdown-toc-core-django-project">Core Django Project</a>    <ol>
+      <li><a href="#install-python-using-anaconda" id="markdown-toc-install-python-using-anaconda">Install Python using Anaconda</a></li>
+      <li><a href="#install-virtual-environment-packages" id="markdown-toc-install-virtual-environment-packages">Install virtual environment packages</a></li>
+      <li><a href="#create-virtual-environment" id="markdown-toc-create-virtual-environment">Create Virtual Environment</a></li>
+      <li><a href="#enter-and-exit-virtual-environment" id="markdown-toc-enter-and-exit-virtual-environment">Enter and exit virtual environment</a></li>
+      <li><a href="#install-django" id="markdown-toc-install-django">Install Django</a></li>
+      <li><a href="#setup-django-configuration" id="markdown-toc-setup-django-configuration">Setup Django configuration</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#setup-django-db-and-admin" id="markdown-toc-setup-django-db-and-admin">Setup Django DB and admin</a>    <ol>
+      <li><a href="#database" id="markdown-toc-database">Database</a></li>
+      <li><a href="#create-a-super-user-login" id="markdown-toc-create-a-super-user-login">Create a super user login</a></li>
+      <li><a href="#start-server" id="markdown-toc-start-server">Start Server</a></li>
+    </ol>
+  </li>
+  <li><a href="#install-utility-packages" id="markdown-toc-install-utility-packages">Install utility packages</a></li>
+  <li><a href="#create-requirements-file" id="markdown-toc-create-requirements-file">Create requirements file</a></li>
+</ol>
+
+</nav>
+
+<h1 id="core-django-project">Core Django Project</h1>
+
+<h2 id="install-python-using-anaconda">Install Python using Anaconda</h2>
+
+<ul>
+  <li>
+    <p>Download and install <a href="https://www.anaconda.com/download/">Anaconda</a></p>
+  </li>
+  <li>
+    <p>Add the following to PATH</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">&lt;AnacondaHome&gt;</code></li>
+      <li><code class="language-plaintext highlighter-rouge">&lt;AnacondaHome&gt;/Scripts</code></li>
+      <li><code class="language-plaintext highlighter-rouge">&lt;AnacondaHome&gt;/Library/bin</code></li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ensure the right python is in the path</span>
+<span class="o">&gt;</span> which python
+C:/ProgramData/Anaconda/python.exe
+
+<span class="o">&gt;</span> python <span class="nt">--version</span>
+Python 3.6.2 :: Anaconda custom <span class="o">(</span>64-bit<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="install-virtual-environment-packages">Install virtual environment packages</h2>
+
+<p>Use administration console. (Super user)</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Locate pip at &lt;Anaconda Install Home&gt;/Scripts/pip</span>
+<span class="o">&gt;</span> pip <span class="nb">install </span>virutalenv
+<span class="o">&gt;</span> pip <span class="nb">install </span>virtualenvwrapper
+</code></pre></div></div>
+
+<p>For Windows check <a href="https://virtualenvwrapper.readthedocs.io/en/latest/install.html">here</a></p>
+
+<h2 id="create-virtual-environment">Create Virtual Environment</h2>
+
+<p>Use user console.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create project base directory</span>
+<span class="o">&gt;</span> <span class="nb">mkdir </span>RJ
+<span class="o">&gt;</span> <span class="nb">cd </span>RJ
+
+<span class="c"># Create Virutal environment</span>
+<span class="o">&gt;</span> mkvirtualenv RJ
+
+<span class="c"># Note the prompt automatically using the virutal environment.</span>
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J&gt;
+
+</code></pre></div></div>
+
+<h2 id="enter-and-exit-virtual-environment">Enter and exit virtual environment</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Enter virutal environment</span>
+D:<span class="se">\R</span>J&gt; workon RJ
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J&gt; 
+
+<span class="c"># Confirm right pip</span>
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J&gt; which pip
+D:<span class="se">\R</span>J<span class="se">\S</span>cripts<span class="se">\p</span>ip.exe
+
+<span class="c"># Exit virtual environment</span>
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J&gt; deactivate
+D:<span class="se">\R</span>J&gt;
+</code></pre></div></div>
+
+<h2 id="install-django">Install Django</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># pip install django==[version]</span>
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc&gt; pip <span class="nb">install </span><span class="nv">django</span><span class="o">==</span>2.0.1
+</code></pre></div></div>
+
+<h2 id="setup-django-configuration">Setup Django configuration</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create src</span>
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc&gt; <span class="nb">mkdir </span>src
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc&gt; <span class="nb">cd </span>src
+
+<span class="c"># Create configuration-root directory 'config'</span>
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc&gt; django-admin startproject config <span class="nb">.</span>
+
+<span class="c"># Note the creation of 'config' directory and 'manage.py'</span>
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc&gt; <span class="nb">ls 
+</span>manage.py  config
+
+<span class="c"># Create settings under config</span>
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc&gt; <span class="nb">cd </span>config
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc<span class="se">\c</span>onfig&gt; <span class="nb">mkdir </span>settings
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc<span class="se">\c</span>onfig&gt; <span class="nb">mv </span>settings.py settings/base.py
+
+<span class="c"># Correct BASE_DIR in config/settings/base.py as follows. </span>
+<span class="c"># We moved one level deeper in folder structure.</span>
+BASE_DIR <span class="o">=</span> os.path.dirname<span class="o">(</span>os.path.dirname<span class="o">(</span>os.path.dirname<span class="o">(</span>os.path.abspath<span class="o">(</span>__file__<span class="o">))))</span>
+
+<span class="c"># Create __init__.py to use the appropriate settings</span>
+<span class="c"># Import appropriate settings. Local overrides production overrides base.</span>
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc<span class="se">\c</span>onfig&gt; <span class="nb">cd </span>settings
+<span class="o">(</span>RJ<span class="o">)</span> D:<span class="se">\R</span>J<span class="se">\s</span>rc<span class="se">\c</span>onfig<span class="se">\s</span>ettings&gt; <span class="nb">cat</span> <span class="o">&gt;</span> __init__.py
+from .base import <span class="k">*</span>
+
+try:
+   from .production import <span class="k">*</span>
+except:
+   pass
+
+try:
+   from .local import <span class="k">*</span>
+except:
+   pass
+</code></pre></div></div>
+
+<h1 id="setup-django-db-and-admin">Setup Django DB and admin</h1>
+
+<h2 id="database">Database</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(RJ) D:\RJ\src&gt; python manage.py migrate
+</code></pre></div></div>
+
+<h2 id="create-a-super-user-login">Create a super user login</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(RJ) D:\RJ\src&gt; python manage.py createsuperuser
+</code></pre></div></div>
+
+<h2 id="start-server">Start Server</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(RJ) D:\RJ\src&gt; python manage.py runserver
+</code></pre></div></div>
+
+<h1 id="install-utility-packages">Install utility packages</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(RJ) D:\RJ\src&gt; pip install psycopg2 gunicorn dj-database-url django-crispy-forms pillow
+</code></pre></div></div>
+
+<h1 id="create-requirements-file">Create requirements file</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(RJ) D:\RJ\src&gt; pip freeze
+dj-database-url==0.4.2
+Django==1.11.9
+django-crispy-forms==1.7.0
+gunicorn==19.7.1
+Pillow==5.0.0
+psycopg2==2.7.3.2
+pytz==2017.3
+
+(RJ) D:\RJ\src&gt; pip freeze &gt; requirements.txt
+</code></pre></div></div>
+
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

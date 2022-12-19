@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Exponentially Weighted Average</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Exponentially Weighted Average</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Thursday, 23 November 2017
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#algorithm" id="markdown-toc-algorithm">Algorithm</a></li>
+  <li>
+<a href="#understanding-running-average" id="markdown-toc-understanding-running-average">Understanding running average</a>    <ol>
+      <li><a href="#running-average-expansion" id="markdown-toc-running-average-expansion">Running average expansion</a></li>
+      <li><a href="#understanding-running-average-expansion" id="markdown-toc-understanding-running-average-expansion">Understanding running average expansion</a></li>
+      <li><a href="#tuning-the-running-average" id="markdown-toc-tuning-the-running-average">Tuning the running average</a></li>
+      <li><a href="#bias-correction-in-running-average" id="markdown-toc-bias-correction-in-running-average">Bias correction in running average</a></li>
+    </ol>
+  </li>
+  <li><a href="#programming-running-average" id="markdown-toc-programming-running-average">Programming Running average</a></li>
+</ol>
+
+</nav>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Running average or <strong>exponentially weighted average</strong> is an algorithm for calculating the average of latest ‘n’ items as we proceed. This is used when new items are being encountered continuously and we need a low cost (performant) way of calculating average (in an incremental fashion) after adding the new item.</p>
+
+<h1 id="algorithm">Algorithm</h1>
+
+<p>The running average (exponentially weighted average) is calculated as follows</p>
+
+<p>$$
+V_{t} \ =\ \beta \ V_{t-1} \ +\ ( 1-\beta ) \ \theta <em>{t} \ \ where \ \ V</em>{0}=0
+$$</p>
+
+<p>Here,</p>
+
+<ul>
+  <li>$$\ \theta _{t}$$ is the new item added at iteration $$t$$</li>
+  <li>$$V_{t}$$ is the running average calculated after $$t$$ iterations</li>
+  <li>$$V_{t-1}$$ was the previous running average (i.e the average calculated after $$t-1$$ iterations)</li>
+  <li>$$\beta$$ is the weight we would like to associate to the average calculated thus ( $$V_{t-1}$$ ).</li>
+  <li>$$1-\beta$$ is the weight we would like to associate to the new item added  ( $$\theta_{t}$$ ).</li>
+</ul>
+
+<h1 id="understanding-running-average">Understanding running average</h1>
+
+<p>For better understanding lets write the formula as $$V_{t} \ =\ ( 1-\beta ) \ \theta <em>{t} + \beta \ V</em>{t-1} \ $$. Let us expand the algorithm for various values like $$V_{1}, \ V_{2} \ V_{3}$$ and so on to reveal the working.</p>
+
+<h2 id="running-average-expansion">Running average expansion</h2>
+
+<p>$$
+\begin{aligned}
+V_{1} &amp;= ( 1-\beta ) \ \theta <em>{1} \ +\beta 0<br>
+V</em>{1} &amp;= ( 1-\beta ) \ \theta <em>{1}<br>
+<br>
+V</em>{2} &amp;= ( 1-\beta ) \ \theta <em>{2} \ +\beta V</em>{1}<br>
+V_{2} &amp;= ( 1-\beta ) \ \theta <em>{2} \ +\beta \ ( 1-\beta ) \ \theta _{1}<br>
+<br>
+V</em>{3} &amp;= ( 1-\beta ) \ \theta <em>{3} \ +\beta V</em>{2}<br>
+V_{3} &amp;= ( 1-\beta ) \ \theta <em>{3} \ +\ \beta \ ( 1-\beta ) \ \theta _{2} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{1} \ \ \ \ \ \ \ <br>
+<br>
+V</em>{4} &amp;= ( 1-\beta ) \ \theta <em>{4} \ +\ \beta V</em>{3}<br>
+V_{4} &amp;= ( 1-\beta ) \ \theta <em>{4} \ +\ \beta \ ( 1-\beta ) \ \theta _{3} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{2} \ +\ \beta ^{3}( 1-\beta ) \ \theta _{1} \ \ <br>
+<br>
+V</em>{5} &amp;= ( 1-\beta ) \ \theta <em>{5} \ +\ \beta V</em>{4}<br>
+V_{5} &amp;= ( 1-\beta ) \ \theta <em>{5} \ +\ \beta \ ( 1-\beta ) \ \theta _{4} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{3} \ +\ \beta ^{3}( 1-\beta ) \ \theta _{2} +\ \beta ^{4}( 1-\beta ) \ \theta _{1} \ \ <br>
+\ …<br>
+\ …<br>
+\ …<br>
+\ V</em>{t} &amp;= ( 1-\beta ) \ \theta <em>{t} \ +\ \ \beta V</em>{t-1} \ \ \ <br>
+\ V_{t} &amp;= ( 1-\beta ) \ \theta _{t} \ \ +\ \beta \ ( 1-\beta ) \ \theta _{t-1} \ +\ \beta ^{2}( 1-\beta ) \ \theta _{t-2} \ \ +\ \ \beta ^{3}( 1-\beta ) \ \theta _{t-3} \ +\ …+\ \beta ^{t-1}( 1-\beta ) \ \theta _{1} <br>
+\end{aligned}
+$$</p>
+
+<h2 id="understanding-running-average-expansion">Understanding running average expansion</h2>
+
+<p>A typical value for $$\beta$$ would be <code class="language-plaintext highlighter-rouge">0.9</code>, this makes $$1 - \beta$$ to be <code class="language-plaintext highlighter-rouge">0.1</code>. With these values substituted in the expansion we get</p>
+
+<p>$$
+\begin{aligned}
+V_{t} &amp;= 0.1\theta _{t} \ \ +\ 0.9\ ( 0.1) \ \theta _{t-1} \ +\ 0.9^{2}( 0.1) \ \theta _{t-2} \ \ +\ 0.9^{3}( 0.1) \ \theta _{t-3} \ +\ …+\ 0.9^{t-1}( 0.1) \ \theta _{1} \</p>
+
+<p>V_{t}  &amp;= 0.1\theta _{t} \ \ +\ 0.09 \ \theta _{t-1} \ +\ 0.081 \ \theta _{t-2} \ \ +\ 0.072 \ \theta _{t-3} \ +\ …+\ 0.9^{t-1}( 0.1) \ \theta _{1} <br>
+\end{aligned}
+$$</p>
+
+<p>From the expansion we find that a weight attached to the current temperature is <code class="language-plaintext highlighter-rouge">0.1</code> and the weight decreases <strong>exponentially</strong> as we go along older (earlier) values of $$\theta$$. This is termed is <strong><em>exponential weight decay</em></strong></p>
+
+<p>The weight attached to $$\theta_{t-10}$$, that is value of $$\theta$$, <code class="language-plaintext highlighter-rouge">10</code> items before is $$0.9^{10}(0.1) = 0.034 ~= e^{-1}0.1  $$. This weight is pretty insignificant and adds very little to the sum. Hence, when $$\beta = 0.9$$, a 10 day old value gets a weight close to $$e^{-1}$$, so it is almost like calculating the average for the last 10 items.</p>
+
+<p>In general, for given value of $$\beta$$, the average calculated by the algorithm is given as follows</p>
+
+<p>$$
+Number \ of \ items \ averaged = \frac{1}{(1-\beta)}
+$$</p>
+
+<h2 id="tuning-the-running-average">Tuning the running average</h2>
+
+<p>If $$\beta$$ is <code class="language-plaintext highlighter-rouge">0.9</code> we are pretty much averaging over latest <code class="language-plaintext highlighter-rouge">10</code> items and if  $$\beta$$ is <code class="language-plaintext highlighter-rouge">0.98</code> we are averaging over latest <code class="language-plaintext highlighter-rouge">50</code> items.  $$\beta$$  affects the number of items averaged as follows</p>
+
+<p>$$
+\uparrow \beta \ \ \Longrightarrow \ \downarrow ( 1-\beta ) \Longrightarrow \ \uparrow \frac{1}{1-\beta }
+$$</p>
+
+<p>Essentially, greater the value of   $$\beta$$</p>
+
+<ul>
+  <li>We are averaging more items giving a better average</li>
+  <li>We are giving lesser weight $$ ( 1-\beta ) $$ to newly added item making the algorithm slow to adapt to new changes</li>
+</ul>
+
+<h2 id="bias-correction-in-running-average">Bias correction in running average</h2>
+
+<p>In the first iteration $$V_{1} \ = \ ( 1-\beta ) \ \theta <em>{1} \ $$. If $$\beta$$ is <code class="language-plaintext highlighter-rouge">0.9</code> this makes it $$0.1\theta</em>{1}$$. Ideally, the average for the first item should have been close to $$\theta_{1}$$ it is instead $$0.1\theta_{1}$$ i.e one tenth the ideal value! Since  $$V_{2}$$  is calculated using  $$V_{1}$$ the effect continues for a while. This is bias. Bias is not a problem when we are averaging over large number of items , i.e <code class="language-plaintext highlighter-rouge">t</code> is large.</p>
+
+<p><em>Essentially, when we have more items the bias correction is not necessary.</em> However, the following formula will ensure bias correction irrespective of the number of items.</p>
+
+<p>$$
+V_{t-corrected} = \frac{V_{t}}{(1-\beta^{t})}
+$$</p>
+
+<p>Note that as <code class="language-plaintext highlighter-rouge">t</code> increases the value of $$(1-\beta^{t})$$ becomes close to <code class="language-plaintext highlighter-rouge">1</code> , so $$V_{t-corrected}$$ will become same as $$V_{t}$$.</p>
+
+<h1 id="programming-running-average">Programming Running average</h1>
+
+<p>In a program running average can be calculated as follows</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">:</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">v</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="n">theta</span>
+</code></pre></div></div>
+
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

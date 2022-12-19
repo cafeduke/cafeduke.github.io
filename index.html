@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Home</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="home-wrap" class="d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h4 class="card-title">Posts</h4>
+        </div>
+
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/2022/12/19/2021-04-27-drf.html"></a>
+                <small class="post-meta">Monday, 19 December 2022</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/git/2022/12/17/github-actions.html">GitHub Actions</a>
+                <small class="post-meta">Saturday, 17 December 2022</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/cloud/2022/12/15/kubernetes.html">Kubernetes Essentials</a>
+                <small class="post-meta">Thursday, 15 December 2022</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/spring/2021/05/25/spring-boot-microservices.html">SpringBoot Mircoservices</a>
+                <small class="post-meta">Tuesday, 25 May 2021</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/cloud/2021/01/16/docker.html">Docker</a>
+                <small class="post-meta">Saturday, 16 January 2021</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/git/2020/11/12/git-essentials.html">Git Essentials</a>
+                <small class="post-meta">Thursday, 12 November 2020</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-rnn/2018/10/22/machine-translation.html">Machine Translation</a>
+                <small class="post-meta">Monday, 22 October 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-rnn/2018/10/16/word-representation.html">Word Representation</a>
+                <small class="post-meta">Tuesday, 16 October 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-rnn/2018/10/11/rnn-introduction.html">Recurrent neural networks (RNN)</a>
+                <small class="post-meta">Thursday, 11 October 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-cnn/2018/09/24/face-recognition.html">Face Recognition</a>
+                <small class="post-meta">Monday, 24 September 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-cnn/2018/09/23/neural-style-transfer.html">Neural Style Transfer</a>
+                <small class="post-meta">Sunday, 23 September 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-cnn/2018/09/21/object-detection.html">Object Detection</a>
+                <small class="post-meta">Friday, 21 September 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-cnn/2018/09/19/transfer-learning.html">Transfer Learning</a>
+                <small class="post-meta">Wednesday, 19 September 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-cnn/2018/09/18/data-augmentation.html">Data Augmentation</a>
+                <small class="post-meta">Tuesday, 18 September 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-cnn/2018/09/16/cnn-inception.html">Inception Networks</a>
+                <small class="post-meta">Sunday, 16 September 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-cnn/2018/09/15/cnn-resnet.html">Residual Neural Networks</a>
+                <small class="post-meta">Saturday, 15 September 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-cnn/2018/09/14/cnn-classic.html">Standard Convolutional Neural Networks</a>
+                <small class="post-meta">Friday, 14 September 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-cnn/2018/09/10/cnn-intro.html">Introduction to Convolutional Neural Networks</a>
+                <small class="post-meta">Monday, 10 September 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2018/08/07/intro-ann.html">Introduction to Artificial Neural Networks</a>
+                <small class="post-meta">Tuesday, 7 August 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2018/07/06/tensorflow.html">Tensorflow</a>
+                <small class="post-meta">Friday, 6 July 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/bigdata/2018/06/21/hadoop-ecosystem.html">Hadoop Ecosystem</a>
+                <small class="post-meta">Thursday, 21 June 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2018/01/21/testng-log-javadoc.html">Structure TestNG logs like Javadocs</a>
+                <small class="post-meta">Sunday, 21 January 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/django/2018/01/16/basic-setup.html">Python and django project setup</a>
+                <small class="post-meta">Tuesday, 16 January 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2018/01/11/combination.html">Lexicographical Sequence Of Combination</a>
+                <small class="post-meta">Thursday, 11 January 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2018/01/07/permutation.html">Lexicographical Sequence Of Permutation</a>
+                <small class="post-meta">Sunday, 7 January 2018</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/12/24/concurrency-index.html">Brewing Concurrency - Table Of Contents</a>
+                <small class="post-meta">Sunday, 24 December 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/12/23/lambda-index.html">Brewing Lambda - Table Of Contents</a>
+                <small class="post-meta">Saturday, 23 December 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/12/22/lambda-method-reference.html">Lambda - Method Reference</a>
+                <small class="post-meta">Friday, 22 December 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/12/21/lambda-standard-fi-function.html">Lambda Standard Functional Interface - Function</a>
+                <small class="post-meta">Thursday, 21 December 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-strategy/2017/12/17/bayes-error.html">Baye's error and human error</a>
+                <small class="post-meta">Sunday, 17 December 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/12/12/neural-network-math.html">Neural network math</a>
+                <small class="post-meta">Tuesday, 12 December 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/12/11/lambda-standard-fi-supplier.html">Lambda Standard Functional Interface - Supplier</a>
+                <small class="post-meta">Monday, 11 December 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-strategy/2017/12/08/multiple-data-distributions.html">Multiple Data Distributions</a>
+                <small class="post-meta">Friday, 8 December 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-strategy/2017/12/08/bias-variance-mismatch-data-distributions.html">Bias, Variance &amp; data mismatch during multiple distributions</a>
+                <small class="post-meta">Friday, 8 December 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl-strategy/2017/11/30/error-analysis.html">Error Analysis</a>
+                <small class="post-meta">Thursday, 30 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/27/vanishing-exploding-gradient-problem.html">Vanishing and exploding gradients problem</a>
+                <small class="post-meta">Monday, 27 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/26/input-normalization.html">Input normalization</a>
+                <small class="post-meta">Sunday, 26 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/24/regularization.html">Regularization</a>
+                <small class="post-meta">Friday, 24 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/24/learning-rate-decay.html">Learning rate decay</a>
+                <small class="post-meta">Friday, 24 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/23/running-average.html">Exponentially Weighted Average</a>
+                <small class="post-meta">Thursday, 23 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/23/gradient-momentum-with-adam.html">Gradient momentum with Adam optimization</a>
+                <small class="post-meta">Thursday, 23 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/22/k-class-classification.html">K-Class Classification</a>
+                <small class="post-meta">Wednesday, 22 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/22/batch-normalization.html">Batch normalization</a>
+                <small class="post-meta">Wednesday, 22 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/11/21/lambda-standard-fi-consumer.html">Lambda Standard Functional Interface - Consumer</a>
+                <small class="post-meta">Tuesday, 21 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/21/mini-batch-gradient-descent.html">Mini batch gradient descent</a>
+                <small class="post-meta">Tuesday, 21 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/dl/2017/11/19/hyper-parameters.html">Hyper parameters</a>
+                <small class="post-meta">Sunday, 19 November 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/10/21/lambda-scope.html">Brewing Lambda - Scope</a>
+                <small class="post-meta">Saturday, 21 October 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/09/21/lambda-extension-method.html">Brewing Lambda - Extension Method</a>
+                <small class="post-meta">Thursday, 21 September 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/09/11/lambda-basics.html">Brewing Lambda - Basics</a>
+                <small class="post-meta">Monday, 11 September 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/08/22/concurrency-index.html">Brewing Concurrency - Table Of Contents</a>
+                <small class="post-meta">Tuesday, 22 August 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/08/21/executive-service-on-the-fly-submission.html">Executor Service - On The Fly Submission</a>
+                <small class="post-meta">Monday, 21 August 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/08/11/executive-service-task-dependency.html">Executor Service - Task dependency</a>
+                <small class="post-meta">Friday, 11 August 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/07/21/executive-service-fixed-thread-pool-basic.html">Executor Service - Fixed Thread Pool Basic</a>
+                <small class="post-meta">Friday, 21 July 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/07/11/deadlock-hold-and-wait.html">Deadlock - Hold and Wait</a>
+                <small class="post-meta">Tuesday, 11 July 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/06/21/concurrency-sync-is-based-on-object.html">Threads - Synchronization is on object</a>
+                <small class="post-meta">Wednesday, 21 June 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/06/11/object-hashcode-and-equals.html">Object HashCode and Equals</a>
+                <small class="post-meta">Sunday, 11 June 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/05/21/inner-class.html">Brewing with inner classes</a>
+                <small class="post-meta">Sunday, 21 May 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/04/21/http2-with-jetty.html">HTTP 2.0 with Jetty server and client</a>
+                <small class="post-meta">Friday, 21 April 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/03/11/groovy.html">Groovy</a>
+                <small class="post-meta">Saturday, 11 March 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/02/21/basic-logging.html">Brewing Java Logging</a>
+                <small class="post-meta">Tuesday, 21 February 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/02/11/bean-shell.html">Bean Shell</a>
+                <small class="post-meta">Saturday, 11 February 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/01/21/colorful-javadoc.html">Colorful Javadoc</a>
+                <small class="post-meta">Saturday, 21 January 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/01/11/clash-of-slashes.html">Clash Of Slashes</a>
+                <small class="post-meta">Wednesday, 11 January 2017</small>
+            </li>
+            
+            <li class="list-group-item">                
+                <a class="post-link" href="/java/2017/01/01/hot-spot.html">Hot Spot</a>
+                <small class="post-meta">Sunday, 1 January 2017</small>
+            </li>
+            
+
+        </ul>
+    </div>
+
+    
+
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

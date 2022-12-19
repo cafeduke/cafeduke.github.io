@@ -1,0 +1,2439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>SpringBoot Mircoservices</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">SpringBoot Mircoservices</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Tuesday, 25 May 2021
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li>
+<a href="#introduction" id="markdown-toc-introduction">Introduction</a>    <ol>
+      <li><a href="#spring-boot-starter-package" id="markdown-toc-spring-boot-starter-package">Spring Boot Starter Package</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#configuration-access-by-microservice" id="markdown-toc-configuration-access-by-microservice">Configuration access by microservice</a>    <ol>
+      <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+      <li><a href="#git-repo" id="markdown-toc-git-repo">Git Repo</a></li>
+      <li>
+<a href="#spring-could-config-server" id="markdown-toc-spring-could-config-server">Spring Could Config Server</a>        <ol>
+          <li><a href="#dependencies" id="markdown-toc-dependencies">Dependencies</a></li>
+          <li><a href="#application-properties" id="markdown-toc-application-properties">Application Properties</a></li>
+          <li><a href="#application" id="markdown-toc-application">Application</a></li>
+          <li><a href="#verify-working" id="markdown-toc-verify-working">Verify working</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#limits-service" id="markdown-toc-limits-service">Limits Service</a>        <ol>
+          <li><a href="#dependencies-1" id="markdown-toc-dependencies-1">Dependencies</a></li>
+          <li><a href="#application-properties-1" id="markdown-toc-application-properties-1">Application Properties</a></li>
+          <li><a href="#controller" id="markdown-toc-controller">Controller</a></li>
+          <li><a href="#configuration-bean" id="markdown-toc-configuration-bean">Configuration Bean</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#talking-microservices" id="markdown-toc-talking-microservices">Talking Microservices</a>    <ol>
+      <li>
+<a href="#currency-exchange-service" id="markdown-toc-currency-exchange-service">Currency Exchange Service</a>        <ol>
+          <li><a href="#dependencies-2" id="markdown-toc-dependencies-2">Dependencies</a></li>
+          <li><a href="#sql-file-to-populate-data" id="markdown-toc-sql-file-to-populate-data">SQL file to populate data</a></li>
+          <li><a href="#application-properties-2" id="markdown-toc-application-properties-2">Application Properties</a></li>
+          <li><a href="#database-console" id="markdown-toc-database-console">Database Console</a></li>
+          <li><a href="#controller-1" id="markdown-toc-controller-1">Controller</a></li>
+          <li><a href="#service" id="markdown-toc-service">Service</a></li>
+          <li><a href="#entity-bean" id="markdown-toc-entity-bean">Entity Bean</a></li>
+          <li><a href="#rest-request" id="markdown-toc-rest-request">REST Request</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#currency-calculation-service" id="markdown-toc-currency-calculation-service">Currency Calculation Service</a>        <ol>
+          <li><a href="#dependencies-3" id="markdown-toc-dependencies-3">Dependencies</a></li>
+          <li><a href="#application-properties-3" id="markdown-toc-application-properties-3">Application Properties</a></li>
+          <li><a href="#controller-2" id="markdown-toc-controller-2">Controller</a></li>
+          <li><a href="#java-bean" id="markdown-toc-java-bean">Java Bean</a></li>
+          <li><a href="#rest-request-1" id="markdown-toc-rest-request-1">REST Request</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#talking-microservices-via-feign" id="markdown-toc-talking-microservices-via-feign">Talking Microservices via Feign</a>    <ol>
+      <li>
+<a href="#currency-calculation-service-1" id="markdown-toc-currency-calculation-service-1">Currency Calculation Service</a>        <ol>
+          <li><a href="#dependencies-4" id="markdown-toc-dependencies-4">Dependencies</a></li>
+          <li><a href="#feign-client-proxy" id="markdown-toc-feign-client-proxy">Feign Client Proxy</a></li>
+          <li><a href="#controller-3" id="markdown-toc-controller-3">Controller</a></li>
+          <li><a href="#rest-request-2" id="markdown-toc-rest-request-2">REST Request</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#naming-service" id="markdown-toc-naming-service">Naming service</a>    <ol>
+      <li>
+<a href="#naming-service-server" id="markdown-toc-naming-service-server">Naming service server</a>        <ol>
+          <li><a href="#dependencies-5" id="markdown-toc-dependencies-5">Dependencies</a></li>
+          <li><a href="#applicationproperties" id="markdown-toc-applicationproperties">ApplicationProperties</a></li>
+          <li><a href="#eureka-dashboard" id="markdown-toc-eureka-dashboard">Eureka Dashboard</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#registering-with-naming-server" id="markdown-toc-registering-with-naming-server">Registering with naming server</a>        <ol>
+          <li><a href="#dependencies-6" id="markdown-toc-dependencies-6">Dependencies</a></li>
+          <li>
+<a href="#application-properties-4" id="markdown-toc-application-properties-4">Application Properties</a>            <ol>
+              <li><a href="#currency-calculation-service-2" id="markdown-toc-currency-calculation-service-2">Currency Calculation Service</a></li>
+              <li><a href="#currency-exchange-service-1" id="markdown-toc-currency-exchange-service-1">Currency Exchange Service</a></li>
+            </ol>
+          </li>
+          <li><a href="#eureka-dashboard-1" id="markdown-toc-eureka-dashboard-1">Eureka Dashboard</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#load-balancing-services" id="markdown-toc-load-balancing-services">Load balancing services</a>    <ol>
+      <li><a href="#start-multiple-instances-of-services" id="markdown-toc-start-multiple-instances-of-services">Start multiple instances of services</a></li>
+      <li><a href="#verify-registration-with-naming-server" id="markdown-toc-verify-registration-with-naming-server">Verify registration with naming server</a></li>
+      <li><a href="#configure-lb-via-feign" id="markdown-toc-configure-lb-via-feign">Configure LB via Feign</a></li>
+      <li><a href="#verify-lb" id="markdown-toc-verify-lb">Verify LB</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#api-gateway" id="markdown-toc-api-gateway">API Gateway</a>    <ol>
+      <li>
+<a href="#gateway-service" id="markdown-toc-gateway-service">Gateway Service</a>        <ol>
+          <li><a href="#dependencies-7" id="markdown-toc-dependencies-7">Dependencies</a></li>
+          <li><a href="#application-properties-5" id="markdown-toc-application-properties-5">Application Properties</a></li>
+          <li><a href="#verify-registration-with-naming-server-1" id="markdown-toc-verify-registration-with-naming-server-1">Verify registration with naming server</a></li>
+          <li><a href="#verify-access-via-gateway" id="markdown-toc-verify-access-via-gateway">Verify access via Gateway</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#routes" id="markdown-toc-routes">Routes</a>        <ol>
+          <li><a href="#simple-redirection" id="markdown-toc-simple-redirection">Simple Redirection</a></li>
+          <li><a href="#filters" id="markdown-toc-filters">Filters</a></li>
+          <li><a href="#filters-to-rewrite-uri" id="markdown-toc-filters-to-rewrite-uri">Filters to rewrite URI</a></li>
+          <li><a href="#simplify-uri-to-services" id="markdown-toc-simplify-uri-to-services">Simplify URI to services</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#resilience4j" id="markdown-toc-resilience4j">Resilience4J</a>    <ol>
+      <li>
+<a href="#retry-with-fallback" id="markdown-toc-retry-with-fallback">Retry with fallback</a>        <ol>
+          <li><a href="#dependencies-8" id="markdown-toc-dependencies-8">Dependencies</a></li>
+          <li><a href="#controller-4" id="markdown-toc-controller-4">Controller</a></li>
+          <li><a href="#application-properties-6" id="markdown-toc-application-properties-6">Application Properties</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#circuit-breaker" id="markdown-toc-circuit-breaker">Circuit Breaker</a>        <ol>
+          <li><a href="#dependencies-9" id="markdown-toc-dependencies-9">Dependencies</a></li>
+          <li><a href="#controller-5" id="markdown-toc-controller-5">Controller</a></li>
+          <li><a href="#working-of-circuit-breaker" id="markdown-toc-working-of-circuit-breaker">Working of Circuit Breaker</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#rate-limiter" id="markdown-toc-rate-limiter">Rate Limiter</a>        <ol>
+          <li><a href="#controller-6" id="markdown-toc-controller-6">Controller</a></li>
+          <li><a href="#application-properties-7" id="markdown-toc-application-properties-7">Application Properties</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#bulkhead" id="markdown-toc-bulkhead">Bulkhead</a>        <ol>
+          <li><a href="#controller-7" id="markdown-toc-controller-7">Controller</a></li>
+          <li><a href="#application-properties-8" id="markdown-toc-application-properties-8">Application Properties</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#microservices-with-docker" id="markdown-toc-microservices-with-docker">Microservices with Docker</a>    <ol>
+      <li>
+<a href="#distributed-tracing-service" id="markdown-toc-distributed-tracing-service">Distributed tracing service</a>        <ol>
+          <li><a href="#dependencies-10" id="markdown-toc-dependencies-10">Dependencies</a></li>
+          <li><a href="#application-properties-9" id="markdown-toc-application-properties-9">Application Properties</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#build-docker-image-using-maven" id="markdown-toc-build-docker-image-using-maven">Build Docker image using Maven</a>        <ol>
+          <li><a href="#update-plugin-configuration" id="markdown-toc-update-plugin-configuration">Update plugin configuration</a></li>
+          <li><a href="#make-mvn-accessible-as-root" id="markdown-toc-make-mvn-accessible-as-root">Make <code class="language-plaintext highlighter-rouge">mvn</code> accessible as root</a></li>
+          <li><a href="#execute-the-build-image-goal-of-spring-boot-plugin" id="markdown-toc-execute-the-build-image-goal-of-spring-boot-plugin">Execute the <code class="language-plaintext highlighter-rouge">build-image</code> goal of <code class="language-plaintext highlighter-rouge">spring-boot</code> plugin</a></li>
+          <li><a href="#start-docker-container-for-currencyexchangeservice" id="markdown-toc-start-docker-container-for-currencyexchangeservice">Start docker container for <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code></a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#manage-services-using-docker-compose" id="markdown-toc-manage-services-using-docker-compose">Manage services using docker-compose</a>        <ol>
+          <li><a href="#yaml-file" id="markdown-toc-yaml-file">YAML file</a></li>
+          <li><a href="#start-all-containers" id="markdown-toc-start-all-containers">Start all containers</a></li>
+          <li><a href="#verify-requests" id="markdown-toc-verify-requests">Verify requests</a></li>
+          <li><a href="#verify-registration-in-eureka" id="markdown-toc-verify-registration-in-eureka">Verify registration in Eureka</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#rabbitmq-service" id="markdown-toc-rabbitmq-service">RabbitMQ Service</a>        <ol>
+          <li><a href="#dependency" id="markdown-toc-dependency">Dependency</a></li>
+          <li><a href="#application-properties-10" id="markdown-toc-application-properties-10">Application Properties</a></li>
+          <li><a href="#docker-compose" id="markdown-toc-docker-compose">Docker Compose</a></li>
+          <li><a href="#verify-requests-1" id="markdown-toc-verify-requests-1">Verify requests</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+</nav>
+<h1 id="introduction">Introduction</h1>
+
+<p>The document details creating a sample application to demo spring boot micro-services (MS).  Microservices are modular, atomic, building blocks that can be scaled and distributed as part of a larger system.</p>
+
+<h2 id="spring-boot-starter-package">Spring Boot Starter Package</h2>
+
+<p>The  <a href="https://start.spring.io/">Spring Starter</a> provides a wizard to create and download an archive with dependencies.</p>
+
+<ul>
+  <li>Fill in the project package base name as group-id, project name as artifact-id</li>
+  <li>Add dependencies</li>
+  <li>Generate the project archive and import it as maven project in Eclipse IDE.</li>
+</ul>
+
+<p><img src="/assets/images/spring/SpringInitializer.jpg" alt="SpringInitializer"></p>
+
+<h1 id="configuration-access-by-microservice">Configuration access by microservice</h1>
+
+<p>The below service shall demonstrate</p>
+
+<ul>
+  <li>Creating profiles (like qa, dev, default)</li>
+  <li>Having different configuration (In this case, properties file) for each profile. The properties file shall have the format <code class="language-plaintext highlighter-rouge">&lt;mircoservice-name&gt;-&lt;profile&gt;.properties</code>. Therefore, QA shall have a properties file <code class="language-plaintext highlighter-rouge">limits-service-qa.properties</code>
+</li>
+  <li>Save the properties files in GIT repository</li>
+  <li>Create <strong>Spring Cloud Config Server Microservice</strong> – The microservice shall connect to a config repository like git and fetch configuration</li>
+  <li>Create <strong>Limits Microservice</strong> – Exposes REST services to return a JSON with properties for the configured profile.</li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p><img src="/assets/images/spring/LimitsService.jpg" alt="LimitsService"></p>
+
+<h2 id="git-repo">Git Repo</h2>
+
+<p>Create a GIT repository and add the following files. Commit and push properties to Github.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Default profile</span>
+<span class="o">&gt;</span> <span class="nb">cat </span>limits-service.properties
+limits-service.minimum <span class="o">=</span> 1
+limits-service.maximum <span class="o">=</span> 1000
+
+<span class="c"># Dev profile -- Note that max is commented</span>
+<span class="o">&gt;</span> <span class="nb">cat </span>limits-service-dev.properties
+limits-service.minimum <span class="o">=</span> 3
+<span class="c"># limits-service.maximum = 3000</span>
+
+<span class="c"># QA profile -- Has higher limits needed for testing.</span>
+<span class="o">&gt;</span> <span class="nb">cat </span>limits-service-qa.properties
+limits-service.minimum <span class="o">=</span> 5
+limits-service.maximum <span class="o">=</span> 5000
+</code></pre></div></div>
+
+<h2 id="spring-could-config-server">Spring Could Config Server</h2>
+
+<h3 id="dependencies">Dependencies</h3>
+
+<p>Create spring boot project with following dependencies</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dependency</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ConfigServer</td>
+      <td>Connect to repositories like git</td>
+    </tr>
+    <tr>
+      <td>DevTools</td>
+      <td>LiveReload, Config for enhanced dev</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="application-properties">Application Properties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Name of the microservice
+</span><span class="py">spring.application.name</span><span class="p">=</span><span class="s">spring-cloud-config-server</span>
+
+<span class="c"># Port to run the current service
+</span><span class="py">server.port</span><span class="p">=</span><span class="s">8888</span>
+
+<span class="c"># URI of the github project
+</span><span class="py">spring.cloud.config.server.git.uri</span><span class="p">=</span><span class="s">https://github.com/cafeduke/Learn</span>
+
+<span class="c"># Search path to look for config files
+</span><span class="py">spring.cloud.config.server.git.searchPaths</span><span class="p">=</span><span class="s">JavaEE/Spring/WebService/L02_Mircoservice/config-repo</span>
+</code></pre></div></div>
+
+<h3 id="application">Application</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.sprintcloudconfigserver</span><span class="o">;</span>
+
+<span class="c1">// Note: Add annotation to enable app as configuration server</span>
+<span class="nd">@EnableConfigServer</span>
+<span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SprintCloudConfigServerApplication</span>
+<span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">SprintCloudConfigServerApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="verify-working">Verify working</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Verify working of the following URLs</span>
+<span class="c"># ------------------------------------</span>
+
+<span class="c"># Default profile</span>
+http://localhost:8888/limits-service/default
+
+<span class="c"># QA profile</span>
+http://localhost:8888/limits-service/qa
+
+<span class="c"># Dev profile</span>
+http://localhost:8888/limits-service/dev
+</code></pre></div></div>
+
+<h2 id="limits-service">Limits Service</h2>
+
+<h3 id="dependencies-1">Dependencies</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dependency</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Spring Web</td>
+      <td>Build restful application using Spring MVC</td>
+    </tr>
+    <tr>
+      <td>Config Client</td>
+      <td>Client to connect to SpringCloudConfigServer</td>
+    </tr>
+    <tr>
+      <td>DevTools</td>
+      <td>LiveReload, Config for enhanced dev</td>
+    </tr>
+    <tr>
+      <td>SpringActuator</td>
+      <td>Monitor and manage applications</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="application-properties-1">Application Properties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.application.name</span><span class="p">=</span><span class="s">limits-service</span>
+<span class="py">server.port</span><span class="p">=</span><span class="s">8080</span>
+
+<span class="c"># The config profile to be used
+</span><span class="py">spring.profiles.active</span><span class="p">=</span><span class="s">qa</span>
+
+<span class="c"># The config server URI
+</span><span class="py">spring.config.import</span><span class="p">=</span><span class="s">optional:configserver:http://localhost:8888</span>
+
+<span class="c"># Ensure the properties obtained from confingserver (above) overrides the below properties
+</span><span class="py">limits-service.minimum</span><span class="p">=</span><span class="s">11</span>
+<span class="py">limits-service.maximum</span><span class="p">=</span><span class="s">1111</span>
+</code></pre></div></div>
+
+<h3 id="controller">Controller</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.limitsservice</span><span class="o">;</span>
+
+<span class="cm">/**
+ * The controller simply returns the LimitsConfigBean
+ */</span>
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LimitsConfigController</span>
+<span class="o">{</span>
+  <span class="nd">@Autowired</span>
+  <span class="kd">private</span> <span class="nc">LimitsConfigBean</span> <span class="n">config</span><span class="o">;</span>
+
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/limits"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">LimitsConfigBean</span> <span class="nf">getLimitsConfig</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="n">config</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="configuration-bean">Configuration Bean</h3>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">LimitsConfigBean</code> is a component annotated with <code class="language-plaintext highlighter-rouge">@Component</code>
+</li>
+  <li>The <code class="language-plaintext highlighter-rouge">@ConfigurationProperties</code> annotation tells the name of the properties file to look for.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.limitsservice</span><span class="o">;</span>
+
+<span class="nd">@Component</span>
+<span class="nd">@ConfigurationProperties</span><span class="o">(</span><span class="s">"limits-service"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LimitsConfigBean</span>
+<span class="o">{</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">minimum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">maximum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+  <span class="kd">protected</span> <span class="nf">LimitsConfigBean</span><span class="o">()</span>
+  <span class="o">{</span>
+
+  <span class="o">}</span>
+
+  <span class="cm">/* Getters and Setters*/</span>
+  <span class="o">...</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h1 id="talking-microservices">Talking Microservices</h1>
+
+<p>Create two mircroservies <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code> and <code class="language-plaintext highlighter-rouge">CurrencyCalculationService</code>.</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code> provides the conversion rate from one currency to another.
+    <ul>
+      <li>The REST URI shall be <code class="language-plaintext highlighter-rouge">http://&lt;host:port&gt;/currency-exchange-service/from/&lt;currency&gt;/to/&lt;currency&gt;</code>
+</li>
+      <li>Example: <code class="language-plaintext highlighter-rouge">http://localhost:8888/currency-exchange-service/from/USD/to/INR</code> shall provide the conversion multiple for <code class="language-plaintext highlighter-rouge">USD to INR</code>
+</li>
+    </ul>
+  </li>
+  <li>The <code class="language-plaintext highlighter-rouge">CurrencyCalculationService</code> calculates the quantity of the <code class="language-plaintext highlighter-rouge">to</code> currency for a given quantity of the <code class="language-plaintext highlighter-rouge">from</code>  currency.
+    <ul>
+      <li>The REST URI shall be <code class="language-plaintext highlighter-rouge">http://&lt;host:port&gt;/currency-exchange-service/from/&lt;currency&gt;/to/&lt;currency&gt;/quantity/&lt;quantity&gt;</code>
+</li>
+      <li>Example: <code class="language-plaintext highlighter-rouge">http://localhost:8888/currency-exchange-service/from/USD/to/INR/50</code>  shall provide the value in <code class="language-plaintext highlighter-rouge">INR</code> for <code class="language-plaintext highlighter-rouge">50 USD</code>
+</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="currency-exchange-service">Currency Exchange Service</h2>
+
+<h3 id="dependencies-2">Dependencies</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dependency</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Spring Web</td>
+      <td>Build restful application using Spring MVC</td>
+    </tr>
+    <tr>
+      <td>Config Client</td>
+      <td>Client to connect to SpringCloudConfigServer</td>
+    </tr>
+    <tr>
+      <td>DevTools</td>
+      <td>LiveReload, Config for enhanced dev</td>
+    </tr>
+    <tr>
+      <td>SpringActuator</td>
+      <td>Monitor and manage applications</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td>In-memory database – h2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="sql-file-to-populate-data">SQL file to populate data</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">insert</span> <span class="k">into</span> <span class="n">exchange_value</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">currency_from</span><span class="p">,</span><span class="n">currency_to</span><span class="p">,</span><span class="n">conversion_multiple</span><span class="p">,</span><span class="n">port</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="s1">'USD'</span><span class="p">,</span> <span class="s1">'INR'</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">exchange_value</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">currency_from</span><span class="p">,</span><span class="n">currency_to</span><span class="p">,</span><span class="n">conversion_multiple</span><span class="p">,</span><span class="n">port</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">102</span><span class="p">,</span> <span class="s1">'EUR'</span><span class="p">,</span> <span class="s1">'INR'</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">exchange_value</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">currency_from</span><span class="p">,</span><span class="n">currency_to</span><span class="p">,</span><span class="n">conversion_multiple</span><span class="p">,</span><span class="n">port</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">103</span><span class="p">,</span> <span class="s1">'AUD'</span><span class="p">,</span> <span class="s1">'INR'</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="application-properties-2">Application Properties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.application.name</span><span class="p">=</span><span class="s">currency-exchange-service</span>
+<span class="py">server.port</span><span class="p">=</span><span class="s">8000</span>
+
+<span class="c"># Database properties
+# -------------------
+</span>
+<span class="c"># JDBC url
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false</span>
+
+<span class="c"># Show sql statements on console log
+</span><span class="py">spring.jpa.show-sql</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Provide a UI console for DB
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<h3 id="database-console">Database Console</h3>
+
+<ul>
+  <li>Login to http://localhost:8000/h2-console
+<img src="/assets/images/spring/H2DBLogin.jpg" alt="H2DBLogin">
+</li>
+  <li>Access the console and verify DB table with data
+<img src="/assets/images/spring/H2DBConsole.jpg" alt="H2DBConsole">
+</li>
+</ul>
+
+<h3 id="controller-1">Controller</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CurrencyExchangeController</span>
+<span class="o">{</span>
+  <span class="cm">/**
+   * Multiple instances of currency exchange controller shall be running.
+   * The server port shall be fetched from the env to identify the specific instance that is being used
+   */</span>
+  <span class="nd">@Autowired</span>
+  <span class="kd">private</span> <span class="nc">Environment</span> <span class="n">env</span><span class="o">;</span>
+
+  <span class="nd">@Autowired</span>
+  <span class="kd">private</span> <span class="nc">ExchangeValueService</span> <span class="n">exchangeValueService</span><span class="o">;</span>
+
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/currency-exchange/from/{from}/to/{to}"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">ExchangeValue</span> <span class="nf">getExchangeValue</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">from</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">to</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="nc">ExchangeValue</span> <span class="n">exchangeValue</span> <span class="o">=</span> <span class="n">exchangeValueService</span><span class="o">.</span><span class="na">findByFromAndTo</span><span class="o">(</span><span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">);</span>
+    <span class="nc">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">exchangeValue</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="o">(</span><span class="s">"No conversion exists for given currencies. from="</span> <span class="o">+</span> <span class="n">from</span> <span class="o">+</span> <span class="s">" to="</span> <span class="o">+</span> <span class="n">to</span><span class="o">));</span>
+    <span class="n">exchangeValue</span><span class="o">.</span><span class="na">setEnv</span><span class="o">(</span><span class="s">"ServerPort="</span> <span class="o">+</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">env</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"local.server.port"</span><span class="o">)));</span>
+    <span class="k">return</span> <span class="n">exchangeValue</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="service">Service</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ExchangeValueService</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">ExchangeValue</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span>
+<span class="o">{</span>
+  <span class="cm">/**
+   * Just by adding the interface definition, JPA shall provide the implementation!
+   *
+   * @param from The 'from' currency field
+   * @param to The 'to' currency field
+   * @return The ExchangeValue entity object.
+   */</span>
+  <span class="nc">ExchangeValue</span> <span class="nf">findByFromAndTo</span><span class="o">(</span><span class="nc">String</span> <span class="n">from</span><span class="o">,</span> <span class="nc">String</span> <span class="n">to</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="entity-bean">Entity Bean</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.currencyexchangeservice</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.math.BigDecimal</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.Column</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExchangeValue</span>
+<span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="cm">/**
+   * We cannot have an SQL column name as 'from' as it is an SQL keyword.
+   */</span>
+  <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"currency_from"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">from</span><span class="o">;</span>
+
+  <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"currency_to"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">to</span><span class="o">;</span>
+
+  <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"conversion_multiple"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">BigDecimal</span> <span class="n">conversionMultiple</span><span class="o">;</span>
+
+  <span class="cm">/**
+   * This is not mapped to database
+   * The environment details must indicate the server sending the response.
+   */</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">env</span><span class="o">;</span>
+
+  <span class="kd">protected</span> <span class="nf">ExchangeValue</span><span class="o">()</span>
+  <span class="o">{</span>
+
+  <span class="o">}</span>
+
+  <span class="kd">protected</span> <span class="nf">ExchangeValue</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">from</span><span class="o">,</span> <span class="nc">String</span> <span class="n">to</span><span class="o">,</span> <span class="nc">BigDecimal</span> <span class="n">conversionMultiple</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="kd">super</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">from</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">to</span> <span class="o">=</span> <span class="n">to</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">conversionMultiple</span> <span class="o">=</span> <span class="n">conversionMultiple</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="cm">/* Getters and Setters */</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="rest-request">REST Request</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>json-get http://localhost:8000/currency-exchange/from/USD/to/INR
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h2 id="currency-calculation-service">Currency Calculation Service</h2>
+
+<h3 id="dependencies-3">Dependencies</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dependency</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Spring Web</td>
+      <td>Build restful application using Spring MVC</td>
+    </tr>
+    <tr>
+      <td>Config Client</td>
+      <td>Client to connect to SpringCloudConfigServer</td>
+    </tr>
+    <tr>
+      <td>DevTools</td>
+      <td>LiveReload, Config for enhanced dev</td>
+    </tr>
+    <tr>
+      <td>SpringActuator</td>
+      <td>Monitor and manage applications</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td>In-memory database – h2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="application-properties-3">Application Properties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.application.name</span><span class="p">=</span><span class="s">currency-calculation-service</span>
+<span class="py">server.port</span><span class="p">=</span><span class="s">8100</span>
+
+<span class="c"># The config server URI
+</span><span class="py">spring.config.import</span><span class="p">=</span><span class="s">optional:configserver:http://localhost:8888</span>
+</code></pre></div></div>
+<h3 id="controller-2">Controller</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CurrencyCalculationServiceController</span>
+<span class="o">{</span>
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/currency-calculator/from/{from}/to/{to}/quantity/{quantity}"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">CurrencyCalculationBean</span> <span class="nf">getCalculation</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">from</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">to</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="nc">BigDecimal</span> <span class="n">quantity</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="c1">// A map of URI parameter to its value</span>
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">mapParamValue</span> <span class="o">=</span> <span class="nc">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">entry</span><span class="o">(</span><span class="s">"from"</span><span class="o">,</span> <span class="n">from</span><span class="o">),</span> <span class="nc">Map</span><span class="o">.</span><span class="na">entry</span><span class="o">(</span><span class="s">"to"</span><span class="o">,</span> <span class="n">to</span><span class="o">));</span>
+
+    <span class="cm">/*
+     * The URL to the service that is requested is hard-coded.
+     * The JSON obtained by URL, passed to getForEntity, is mapped to bean 'CurrencyCalculationBean' (Ensure the JSON response and field names in bean are identical)
+     */</span>
+    <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">CurrencyCalculationBean</span><span class="o">&gt;</span> <span class="n">responseEntity</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">getForEntity</span><span class="o">(</span><span class="s">"http://localhost:8000/currency-exchange/from/{from}/to/{to}"</span><span class="o">,</span> <span class="nc">CurrencyCalculationBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">mapParamValue</span><span class="o">);</span>
+    <span class="nc">CurrencyCalculationBean</span> <span class="n">currencyCalculationBean</span> <span class="o">=</span> <span class="n">responseEntity</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
+    <span class="n">currencyCalculationBean</span><span class="o">.</span><span class="na">setQuantity</span><span class="o">(</span><span class="n">quantity</span><span class="o">);</span>
+    <span class="n">currencyCalculationBean</span><span class="o">.</span><span class="na">doCalulate</span><span class="o">();</span>
+    <span class="k">return</span> <span class="n">currencyCalculationBean</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="java-bean">Java Bean</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CurrencyCalculationBean</span>
+<span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">from</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">to</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">BigDecimal</span> <span class="n">conversionMultiple</span> <span class="o">=</span> <span class="nc">BigDecimal</span><span class="o">.</span><span class="na">ONE</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">BigDecimal</span> <span class="n">quantity</span> <span class="o">=</span> <span class="nc">BigDecimal</span><span class="o">.</span><span class="na">ONE</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">BigDecimal</span> <span class="n">totalCalculatedAmount</span> <span class="o">=</span> <span class="nc">BigDecimal</span><span class="o">.</span><span class="na">ONE</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">env</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nf">CurrencyCalculationBean</span><span class="o">()</span>
+  <span class="o">{</span>
+
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nf">CurrencyCalculationBean</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">from</span><span class="o">,</span> <span class="nc">String</span> <span class="n">to</span><span class="o">,</span> <span class="nc">BigDecimal</span> <span class="n">conversionMultiple</span><span class="o">,</span> <span class="nc">BigDecimal</span> <span class="n">quantity</span><span class="o">,</span> <span class="nc">BigDecimal</span> <span class="n">totalCalculatedAmount</span><span class="o">,</span> <span class="nc">String</span> <span class="n">env</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="kd">super</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">from</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">to</span> <span class="o">=</span> <span class="n">to</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">conversionMultiple</span> <span class="o">=</span> <span class="n">conversionMultiple</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">quantity</span> <span class="o">=</span> <span class="n">quantity</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">totalCalculatedAmount</span> <span class="o">=</span> <span class="n">totalCalculatedAmount</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setEnv</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doCalulate</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="n">totalCalculatedAmount</span> <span class="o">=</span> <span class="n">quantity</span><span class="o">.</span><span class="na">multiply</span><span class="o">(</span><span class="n">conversionMultiple</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="cm">/* Getters and Setters*/</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="rest-request-1">REST Request</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> json-get http://localhost:8100/currency-calculator/from/USD/to/INR/quantity/3
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"quantity"</span>: 3,
+  <span class="s2">"totalCalculatedAmount"</span>: 195,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h1 id="talking-microservices-via-feign">Talking Microservices via Feign</h1>
+
+<p>In the previous section, we had to hard-code the URL of the target mircoservice and also write a lot of code to make micro services talk to each other. Spring cloud provides Feign (pronounced fay-in)</p>
+
+<h2 id="currency-calculation-service-1">Currency Calculation Service</h2>
+
+<h3 id="dependencies-4">Dependencies</h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-openfeign<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Feign is used by a microservice to talk to other microservices.
+ * We need to
+ * - Update pom.xml to include artifact 'spring-cloud-starter-openfeign'
+ * - Add the '@EnableFeignClients' annotation to the application.
+ */</span>
+<span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableFeignClients</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CurrencyCalculationServiceApplication</span>
+<span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">CurrencyCalculationServiceApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="feign-client-proxy">Feign Client Proxy</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * The FeignClient name is typically the application name (See spring.application.name in application.properties) of the target service.
+ *
+ */</span>
+<span class="nd">@FeignClient</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"currency-exchange-service"</span><span class="o">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"localhost:8000"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CurrencyExchangeServiceProxy</span>
+<span class="o">{</span>
+  <span class="cm">/**
+   * This method of the proxy
+   * - Needs to invoke the currency-exchange microservice passing the 'from' and 'to'
+   * - The resultant JSON needs to be mapped to CurrencyCalcuationBean
+   *
+   * @param from
+   * @param to
+   * @return
+   */</span>
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/currency-exchange/from/{from}/to/{to}"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">CurrencyCalculationBean</span> <span class="nf">getExchangeValue</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">from</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">to</span><span class="o">);</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="controller-3">Controller</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CurrencyCalculationServiceController</span>
+<span class="o">{</span>
+  <span class="nd">@Autowired</span>
+  <span class="kd">private</span> <span class="nc">CurrencyExchangeServiceProxy</span> <span class="n">proxy</span><span class="o">;</span>
+
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/currency-calculator/from/{from}/to/{to}/quantity/{quantity}"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">CurrencyCalculationBean</span> <span class="nf">getCalculation</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">from</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">to</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="nc">BigDecimal</span> <span class="n">quantity</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="nc">CurrencyCalculationBean</span> <span class="n">currCalculationBean</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="na">getExchangeValue</span><span class="o">(</span><span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">);</span>
+    <span class="n">currCalculationBean</span><span class="o">.</span><span class="na">setQuantity</span><span class="o">(</span><span class="n">quantity</span><span class="o">);</span>
+    <span class="n">currCalculationBean</span><span class="o">.</span><span class="na">doCalulate</span><span class="o">();</span>
+    <span class="k">return</span> <span class="n">currCalculationBean</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/currency-calculator-legacy/from/{from}/to/{to}/quantity/{quantity}"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">CurrencyCalculationBean</span> <span class="nf">getCalculationLegacy</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">from</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">to</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="nc">BigDecimal</span> <span class="n">quantity</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="c1">// A map of URI parameter to its value</span>
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">mapParamValue</span> <span class="o">=</span> <span class="nc">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">entry</span><span class="o">(</span><span class="s">"from"</span><span class="o">,</span> <span class="n">from</span><span class="o">),</span> <span class="nc">Map</span><span class="o">.</span><span class="na">entry</span><span class="o">(</span><span class="s">"to"</span><span class="o">,</span> <span class="n">to</span><span class="o">));</span>
+    <span class="o">...</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="rest-request-2">REST Request</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>json-get http://localhost:8100/currency-calculator/from/USD/to/INR/quantity/5
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"quantity"</span>: 5,
+  <span class="s2">"totalCalculatedAmount"</span>: 325,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+
+<span class="o">&gt;</span> json-get http://localhost:8100/currency-calculator-legacy/from/USD/to/INR/quantity/5
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"quantity"</span>: 5,
+  <span class="s2">"totalCalculatedAmount"</span>: 325,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h1 id="naming-service">Naming service</h1>
+
+<p>Instead of hardcoding URLs the microservices will be registered with the naming server (service registry).</p>
+
+<p><img src="/assets/images/spring/LoadBalanceMicroservices.jpg" alt="H2DBConsole"></p>
+
+<p>In the above example:</p>
+
+<ul>
+  <li>All services are registered with the naming server.</li>
+  <li>Multiple instances of <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code> are being load-balanced using an LB.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">CurrencyCalculationService</code> shall query the naming server for the URL of the <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code>.</li>
+  <li>The naming server shall return the URL to the load-balancer.</li>
+  <li>The CurrencyCalculationServer shall request the corresponding LB URL which shall reach one of the <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code> instance.</li>
+</ul>
+
+<h2 id="naming-service-server">Naming service server</h2>
+
+<h3 id="dependencies-5">Dependencies</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dependency</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Config Client</td>
+      <td>Client to connect to SpringCloudConfigServer</td>
+    </tr>
+    <tr>
+      <td>DevTools</td>
+      <td>LiveReload, Config for enhanced dev</td>
+    </tr>
+    <tr>
+      <td>SpringActuator</td>
+      <td>Monitor and manage applications</td>
+    </tr>
+    <tr>
+      <td>Eureka Server</td>
+      <td>Naming server</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@EnableEurekaServer</span>
+<span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NamingServerApplication</span>
+<span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">NamingServerApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="applicationproperties">ApplicationProperties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.application.name</span><span class="p">=</span><span class="s">naming-server</span>
+<span class="py">server.port</span><span class="p">=</span><span class="s">8761</span>
+
+<span class="c"># Do not register this client withe eureka
+</span><span class="py">eureka.client.register-with-eureka</span><span class="p">=</span><span class="s">false</span>
+
+<span class="c"># Do not fetch eureka registry information from eureka server
+</span><span class="py">eureka.client.fetch-registry</span><span class="p">=</span><span class="s">false</span>
+</code></pre></div></div>
+
+<h3 id="eureka-dashboard">Eureka Dashboard</h3>
+
+<p>We can launch the appliation to see that no instances are currently registered with Eureka naming server.</p>
+
+<p><img src="/assets/images/spring/EurekaNamingServerDash.jpg" alt="H2DBLogin"></p>
+
+<h2 id="registering-with-naming-server">Registering with naming server</h2>
+
+<p>A microservice can register itself with the naming server by configuring Eureka client.</p>
+
+<h3 id="dependencies-6">Dependencies</h3>
+
+<p>Update the pom.xml of the corresponding miroservices (CurrencyCalculationService and CurrencyExchangeService) to include eureka-client</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- EurekaClient: client to connect to naming server --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h3 id="application-properties-4">Application Properties</h3>
+
+<p>Update the application properties of microservices. Config the client to point to the naming server URL.</p>
+
+<h4 id="currency-calculation-service-2">Currency Calculation Service</h4>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.application.name</span><span class="p">=</span><span class="s">currency-calculation-service</span>
+<span class="py">server.port</span><span class="p">=</span><span class="s">8100</span>
+
+<span class="c"># The config server URI
+</span><span class="py">spring.config.import</span><span class="p">=</span><span class="s">optional:configserver:http://localhost:8888</span>
+
+<span class="c"># NamingServer properties
+# -----------------------
+# Eureka client dependency is added in the microservice to talk to naming server
+</span><span class="py">eureka.client.serviceUrl.defaultZone</span><span class="p">=</span><span class="s">http://localhost:8761/eureka</span>
+
+</code></pre></div></div>
+
+<h4 id="currency-exchange-service-1">Currency Exchange Service</h4>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.application.name</span><span class="p">=</span><span class="s">currency-exchange-service</span>
+<span class="py">server.port</span><span class="p">=</span><span class="s">8000</span>
+
+<span class="c"># Database properties
+# -------------------
+# JDBC url
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false</span>
+
+<span class="c"># Show sql statements on console log
+</span><span class="py">spring.jpa.show-sql</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Provide a UI console for DB
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># NamingServer properties
+# -----------------------
+# Eureka client dependency is added in the microservice to talk to naming server
+</span><span class="py">eureka.client.serviceUrl.defaultZone</span><span class="p">=</span><span class="s">http://localhost:8761/eureka</span>
+</code></pre></div></div>
+
+<h3 id="eureka-dashboard-1">Eureka Dashboard</h3>
+
+<p>Restart naming server followed by mircroservices (CurrencyExchange and CurrencyCalculation) Open the eureka dashboard at http://localhost:8761/ to verify that services are registered.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>AMIs</th>
+      <th>Availability Zones</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>CURRENCY-CALCULATION-SERVICE</strong></td>
+      <td>
+<strong>n/a</strong> (1)</td>
+      <td>(1)</td>
+      <td><a href="http://192.168.0.105:8100/actuator/info">192.168.0.105:currency-calculation-service:8100</a></td>
+    </tr>
+    <tr>
+      <td><strong>CURRENCY-EXCHANGE-SERVICE</strong></td>
+      <td>
+<strong>n/a</strong> (2)</td>
+      <td>(2)</td>
+      <td><a href="http://192.168.0.105:8000/actuator/info">192.168.0.105:currency-exchange-service:8000</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="load-balancing-services">Load balancing services</h1>
+
+<h2 id="start-multiple-instances-of-services">Start multiple instances of services</h2>
+
+<p>Lets start multiple instances of <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code> (Say, CurrencyExchangeServiceApplicationA and CurrencyExchangeServiceApplicationB)</p>
+
+<p>This can be done using eclipse as follows</p>
+
+<ul>
+  <li>Navigate to (Run &gt; RunConfigurations)</li>
+  <li>Click on ‘Duplicate the launch configuration’ (copy) button</li>
+  <li>Provide a name like CurrencyExchangeServiceApplicationB</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">-Dserver.port=8001</code> to VM Arguments</li>
+</ul>
+
+<h2 id="verify-registration-with-naming-server">Verify registration with naming server</h2>
+
+<p>Open the eureka dashboard at http://localhost:8761/  and verify registration of both instances of <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code> and CurrencyCalculationService</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>AMIs</th>
+      <th>Availability Zones</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>CURRENCY-CALCULATION-SERVICE</strong></td>
+      <td>
+<strong>n/a</strong> (1)</td>
+      <td>(1)</td>
+      <td><a href="http://192.168.0.105:8100/actuator/info">192.168.0.105:currency-calculation-service:8100</a></td>
+    </tr>
+    <tr>
+      <td><strong>CURRENCY-EXCHANGE-SERVICE</strong></td>
+      <td>
+<strong>n/a</strong> (2)</td>
+      <td>(2)</td>
+      <td>
+<a href="http://192.168.0.105:8000/actuator/info">192.168.0.105:currency-exchange-service:8000</a> <br><a href="http://192.168.0.105:8001/actuator/info">192.168.0.105:currency-exchange-service:8001</a>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="configure-lb-via-feign">Configure LB via Feign</h2>
+
+<p>Earlier (Before having naming server),</p>
+
+<ul>
+  <li>In <code class="language-plaintext highlighter-rouge">CurrencyCalculationService</code>, class <code class="language-plaintext highlighter-rouge">CurrencyExchangeServiceProxy</code> (Uses <code class="language-plaintext highlighter-rouge">@FeignClient</code>) abstracted talks to <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code>
+</li>
+  <li>The <code class="language-plaintext highlighter-rouge">@FeignClient</code> annotation mentioned the <strong>name</strong> of service and the <strong>URL</strong> to be used.</li>
+  <li>The CurrencyExchangeServiceProxy used the URL (in <code class="language-plaintext highlighter-rouge">@FeignClient</code> annotation) to connect to the target service.</li>
+</ul>
+
+<p>Now,</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">CurrencyCalculationService</code> and <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code> instances are registered with the Eureka naming server</li>
+  <li>The <code class="language-plaintext highlighter-rouge">@FeignClient</code> annotation <strong>just</strong> mentions the <strong>name</strong> of the service alone.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">CurrencyExchangeServiceProxy</code> fetches the URL of the target service from the naming server.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.currencycalculationservice</span><span class="o">;</span>
+
+<span class="cm">/**
+ * The FeignClient name is typically the application name (See spring.application.name in application.properties) of the target service.
+ *
+ */</span>
+<span class="c1">// @FeignClient(name = "currency-exchange-service", url = "localhost:8000")</span>
+<span class="nd">@FeignClient</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"currency-exchange-service"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CurrencyExchangeServiceProxy</span>
+<span class="o">{</span>
+  <span class="cm">/**
+   * This method of the proxy
+   * - Needs to invoke the currency-exchange microservice passing the 'from' and 'to'
+   * - The resultant JSON needs to be mapped to CurrencyCalcuationBean
+   *
+   * @param from
+   * @param to
+   * @return
+   */</span>
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/currency-exchange/from/{from}/to/{to}"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">CurrencyCalculationBean</span> <span class="nf">getExchangeValue</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">from</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">to</span><span class="o">);</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="verify-lb">Verify LB</h2>
+
+<p>Note that the port of the server servicing the request changes using round-robin algorithm.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> json-get http://localhost:8100/currency-calculator/from/USD/to/INR/quantity/3
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"quantity"</span>: 3,
+  <span class="s2">"totalCalculatedAmount"</span>: 195,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+
+<span class="o">&gt;</span> json-get http://localhost:8100/currency-calculator/from/USD/to/INR/quantity/3
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"quantity"</span>: 3,
+  <span class="s2">"totalCalculatedAmount"</span>: 195,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8001"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h1 id="api-gateway">API Gateway</h1>
+
+<p>A production deployment shall consist of thousands of micro-services. These micro-services have a lot of <strong>common features</strong> like</p>
+
+<ul>
+  <li>Authorisation</li>
+  <li>Authentication</li>
+  <li>Logging</li>
+  <li>Rate Limiting</li>
+</ul>
+
+<p>Where do we implement all these features? The typical solution is an <strong>API Gateway</strong> – In spring cloud the gateway used is <code class="language-plaintext highlighter-rouge">Spring Cloud Gateway</code></p>
+
+<blockquote>
+  <p>Spring Cloud Gateway aims to provide a simple, yet effective way to  route to APIs and provide cross cutting concerns to them such as:  security, monitoring/metrics, and resiliency.</p>
+</blockquote>
+
+<h2 id="gateway-service">Gateway Service</h2>
+
+<h3 id="dependencies-7">Dependencies</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dependency</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Config Client</td>
+      <td>Client to connect to SpringCloudConfigServer</td>
+    </tr>
+    <tr>
+      <td>DevTools</td>
+      <td>LiveReload, Config for enhanced dev</td>
+    </tr>
+    <tr>
+      <td>SpringActuator</td>
+      <td>Monitor and manage applications</td>
+    </tr>
+    <tr>
+      <td>Eureka Discovery Client</td>
+      <td>Client to connect to naming server</td>
+    </tr>
+    <tr>
+      <td>Gateway</td>
+      <td>Route to APIs and provide cross cutting concerns to them such as security, monitoring/metrics, and resiliency.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="application-properties-5">Application Properties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.application.name</span><span class="p">=</span><span class="s">api-gateway</span>
+<span class="py">server.port</span><span class="p">=</span><span class="s">8765</span>
+
+<span class="c"># API Gateway
+# -----------
+</span><span class="py">spring.cloud.gateway.discovery.locator.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.cloud.gateway.discovery.locator.lower-case-service-id</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Config Client: Connect to config server
+# ---------------------------------------
+</span><span class="py">spring.config.import</span><span class="p">=</span><span class="s">optional:configserver:http://localhost:8888</span>
+
+<span class="c"># Naming Client: Connect to naming server
+# ---------------------------------------
+# Eureka client dependency is added in the microservice to talk to naming server
+</span><span class="py">eureka.client.serviceUrl.defaultZone</span><span class="p">=</span><span class="s">http://localhost:8761/eureka</span>
+
+</code></pre></div></div>
+
+<h3 id="verify-registration-with-naming-server-1">Verify registration with naming server</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>AMIs</th>
+      <th>Availability Zones</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>API-GATEWAY</strong></td>
+      <td>
+<strong>n/a</strong> (1)</td>
+      <td>(1)</td>
+      <td><a href="http://192.168.0.107:8765/actuator/info">192.168.0.107:api-gateway:8765</a></td>
+    </tr>
+    <tr>
+      <td><strong>CURRENCY-CALCULATION-SERVICE</strong></td>
+      <td>
+<strong>n/a</strong> (1)</td>
+      <td>(1)</td>
+      <td><a href="http://192.168.0.107:8100/actuator/info">192.168.0.107:currency-calculation-service:8100</a></td>
+    </tr>
+    <tr>
+      <td><strong>CURRENCY-EXCHANGE-SERVICE</strong></td>
+      <td>
+<strong>n/a</strong> (2)</td>
+      <td>(2)</td>
+      <td>
+<a href="http://192.168.0.107:8000/actuator/info">192.168.0.107:currency-exchange-service:8000</a> <br><a href="http://192.168.0.107:8001/actuator/info">192.168.0.107:currency-exchange-service:8001</a>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="verify-access-via-gateway">Verify access via Gateway</h3>
+
+<p>The client shall send request via the gateway (localhost:8765 in this case) which shall in-turn route request to corresponding mircoservice.</p>
+
+<p>The common features can be now implemented as part of the gateway. For example, we could have <strong>authentication enabled for certain URLs</strong> in the API gateway</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># CURRENCY-CALCULATION-SERVICE (to lower-case) is the name as registered with Eureka</span>
+json-get http://localhost:8765/currency-calculation-service/currency-calculator/from/USD/to/INR/quantity/3
+Status: HTTP/1.1 200 OK
+Content-Type: application/json
+transfer-encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"quantity"</span>: 3,
+  <span class="s2">"totalCalculatedAmount"</span>: 195,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8001"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="routes">Routes</h2>
+
+<h3 id="simple-redirection">Simple Redirection</h3>
+
+<p>When the browser sends a request to “/get” of the APIGateway, it shall be routed to <code class="language-plaintext highlighter-rouge">http://httpbin.org</code>. The resultant request shall be <code class="language-plaintext highlighter-rouge">http://httpbin.org:80/get</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.apigateway</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIGatewayConfiguration</span>
+<span class="o">{</span>
+  <span class="nd">@Bean</span>
+  <span class="kd">public</span> <span class="nc">RouteLocator</span> <span class="nf">gatewayRouter</span><span class="o">(</span><span class="nc">RouteLocatorBuilder</span> <span class="n">builder</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">routes</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/get"</span><span class="o">).</span><span class="na">uri</span><span class="o">(</span><span class="s">"http://httpbin.org:80"</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="filters">Filters</h3>
+
+<p>When the browser sends a request to <code class="language-plaintext highlighter-rouge">/get</code> of the APIGateway, it shall add custom headers, query parameters and then route it to <code class="language-plaintext highlighter-rouge">http://httpbin.org:80</code>. The resultant request shall be  <code class="language-plaintext highlighter-rouge">http://httpbin.org:80/get?name=Raghu</code> (with header <code class="language-plaintext highlighter-rouge">MyName: Raghu</code>)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIGatewayConfiguration</span>
+<span class="o">{</span>
+  <span class="nd">@Bean</span>
+  <span class="kd">public</span> <span class="nc">RouteLocator</span> <span class="nf">gatewayRouter</span><span class="o">(</span><span class="nc">RouteLocatorBuilder</span> <span class="n">builder</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">routes</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/get"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">filters</span><span class="o">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">addRequestHeader</span><span class="o">(</span><span class="s">"MyName"</span><span class="o">,</span> <span class="s">"Raghu"</span><span class="o">).</span><span class="na">addRequestParameter</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Raghu"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"http://httpbin.org:80"</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> json-get <span class="s2">"http://localhost:8765/get"</span>
+Status: HTTP/1.1 200 OK
+Access-Control-Allow-Credentials: <span class="nb">true
+</span>Access-Control-Allow-Origin: <span class="k">*</span>
+content-length: 590
+Content-Type: application/json
+
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{</span>
+    <span class="s2">"name"</span>: <span class="s2">"Raghu"</span>
+  <span class="o">}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"</span>,
+    <span class="s2">"Content-Length"</span>: <span class="s2">"0"</span>,
+    <span class="s2">"Forwarded"</span>: <span class="s2">"proto=http;host=</span><span class="se">\"</span><span class="s2">localhost:8765</span><span class="se">\"</span><span class="s2">;for=</span><span class="se">\"</span><span class="s2">127.0.0.1:58390</span><span class="se">\"</span><span class="s2">"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"Myname"</span>: <span class="s2">"Raghu"</span>,
+    <span class="s2">"Otdclientid"</span>: <span class="s2">"9b63fdd1-e8b6-4a23-aa3e-8a70433ad019"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"Java/1.8.0_261"</span>,
+    <span class="s2">"X-Amzn-Trace-Id"</span>: <span class="s2">"Root=1-60a915c0-54c6fee834199ccc5973026e"</span>,
+    <span class="s2">"X-Forwarded-Host"</span>: <span class="s2">"localhost:8765"</span>
+  <span class="o">}</span>,
+  <span class="s2">"origin"</span>: <span class="s2">"127.0.0.1, 124.123.81.169"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://localhost:8765/get?name=Raghu"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h3 id="filters-to-rewrite-uri">Filters to rewrite URI</h3>
+
+<p>The URI <code class="language-plaintext highlighter-rouge">/snoop</code> was rewritten as <code class="language-plaintext highlighter-rouge">/DukeApp/Snoop.jsp</code>. The request to API Gateway host was sent to <code class="language-plaintext highlighter-rouge">localhost:18801</code> (Tomcat is running here with DukeApp deployed)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIGatewayConfiguration</span>
+<span class="o">{</span>
+  <span class="nd">@Bean</span>
+  <span class="kd">public</span> <span class="nc">RouteLocator</span> <span class="nf">gatewayRouter</span><span class="o">(</span><span class="nc">RouteLocatorBuilder</span> <span class="n">builder</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">routes</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/get"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">filters</span><span class="o">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">addRequestHeader</span><span class="o">(</span><span class="s">"MyClientId"</span><span class="o">,</span> <span class="s">"Raghu"</span><span class="o">).</span><span class="na">addRequestParameter</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Raghu"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"http://httpbin.org"</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/snoop"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">filters</span><span class="o">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">rewritePath</span><span class="o">(</span><span class="s">"/snoop"</span><span class="o">,</span> <span class="s">"/DukeApp/Snoop.jsp"</span><span class="o">).</span><span class="na">addRequestHeader</span><span class="o">(</span><span class="s">"MyClientId"</span><span class="o">,</span> <span class="s">"Raghu"</span><span class="o">).</span><span class="na">addRequestParameter</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Raghu"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"http://localhost:18801"</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Verify request/response</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> jget <span class="nt">-u</span> http://localhost:8765/snoop
+<span class="c"># -----------------------------------------------</span>
+<span class="c"># Method</span>
+<span class="c"># -----------------------------------------------</span>
+<span class="nv">Method</span><span class="o">=</span>GET
+<span class="nv">ClientIP</span><span class="o">=</span>127.0.0.1
+<span class="nv">RequestURL</span><span class="o">=</span>http://MS1:18801/DukeApp/Snoop.jsp
+<span class="nv">IsSecure</span><span class="o">=</span>HTTP
+<span class="nv">ServerName</span><span class="o">=</span>null
+
+<span class="c"># -----------------------------------------------</span>
+<span class="c"># Request Headers</span>
+<span class="c"># -----------------------------------------------</span>
+
+<span class="nv">accept</span><span class="o">=</span>text/html, image/gif, image/jpeg, <span class="k">*</span><span class="p">;</span> <span class="nv">q</span><span class="o">=</span>.2, <span class="k">*</span>/<span class="k">*</span><span class="p">;</span> <span class="nv">q</span><span class="o">=</span>.2
+<span class="nv">otdclientid</span><span class="o">=</span>e2eb448a-c55e-4db2-933a-47922ed4429c
+user-agent<span class="o">=</span>Java/1.8.0_261
+<span class="nv">myclientid</span><span class="o">=</span>Raghu
+<span class="nv">forwarded</span><span class="o">=</span><span class="nv">proto</span><span class="o">=</span>http<span class="p">;</span><span class="nv">host</span><span class="o">=</span><span class="s2">"localhost:8765"</span><span class="p">;</span><span class="k">for</span><span class="o">=</span><span class="s2">"127.0.0.1:58598"</span>
+x-forwarded-for<span class="o">=</span>127.0.0.1
+x-forwarded-proto<span class="o">=</span>http
+x-forwarded-port<span class="o">=</span>8765
+x-forwarded-host<span class="o">=</span>localhost:8765
+<span class="nv">host</span><span class="o">=</span>localhost:18801
+content-length<span class="o">=</span>0
+
+<span class="c"># -----------------------------------------------</span>
+<span class="c"># Parameters</span>
+<span class="c"># -----------------------------------------------</span>
+<span class="nv">name</span><span class="o">=</span>Raghu
+</code></pre></div></div>
+
+<h3 id="simplify-uri-to-services">Simplify URI to services</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.apigateway</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIGatewayConfiguration</span>
+<span class="o">{</span>
+  <span class="nd">@Bean</span>
+  <span class="kd">public</span> <span class="nc">RouteLocator</span> <span class="nf">gatewayRouter</span><span class="o">(</span><span class="nc">RouteLocatorBuilder</span> <span class="n">builder</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">routes</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/get"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">filters</span><span class="o">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">addRequestHeader</span><span class="o">(</span><span class="s">"MyName"</span><span class="o">,</span> <span class="s">"Raghu"</span><span class="o">).</span><span class="na">addRequestParameter</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Raghu"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"http://httpbin.org"</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/currency-calculator/**"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"lb://currency-calculation-service"</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">route</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/currency-exchange/**"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"lb://currency-exchange-service"</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Verify request/response via API Gateway</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> json-get http://localhost:8765/currency-calculator/from/USD/to/INR/quantity/3
+Status: HTTP/1.1 200 OK
+Content-Type: application/json
+transfer-encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"quantity"</span>: 3,
+  <span class="s2">"totalCalculatedAmount"</span>: 195,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8001"</span>
+<span class="o">}</span>
+
+<span class="o">&gt;</span> json-get http://localhost:8765/currency-exchange/from/USD/to/INR
+Status: HTTP/1.1 200 OK
+Content-Type: application/json
+transfer-encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8001"</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h1 id="resilience4j">Resilience4J</h1>
+
+<p>Microservices could be wired in such a way that there is a chain of dependent mircoservices as shown below.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MS1 ---&gt; MS2 --&gt; MS3 ---&gt; MS4 ---&gt; MS5
+</code></pre></div></div>
+
+<p>Here, say <code class="language-plaintext highlighter-rouge">MS3</code> has become slow or unreliable. This will affect the entire chain. Circuit breaker provides several ways to work around such issues. For example, in this case</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">MS2</code> can be configured to retry for <code class="language-plaintext highlighter-rouge">n</code> attempts, for certain requests, before returning failure response.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">MS2</code> can be configured to return a default response for certain requests, after ‘n’ failed attempts.</li>
+</ul>
+
+<h2 id="retry-with-fallback">Retry with fallback</h2>
+
+<p>Following is configured for <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code></p>
+
+<h3 id="dependencies-8">Dependencies</h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Circuit Breaker --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-aop<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>io.github.resilience4j<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>resilience4j-spring-boot2<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h3 id="controller-4">Controller</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.currencyexchangeservice</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CircuitBreakerController</span>
+<span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/test-retry"</span><span class="o">)</span>
+  <span class="nd">@Retry</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"test-retry"</span><span class="o">,</span> <span class="n">fallbackMethod</span> <span class="o">=</span> <span class="s">"fallbackResponse"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">testRetry</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Inside testRetry"</span><span class="o">);</span>
+    <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">entityNotFound</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">().</span><span class="na">getForEntity</span><span class="o">(</span><span class="s">"http://localhost:8080/doesNotExist"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">entityNotFound</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="cm">/**
+   * This method shall be invoked if maximum retry attempts fail
+   */</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">fallbackResponse</span><span class="o">(</span><span class="nc">Throwable</span> <span class="n">t</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"Hey, server is busy. Eat an apple and be back."</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="application-properties-6">Application Properties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.application.name</span><span class="p">=</span><span class="s">currency-exchange-service</span>
+<span class="py">server.port</span><span class="p">=</span><span class="s">8000</span>
+<span class="err">...</span>
+<span class="err">...</span>
+
+<span class="c"># Resilience4j: Retry
+# -------------------
+# Number of retry attempts for service by name 'test-retry'
+</span><span class="py">resilience4j.retry.instances.test-retry.max-attempts</span><span class="p">=</span><span class="s">3</span>
+
+<span class="c"># Time to wait before the next retry
+</span><span class="py">resilience4j.retry.instances.test-retry.wait-duration</span><span class="p">=</span><span class="s">2s</span>
+
+<span class="c"># The next retry attempt will not be after a linear interval (like 2s wait-duration as configured above) but
+# shall exponentially increase using the wait-duration as a parameter. For example, it could be 2, 4, 8 and so on.
+</span><span class="py">resilience4j.retry.instances.test-retry.enable-exponential-backoff</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<h2 id="circuit-breaker">Circuit Breaker</h2>
+
+<h3 id="dependencies-9">Dependencies</h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Circuit Breaker --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-aop<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>io.github.resilience4j<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>resilience4j-spring-boot2<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h3 id="controller-5">Controller</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.currencyexchangeservice</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CircuitBreakerController</span>
+<span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/test-retry"</span><span class="o">)</span>
+  <span class="nd">@Retry</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"test-retry"</span><span class="o">,</span> <span class="n">fallbackMethod</span> <span class="o">=</span> <span class="s">"fallbackResponse"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">testRetry</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Inside testRetry"</span><span class="o">);</span>
+    <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">entityNotFound</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">().</span><span class="na">getForEntity</span><span class="o">(</span><span class="s">"http://localhost:8080/doesNotExist"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">entityNotFound</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/test-circuit-breaker"</span><span class="o">)</span>
+  <span class="nd">@CircuitBreaker</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"test-circuit-breaker"</span><span class="o">,</span> <span class="n">fallbackMethod</span> <span class="o">=</span> <span class="s">"fallbackResponse"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">testCircuitBreaker</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Inside testCircuitBreaker"</span><span class="o">);</span>
+    <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">entityNotFound</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">().</span><span class="na">getForEntity</span><span class="o">(</span><span class="s">"http://localhost:8080/doesNotExist"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">entityNotFound</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="cm">/**
+   * This method shall be invoked if maximum retry attempts fail
+   */</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">fallbackResponse</span><span class="o">(</span><span class="nc">Throwable</span> <span class="n">t</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"Hey, server is busy. Eat an apple and be back."</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="working-of-circuit-breaker">Working of Circuit Breaker</h3>
+
+<p>Lets say we send multiple requests to  <code class="language-plaintext highlighter-rouge">/test-circuit-breaker</code>  using the command <code class="language-plaintext highlighter-rouge">watch -n 0.1 http://localhost:8000/test-circuit-breaker</code>. The watch command sends a request every 100ms, or 10 requests/second.</p>
+
+<ul>
+  <li>After continuous failures reach a point, the request is no more sent to <code class="language-plaintext highlighter-rouge">testCircuitBreaker</code> method, the fall back response directly is sent.</li>
+  <li>This raises the question, how will the circuit breaker know if the <code class="language-plaintext highlighter-rouge">testCircuitBreaker</code> is back on track? The below state diagram explains this.</li>
+</ul>
+
+<blockquote>
+  <p>A circuit breaker prevents a microservice from getting bombarded with more requests when it is already loaded.
+However, it is also smart enough to switch back when the service is back on track.</p>
+</blockquote>
+
+<p><img src="/assets/images/spring/CircuitBreaker.jpg" alt="H2DBLogin"></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CLOSED</td>
+      <td>Circuit is connected. The requests are sent to target service.</td>
+    </tr>
+    <tr>
+      <td>OPEN</td>
+      <td>Circuit is broken. None of the requests are sent to target service. All of them are sent fallback response.</td>
+    </tr>
+    <tr>
+      <td>HALF_OPEN</td>
+      <td>A configured percentage of requests are sent to target service, others are sent fallback response.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>The circuit starts by being in CLOSED state and requests are sent to target service.</li>
+  <li>Once the failure rate crosses threshold, the circuit switches to OPEN state.</li>
+  <li>Once in the OPEN state, it remains in the state for a wait-duration during which all requests receive fallback response.</li>
+  <li>After the wait-duration is over, the circuit switches to HALF_OPEN state.</li>
+  <li>In the HALF_OPEN state, a configured number of requests shall be sent to target service, others will receive fallback response
+    <ul>
+      <li>If threshold requests sent to target service succeed, the circuit shall switch to CLOSED state</li>
+      <li>If threshold requests sent to target service fail, the circuit shall switch to OPEN state</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="rate-limiter">Rate Limiter</h2>
+
+<p>Limit the number of requests a service can be loaded within a given time interval (Eg: 10 requests per second, 3 requests in 10 seconds). Requests exceeding the limit shall be rejected.</p>
+
+<h3 id="controller-6">Controller</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.currencyexchangeservice</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CircuitBreakerController</span>
+<span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+
+  <span class="o">...</span>
+  <span class="o">...</span>
+
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/test-rate-limiter"</span><span class="o">)</span>
+  <span class="nd">@RateLimiter</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"test-rate-limiter"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">testRateLimiter</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"Hello from rate limiter"</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="cm">/**
+   * This method shall be invoked if maximum retry attempts fail
+   */</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">fallbackResponse</span><span class="o">(</span><span class="nc">Throwable</span> <span class="n">t</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"Hey, server is busy. Eat an apple and be back."</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="application-properties-7">Application Properties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Resilience4j: Rate Limiter
+# --------------------------
+</span>
+<span class="c"># Here, only limit-for-period requests shall be allowed every limit-refresh-period seconds.
+# That is, if limit-for-period=2 and limit-refresh-period=1s then the rate allowed is 2 request/second
+</span><span class="py">resilience4j.ratelimiter.instances.test-rate-limiter.limit-for-period</span><span class="p">=</span><span class="s">2</span>
+<span class="py">resilience4j.ratelimiter.instances.test-rate-limiter.limit-refresh-period</span><span class="p">=</span><span class="s">10s</span>
+</code></pre></div></div>
+
+<h2 id="bulkhead">Bulkhead</h2>
+
+<p>Limit the number of concurrent calls to a service.</p>
+
+<h3 id="controller-7">Controller</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.github.cafeduke.learn.microservices.currencyexchangeservice</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CircuitBreakerController</span>
+<span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+
+  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/test-bulk-head"</span><span class="o">)</span>
+  <span class="nd">@Bulkhead</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"test-bulk-head"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">testBulkHead</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"Hello from bulk head"</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="application-properties-8">Application Properties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Resilience4j: Bulkhead
+# ----------------------
+# Only allow a maximum of 10 concurrent calls
+</span><span class="py">resilience4j.bulkhead.instances.test-bulk-head.max-concurrent-calls</span><span class="p">=</span><span class="s">10</span>
+</code></pre></div></div>
+
+<h1 id="microservices-with-docker">Microservices with Docker</h1>
+
+<h2 id="distributed-tracing-service">Distributed tracing service</h2>
+
+<p><a href="https://zipkin.io">Zipkin</a> provides distributed tracing service. It helps gather timing data needed to troubleshoot latency problems in service architectures. Features include both the collection and lookup of this data. The zipkin docker image is available <a href="https://hub.docker.com/r/openzipkin/zipkin">here</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker run <span class="nt">--detach</span> <span class="nt">--name</span> zipkin <span class="nt">--publish</span> 9411:9411 <span class="nt">--detach</span> openzipkin/zipkin:2.23
+</code></pre></div></div>
+
+<p>The services (<code class="language-plaintext highlighter-rouge">APIGateway</code>, <code class="language-plaintext highlighter-rouge">CurrencyCalculationService</code>, <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code>) shall be sending out information (using HTTP) to a queue (RabbitMQ) which shall in-turn be sent to distributed tracing server (<code class="language-plaintext highlighter-rouge">Zipkin</code>).</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">Zipkin</code> provides a UI to query and trace the information. In this case (http://localhost:9411/zipkin/)</li>
+  <li>The tracing information includes requests that are routed to multiple microservices.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">RabbitMQ</code> can queue (store) messages even when <code class="language-plaintext highlighter-rouge">Zipkin</code> is temporarily down, thus avoiding information loss.</li>
+  <li>Tracing every request will be a huge performance overload, hence we need to configure sampling – Trace only a percentage of requests.</li>
+  <li>Unique tracing id metadata shall be added to messages logged by the services (using java.util.Logger). The tracing-id can be used to gather logs related across microservices.</li>
+</ul>
+
+<p><img src="/assets/images/spring/ZipkinRabbit.jpg" alt="ZipkinRabbit"></p>
+
+<h3 id="dependencies-10">Dependencies</h3>
+
+<p>Following dependencies are added to <code class="language-plaintext highlighter-rouge">APIGateway</code>, <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code> and <code class="language-plaintext highlighter-rouge">CurrencyCalculationService</code></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependencies&gt;</span>
+  ...
+  <span class="c">&lt;!-- Distributed Tracing Server --&gt;</span>
+  <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-sleuth<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+
+  <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-cloud-sleuth-zipkin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+
+  <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.amqp<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-rabbit<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
+
+<h3 id="application-properties-9">Application Properties</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># DistributedTracingServer: Zipkin
+# -----------------------------------------------
+# SamplingConfiguration: This will sample 50% of the requests
+</span><span class="py">spring.sleuth.sampler.probability</span><span class="p">=</span><span class="s">0.5</span>
+
+<span class="c"># Location of Zipkin
+</span><span class="py">spring.zipkin.base-url</span><span class="p">=</span><span class="s">http://localhost:9411</span>
+
+</code></pre></div></div>
+
+<h2 id="build-docker-image-using-maven">Build Docker image using Maven</h2>
+
+<h3 id="update-plugin-configuration">Update plugin configuration</h3>
+
+<blockquote>
+  <p>The <code class="language-plaintext highlighter-rouge">spring-boot-maven-plugin</code> can be configured to build Docker images for spring boot</p>
+</blockquote>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;dependencies&gt;</span>
+    ...
+    ...
+  <span class="nt">&lt;/dependencies&gt;</span>
+
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="c">&lt;!-- Build Docker image --&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+          <span class="nt">&lt;image&gt;</span>
+            <span class="nt">&lt;name&gt;</span>raghubs81/learn-${project.artifactId}:${project.version}<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;/image&gt;</span>
+          <span class="nt">&lt;pullPolicy&gt;</span>IF_NOT_PRESENT<span class="nt">&lt;/pullPolicy&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<h3 id="make-mvn-accessible-as-root">Make <code class="language-plaintext highlighter-rouge">mvn</code> accessible as root</h3>
+
+<p>In this section, we build image for <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code> using <code class="language-plaintext highlighter-rouge">maven</code> . Add <code class="language-plaintext highlighter-rouge">mvn</code> to <code class="language-plaintext highlighter-rouge">PATH</code> for <code class="language-plaintext highlighter-rouge">root</code> user</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check mvn is on PATH for root user. Here, it is not</span>
+<span class="o">&gt;</span> <span class="nb">sudo </span>which mvn
+<span class="o">&gt;</span>
+
+<span class="c"># If mvn is not known for root because Maven was installed on custom folder then do this</span>
+<span class="o">&gt;</span> <span class="nb">sudo ln</span> <span class="nt">-s</span> &lt;path to mvn&gt; /usr/local/bin
+
+<span class="c"># Now mvn is accessible as root</span>
+<span class="o">&gt;</span> <span class="nb">sudo </span>which mvn
+/usr/local/bin/mvn
+
+<span class="o">&gt;</span> <span class="nb">ls</span> <span class="nt">-l</span> /usr/local/bin/mvn
+lrwxrwxrwx 1 root root 34 May 28 21:01 /usr/local/bin/mvn -&gt; /home/raghu/Programs/Maven/bin/mvn
+</code></pre></div></div>
+
+<h3 id="execute-the-build-image-goal-of-spring-boot-plugin">Execute the <code class="language-plaintext highlighter-rouge">build-image</code> goal of <code class="language-plaintext highlighter-rouge">spring-boot</code> plugin</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">cd </span>Learn/JavaEE/Spring/WebService/L02_Mircoservice/currency-exchange-service
+<span class="o">&gt;</span> <span class="nb">export </span><span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="s2">"unix:///var/run/docker.sock"</span>
+<span class="o">&gt;</span> <span class="nb">sudo </span>mvn spring-boot:build-image <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<h3 id="start-docker-container-for-currencyexchangeservice">Start docker container for <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code>
+</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker run <span class="nt">--detach</span> <span class="nt">--publish</span> 8000:8000 raghubs81/learn-currency-exchange-service
+<span class="o">&gt;</span> docker run <span class="nt">--detach</span> <span class="nt">--publish</span> 8001:8000 raghubs81/learn-currency-exchange-service
+
+<span class="o">&gt;</span> json-get http://localhost:8000/currency-exchange/from/USD/to/INR
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+
+<span class="o">&gt;</span> json-get http://localhost:8001/currency-exchange/from/USD/to/INR
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="manage-services-using-docker-compose">Manage services using docker-compose</h2>
+
+<p>Install <a href="https://docs.docker.com/compose/install/">docker-compose</a> – A development tool to build and manage containers easily. A docker compose is an easy alternative to running multiple docker commands. The default input file for docker-compose is <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> file in current directory.</p>
+
+<h3 id="yaml-file">YAML file</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.7'</span>
+<span class="na">services</span><span class="pi">:</span>
+
+  <span class="na">currency-exchange</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">raghubs81/learn-currency-exchange-service:0.0.1-SNAPSHOT</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">700m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8000:8000"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">naming-server</span>
+      <span class="pi">-</span> <span class="s">zipkin-server</span>
+    <span class="c1"># Properties configured for currency-exchange-servcie in application.properties are overridden using the following env variable.</span>
+    <span class="c1"># The name of the property is in upper-case.</span>
+    <span class="c1"># Note that the value uses the service-name (naming-server) as hostname.</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka</span>
+      <span class="pi">-</span> <span class="s">SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411</span>
+
+  <span class="na">currency-calculation</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">raghubs81/learn-currency-calculation-service:0.0.1-SNAPSHOT</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">700m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8100:8100"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">naming-server</span>
+      <span class="pi">-</span> <span class="s">zipkin-server</span>
+    <span class="c1"># Properties configured for currency-calculation-servcie in application.properties are overridden using the following env variable.</span>
+    <span class="c1"># The name of the property is in upper-case.</span>
+    <span class="c1"># Note that the value uses the service-name (naming-server) as hostname.</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka</span>
+      <span class="pi">-</span> <span class="s">SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411</span>
+
+  <span class="na">naming-server</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">raghubs81/learn-naming-server:0.0.1-SNAPSHOT</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">700m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8761:8761"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+
+  <span class="na">api-gateway</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">raghubs81/learn-api-gateway:0.0.1-SNAPSHOT</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">700m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8765:8765"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">naming-server</span>
+      <span class="pi">-</span> <span class="s">zipkin-server</span>
+    <span class="c1"># Properties configured for currency-calculation-servcie in application.properties are overridden using the following env variable.</span>
+    <span class="c1"># The name of the property is in upper-case.</span>
+    <span class="c1"># Note that the value uses the service-name (naming-server) as hostname.</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka</span>
+      <span class="pi">-</span> <span class="s">SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411</span>
+
+  <span class="na">zipkin-server</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">openzipkin/zipkin:2.23</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">300m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9411:9411"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+    <span class="c1">#Restart if there is a problem starting up</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+
+<span class="na">networks</span><span class="pi">:</span>
+  <span class="na">currency-network</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<h3 id="start-all-containers">Start all containers</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> docker-compose up <span class="nt">--detach</span>
+Building with native build. Learn about native build <span class="k">in </span>Compose here: https://docs.docker.com/go/compose-native-build/
+Starting l02_mircoservice_naming-server_1 ... <span class="k">done
+</span>Starting l02_mircoservice_currency-exchange_1    ... <span class="k">done
+</span>Creating l02_mircoservice_currency-calculation_1 ... <span class="k">done</span>
+</code></pre></div></div>
+
+<h3 id="verify-requests">Verify requests</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>json-get http://localhost:8100/currency-calculator/from/USD/to/INR/quantity/3
+Status: HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"quantity"</span>: 3,
+  <span class="s2">"totalCalculatedAmount"</span>: 195,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="verify-registration-in-eureka">Verify registration in Eureka</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>AMIs</th>
+      <th>Availability Zones</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>CURRENCY-CALCULATION-SERVICE</strong></td>
+      <td>
+<strong>n/a</strong> (1)</td>
+      <td>(1)</td>
+      <td><a href="http://a696d46a1ff5:8100/actuator/info">a696d46a1ff5:currency-calculation-service:8100</a></td>
+    </tr>
+    <tr>
+      <td><strong>CURRENCY-EXCHANGE-SERVICE</strong></td>
+      <td>
+<strong>n/a</strong> (1)</td>
+      <td>(1)</td>
+      <td><a href="http://d025265c4b6b:8000/actuator/info">d025265c4b6b:currency-exchange-service:8000</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="rabbitmq-service">RabbitMQ Service</h2>
+
+<p>All microservices will communicate with <code class="language-plaintext highlighter-rouge">Distributed Tracing Server -- Zipkin</code> over <code class="language-plaintext highlighter-rouge">RabbitMQ</code> (Message Queue)</p>
+
+<h3 id="dependency">Dependency</h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework.amqp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-rabbit<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h3 id="application-properties-10">Application Properties</h3>
+
+<p>The property needs to be configured in all microservices using <code class="language-plaintext highlighter-rouge">Zipkin</code> that is <code class="language-plaintext highlighter-rouge">CurrencyExchangeService</code>, <code class="language-plaintext highlighter-rouge">CurrencyCalculationService</code> and <code class="language-plaintext highlighter-rouge">APIGateway</code></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Make miroservices contact Zipkin over RabbitMQ
+</span><span class="py">spring.zipkin.sender.type</span><span class="p">=</span><span class="s">rabbit</span>
+</code></pre></div></div>
+
+<h3 id="docker-compose">Docker Compose</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.7'</span>
+<span class="na">services</span><span class="pi">:</span>
+
+  <span class="na">currency-exchange</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">raghubs81/learn-currency-exchange-service:0.0.1-SNAPSHOT</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">700m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8000:8000"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">naming-server</span>
+      <span class="pi">-</span> <span class="s">zipkin-server</span>
+    <span class="c1"># Properties configured for currency-exchange-servcie in application.properties are overridden using the following env variable.</span>
+    <span class="c1"># The name of the property is in upper-case.</span>
+    <span class="c1"># Note that the value uses the service-name (naming-server) as hostname.</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka</span>
+      <span class="pi">-</span> <span class="s">SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411</span>
+      <span class="pi">-</span> <span class="s">SPRING_ZIPKIN_SENDER_TYPE=rabbit</span>
+      <span class="pi">-</span> <span class="s">SPRING_RABBITMQ_HOST=rabbitmq</span>
+      <span class="c1"># The format is amqp://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;</span>
+      <span class="pi">-</span> <span class="s">RABBIT_URI=amqp://guest:guest@rabbitmq:5672</span>
+
+  <span class="na">currency-calculation</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">raghubs81/learn-currency-calculation-service:0.0.1-SNAPSHOT</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">700m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8100:8100"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">naming-server</span>
+      <span class="pi">-</span> <span class="s">zipkin-server</span>
+    <span class="c1"># Properties configured for currency-calculation-servcie in application.properties are overridden using the following env variable.</span>
+    <span class="c1"># The name of the property is in upper-case.</span>
+    <span class="c1"># Note that the value uses the service-name (naming-server) as hostname.</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka</span>
+      <span class="pi">-</span> <span class="s">SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411</span>
+      <span class="pi">-</span> <span class="s">SPRING_ZIPKIN_SENDER_TYPE=rabbit</span>
+      <span class="pi">-</span> <span class="s">SPRING_RABBITMQ_HOST=rabbitmq</span>
+      <span class="c1"># The format is amqp://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;</span>
+      <span class="pi">-</span> <span class="s">RABBIT_URI=amqp://guest:guest@rabbitmq:5672</span>
+
+  <span class="na">naming-server</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">raghubs81/learn-naming-server:0.0.1-SNAPSHOT</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">700m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8761:8761"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+
+  <span class="na">api-gateway</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">raghubs81/learn-api-gateway:0.0.1-SNAPSHOT</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">700m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8765:8765"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">naming-server</span>
+      <span class="pi">-</span> <span class="s">zipkin-server</span>
+    <span class="c1"># Properties configured for currency-calculation-servcie in application.properties are overridden using the following env variable.</span>
+    <span class="c1"># The name of the property is in upper-case.</span>
+    <span class="c1"># Note that the value uses the service-name (naming-server) as hostname.</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka</span>
+      <span class="pi">-</span> <span class="s">SPRING.ZIPKIN.BASEURL=http://zipkin-server:9411</span>
+      <span class="pi">-</span> <span class="s">SPRING_ZIPKIN_SENDER_TYPE=rabbit</span>
+      <span class="pi">-</span> <span class="s">SPRING_RABBITMQ_HOST=rabbitmq</span>
+      <span class="c1"># The format is amqp://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;</span>
+      <span class="pi">-</span> <span class="s">RABBIT_URI=amqp://guest:guest@rabbitmq:5672</span>
+
+  <span class="na">zipkin-server</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">openzipkin/zipkin:2.23</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">300m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9411:9411"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">rabbitmq</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="c1"># The format is amqp://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;</span>
+      <span class="pi">-</span> <span class="s">RABBIT_URI=amqp://guest:guest@rabbitmq:5672</span>
+
+    <span class="c1">#Restart if there is a problem starting up</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+
+  <span class="na">rabbitmq</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">rabbitmq:3.8.12-management</span>
+    <span class="na">mem_limit</span><span class="pi">:</span> <span class="s">300m</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5672:5672"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">15672:15672"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">currency-network</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+
+<span class="na">networks</span><span class="pi">:</span>
+  <span class="na">currency-network</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<h3 id="verify-requests-1">Verify requests</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Requst via API Gateway</span>
+<span class="o">&gt;</span> json-get http://localhost:8765/currency-calculator/from/USD/to/INR/quantity/10
+Status: HTTP/1.1 200 OK
+Content-Type: application/json
+transfer-encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"quantity"</span>: 10,
+  <span class="s2">"totalCalculatedAmount"</span>: 650,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+
+<span class="c"># Requst via API Gateway</span>
+<span class="o">&gt;</span> json-get http://localhost:8765/currency-exchange/from/USD/to/INR
+Status: HTTP/1.1 200 OK
+Content-Type: application/json
+transfer-encoding: chunked
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 101,
+  <span class="s2">"from"</span>: <span class="s2">"USD"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"INR"</span>,
+  <span class="s2">"conversionMultiple"</span>: 65,
+  <span class="s2">"env"</span>: <span class="s2">"ServerPort=8000"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>

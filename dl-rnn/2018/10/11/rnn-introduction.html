@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta data -->
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, shrink-to-fit=no, width=device-width">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Window title -->
+    <title>Recurrent neural networks (RNN)</title>
+
+    <!-- CSS -->
+    <!-- Material fonts from 'https://fonts.google.com' -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:300,300i,400,400i,500,500i,700,700i" rel="stylesheet"> 
+
+<!-- Material Icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<!-- Add Material CSS. Replace Bootstrap CSS -->
+<link href="/assets/daemonite-material/css/material.min.css" rel="stylesheet">
+
+<!-- Material Color Palette - CSS Classes -->
+<link href="/assets/material-design-color-palette/css/material-design-color-palette.css" rel="stylesheet">
+
+<!-- CafeDuke CSS - Project specific Classes  -->
+<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- CafeDuke Syntax CSS - Code syntax highlight -->
+<link href="/assets/css/duke-dark.css" rel="stylesheet" type="text/css">
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark mdc-bg-purple-900">
+    
+    
+
+    <!-- Collapse Icon -->
+    <a id="sidebar-toggle" class="navbar-brand text-white" href="">
+        <i class="material-icons md-24">menu</i>
+    </a>
+
+    <!-- NavBar Heading -->
+    <a class="navbar-brand text-white" href="/">Cafe Duke Notes</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+         -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+
+
+    <!-- Row: Content -->
+    <div class="container-fluid m-0 p-0 h-100">
+
+        <div class="row h-100 no-gutters">
+
+            <!-- Column: Sidebar -->
+            <div id="sidebar">
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="nav-link-text">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/java">
+                <i class="fab fa-java fa-2x"></i>
+                <span class="nav-link-text">Java</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/git">
+                <i class="fab fa-git fa-lg"></i>
+                <span class="nav-link-text">Git</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/cloud">
+                <i class="material-icons md-24">cloud</i>
+                <span class="nav-link-text">Cloud</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" data-toggle="collapse" data-target="#child-dl" href="#">
+                <i class="fas fa-cogs fa-lg"></i>
+                <span class="nav-link-text">Deep Learning</span>
+            </a>
+            <div id="child-dl" class="collapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning">
+                            <span class="nav-link-text">Core</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/strategy">
+                            <span class="nav-link-text">Strategy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/cnn">
+                            <span class="nav-link-text">CNN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="/deeplearning/rnn">
+                            <span class="nav-link-text">RNN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/django">
+                <i class="fa fa-lg">dj</i>
+                <span class="nav-link-text">Django</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/spring">
+                <i class="fas fa-leaf fa-lg"></i>
+                <span class="nav-link-text">Spring</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+            <!-- Column: Content Wrapper -->
+            <div class="col">
+                <div id="content" class="w-100">
+<div id="post-wrap" class="row d-flex justify-content-center">
+
+    <div class="card col-md-10 col-xs-12 mt-5">
+
+        <div class="card-header">
+            <h1 class="post-title">Recurrent neural networks (RNN)</h1>
+            <h6 class="card-subtitle post-meta"> 
+                Thursday, 11 October 2018
+                
+            </h6>            
+        </div>
+
+        <hr class="post-ruler">
+
+        <div class="card-body">
+            <nav>
+  <h4>Table of Contents</h4>
+<ol id="markdown-toc">
+  <li>
+<a href="#introduction" id="markdown-toc-introduction">Introduction</a>    <ol>
+      <li><a href="#application-of-sequence-models" id="markdown-toc-application-of-sequence-models">Application of sequence models</a></li>
+      <li>
+<a href="#overview-of-sequence-models" id="markdown-toc-overview-of-sequence-models">Overview of sequence models</a>        <ol>
+          <li><a href="#typical-model" id="markdown-toc-typical-model">Typical Model</a></li>
+          <li><a href="#notation" id="markdown-toc-notation">Notation</a></li>
+          <li><a href="#representing-a-word" id="markdown-toc-representing-a-word">Representing a word</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+<a href="#recurrent-neural-network" id="markdown-toc-recurrent-neural-network">Recurrent Neural Network</a>    <ol>
+      <li><a href="#name-entity-recognition-example" id="markdown-toc-name-entity-recognition-example">Name entity recognition example</a></li>
+      <li><a href="#why-regular-nn-does-not-solve-the-problem" id="markdown-toc-why-regular-nn-does-not-solve-the-problem">Why regular NN does not solve the problem</a></li>
+      <li><a href="#closer-look-at-rnn" id="markdown-toc-closer-look-at-rnn">Closer look at RNN</a></li>
+      <li><a href="#limitation-of-rnn" id="markdown-toc-limitation-of-rnn">Limitation of RNN</a></li>
+      <li>
+<a href="#computations" id="markdown-toc-computations">Computations</a>        <ol>
+          <li><a href="#forward-propagation-equations" id="markdown-toc-forward-propagation-equations">Forward propagation equations</a></li>
+          <li><a href="#choice-of-activation-function" id="markdown-toc-choice-of-activation-function">Choice of activation function</a></li>
+          <li><a href="#simplified-notation" id="markdown-toc-simplified-notation">Simplified Notation</a></li>
+          <li><a href="#back-propagation-though-time" id="markdown-toc-back-propagation-though-time">Back propagation though time</a></li>
+        </ol>
+      </li>
+      <li><a href="#types-of-rnn" id="markdown-toc-types-of-rnn">Types of RNN</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#language-model-using-rnn" id="markdown-toc-language-model-using-rnn">Language model using RNN</a>    <ol>
+      <li>
+<a href="#training-a-language-model" id="markdown-toc-training-a-language-model">Training a language model</a>        <ol>
+          <li><a href="#tokenize-sentences-in-the-training-set" id="markdown-toc-tokenize-sentences-in-the-training-set">Tokenize sentences in the training set</a></li>
+          <li><a href="#training-the-model" id="markdown-toc-training-the-model">Training the model</a></li>
+        </ol>
+      </li>
+      <li><a href="#cost-function" id="markdown-toc-cost-function">Cost Function</a></li>
+      <li><a href="#probability-of-the-sentence" id="markdown-toc-probability-of-the-sentence">Probability of the sentence</a></li>
+      <li>
+<a href="#sampling-a-language-model" id="markdown-toc-sampling-a-language-model">Sampling a language model</a>        <ol>
+          <li><a href="#what-is-sampling" id="markdown-toc-what-is-sampling">What is sampling</a></li>
+        </ol>
+      </li>
+      <li><a href="#working-of-language-model-sampling" id="markdown-toc-working-of-language-model-sampling">Working of language model sampling</a></li>
+      <li><a href="#training-a-character-language-model" id="markdown-toc-training-a-character-language-model">Training a character language model</a></li>
+    </ol>
+  </li>
+  <li>
+<a href="#vanishing-gradients-with-rnn" id="markdown-toc-vanishing-gradients-with-rnn">Vanishing gradients with RNN</a>    <ol>
+      <li>
+<a href="#gated-recurrent-unit-gru" id="markdown-toc-gated-recurrent-unit-gru">Gated Recurrent Unit (GRU)</a>        <ol>
+          <li><a href="#simplified-gru" id="markdown-toc-simplified-gru">Simplified GRU</a></li>
+          <li><a href="#understanding-simplified-gru" id="markdown-toc-understanding-simplified-gru">Understanding simplified GRU</a></li>
+          <li><a href="#more-memory-cells-more-gates-more-activations" id="markdown-toc-more-memory-cells-more-gates-more-activations">More memory cells, more gates, more activations</a></li>
+          <li><a href="#full-gru" id="markdown-toc-full-gru">Full GRU</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#long-short-term-memory-lstm" id="markdown-toc-long-short-term-memory-lstm">Long Short Term Memory (LSTM)</a>        <ol>
+          <li><a href="#lstm-cell" id="markdown-toc-lstm-cell">LSTM Cell</a></li>
+          <li><a href="#equations" id="markdown-toc-equations">Equations</a></li>
+          <li><a href="#understanding-lstm" id="markdown-toc-understanding-lstm">Understanding LSTM</a></li>
+        </ol>
+      </li>
+      <li><a href="#chaining" id="markdown-toc-chaining">Chaining</a></li>
+      <li><a href="#gru-vs-lstm" id="markdown-toc-gru-vs-lstm">GRU vs LSTM</a></li>
+    </ol>
+  </li>
+  <li><a href="#exploding-gradients-with-rnn" id="markdown-toc-exploding-gradients-with-rnn">Exploding gradients with RNN</a></li>
+  <li>
+<a href="#bidirectional-recurrent-neural-networks-brnn" id="markdown-toc-bidirectional-recurrent-neural-networks-brnn">Bidirectional Recurrent Neural Networks (BRNN)</a>    <ol>
+      <li><a href="#equations-1" id="markdown-toc-equations-1">Equations</a></li>
+      <li><a href="#disadvantange-of-brnn" id="markdown-toc-disadvantange-of-brnn">Disadvantange of BRNN</a></li>
+    </ol>
+  </li>
+  <li><a href="#deep-rnn" id="markdown-toc-deep-rnn">Deep RNN</a></li>
+</ol>
+
+</nav>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Sequence models process inputs that are a function of time (like voice) and produce different types of output (like text) as described below. Sequence models like recurrent neural networks (RNN) have transformed speech recognition, natural language processing (NLP).</p>
+
+<h2 id="application-of-sequence-models">Application of sequence models</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Speech recognition</td>
+      <td>Voice to text</td>
+    </tr>
+    <tr>
+      <td>Music generation</td>
+      <td>Genre of music to music</td>
+    </tr>
+    <tr>
+      <td>Sentiment classification</td>
+      <td>Analyze the nature of text. Eg: Text to star rating.</td>
+    </tr>
+    <tr>
+      <td>DNA sequence analysis</td>
+      <td>DNA sequence to type. Eg: DNA strip to type of protein.</td>
+    </tr>
+    <tr>
+      <td>Machine translation</td>
+      <td>Translate one language to another</td>
+    </tr>
+    <tr>
+      <td>Video activity recognition</td>
+      <td>Video to description, summary or type of the video</td>
+    </tr>
+    <tr>
+      <td>Name entity recognition</td>
+      <td>Identify names of people in a text</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We see that different types of application of sequence models type various lengths of input ($$x$$)  and produce various lengths of output $$y$$. Music generation, for example, takes a single input (genre) and produces the entire music itself.</p>
+
+<h2 id="overview-of-sequence-models">Overview of sequence models</h2>
+
+<h3 id="typical-model">Typical Model</h3>
+
+<p>A typical sequence model consists of input broken into individual tokens, where each token forms a <strong>feature</strong> represented by $$x^{\prec i \succ}$$. Each feature shall have corresponding output represented by $$y^{\prec i \succ}$$. Each feature shall also produce an output activation $$a^{\prec i \succ}$$ which is fed to the next layer $$L_{i+1}$$.</p>
+
+<h3 id="notation">Notation</h3>
+
+<p><img src="/assets/images/dl/SequenceModel.png" alt="SequenceModel"></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Notation</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\[x^{\prec i \succ}\]
+</td>
+      <td>\(i^{th}\) feature input. In a sentence, it would be the \(i^{th}\) word.</td>
+    </tr>
+    <tr>
+      <td>\[y_cap^{\prec i \succ}\]
+</td>
+      <td>\(i^{th}\) output prediction. In a sentence, it would be the output after processing the \(i^{th}\) word.</td>
+    </tr>
+    <tr>
+      <td>\[y^{\prec i \succ}\]
+</td>
+      <td>\(i^{th}\) output label. In a sentence, it would be the actual output after processing the \(i^{th}\) word.</td>
+    </tr>
+    <tr>
+      <td>\[a^{\prec i \succ}\]
+</td>
+      <td>\(i^{th}\) activation produced after taking \(x^{\prec i \succ}\) and \(a^{\prec i-1 \succ}\) as inputs</td>
+    </tr>
+    <tr>
+      <td>\[x\]
+</td>
+      <td>A single input consisting of all feature. An entire sentence.</td>
+    </tr>
+    <tr>
+      <td>\[y\]
+</td>
+      <td>A single output consisting of output of all feature.</td>
+    </tr>
+    <tr>
+      <td>\[X^{ (i)\prec t \succ }\]
+</td>
+      <td>From input matrix X, select \(t^{th}\) feature in the  \(i^{th}\) instance. The \(t^{th}\) word in the \(i^{th}\) sentence</td>
+    </tr>
+    <tr>
+      <td>\[Y^{ (i)\prec t \succ }\]
+</td>
+      <td>From output matrix Y, select \(t^{th}\) output in the  \(i^{th}\) instance.</td>
+    </tr>
+    <tr>
+      <td>\[T^{(i)}_x\]
+</td>
+      <td>Number of input tokens (features) in the \(i^{th}\) instance</td>
+    </tr>
+    <tr>
+      <td>\[T^{(i)}_y\]
+</td>
+      <td>Number of output tokens in the \(i^{th}\) instance</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As we see above, in a sequence model, each instance (a sentence for example) can be of different length. In essence, the number of features (size of $$x$$) and number of output (size of $$y$$) varies for each instance. This is different from all the existing model where the input/output size have been the same across instances.</p>
+
+<h3 id="representing-a-word">Representing a word</h3>
+
+<p>Any word $$x^{\prec i \succ}$$ is represented using a <strong>one-hot encoding of the index</strong> at which the word is found in the dictionary. For example, if the word “harry” is found at index 4075 in a dictionary of 10,000 words, then the vector will have all zeros with a one at index 4075.</p>
+
+<h1 id="recurrent-neural-network">Recurrent Neural Network</h1>
+
+<h2 id="name-entity-recognition-example">Name entity recognition example</h2>
+
+<p>Consider the following two sentences</p>
+
+<ol>
+  <li>He said “Teddy bears are on sale”</li>
+  <li>He said “Teddy Roosevelt was a great president”</li>
+</ol>
+
+<p>Consider a “Name entity recognition” problem where words that are part of human names needs to be identified. For example, the first sentence has 7 words, each acting as a feature. The output is a vector of 7 numbers, one for each feature, indicating if the word is a human name or not. The first sentence shall produce an output $$ y = \left[ 0, 0, 0, 0, 0, 0, 0 \right] $$. The second sentence shall produce the output $$ y = \left[ 0, 0, 1, 1, 0, 0, 0, 0 \right] $$</p>
+
+<p>The model can detect that ‘Teddy’ (a feature) is indeed a part of human name only after encountering ‘president’ (another feature). This means knowledge of having analyzed a feature needs to be passed on for further analysis.</p>
+
+<h2 id="why-regular-nn-does-not-solve-the-problem">Why regular NN does not solve the problem</h2>
+
+<p>A typical NN (or CNN) cannot be used to model the above problems because</p>
+
+<ul>
+  <li>
+<strong>Fixed input and output size:</strong> A typical network will require the feature count (word count in all sentences) to be the same. In a sequence model each instance has different feature count. Fixing a max and padding remaining with null is also not possible. Same is the case with output.</li>
+  <li>
+<strong>Learning from one feature not shared with other:</strong>  In typical NN, a set of features $$x$$ are collectively analyzed and influence the output $$y$$. Here, analysis of each feature influences the other.</li>
+</ul>
+
+<h2 id="closer-look-at-rnn">Closer look at RNN</h2>
+
+<p>Consider the calculation of $$y^{\prec 3 \succ}$$ corresponding to input feature $$x^{\prec 3 \succ}$$ indexing the word “Teddy”</p>
+
+<ul>
+  <li>$$y^{\prec 3 \succ}$$ is generated after analyzing $$a^{\prec 3 \succ}$$</li>
+  <li>$$a^{\prec 3 \succ}$$ is generated after analyzing both $$a^{\prec 2 \succ}$$ (input from previous feature analysis) and  $$x^{\prec 3 \succ}$$  (current feature input)</li>
+  <li>Similarly, $$a^{\prec 2 \succ}$$ is generated after analyzing $$a^{\prec 1 \succ}$$ and $$x^{\prec 2 \succ}$$</li>
+  <li>In essence, a feature can be analyzed and corresponding output is produced only after <strong>all previous features</strong> are analyzed. So, the analysis of all the features that came earlier influences the current analysis.</li>
+  <li>In terms of time series, if the first feature was analyzed at time interval $$t_1$$ the second feature is analyzed only at time interval $$t_2$$.</li>
+</ul>
+
+<blockquote>
+  <p>Each feature analysis happens at a different time step.</p>
+</blockquote>
+
+<h2 id="limitation-of-rnn">Limitation of RNN</h2>
+
+<p>An RNN has analysis from earlier feature to base the current analysis. However, it does not have analysis from features that appear later. Considering the ‘Name entity recognition’ problem described above, unless the word ‘president’ (that comes much later) is analyzed the word ‘Teddy’ (that comes much earlier) cannot be marked as a person.</p>
+
+<h2 id="computations">Computations</h2>
+
+<p>In a typical NN calculations, input activation is multiplied by weight (parameter), a bias is added to get $$z$$. The $$z$$ is then fed to an  activation function (like ReLU, tanh or sigmoid) to obtain the output activation.</p>
+
+<h3 id="forward-propagation-equations">Forward propagation equations</h3>
+
+<p>$$
+\begin{aligned}
+a^{\prec t \succ} &amp;= g(W_{aa} \ a^{\prec t-1 \succ} + W_{ax} \ x^{\prec t \succ} + b_a ) <br>
+y^{\prec t \succ} &amp;= g(W_{ya} \ a^{\prec t \succ}   + b_y ) <br>
+\end{aligned}
+$$</p>
+
+<p>Consider all blocks to be identical. Lets say $$a$$ is a 100 dimensional vector. Let $$x$$ be a 10,000 dimensional vector (one-hot index for a word’s index).</p>
+
+<p>Consider $$ W_{aa} \ a^{\prec t-1 \succ} $$</p>
+<ul>
+  <li>All the 100 elements in $$a^{\prec t-1 \succ} $$ are multiplied by different weights to produce one resultant element (similar to single neuron of next layer)</li>
+  <li>$$ W_{aa} \ a^{\prec t-1 \succ} $$ should be a vector of 100 elements. This is because LHS is $$a^{\prec t \succ}$$ which is a 100 element vector.</li>
+  <li>This means $$W_{aa}$$ is a matrix of dimension $$ (100 \times 100) $$</li>
+</ul>
+
+<p>Consider $$ W_{ax} \ x^{\prec t \succ} ​$$</p>
+<ul>
+  <li>All the 10,000 elements in $$x^{\prec t \succ} $$ are multiplied by different weights to produce one resultant element.</li>
+  <li>$$ W_{ax} \ x^{\prec t \succ} $$ should be a vector of 100 elements. This is because LHS is a^{\prec t \succ} which is a 100 element vector.</li>
+  <li>This means $$W_{ax}$$ is a matrix of dimension $$ (100 \times 10000) $$</li>
+</ul>
+
+<h3 id="choice-of-activation-function">Choice of activation function</h3>
+
+<ul>
+  <li>For calculating $$a$$ typically $$tanh$$ is a common choice.</li>
+  <li>For calculating $$y$$,
+    <ul>
+      <li>Binary classification problem $$-$$ <code class="language-plaintext highlighter-rouge">sigmoid</code> is the activation function.</li>
+      <li>K way classification problem $$-$$ <code class="language-plaintext highlighter-rouge">softmax</code> is the activation function.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="simplified-notation">Simplified Notation</h3>
+
+<p>Conventions</p>
+<ul>
+  <li>$$ W_{a} $$ be a matrix got by horizontally concatenating $$ W_{aa} $$ and $$ W_{ax} $$</li>
+  <li>$$ \left[ a^{\prec t-1 \succ}, x^{\prec t \succ} \right] $$ be a matrix got by vertically concatenating $$ a^{\prec t-1  \succ} $$ and  $$ x^{\prec t \succ} ​$$</li>
+</ul>
+
+<p>$$
+\begin{aligned}
+a^{\prec t \succ} &amp;= g(W_{a} \left[ a^{\prec t-1 \succ}, \ x^{\prec t \succ}\right] + b_a ) <br>
+y^{\prec t \succ} &amp;= g(W_{y} \ a^{\prec t \succ}   + b_y ) <br>
+\end{aligned}
+$$</p>
+
+<blockquote>
+  <p>The same weight matrix $$W_{a}, \ W_{y}$$ and bias $$ b_a, b_y $$ are used/adjusted for the entire time series.</p>
+</blockquote>
+
+<h3 id="back-propagation-though-time">Back propagation though time</h3>
+
+<p>Most of the library will automatically calculate the back propagation. However, below is the intuition. Back propagation is by differentiating the cost function. The cost function for an RNN is the summation of the cost functions of individual time series.
+$$
+\begin{aligned}
+J(y_cap^{\prec t \succ}, y^{\prec t \succ}) &amp;= - \left[ y^{\prec t \succ} \ log(y_cap^{\prec t \succ})   + (1- y^{\prec t \succ} ) \ log(1 - y_cap^{\prec t \succ})  \right] <br>
+J &amp;= \Sigma^{T_y}_{t=1} \left[ J(y_cap^{\prec t \succ}, y^{\prec t \succ}) \right] <br>
+\end{aligned}
+$$</p>
+
+<p>Using gradient descent the weights $$W_{a}, \ W_{y}$$  are adjusted.</p>
+
+<h2 id="types-of-rnn">Types of RNN</h2>
+
+<p>So far we have seen that that number of input tokens $$T_x$$ are same as the number of output tokens $$T_y$$. However, the input/output lengths could be different $$-$$ A machine translation that translates French to English.</p>
+
+<p><img src="/assets/images/dl/RNNTypes.png" alt="RNNTypes"></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Application</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>One to One</td>
+      <td>Any typical NN</td>
+      <td>Present for the sake of completeness, it takes one input and produces one output.</td>
+    </tr>
+    <tr>
+      <td>One to Many</td>
+      <td>Music Generation</td>
+      <td>Using a single input like the genre of the music, the entire music is generated. <br>The output prediction \(y_cap\) is fed as input in the next time step.</td>
+    </tr>
+    <tr>
+      <td>Many to One</td>
+      <td>Sentiment Classification</td>
+      <td>Classify input text, for example predict rating based on comment made about a movie.<br>Many words acting as input result in a single rating as output.</td>
+    </tr>
+    <tr>
+      <td>Many to Many (N-N)</td>
+      <td>Name Entity Recognition</td>
+      <td>Identify and locate names in a text. <br>Words of a sentence act as input, for each word, prediction indicates if the word is a person’s name or not. <br>Note that number of inputs matches the number of outputs.</td>
+    </tr>
+    <tr>
+      <td>Many to Many (M-N)</td>
+      <td>Machine translation</td>
+      <td>Convert a sentence from language to another.<br>Words in one language result in fewer or more words in another language.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="language-model-using-rnn">Language model using RNN</h1>
+
+<p>A language model takes an input sentence and outputs a probability for the sentence (sequence of words to be together). A higher probability may indicate a sentence that is more likely to be accurate. Consider a speech recognition system that needs to output text taking the voice as input.</p>
+
+<p>Consider the following two interpretations of the voice</p>
+
+<ol>
+  <li>The apple and pair salad</li>
+  <li>The apple and pear salad</li>
+</ol>
+
+<p>A good speech recognition system should be able to determine that probability of 1st sentence is lesser than second and hence choose the second interpretation.</p>
+
+<h2 id="training-a-language-model">Training a language model</h2>
+
+<p>Building a language model requires a large corpus of English text.</p>
+
+<h3 id="tokenize-sentences-in-the-training-set">Tokenize sentences in the training set</h3>
+
+<ul>
+  <li>Divide the sentence into words</li>
+  <li>Add a <code class="language-plaintext highlighter-rouge">&lt;EOS&gt;</code> token at the end to indicate “End of sentence”. This is to enable models to even predict when sentences end. You may ignore punctuations or add ‘period’ as a token.</li>
+  <li>Add a <code class="language-plaintext highlighter-rouge">&lt;UNK&gt;</code> to indicate ‘unknown word’ for a token not present in the dictionary.</li>
+  <li>This means <code class="language-plaintext highlighter-rouge">&lt;EOS&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;UNK&gt;</code> are part of the dictionary.</li>
+  <li>Finally, each word in the input sentence is mapped to an index (one-hot representation) in the dictionary.</li>
+</ul>
+
+<h3 id="training-the-model">Training the model</h3>
+
+<p>Let <em>‘Cats average 15 hours of sleep a day’</em> be the first training sentence. The sentence has 8 words. After adding <code class="language-plaintext highlighter-rouge">&lt;EOS&gt;</code> at the end, we have 9 tokens.</p>
+
+<p>Time step $$t_1$$</p>
+
+<ul>
+  <li>The dummy $$ a^{\prec 0 \succ} $$ is zero vector as usual. Here the input $$ x^{\prec 1 \succ} $$ shall also be a zero vector</li>
+  <li>The output $$ y_cap^{\prec 1 \succ} $$ is a vector having softmax output with 10,002 classes (Assuming 10K words in dictionary + EOS + UNK). A softmax outputs a probability for each class that adds up to 1. The class with the highest probability will be the predicted word.</li>
+  <li>Predicted word probability = <code class="language-plaintext highlighter-rouge">np.max(y_cap[1])</code>. Predicted word index = <code class="language-plaintext highlighter-rouge">np.argmax (y_cap[1])</code>
+</li>
+  <li>The probability got  from $$ y_cap^{\prec 1 \succ} $$  is <code class="language-plaintext highlighter-rouge">P(&lt;word&gt;|'')</code>. This gives the <code class="language-plaintext highlighter-rouge">&lt;word&gt;</code> that has the highest probability for beginning a sentence.</li>
+  <li>The time step also produces output activation $$ a^{\prec 1 \succ} $$</li>
+</ul>
+
+<p>Time step $$t_2$$</p>
+
+<ul>
+  <li>The input $$ a^{\prec 1 \succ} $$ is the output produced by the previous time step.</li>
+  <li>The input $$ x^{\prec 2 \succ} $$ given here is the expected first word. In the example it is ‘Cats’. At time step $$t_1$$ we are telling the model that we expected ‘Cats’ to be the first word. We now ask the model to predict the next word. Essentially, during training, the input word given to the <strong>next time step</strong> is the expected word for the previous time step.</li>
+  <li>Predicted word probability = <code class="language-plaintext highlighter-rouge">np.max(y_cap[2])</code>. Predicted word index = <code class="language-plaintext highlighter-rouge">np.argmax (y_cap[2])</code>
+</li>
+  <li>The probability got  from $$ y_cap^{\prec 2 \succ} $$  is <code class="language-plaintext highlighter-rouge">P(&lt;word&gt;|'Cats')</code>. This gives the next <code class="language-plaintext highlighter-rouge">&lt;word&gt;</code> that has the highest probability given that the first word was ‘Cats’</li>
+  <li>The time step also produces output activation $$ a^{\prec 2 \succ} $$</li>
+</ul>
+
+<p>Time step $$t_3$$</p>
+<ul>
+  <li>The probability got  from $$ y_cap^{\prec 3 \succ} ​$$  is <code class="language-plaintext highlighter-rouge">P(&lt;word&gt;|'Cats average')</code>. This gives the next <code class="language-plaintext highlighter-rouge">&lt;word&gt;</code> that has the highest probability given that the first part of the sentence was ‘Cats average’</li>
+  <li>The time step also produces output activation $$ a^{\prec 3 \succ} $$</li>
+</ul>
+
+<blockquote>
+  <p>The model trains by giving the input $$ x^{\prec t \succ} $$ which is the expected output in the previous step $$ y^{\prec t-1 \succ} $$. So, $$ x^{\prec t \succ} $$ = $$ y^{\prec t-1 \succ} $$</p>
+</blockquote>
+
+<h2 id="cost-function">Cost Function</h2>
+
+<p>The cost function for a time step is similar to the cost function for any softmax.</p>
+
+<p>$$
+\begin{aligned}
+J(y_cap^{\prec t \succ}, y^{\prec t \succ}) &amp;= - \ \Sigma \left[ y^{\prec t \succ} \ log(y_cap^{\prec t \succ}) \right] <br>
+J &amp;= \Sigma^{T_y}_{t=1} \left[ J(y_cap^{\prec t \succ}, y^{\prec t \succ}) \right] <br>
+\end{aligned}
+$$</p>
+
+<h2 id="probability-of-the-sentence">Probability of the sentence</h2>
+
+<p>The probability of the sentence is obtained by multiplying all the predicted class’s probability.</p>
+
+<p>$$
+P(sentence) = np.max(y_cap^{\prec 1 \succ}) \ * \ np.max(\ y_cap^{\prec 2 \succ}) * \ … * \ np.max(\ y_cap^{\prec T_y \succ})
+$$</p>
+
+<h2 id="sampling-a-language-model">Sampling a language model</h2>
+
+<p>After having trained a language model, we could now use it to make some generate several sentences formed by random sampling.</p>
+
+<h3 id="what-is-sampling">What is sampling</h3>
+
+<p>Consider a typical survey. We could randomly choose 100 people to provide a movie review. That would not give the best idea about the peoples opinion of the movie. If most of the people we survey are kids or most senior citizens that would be even worse. We need a mix of people, but not a random mix either (completely random is like guessing).</p>
+
+<p>We will have to consider a typical probability distribution, of different ages of people going to the movie and accordingly decide how many people, of each age group, should be included to make the 100, we plan to survey.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="s">'The'</span><span class="p">,</span> <span class="s">'In'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'Once'</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="s">'In'</span>
+
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="s">'The'</span><span class="p">,</span> <span class="s">'In'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'Once'</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="s">'The'</span>
+
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="s">'The'</span><span class="p">,</span> <span class="s">'In'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'Once'</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="s">'The'</span>
+
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="s">'The'</span><span class="p">,</span> <span class="s">'In'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'Once'</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="s">'A'</span>
+
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="s">'The'</span><span class="p">,</span> <span class="s">'In'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'Once'</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="s">'In'</span>
+
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="s">'The'</span><span class="p">,</span> <span class="s">'In'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'Once'</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">array</span><span class="p">([</span><span class="s">'In'</span><span class="p">,</span> <span class="s">'The'</span><span class="p">,</span> <span class="s">'The'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'In'</span><span class="p">,</span> <span class="s">'The'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'The'</span><span class="p">,</span> <span class="s">'The'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'&lt;U4'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>In the above example, we have a list of 4 words and corresponding probability of a sentence beginning with the word.  Running the <code class="language-plaintext highlighter-rouge">random.choice</code> shall every time pick a world from the list but based on the probability distribution. What this means is that there is a 40% chance the word picked is ‘The’ while there is only ‘10%’ chance it is ‘In’.</p>
+
+<h2 id="working-of-language-model-sampling">Working of language model sampling</h2>
+
+<p>Time step $$t_1$$</p>
+
+<ul>
+  <li>Similar to the training, we begin by providing empty vectors for  $$ x^{\prec 1 \succ} $$  and  $$ a^{\prec 0 \succ} $$ as input.</li>
+  <li>The resultant  $$ y_cap^{\prec 1 \succ} $$ , is a vector having probability for every word in the dictionary (to be the first word of a sentence). It is very likely that ‘The’ has the highest probability.</li>
+  <li>Instead of simply picking the word with highest probability, we pick a random word based on probability distribution in $$ y_cap^{\prec 1 \succ} $$ . (A word with higher probability has a higher chance to be picked)</li>
+</ul>
+
+<p>Time step $$t_2$$</p>
+
+<ul>
+  <li>Unlike training we don’t have an expected sentence. So,  $$ x^{\prec 2 \succ} $$ will be the word picked from random distribution in the previous step.</li>
+  <li>The next word is picked randomly based on the probability distribution in $$ y_cap^{\prec 2 \succ} $$</li>
+</ul>
+
+<p>This way a random sentence gets generated, The nature of the sentence shall depend on the nature of the sentences used during training.  Below is the result of sampling after having trained on two different types of sentences.</p>
+
+<p><img src="/assets/images/dl/RNN_LangSample.png" alt="RNN_LangSample"></p>
+
+<p><strong>When does the time series end?</strong> The time series can end when a <code class="language-plaintext highlighter-rouge">&lt;EOS&gt;</code> token is encountered or max-length is reached.</p>
+
+<h2 id="training-a-character-language-model">Training a character language model</h2>
+
+<p>Instead of building a model based on words, we could also build them using characters. A model trained on characters would predict the next character based on the characters encountered thus far.</p>
+
+<p>The disadvantages with character model are</p>
+
+<ul>
+  <li>
+<strong>Vanishing gradient problem:</strong>  The <strong>length of the network</strong>, a typical sentence will have several words but a whole lot of characters. It is harder for a model to train how a character chosen much earlier in the model would affect what comes much later.</li>
+  <li>
+<strong>Computational Expense:</strong> A char model would be harder to train and computationally expensive.</li>
+</ul>
+
+<h1 id="vanishing-gradients-with-rnn">Vanishing gradients with RNN</h1>
+
+<p>Consider a language modeling problem that is dealing with the following two sentences</p>
+
+<ul>
+  <li>The <strong>boy</strong> had pie on Monday, pizza on Tuesday, …, burger on Saturday and <strong>was</strong> sick on Sunday.</li>
+  <li>The <strong>boys</strong> had pie on Monday, pizza on Tuesday, …, burger on Saturday and <strong>were</strong> sick on Sunday.</li>
+</ul>
+
+<p>The singular/plural word used earlier in a sentence, affecting much later in a sentence is an information that needs to be retained for long. Larger the distance, reducing gradient shall be too small to affect what was learnt much earlier.</p>
+
+<p>The vanishing gradient problem of RNN is solved using</p>
+
+<ul>
+  <li>Gated Recurrent Unit (GRN)</li>
+  <li>Long Short Term Memory (LSTM)</li>
+</ul>
+
+<h2 id="gated-recurrent-unit-gru">Gated Recurrent Unit (GRU)</h2>
+
+<p>GRU is used to prevent the vanishing gradient problem. Lets first look at the equations of GRU and then understand how it prevents/reduces vanishing gradient problem.</p>
+
+<h3 id="simplified-gru">Simplified GRU</h3>
+
+<p>A simplified GRU is governed by the following equations:</p>
+
+<p>$$
+\begin{aligned}
+c^{\prec 0 \succ} &amp;= a^{\prec 0 \succ} = 0 <br>
+\tilde{c}^{\prec t \succ} &amp;= tanh ( W_c [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_c ) <br>
+\Gamma_u &amp;= \sigma (W_u [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) <br>
+c^{\prec t \succ} &amp;= \Gamma_u * \tilde{c}^{\prec t \succ} + (1 - \Gamma_u) * c^{\prec t-1 \succ} <br>
+a^{\prec t \succ} &amp;= c^{\prec t \succ} <br>
+y^{\prec t \succ} &amp;= softmax(W_y \ a^{\prec t \succ} + b_y ) <br>
+\end{aligned}
+$$</p>
+
+<h3 id="understanding-simplified-gru">Understanding simplified GRU</h3>
+
+<ul>
+  <li>
+    <p>GRU algorithm provides a memory cell $$ c^{\prec t \succ} $$. Every time step has its own memory cell.</p>
+  </li>
+  <li>
+    <p>Every time step calculates a new value $$ \tilde{c}^{\prec t \succ}$$ <em>(tilde c)</em> which is the <strong>candidate value</strong>. A candidate value is one that attempts to get stored in the memory cell.</p>
+  </li>
+  <li>
+    <p>The memory cell is gated by $$\Gamma^{\prec t \succ}$$ (Capital, Gamma, <strong>the gate</strong>). Value of the gate is 0|1 indicating gate is close|open.</p>
+  </li>
+  <li>
+    <p>If $$\Gamma^{\prec t \succ} == 1$$</p>
+
+    <ul>
+      <li>Gate is open</li>
+      <li>The memory cell  $$ c^{\prec t \succ} $$ gets the candidate value.</li>
+      <li>This means the old value is overwritten/forgotten.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Else If $$\Gamma^{\prec t \succ} == 0$$</p>
+
+    <ul>
+      <li>Gate is closed</li>
+      <li>The memory cell  $$ c^{\prec t \succ} $$ (almost) gets the value  $$ c^{\prec t-1 \succ} $$ (previous memory cell value).</li>
+      <li>This means the old value is retained. The candidate value is discarded.</li>
+      <li>Note that $$ c^{\prec t \succ} $$ will approximately (not exactly) be equal to $$ c^{\prec t-1 \succ} $$. The difference is negligible though.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>As long as the gate is closed the <strong>candidate value</strong> (that is calculated for every time step), gets discarded and the current memory cell gets a value almost same as previous. In essence, the value once memorized can be retained for long even if the time series is very long.</p>
+</blockquote>
+
+<h3 id="more-memory-cells-more-gates-more-activations">More memory cells, more gates, more activations</h3>
+
+<p>The above describes storing a single memory in $$c^{\prec t \succ}$$. However  $$c^{\prec t-1 \succ}$$ could be a vector of memory cells. Similarly, $$\Gamma^{\prec t \succ}$$ will also be a vector of gates, for corresponding memory cell. Also, the vector size of gate is the same as vector size of activation layer.</p>
+
+<blockquote>
+  <p>len($$c^{\prec t \succ}$$) = len($$\tilde{c}^{\prec t \succ}$$) = len($$\Gamma_u^{\prec t \succ}$$)</p>
+</blockquote>
+
+<h3 id="full-gru">Full GRU</h3>
+
+<p>A full GRU uses another gate called the relevance gate $$\Gamma_r$$ which shall indicate how relevant the previous memory cell value is for calculating the candidate value.</p>
+
+<p>$$
+\begin{aligned}
+c^{\prec 0 \succ} &amp;= a^{\prec 0 \succ} = 0 <br>
+\tilde{c}^{\prec t \succ} &amp;= tanh ( W_c [ \Gamma_r * c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_c ) <br>
+\Gamma_r &amp;= \sigma (W_r [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_r ) <br>
+\Gamma_u &amp;= \sigma (W_u [c^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) <br>
+c^{\prec t \succ} &amp;= \Gamma_u * \tilde{c}^{\prec t \succ} + (1 - \Gamma_u) * c^{\prec t-1 \succ} <br>
+a^{\prec t \succ} &amp;= c^{\prec t \succ} <br>
+y^{\prec t \succ} &amp;= softmax(W_y \ a^{\prec t \succ} + b_y ) <br>
+\end{aligned}
+$$</p>
+
+<p>GRU is the standard version used by researches. The other commonly used one is LSTM.</p>
+
+<h2 id="long-short-term-memory-lstm">Long Short Term Memory (LSTM)</h2>
+
+<p>LSTM is more powerful than GRU, but is more complicated and has more gates. Few equations of LSTM are similar to GRU, however there are lot many changes as given below.</p>
+
+<h3 id="lstm-cell">LSTM Cell</h3>
+<p>The diagram below provides a circuit representation of a single LSTM cell.</p>
+
+<p><img src="/assets/images/dl/RNN_LSTM_cell.png" alt="RNN_LSTM_cell"></p>
+
+<h3 id="equations">Equations</h3>
+
+<p>$$
+\begin{aligned}
+a^{\prec 0 \succ} &amp;= random () <br>
+c^{\prec 0 \succ} &amp;= 0 <br>
+\tilde{c}^{\prec t \succ} &amp;= tanh ( W_c [  a^{\prec t-1 \succ}, x^{\prec t \succ}] + b_c ) <br>
+\Gamma_u &amp;= \sigma (W_u [a^{\prec t-1 \succ}, x^{\prec t \succ}] + b_u ) <br>
+\Gamma_f &amp;= \sigma (W_f [a^{\prec t-1 \succ}, x^{\prec t \succ}] + b_f ) <br>
+\Gamma_o &amp;= \sigma (W_o [a^{\prec t-1 \succ}, x^{\prec t \succ}] + b_o ) <br>
+c^{\prec t \succ} &amp;= \Gamma_u * \tilde{c}^{\prec t \succ} + \Gamma_f * c^{\prec t-1 \succ} <br>
+a^{\prec t \succ} &amp;= \Gamma_o * tanh(c^{\prec t \succ}) <br>
+y^{\prec t \succ} &amp;= softmax(W_y \ a^{\prec t \succ} + b_y ) <br>
+\end{aligned}
+$$</p>
+
+<h3 id="understanding-lstm">Understanding LSTM</h3>
+
+<ul>
+  <li>Instead of $$c^{\prec t-1 \succ}$$ , we directly use $$a^{\prec t-1 \succ}$$</li>
+  <li>The relevance gate $$\Gamma_r$$ is not used</li>
+  <li>Three gates update gate, forget gate and output gate are used as opposed to just one, update gate, in GRU
+    <ul>
+      <li>The update gate shall gate the candidate value while the forget gate shall gate the previous memory cell value.</li>
+      <li>The update and forget gates together determine the value of the current memory cell.</li>
+      <li>This way the network <strong>could</strong> create a current memory cell which is the sum of candidate value and previous memory cell (No idea why?)</li>
+      <li>The output gate shall gate the current memory cell (update above) to determine the value sent to next time step a^{\prec t \succ}</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="chaining">Chaining</h2>
+<p>LSTM (or GRU) cells can be chained to analyze the sequence of inputs from  $$x^{\prec 1 \succ}$$ to $$x^{\prec T_x \succ}$$ as shown in the diagram below.</p>
+
+<p><img src="/assets/images/dl/RNN_LSTM_chain.png" alt="RNN_LSTM_chain"></p>
+
+<h2 id="gru-vs-lstm">GRU vs LSTM</h2>
+
+<p>GRU came up later in the history compared to LSTM. 	GRU is more simpler than LSTM. LSTM is a proven model. However, GRU which is the latest is catching up.</p>
+
+<h1 id="exploding-gradients-with-rnn">Exploding gradients with RNN</h1>
+
+<p>Vanishing gradients is a bigger problem with RNN. Exploding gradients though equally harmful to a network can be easily addressed by <strong>Gradient Clipping</strong>. The simplest implementation of gradient clipping shall provide a min and max value. Any value greater than max is set to max. Similarly, any value lesser than min is set to min. All weights and bias terms are clipped.</p>
+
+<h1 id="bidirectional-recurrent-neural-networks-brnn">Bidirectional Recurrent Neural Networks (BRNN)</h1>
+
+<p>As mentioned as one of the limitations of RNN earlier, RNN cannot make a decision based on the analysis of future inputs and analysis, it can only make a decision based on previous inputs and analysis. BRNN address this limitation.</p>
+
+<p><img src="/assets/images/dl/RNN_BRNN.png" alt="RNN_BRNN"></p>
+
+<p><strong>Note:</strong> This is <strong>not back propagation</strong>, it is forward propagation that takes a U turn and comes back. The prediction at any given time step is based on current input ( $$x^{\prec t \succ}$$ ), analysis from previous time step ( $$\overrightarrow{a}^{\prec t-1 \succ}$$ ) and analysis from next time step  ($$\overleftarrow{a}^{\prec t-1 \succ}$$) . The last part is missing in RNN</p>
+
+<h2 id="equations-1">Equations</h2>
+
+<p>$$
+\begin{aligned}
+\overrightarrow{a}^{\prec t \succ} &amp;= g(W_{a} \left[ \overrightarrow{a}^{\prec t-1 \succ}, \ x^{\prec t \succ}\right] + b_a ) <br>
+\overleftarrow{a}^{\prec t \succ} &amp;= g(W_{a} \left[ \overleftarrow{a}^{\prec t-1 \succ}, \ x^{\prec t \succ}\right] + b_a ) <br>
+y^{\prec t \succ}  &amp;= g(W_{y} \left[ \overleftarrow{a}^{\prec t \succ}, \overrightarrow{a}^{\prec t \succ} \right]   + b_y ) <br>
+\end{aligned}
+$$</p>
+
+<p>Just like the forward activation $$\overrightarrow{a}^{\prec t \succ}$$ is the analysis from all previous time steps, back activation $$\overleftarrow{a}^{\prec t \succ}$$ has information from all future time step.</p>
+
+<h2 id="disadvantange-of-brnn">Disadvantange of BRNN</h2>
+
+<p>The disadvantange of BRNN apart from the obvious computational overhead is that it requires the entire input inorder to may prediction and cannot make predictions as the input is being received. For example, in a voice to text speech recognition system, BRNN would wait for the user to stop to make the prediction of the entire sentence.</p>
+
+<h1 id="deep-rnn">Deep RNN</h1>
+
+<p>Multiple version of RNNs like (Regular RNN, GRU, LSTM, BRNN) can be stacked vertically where $$y^{\prec t \succ}$$ from one layer below, is fed as $$x^{\prec t \succ}$$ to a layer on the top. Like any typical RNN, an entire horizontal layer shall use the same weights. In other words there shall be a $$W_a$$ per layer.</p>
+
+<p><img src="/assets/images/dl/DeepRNN.png" alt="DeepRNN"></p>
+
+<p>We won’t have many layers of RNN stacked vertically (3 itself is pretty complex and computationally expensive). However after stacking RNN on top of each other for say 3 layers, we could have a regular deep network not connected horizontally.</p>
+
+        </div>
+
+        <div class="card-footer">
+            
+        </div>
+
+    </div>
+
+</div>
+</div>
+                <!-- <div id="footer" class="w-100"><div class="footer">
+    <div class="footer-col footer-col-1">
+    <ul class="contact-list">
+      <li>
+        <span class="site-author">
+           
+             Raghunandan.Seshadri
+           
+        </span>
+      </li>
+
+      
+      <li><a href="mailto:raghubs81@gmail.com">raghubs81@gmail.com</a></li>
+      
+
+      
+      <li>
+        <a href="https://github.com/cafeduke"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cafeduke</span></a>
+
+      </li>
+      
+
+    </ul>
+    </div>
+
+    <div class="footer-col footer-col-2">
+     <ul class="contact-list">
+        
+           <li>Duke notes. Happy learning!</li>
+        
+     </ul>
+    </div>
+</div></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Material JavaScript on top of Bootstrap JavaScript -->
+<script src="/assets/daemonite-material/js/material.min.js"></script>
+
+<!-- Include and configure MathJax -->
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/AsciiMath", "input/TeX", "input/MathML", "output/HTML-CSS"],
+      asciimath2jax: {
+         delimiters: [['`','`'], ['$$','$$'], ['$','$']]
+      },
+      "HTML-CSS": {
+         preferredFont:"TeX", availableFonts:["STIX","TeX"]
+      }
+   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+
+<!-- Google analytics -->
+
+
+<!-- Sidebar -->
+<script src="/assets/js/sidebar.js"></script>
+
+
+
+   </body>
+
+</html>
