@@ -3,7 +3,7 @@ title: Kubernetes Essentials
 categories: cloud
 layout: post
 mathjax: true
-use_mermaid: true
+use_mermaid!: true
 typora-root-url: ../../
 ---
 
@@ -366,7 +366,7 @@ deployment.apps "httpd" deleted
 
 # Basic deployment with service
 
-```mermaid
+```mermaid!
 flowchart TB
   a1[httpd]---a2(Service):::service
   a1(httpd)---a3(ConfigMap):::config
@@ -387,7 +387,7 @@ The [K8s/01-basic](K8s/01-basic) project details the following concepts
 
 # MongoDB & MongoExpress deployment
 
-```mermaid
+```mermaid!
 flowchart TB
 
   d1(MongoDB):::node---g1(Service):::service
@@ -452,7 +452,7 @@ data:
 
 One namespace cannot refer to most components (ConfigMap, Secret) in another namespace
 
-```mermaid
+```mermaid!
 flowchart TB
 
   subgraph db-namespace
@@ -589,7 +589,7 @@ This is the typical deployment of a K8s cluster.
 - An external cloud loadbalancer (LB) shall front-end all customer requests and shall forward the request to `IngressController`
 - The LB shall have a public IP registered with domain `my-app.com`
 
-```mermaid
+```mermaid!
 flowchart RL
 
   subgraph CloudLB
@@ -629,7 +629,7 @@ The deployment uses an external proxy server
 - The proxy shall be the only entry point to customer requests and shall forward the request to `IngressController`
 - The proxy shall have a public IP registered with domain `my-app.com`
 
-```mermaid
+```mermaid!
 flowchart RL
 
   subgraph ProxyServer
@@ -951,7 +951,7 @@ container:
 
 Consider a deployment where we have Dev, Stage and Prod K8s clusters using the the same YAML files.
 
-```mermaid
+```mermaid!
 flowchart TB
 
   subgraph ProdCluster
